@@ -1,5 +1,6 @@
 plugins {
     id 'com.gradleup.shadow'
+    id "org.jetbrains.kotlin.jvm" version "2.3.10"
 }
 
 architectury {
@@ -35,6 +36,10 @@ dependencies {
 
     common(project(path: ':to_base:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':to_base:common', configuration: 'transformProductionFabric')
+
+    //Kotlin support.
+    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 processResources {
@@ -52,4 +57,10 @@ shadowJar {
 
 remapJar {
     inputFile.set shadowJar.archiveFile
+}
+repositories {
+    mavenCentral()
+}
+kotlin {
+    jvmToolchain(21)
 }

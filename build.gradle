@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.gradleup.shadow' version '8.3.6' apply false
+    id "org.jetbrains.kotlin.jvm" version "2.3.10"
 }
 
 architectury {
@@ -38,6 +41,12 @@ subprojects {
     dependencies {
         minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
         mappings loom.officialMojangMappings()
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_21
+        }
     }
 
     java {

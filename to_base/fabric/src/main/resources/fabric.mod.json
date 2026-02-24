@@ -11,15 +11,21 @@
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "CC0-1.0",
+  "license": "proprietary",
   "icon": "assets/to_base/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.jidb.to.fabric.ExampleModFabric"
+      {
+        "value": "net.jidb.to.base.fabric.ToBaseFabricMod",
+        "adapter": "kotlin"
+      }
     ],
     "client": [
-      "net.jidb.to.fabric.client.ExampleModFabricClient"
+      {
+        "value": "net.jidb.to.base.fabric.client.ToBaseFabricClientMod",
+        "adapter": "kotlin"
+      }
     ]
   },
   "mixins": [
