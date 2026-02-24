@@ -9,6 +9,9 @@ pluginManagement {
 
 rootProject.name = 'to_base'
 
-include 'common'
-include 'fabric'
-include 'neoforge'
+include 'to_base:common'
+include 'to_base:fabric'
+include 'to_base:neoforge'
+include 'to_sky_and_stars:common'
+include 'to_sky_and_stars:fabric'
+include 'to_sky_and_stars:neoforge'
