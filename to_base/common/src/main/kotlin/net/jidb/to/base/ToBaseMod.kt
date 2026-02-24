@@ -4,9 +4,10 @@ import net.fabricmc.api.ModInitializer
 import org.slf4j.LoggerFactory
 
 object ToBaseMod {
-    private val logger = LoggerFactory.getLogger("to_base")
+    const val mod_id = "to_base"
+    val logger = LoggerFactory.getLogger(mod_id)
 
     fun init() {
-        logger.info("Hello common world!")
+        logger.info("Hello common world from ${mod_id}!")
     }
 }
