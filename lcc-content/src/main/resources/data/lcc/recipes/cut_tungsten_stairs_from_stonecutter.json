@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "lcc:cut_tungsten"
-  },
-  "result": "lcc:cut_tungsten_stairs"
-}

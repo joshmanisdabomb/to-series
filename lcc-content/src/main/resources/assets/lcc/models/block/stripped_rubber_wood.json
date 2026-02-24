@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "lcc:block/stripped_rubber_log",
-    "side": "lcc:block/stripped_rubber_log"
-  }
-}

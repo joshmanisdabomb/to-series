@@ -1,8 +1,0 @@
-{
-  "parent": "lcc:block/template_atomic_bomb_middle",
-  "textures": {
-    "2": "lcc:block/atomic_bomb_tail",
-    "5": "lcc:block/atomic_bomb_head",
-    "particle": "lcc:block/atomic_bomb_tail"
-  }
-}

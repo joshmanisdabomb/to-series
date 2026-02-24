@@ -1,7 +1,0 @@
-{
-  "parent": "lcc:block/template_heart_condenser_fill",
-  "textures": {
-    "0": "lcc:block/heart_condenser_iron",
-    "particle": "lcc:block/heart_condenser_iron"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "lcc:block/template_cog",
-  "textures": {
-    "back": "lcc:block/cog",
-    "front": "lcc:block/cog",
-    "particle": "lcc:block/cog"
-  }
-}

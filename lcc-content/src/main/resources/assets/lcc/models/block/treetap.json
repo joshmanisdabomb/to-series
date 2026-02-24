@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:block/template_treetap",
-  "textures": {
-    "0": "lcc:block/treetap"
-  }
-}

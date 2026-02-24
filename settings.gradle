@@ -1,22 +1,14 @@
 pluginManagement {
     repositories {
-        maven {
-            name = 'Fabric'
-            url = 'https://maven.fabricmc.net/'
-        }
+        maven { url = 'https://maven.fabricmc.net/' }
+        maven { url = 'https://maven.architectury.dev/' }
+        maven { url = 'https://files.minecraftforge.net/maven/' }
         gradlePluginPortal()
     }
-
-    plugins {
-        id 'fabric-loom' version loom_version
-        id "org.jetbrains.kotlin.jvm" version kotlin_version
-    }
-
 }
 
-rootProject.name = "lcc"
+rootProject.name = 'to_base'
 
-include 'lcc-creative-ex', 'lcc-ct', 'lcc-data', 'lcc-energy', 'lcc-hooks', 'lcc-infra', 'lcc-subblock'
-
-include 'lcc-content', 'lcc-content-data'
-
+include 'common'
+include 'fabric'
+include 'neoforge'

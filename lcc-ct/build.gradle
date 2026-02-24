@@ -1,5 +1,0 @@
-archivesBaseName = "lcc-ct"
-
-dependencies {
-    implementation project(path: ":lcc-infra", configuration: "namedElements")
-}

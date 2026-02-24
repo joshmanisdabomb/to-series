@@ -1,7 +1,0 @@
-{
-  "parent": "lcc:item/template_radiation_detector",
-  "textures": {
-    "0": "lcc:item/radiation_detector",
-    "1": "lcc:item/radiation_detector_winter_4"
-  }
-}

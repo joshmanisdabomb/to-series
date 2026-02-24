@@ -1,9 +1,0 @@
-{
-  "values": [
-    "lcc:knife",
-    {
-      "id": "#c:swords",
-      "required": false
-    }
-  ]
-}

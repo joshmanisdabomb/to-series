@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "lcc:block/polished_sapphire_altar_brick",
-    "side": "lcc:block/polished_sapphire_altar_brick",
-    "top": "lcc:block/polished_sapphire_altar_brick"
-  }
-}

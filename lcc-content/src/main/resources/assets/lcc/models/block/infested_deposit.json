@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:block/template_deposit",
-  "textures": {
-    "texture": "lcc:block/infested_deposit"
-  }
-}

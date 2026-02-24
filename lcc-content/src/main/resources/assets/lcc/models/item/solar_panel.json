@@ -1,8 +1,0 @@
-{
-  "parent": "lcc:item/template_solar_panel",
-  "textures": {
-    "bottom": "lcc:block/solar_panel_bottom",
-    "side": "lcc:block/solar_panel_side",
-    "top": "lcc:block/solar_panel"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable_with_bottom",
-  "textures": {
-    "bottom": "lcc:block/rubber_log_top",
-    "front": "lcc:block/rubber_log_tapped",
-    "side": "lcc:block/rubber_log",
-    "top": "lcc:block/rubber_log_top"
-  }
-}

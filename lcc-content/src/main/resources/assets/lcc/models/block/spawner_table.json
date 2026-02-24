@@ -1,9 +1,0 @@
-{
-  "parent": "lcc:block/template_spawner_table",
-  "textures": {
-    "bottom": "lcc:block/spawner_table_bottom",
-    "particle": "lcc:block/spawner_table_bottom",
-    "side": "lcc:block/spawner_table_side",
-    "top": "lcc:block/spawner_table_top"
-  }
-}

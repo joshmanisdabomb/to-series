@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_left",
-  "textures": {
-    "bottom": "lcc:block/deadwood_door_bottom",
-    "top": "lcc:block/deadwood_door_top"
-  }
-}

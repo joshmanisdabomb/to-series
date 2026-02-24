@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "lcc:block/hot_pink_classic_cloth"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "lcc:block/machine_enclosure_bottom",
-    "side": "lcc:block/machine_enclosure_side",
-    "top": "lcc:block/machine_enclosure_top"
-  }
-}

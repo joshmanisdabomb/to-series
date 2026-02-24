@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:item/template_alarm_item",
-  "textures": {
-    "texture": "lcc:block/alarm"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:block/template_spikes",
-  "textures": {
-    "texture": "lcc:block/bleeding_spikes"
-  }
-}

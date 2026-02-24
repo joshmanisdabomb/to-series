@@ -1,8 +1,0 @@
-{
-  "type": "lcc:time_rift",
-  "count": 1,
-  "ingredient": {
-    "item": "minecraft:crying_obsidian"
-  },
-  "result": "lcc:classic_crying_obsidian"
-}

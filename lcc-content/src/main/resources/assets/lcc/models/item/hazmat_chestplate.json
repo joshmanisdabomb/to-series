@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "lcc:item/hazmat_chestplate",
-    "layer1": "lcc:item/hazmat_chestplate_overlay"
-  }
-}

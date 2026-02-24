@@ -1,8 +1,0 @@
-{
-  "parent": "lcc:block/template_heart_condenser",
-  "textures": {
-    "0": "lcc:block/polished_sapphire_altar_brick",
-    "1": "lcc:block/sapphire_altar_gems",
-    "particle": "lcc:block/polished_sapphire_altar_brick"
-  }
-}

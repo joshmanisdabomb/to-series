@@ -1,108 +1,43 @@
 plugins {
-    id 'fabric-loom'
-    id 'maven-publish'
-    id "org.jetbrains.kotlin.jvm"
+    id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
+    id 'architectury-plugin' version '3.4-SNAPSHOT'
+    id 'com.gradleup.shadow' version '8.3.6' apply false
 }
 
-archivesBaseName = project.archives_base_name
-version = project.root_version
-group = project.maven_group
-
-project(':lcc-ct') {
-    version = project.ct_version
-}
-project(':lcc-creative-ex') {
-    version = project.creative_ex_version
-}
-project(':lcc-energy') {
-    version = project.energy_version
-}
-project(':lcc-hooks') {
-    version = project.hooks_version
-}
-project(':lcc-infra') {
-    version = project.infra_version
-}
-project(':lcc-subblock') {
-    version = project.subblock_version
-}
-
-project(':lcc-content') {
-    version = rootProject.version
-}
-
-project(':lcc-data') {
-    version = project.data_version
-}
-project(':lcc-content-data') {
-    version = rootProject.version
+architectury {
+    minecraft = project.minecraft_version
 }
 
 allprojects {
-    sourceSets.create(project.name).allSource.srcDirs([project.file('src/main/java'), project.file('src/main/resources'), project.file('src/main/kotlin')])
+    group = rootProject.maven_group
+    version = rootProject.mod_version
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    archiveClassifier.set('sources')
-    allprojects {
-        from (sourceSets.getByName(project.name).allSource) {
-            into project.name
-        }
-    }
-}
-
-allprojects {
-
-    apply plugin: 'fabric-loom'
+subprojects {
+    apply plugin: 'dev.architectury.loom'
+    apply plugin: 'architectury-plugin'
     apply plugin: 'maven-publish'
-    apply plugin: "org.jetbrains.kotlin.jvm"
 
-    group = rootProject.group
-
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-
-    compileKotlin.kotlinOptions.jvmTarget = "17"
-    compileKotlin.kotlinOptions.freeCompilerArgs += "-Xjvm-default=all"
-
-    ext {
-        dataTask = path == ":lcc-data" || path == ":lcc-content-data"
-    }
-
-    tasks.withType(JavaCompile).configureEach {
-        it.options.encoding = "UTF-8"
-        it.options.release = 17
+    base {
+        // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
+        archivesName = "$rootProject.archives_name-$project.name"
     }
 
     repositories {
-        maven { url = "https://maven.fabricmc.net/" }
-        maven { url = 'https://maven.minecraftforge.net/' }
-        maven {
-            name = 'Ladysnake Mods'
-            url = 'https://ladysnake.jfrog.io/artifactory/mods'
-        }
-        maven {
-            url = "https://maven.shedaniel.me"
-        }
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
+    }
+
+    loom {
+        silentMojangMappingsLicense()
     }
 
     dependencies {
-        //to change the versions see the gradle.properties file
-        minecraft "com.mojang:minecraft:${project.minecraft_version}"
-        mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-        modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-        // Fabric API. This is technically optional, but you probably want it anyway.
-        modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-        modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
-
-        // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-        // You may need to force-disable transitiveness on them.
-    }
-
-    configurations {
-        dev
+        minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
+        mappings loom.officialMojangMappings()
     }
 
     java {
@@ -110,48 +45,30 @@ allprojects {
         // if it is present.
         // If you remove this line, sources will not be generated.
         withSourcesJar()
+
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
-    jar {
-        archiveClassifier.set('dev')
-        from(rootProject.file("LICENSE.md")) {
-            rename { "LICENSE_${project.archivesBaseName.replace('-', '_')}"}
-        }
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release = 21
     }
 
-    processResources {
-        inputs.property "version", project.version
-
-        filesMatching("fabric.mod.json") {
-            expand "version": project.version
-        }
-    }
-
-    afterEvaluate {
-        artifacts {
-            dev file: file("${project.buildDir}/libs/$archivesBaseName-${version}-dev.jar"), type: "jar", builtBy: jar
-        }
-    }
-
-}
-
-// ensure that the encoding is set to UTF-8, no matter what the system default is
-// this fixes some edge cases with special characters not displaying correctly
-// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-    it.options.release = 17
-}
-
-subprojects.each { remapJar.dependsOn("${it.path}:remapJar") }
-
-dependencies {
-    afterEvaluate {
-        subprojects.each {
-            if (!it.dataTask) {
-                implementation project(path: ":${it.name}", configuration: "dev")
-                include project("${it.name}:")
+    // Configure Maven publishing.
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = base.archivesName.get()
+                from components.java
             }
+        }
+
+        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+        repositories {
+            // Add repositories to publish to here.
+            // Notice: This block does NOT have the same function as the block in the top level.
+            // The repositories here will be used for publishing your artifact, not for
+            // retrieving dependencies.
         }
     }
 }

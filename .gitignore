@@ -3,7 +3,11 @@
 .gradle/
 build/
 out/
-prod/
+classes/
+
+# eclipse
+
+*.launch
 
 # idea
 
@@ -11,16 +15,6 @@ prod/
 *.iml
 *.ipr
 *.iws
-
-# fabric
-
-run/
-/minecraft/
-remappedSrc/
-
-# eclipse
-
-*.launch
 
 # vscode
 
@@ -32,15 +26,15 @@ bin/
 
 # macos
 
-*.DS_STORE
-
-# lcc
-/assets/
-lcc-content/src/main/resources/.cache/
-lcc-content/src/generated/
-lcc-content-data/*.env.json
-TODO.md
+*.DS_Store
 
 # fabric
 
 run/
+
+# java
+
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr

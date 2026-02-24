@@ -1,5 +1,0 @@
-accessWidener   v1  named
-accessible  method  net/minecraft/data/client/TextureKey  of    (Ljava/lang/String;Lnet/minecraft/data/client/TextureKey;)Lnet/minecraft/data/client/TextureKey;
-accessible  class   net/minecraft/recipe/Ingredient$Entry
-accessible  class   net/minecraft/recipe/Ingredient$StackEntry
-accessible  class   net/minecraft/recipe/Ingredient$TagEntry

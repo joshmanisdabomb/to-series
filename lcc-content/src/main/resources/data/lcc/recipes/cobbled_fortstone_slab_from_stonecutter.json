@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "lcc:cobbled_fortstone"
-  },
-  "result": "lcc:cobbled_fortstone_slab"
-}

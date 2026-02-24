@@ -1,9 +1,0 @@
-{
-  "parent": "lcc:block/template_enhancing_chamber",
-  "textures": {
-    "bottom": "lcc:block/enhancing_chamber_bottom",
-    "particle": "lcc:block/enhancing_chamber_side",
-    "side": "lcc:block/enhancing_chamber_side",
-    "top": "lcc:block/enhancing_chamber_top"
-  }
-}

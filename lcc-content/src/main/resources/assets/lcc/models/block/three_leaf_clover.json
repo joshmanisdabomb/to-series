@@ -1,7 +1,0 @@
-{
-  "parent": "lcc:block/textured_cross",
-  "textures": {
-    "0": "lcc:block/three_leaf_clover",
-    "1": "lcc:block/three_leaf_clover_alt"
-  }
-}

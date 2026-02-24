@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "lcc:block/cut_tungsten",
-    "side": "lcc:block/cut_tungsten",
-    "top": "lcc:block/cut_tungsten"
-  }
-}

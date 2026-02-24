@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:block/template_face_south",
-  "textures": {
-    "texture": "lcc:block/rubber_log"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "lcc:block/cube_column_horizontal_with_particle",
-  "textures": {
-    "end": "lcc:block/bomb_board_block_0",
-    "particle": "lcc:block/bomb_board_block_0",
-    "side": "lcc:block/bomb_board_block_side"
-  }
-}

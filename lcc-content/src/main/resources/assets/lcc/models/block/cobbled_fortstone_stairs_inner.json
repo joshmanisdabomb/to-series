@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "lcc:block/cobbled_fortstone",
-    "side": "lcc:block/cobbled_fortstone",
-    "top": "lcc:block/cobbled_fortstone"
-  }
-}

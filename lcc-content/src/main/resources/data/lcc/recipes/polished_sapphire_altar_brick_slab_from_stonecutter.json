@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "lcc:polished_sapphire_altar_brick"
-  },
-  "result": "lcc:polished_sapphire_altar_brick_slab"
-}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 1,
-  "ingredient": {
-    "item": "lcc:fortstone"
-  },
-  "result": "lcc:polished_fortstone"
-}

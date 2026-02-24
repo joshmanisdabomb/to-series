@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:block/template_sapphire_altar_tr",
-  "textures": {
-    "texture": "lcc:block/sapphire_altar_gems"
-  }
-}

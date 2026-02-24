@@ -1,8 +1,0 @@
-{
-  "type": "lcc:time_rift",
-  "count": 1,
-  "ingredient": {
-    "item": "minecraft:gold_block"
-  },
-  "result": "lcc:classic_gold_block"
-}

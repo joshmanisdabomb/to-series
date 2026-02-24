@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "end": "lcc:block/test_block_4_end",
-    "side": "lcc:block/test_block_4_side"
-  }
-}

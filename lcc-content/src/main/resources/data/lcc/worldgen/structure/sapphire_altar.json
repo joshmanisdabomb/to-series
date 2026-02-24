@@ -1,6 +1,0 @@
-{
-  "type": "lcc:sapphire_altar",
-  "biomes": "#lcc:has_structure/sapphire_altar",
-  "step": "surface_structures",
-  "spawn_overrides": {}
-}

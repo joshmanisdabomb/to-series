@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable_with_bottom",
-  "textures": {
-    "bottom": "lcc:block/machine_enclosure_bottom",
-    "front": "lcc:block/refiner_front_purifying",
-    "side": "lcc:block/machine_enclosure_side",
-    "top": "lcc:block/refiner_top_purifying"
-  }
-}

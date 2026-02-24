@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:block/template_sapphire_altar_key",
-  "textures": {
-    "texture": "lcc:block/rusted_iron_block"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "lcc:block/template_salt_2_2",
-  "textures": {
-    "texture": "lcc:block/salt"
-  }
-}

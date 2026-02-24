@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "cookingtime": 600,
-  "experience": 0.35,
-  "ingredient": {
-    "item": "lcc:classic_raw_fish"
-  },
-  "result": "lcc:classic_cooked_fish"
-}
