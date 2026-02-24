@@ -1,7 +1,7 @@
-modLoader = "javafml"
-loaderVersion = "[10,)"
+modLoader = "kotlinforforge"
+loaderVersion = "[6.1,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "proprietary"
 
 [[mods]]
 modId = "to_base"
@@ -31,6 +31,13 @@ side = "BOTH"
 modId = "architectury"
 type = "required"
 versionRange = "[18.0.6,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.to_base]]
+modId = "kotlinforforge"
+type = "required"
+versionRange = "[6.1,)"
 ordering = "AFTER"
 side = "BOTH"
 
