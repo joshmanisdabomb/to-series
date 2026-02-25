@@ -10,7 +10,7 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.10.0'
 }
 
-rootProject.name = 'to_base'
+rootProject.name = 'to_series'
 
 include 'to_base:common'
 include 'to_base:fabric'
