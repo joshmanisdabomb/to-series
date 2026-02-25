@@ -32,5 +32,12 @@ versionRange = "${kff_version_range}"
 ordering = "AFTER"
 side = "BOTH"
 
+[[dependencies."${mod_id}"]]
+modId = "to_base"
+type = "required"
+versionRange = "${to_base_version_range}"
+ordering = "AFTER"
+side = "BOTH"
+
 [[mixins]]
-config = "to_base.mixins.json"
+config = "to_sky_and_stars.mixins.json"
