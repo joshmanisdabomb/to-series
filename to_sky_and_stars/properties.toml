@@ -1,0 +1,7 @@
+# Namespace properties for to_sky_and_stars
+
+group = "net.jidb.to.stars"
+version = "0.0.1"
+modId = "to_sky_and_stars"
+modName = "To Sky and Stars"
+description = "Space race and missile mod."

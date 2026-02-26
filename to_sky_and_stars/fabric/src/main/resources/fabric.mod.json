@@ -17,25 +17,26 @@
   "entrypoints": {
     "main": [
       {
-        "value": "net.jidb.to.base.fabric.ToBaseFabricMod",
+        "value": "net.jidb.to.stars.fabric.ToSkyAndStarsFabricMod",
         "adapter": "kotlin"
       }
     ],
     "client": [
       {
-        "value": "net.jidb.to.base.fabric.client.ToBaseFabricClientMod",
+        "value": "net.jidb.to.stars.fabric.client.ToSkyAndStarsFabricClientMod",
         "adapter": "kotlin"
       }
     ]
   },
   "mixins": [
-    "to_base.mixins.json"
+    "to_sky_and_stars.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_version}",
     "minecraft": "~${minecraft_version}",
-    "java": ">=${java_version}"
+    "java": ">=${java_version}",
+    "to_base": "~${to_base_version}"
   },
   "suggests": {
     "another-mod": "*"
