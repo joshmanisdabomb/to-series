@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "to_base",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "To Lay the Foundations",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "${mod_name}",
+  "description": "${description}",
   "authors": [
-    "Me!"
+    "${mod_author}"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "proprietary",
-  "icon": "assets/to_base/icon.png",
+  "license": "${license}",
+  "icon": "assets/${mod_id}/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -32,10 +32,10 @@
     "to_base.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.18.0",
-    "minecraft": "~1.21.10",
-    "java": ">=21",
-    "fabric-api": "*"
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": ">=${fabric_version}",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=${java_version}"
   },
   "suggests": {
     "another-mod": "*"

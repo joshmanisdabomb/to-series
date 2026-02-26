@@ -1,43 +1,41 @@
 modLoader = "kotlinforforge"
-loaderVersion = "[6.1,)"
+loaderVersion = "${kff_version_range}"
 #issueTrackerURL = ""
-license = "proprietary"
+license = "${license}"
 
 [[mods]]
-modId = "to_sky_and_stars"
+modId = "${mod_id}"
 version = "${version}"
-displayName = "To Sky and Stars"
-authors = "Me!"
-description = '''
-Space race mod.
-'''
-#logoFile = ""
+displayName = "${mod_name}"
+authors = "${mod_author}"
+description = '''${description}'''
+logoFile = "assets/${mod_id}/icon.png"
 
-[[dependencies.to_sky_and_stars]]
+[[dependencies."${mod_id}"]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.10,)"
+versionRange = "${neoforge_range}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.to_sky_and_stars]]
+[[dependencies."${mod_id}"]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.10,)"
+versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.to_sky_and_stars]]
+[[dependencies."${mod_id}"]]
 modId = "kotlinforforge"
 type = "required"
-versionRange = "[6.1,)"
+versionRange = "${kff_version_range}"
 ordering = "AFTER"
 side = "BOTH"
 
-[[dependencies.to_sky_and_stars]]
+[[dependencies."${mod_id}"]]
 modId = "to_base"
 type = "required"
-versionRange = "[0.0.1,)"
+versionRange = "${to_base_version_range}"
 ordering = "AFTER"
 side = "BOTH"
 

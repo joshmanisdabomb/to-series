@@ -40,17 +40,3 @@ include(":to_base:neoforge")
 include(":to_sky_and_stars:common")
 include(":to_sky_and_stars:fabric")
 include(":to_sky_and_stars:neoforge")
-
-gradle.beforeProject {
-    if (path.startsWith(":to_sky_and_stars:")) {
-        group = "net.jidb.to.stars"
-        extra["modId"] = "to_sky_and_stars"
-        extra["modName"] = "To Sky and Stars"
-        extra["modAuthor"] = "joshmanisdabomb"
-    } else if (path.startsWith(":to_base:")) {
-        group = "net.jidb.to.base"
-        extra["modId"] = "to_base"
-        extra["modName"] = "To Lay the Foundations"
-        extra["modAuthor"] = "joshmanisdabomb"
-    }
-}

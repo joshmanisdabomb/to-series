@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "to_sky_and_stars",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "To Sky and Stars",
-  "description": "Space race mod.",
+  "name": "${mod_name}",
+  "description": "${description}",
   "authors": [
-    "Me!"
+    "${mod_author}"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "proprietary",
-  "icon": "assets/to_sky_and_stars/icon.png",
+  "license": "${license}",
+  "icon": "assets/${mod_id}/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -32,11 +32,11 @@
     "to_sky_and_stars.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.18.0",
-    "minecraft": "~1.21.10",
-    "java": ">=21",
-    "fabric-api": "*",
-    "to_base": ">=0.0.1"
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": ">=${fabric_version}",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=${java_version}",
+    "to_base": "~${to_base_version}"
   },
   "suggests": {
     "another-mod": "*"

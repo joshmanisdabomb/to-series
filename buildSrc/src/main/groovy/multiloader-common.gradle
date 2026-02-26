@@ -112,7 +112,7 @@ processResources {
             'group'                        : project.group, //Else we target the task's group.
             'minecraft_version'            : libs.versions.minecraft.get(),
             'minecraft_version_range'      : libs.versions.minecraftRange.get(),
-            'fabric_version'               : libs.versions.fabricApi.get(),
+            'fabric_version'               : libs.versions.fabricVersion.get(),
             'fabric_loader_version'        : libs.versions.fabricLoader.get(),
             'flk_version'                  : libs.versions.flk.get(),
             'mod_name'                     : modName,
@@ -124,6 +124,8 @@ processResources {
             'neoforge_range'               : libs.versions.neoforgeRange.get(),
             'kff_version'                  : libs.versions.kff.get(),
             'kff_version_range'            : libs.versions.kffRange.get(),
+            'to_base_version'              : toBaseVersion,
+            'to_base_version_range'        : "[" + toBaseVersion + ", )",
             'credits'                      : credits,
             'java_version'                 : libs.versions.java.get()
     ]
