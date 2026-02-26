@@ -40,6 +40,10 @@ repositories {
         name = "kotlinforforge"
         url = uri("https://thedarkcolour.github.io/KotlinForForge/")
     }
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
 }
 
 // Declare capabilities on the outgoing configurations.

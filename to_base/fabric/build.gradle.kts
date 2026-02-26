@@ -14,6 +14,7 @@ dependencies {
     modImplementation(libs.fabricLoader)
     modImplementation(libs.fabricApi)
 
+    modImplementation(libs.fabricModMenu)
     modImplementation(libs.flk)
 }
 

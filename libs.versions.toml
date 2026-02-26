@@ -24,6 +24,7 @@ fabricLoader = "0.18.4"
 fabricApi = "0.141.3+1.21.11"
 fabricVersion = "0.141.3"
 flk = "1.13.9+kotlin.2.3.10"
+fabricModMenu = "17.0.0-beta.2"
 
 mixin = "0.8.5"
 mixinExtras = "0.5.3"
@@ -36,6 +37,7 @@ flk = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "
 kff = { group = "thedarkcolour", name = "kotlinforforge-neoforge", version.ref = "kff" }
 mixin = { group = "org.spongepowered", name = "mixin", version.ref = "mixin" }
 mixinExtras-common = { group = "io.github.llamalad7", name = "mixinextras-common", version.ref = "mixinExtras" }
+fabricModMenu = { group = "com.terraformersmc", name = "modmenu", version.ref = "fabricModMenu" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
