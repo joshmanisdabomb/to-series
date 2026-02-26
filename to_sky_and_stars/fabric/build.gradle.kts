@@ -5,6 +5,8 @@ plugins {
 
 val modId: String by project
 
+val subprojectInclude = extra["subprojectInclude"] as groovy.lang.Closure<*>
+
 dependencies {
     minecraft(libs.minecraft)
     mappings(loom.layered {
@@ -14,15 +16,10 @@ dependencies {
     modImplementation(libs.fabricLoader)
     modImplementation(libs.fabricApi)
 
-    compileOnly(project(":to_base:common")) {
-        capabilities {
-            requireCapability("net.jidb.to.base:to_base")
-        }
-    }
-    implementation(project(path = ":to_base:fabric", configuration = "namedElements"))
-
     modImplementation(libs.flk)
 }
+
+subprojectInclude.call(":to_base")
 
 loom {
     val aw = project(":to_sky_and_stars:common").file("src/main/resources/${modId}.accesswidener")

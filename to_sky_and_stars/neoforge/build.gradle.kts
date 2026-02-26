@@ -7,6 +7,8 @@ plugins {
 
 val modId: String by project
 
+val subprojectNeoforge = extra["subprojectNeoforge"] as groovy.lang.Closure<*>
+
 neoForge {
     version = libs.versions.neoforge.get()
     // Automatically enable neoforge AccessTransformers if the file exists
@@ -43,26 +45,7 @@ neoForge {
 sourceSets.main.get().resources { srcDir("src/generated/resources") }
 
 dependencies {
-    compileOnly(project(":to_base:neoforge")) {
-        capabilities {
-            requireCapability("net.jidb.to.base:to_base-neoforge")
-        }
-    }
-    runtimeOnly(project(":to_base:neoforge")) {
-        capabilities {
-            requireCapability("net.jidb.to.base:to_base-neoforge")
-        }
-    }
-    compileOnly(project(":to_base:common")) {
-        capabilities {
-            requireCapability("net.jidb.to.base:to_base-common")
-        }
-    }
-    runtimeOnly(project(":to_base:common")) {
-        capabilities {
-            requireCapability("net.jidb.to.base:to_base-common")
-        }
-    }
-
     implementation(libs.kff)
 }
+
+subprojectNeoforge.call(":to_base")

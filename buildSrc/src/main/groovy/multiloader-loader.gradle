@@ -30,6 +30,50 @@ dependencies {
     commonResources project(path: common, configuration: 'commonResources')
 }
 
+ext.subprojectInclude = { String basePath ->
+    def commonProject = project("${basePath}:common")
+    def baseGroup = commonProject.group
+    def baseModId = commonProject.property("modId")
+    dependencies {
+        compileOnly(project("${basePath}:common")) {
+            capabilities {
+                requireCapability("$baseGroup:$baseModId")
+            }
+        }
+        implementation(project(path: "${basePath}:fabric", configuration: "namedElements"))
+    }
+}
+
+ext.subprojectFabric = ext.subprojectInclude
+
+ext.subprojectNeoforge = { String basePath ->
+    def commonProject = project("${basePath}:common")
+    def baseGroup = commonProject.group
+    def baseModId = commonProject.property("modId")
+    dependencies {
+        compileOnly(project("${basePath}:neoforge")) {
+            capabilities {
+                requireCapability("$baseGroup:$baseModId-neoforge")
+            }
+        }
+        runtimeOnly(project("${basePath}:neoforge")) {
+            capabilities {
+                requireCapability("$baseGroup:$baseModId-neoforge")
+            }
+        }
+        compileOnly(project("${basePath}:common")) {
+            capabilities {
+                requireCapability("$baseGroup:$baseModId-common")
+            }
+        }
+        runtimeOnly(project("${basePath}:common")) {
+            capabilities {
+                requireCapability("$baseGroup:$baseModId-common")
+            }
+        }
+    }
+}
+
 tasks.named('compileJava', JavaCompile) {
     dependsOn(configurations.commonJava)
     source(configurations.commonJava)
