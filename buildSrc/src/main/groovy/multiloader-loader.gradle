@@ -18,7 +18,8 @@ configurations {
 }
 
 dependencies {
-    def common = ":${project.path.substring(1).takeBefore(':')}:common"
+    def namespace = project.path.substring(1).takeBefore(':')
+    def common = ":$namespace:common"
     compileOnly(project(common)) {
         capabilities {
             requireCapability "$group:$modId"

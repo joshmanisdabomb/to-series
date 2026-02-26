@@ -44,11 +44,16 @@ repositories {
 
 // Declare capabilities on the outgoing configurations.
 // Read more about capabilities here: https://docs.gradle.org/current/userguide/component_capabilities.html#sec:declaring-additional-capabilities-for-a-local-component
+def includeSharedModIdCapability = (project.name == "common")
+
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
     configurations."$variant".outgoing {
         capability("$group:${base.archivesName.get()}:$version")
         capability("$group:$modId-${project.name}-${libs.versions.minecraft.get()}:$version")
-        capability("$group:$modId:$version")
+        if (includeSharedModIdCapability) {
+            capability("$group:$modId:$version")
+        }
+        capability("$group:$modId-${project.name}:$version")
     }
     publishing.publications.configureEach {
         suppressPomMetadataWarningsFor(variant)

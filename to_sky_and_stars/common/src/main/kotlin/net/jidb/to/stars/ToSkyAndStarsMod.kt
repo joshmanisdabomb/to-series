@@ -1,5 +1,6 @@
 package net.jidb.to.stars
 
+import net.jidb.to.base.ToBaseMod
 import org.slf4j.LoggerFactory
 
 object ToSkyAndStarsMod {
@@ -8,5 +9,6 @@ object ToSkyAndStarsMod {
 
     fun init() {
         logger.info("Hello common world from ${mod_id}!")
+        ToBaseMod.logger.info("Hello ${ToBaseMod.mod_id} from ${mod_id}!")
     }
 }

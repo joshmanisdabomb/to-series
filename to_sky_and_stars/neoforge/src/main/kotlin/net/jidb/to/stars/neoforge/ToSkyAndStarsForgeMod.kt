@@ -1,5 +1,7 @@
 package net.jidb.to.stars.neoforge
 
+import net.jidb.to.base.ToBaseMod
+import net.jidb.to.base.neoforge.ToBaseForgeMod
 import net.jidb.to.stars.ToSkyAndStarsMod
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
@@ -14,6 +16,9 @@ object ToSkyAndStarsForgeMod {
     init {
         ToSkyAndStarsMod.init()
         ToSkyAndStarsMod.logger.info("Hello world from Forge!")
+
+        ToBaseMod.logger.info("Hello ${ToBaseMod.mod_id} from forge ${ToSkyAndStarsMod.mod_id}!")
+        ToBaseMod.logger.info("Base forge mod class: $ToBaseForgeMod")
     }
 
     @SubscribeEvent

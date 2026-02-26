@@ -14,7 +14,12 @@ dependencies {
     modImplementation(libs.fabricLoader)
     modImplementation(libs.fabricApi)
 
-    modImplementation(project(path = ":to_base:fabric", configuration = "namedElements"))
+    compileOnly(project(":to_base:common")) {
+        capabilities {
+            requireCapability("net.jidb.to.base:to_base")
+        }
+    }
+    implementation(project(path = ":to_base:fabric", configuration = "namedElements"))
 
     modImplementation(libs.flk)
 }

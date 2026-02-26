@@ -45,12 +45,22 @@ sourceSets.main.get().resources { srcDir("src/generated/resources") }
 dependencies {
     compileOnly(project(":to_base:neoforge")) {
         capabilities {
-            requireCapability("net.jidb.to.base:to_base")
+            requireCapability("net.jidb.to.base:to_base-neoforge")
         }
     }
     runtimeOnly(project(":to_base:neoforge")) {
         capabilities {
-            requireCapability("net.jidb.to.base:to_base")
+            requireCapability("net.jidb.to.base:to_base-neoforge")
+        }
+    }
+    compileOnly(project(":to_base:common")) {
+        capabilities {
+            requireCapability("net.jidb.to.base:to_base-common")
+        }
+    }
+    runtimeOnly(project(":to_base:common")) {
+        capabilities {
+            requireCapability("net.jidb.to.base:to_base-common")
         }
     }
 

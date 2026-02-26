@@ -1,6 +1,8 @@
 package net.jidb.to.stars.fabric
 
 import net.fabricmc.api.ModInitializer
+import net.jidb.to.base.ToBaseMod
+import net.jidb.to.base.fabric.ToBaseFabricMod
 import org.slf4j.LoggerFactory
 import net.jidb.to.stars.ToSkyAndStarsMod
 
@@ -14,5 +16,8 @@ object ToSkyAndStarsFabricMod : ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		logger.info("Hello Fabric world!")
+
+		ToBaseMod.logger.info("Hello ${ToBaseMod.mod_id} from fabric ${ToSkyAndStarsMod.mod_id}!")
+		ToBaseMod.logger.info("Base fabric mod class: $ToBaseFabricMod")
 	}
 }
