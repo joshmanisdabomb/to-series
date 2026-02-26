@@ -1,0 +1,45 @@
+modLoader = "kotlinforforge"
+loaderVersion = "[6.1,)"
+#issueTrackerURL = ""
+license = "proprietary"
+
+[[mods]]
+modId = "to_sky_and_stars"
+version = "${version}"
+displayName = "To Sky and Stars"
+authors = "Me!"
+description = '''
+Space race mod.
+'''
+#logoFile = ""
+
+[[dependencies.to_sky_and_stars]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.10,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.to_sky_and_stars]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.10,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.to_sky_and_stars]]
+modId = "kotlinforforge"
+type = "required"
+versionRange = "[6.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.to_sky_and_stars]]
+modId = "to_base"
+type = "required"
+versionRange = "[0.0.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "to_sky_and_stars.mixins.json"

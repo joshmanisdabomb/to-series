@@ -18,14 +18,15 @@ configurations {
 }
 
 dependencies {
-    compileOnly(project(':to_base:common')) {
+    def common = ":${project.path.substring(1).takeBefore(':')}:common"
+    compileOnly(project(common)) {
         capabilities {
             requireCapability "$group:$modId"
         }
     }
-    commonJava project(path: ':to_base:common', configuration: 'commonJava')
-    commonKotlin project(path: ':to_base:common', configuration: 'commonKotlin')
-    commonResources project(path: ':to_base:common', configuration: 'commonResources')
+    commonJava project(path: common, configuration: 'commonJava')
+    commonKotlin project(path: common, configuration: 'commonKotlin')
+    commonResources project(path: common, configuration: 'commonResources')
 }
 
 tasks.named('compileJava', JavaCompile) {
