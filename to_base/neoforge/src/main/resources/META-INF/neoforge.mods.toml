@@ -28,13 +28,6 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.to_base]]
-modId = "architectury"
-type = "required"
-versionRange = "[18.0.6,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.to_base]]
 modId = "kotlinforforge"
 type = "required"
 versionRange = "[6.1,)"
