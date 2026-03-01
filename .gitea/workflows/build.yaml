@@ -28,10 +28,29 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
 
+      - name: Determine Gradle Projects to Build
+        id: gradle_args
+        shell: bash
+        run: |
+          echo "GITHUB_REF: $GITHUB_REF"
+          echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
+          
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then          
+            MOD_ID="${GITHUB_REF_NAME%%/*}"
+          
+            echo "Detected tag build for mod ID: $MOD_ID"
+          
+            TASKS=":${MOD_ID}:common :${MOD_ID}:fabric :${MOD_ID}:neoforge"
+          else
+            echo "No tag detected — running full build."
+          fi
+          
+          echo "tasks=$TASKS" >> "$GITHUB_OUTPUT"
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2.3.0
         with:
-          arguments: build
+          arguments: build ${{ steps.gradle_args.outputs.tasks }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
