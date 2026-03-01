@@ -43,6 +43,7 @@ jobs:
             TASKS=":${MOD_ID}:common:build :${MOD_ID}:fabric:build :${MOD_ID}:neoforge:build"
           else
             echo "No tag detected — running full build."
+            TASKS="build"
           fi
           
           echo "tasks=$TASKS" >> "$GITHUB_OUTPUT"
@@ -50,7 +51,7 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2.3.0
         with:
-          arguments: build ${{ steps.gradle_args.outputs.tasks }}
+          arguments: ${{ steps.gradle_args.outputs.tasks }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
