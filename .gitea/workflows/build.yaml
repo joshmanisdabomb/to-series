@@ -40,7 +40,7 @@ jobs:
           
             echo "Detected tag build for mod ID: $MOD_ID"
           
-            TASKS=":${MOD_ID}:common :${MOD_ID}:fabric :${MOD_ID}:neoforge"
+            TASKS=":${MOD_ID}:common:build :${MOD_ID}:fabric:build :${MOD_ID}:neoforge:build"
           else
             echo "No tag detected — running full build."
           fi
