@@ -40,24 +40,27 @@ jobs:
           
             echo "Detected tag build for mod ID: $MOD_ID"
           
-            TASKS=":${MOD_ID}:common:build :${MOD_ID}:fabric:build :${MOD_ID}:neoforge:build"
+            GRADLE_TASKS=":${MOD_ID}:common:build :${MOD_ID}:fabric:build :${MOD_ID}:neoforge:build"
+            GLOB_PATTERN="${MOD_ID}"
           else
             echo "No tag detected — running full build."
-            TASKS="build"
+            GRADLE_TASKS="build"
+            GLOB_PATTERN="to_*"
           fi
           
-          echo "tasks=$TASKS" >> "$GITHUB_OUTPUT"
+          echo "gradle=$GRADLE_TASKS" >> "$GITHUB_OUTPUT"
+          echo "glob=$GLOB_PATTERN" >> "$GITHUB_OUTPUT"
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2.3.0
         with:
-          arguments: ${{ steps.gradle_args.outputs.tasks }}
+          arguments: ${{ steps.gradle_args.outputs.gradle }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: builds
-          path: "./to_*/*/build/libs/*.jar"
+          path: "./${{ steps.gradle_args.outputs.glob }}/*/build/libs/*.jar"
           retention-days: 90
 
       - name: Push to Homelab Wiki via HTTPS
@@ -68,7 +71,7 @@ jobs:
           set -euo pipefail
                     
           # Collect all matching JAR files
-          mapfile -t FILES < <(find . -path "./to_*/*/build/libs/*.jar")
+          mapfile -t FILES < <(find . -path "./${{ steps.gradle_args.outputs.glob }}/*/build/libs/*.jar")
           
           if [ ${#FILES[@]} -eq 0 ]; then
             echo "No JAR files found"
