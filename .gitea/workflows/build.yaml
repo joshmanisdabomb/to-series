@@ -7,6 +7,10 @@ on:
   pull_request:
     branches:
       - main
+  release:
+    types:
+      - published
+  workflow_dispatch:
 
 jobs:
   build:
@@ -16,7 +20,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - uses: actions/setup-java@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
@@ -28,3 +33,71 @@ jobs:
         uses: gradle/gradle-build-action@v2.3.0
         with:
           arguments: build
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: builds
+          path: "./to_*/*/build/libs/*.jar"
+          retention-days: 90
+
+      - name: Push to Homelab Wiki via HTTPS
+        shell: bash
+        env:
+          API_KEY: ${{ secrets.wiki_homelab_api_key }}
+        run: |
+          set -euo pipefail
+                    
+          # Collect all matching JAR files
+          mapfile -t FILES < <(find . -path "./to_*/*/build/libs/*.jar")
+          
+          if [ ${#FILES[@]} -eq 0 ]; then
+            echo "No JAR files found"
+            exit 1
+          fi
+          
+          echo "Found ${#FILES[@]} files to upload"
+          
+          # Build curl arguments dynamically
+          CURL_ARGS=(
+            -X POST "${{ secrets.wiki_homelab_api_url }}/builds/create"
+          
+            # Metadata fields
+            -F "key=${API_KEY}"
+            -F "repository=${{ github.repository }}"
+            -F "trigger=${{ github.event_name }}"
+            -F "run_id=${{ github.run_id }}"
+            -F "run_number=${{ github.run_number }}"
+            -F "ref=${{ github.ref }}"
+            -F "ref_name=${{ github.head_ref || github.ref_name || github.ref }}"
+            -F "sha=${{ github.sha }}"
+          )
+          
+          # Add each file as builds[]
+          for file in "${FILES[@]}"; do
+            echo "Attaching $file"
+            CURL_ARGS+=(-F "builds[]=@${file}")
+          done
+          
+          # Temporary file for response body
+          BODY_FILE=$(mktemp)
+          
+          # Perform request WITHOUT --fail so we can read the body
+          HTTP_STATUS=$(curl \
+            --silent \
+            --show-error \
+            --output "$BODY_FILE" \
+            --write-out "%{http_code}" \
+            "${CURL_ARGS[@]}"
+          )
+          
+          echo "HTTP Status: $HTTP_STATUS"
+          echo "---- Response Body ----"
+          cat "$BODY_FILE"
+          echo "-----------------------"
+                
+          # Fail manually if not success
+          if [[ "$HTTP_STATUS" -lt 200 || "$HTTP_STATUS" -ge 300 ]]; then
+            echo "Request failed"
+            exit 1
+          fi
