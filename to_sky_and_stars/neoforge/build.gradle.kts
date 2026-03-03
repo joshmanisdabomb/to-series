@@ -27,12 +27,28 @@ neoForge {
         }
         register("client") {
             client()
-        }
-        register("data") {
-            clientData()
+            systemProperty("neoforge.enabledGameTestNamespaces", modId)
         }
         register("server") {
             server()
+            programArgument("--nogui")
+        }
+        register("data") {
+            clientData()
+            systemProperty("neoforge.enabledGameTestNamespaces", modId)
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            programArguments.addAll(
+                "--mod", modId,
+                "--all",
+                "--output", file("src/main/generated/").absolutePath,
+                "--existing", file("../common/src/main/resources/").absolutePath
+            )
+            systemProperty("net.jidb.to.base.data.safe", file("../common/src/main/resources/").absolutePath)
+        }
+        register("test") {
+            type = "gameTestServer"
+            systemProperty("neoforge.enabledGameTestNamespaces", modId)
         }
     }
     mods {

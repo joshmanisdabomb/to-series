@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "to_sky_and_stars:block/test_block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "to_sky_and_stars:block/test_block"
+    },
+    "facing=south": {
+      "model": "to_sky_and_stars:block/test_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "to_sky_and_stars:block/test_block",
+      "y": 270
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package net.jidb.to.base.library
 
 import net.minecraft.resources.Identifier
+import net.minecraft.world.item.CreativeModeTab
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
@@ -38,6 +39,11 @@ sealed class Library<I, V>(val modid: String) {
     open fun afterBuild() = Unit
 
     open fun afterBuild(entry: LibraryEntry<out I, out V>) = Unit
+
+    fun <W : V> getEntries(value: W): List<LibraryEntry<out I, W>> = entries.filter { it.value.value == value } as List<Library<I, V>.LibraryEntry<out I, W>>
+    fun <W : V> getEntries(property: KProperty<W>): List<LibraryEntry<out I, W>> = entries.filter { it.value.property == property } as List<Library<I, V>.LibraryEntry<out I, W>>
+    fun <W : V> getEntry(value: W) = getEntries(value).firstOrNull()
+    fun <W : V> getEntry(property: KProperty<W>) = getEntries(property).firstOrNull()
 
     open fun getEntryIdentifier(entry: LibraryEntry<out I, out V>) = Identifier.fromNamespaceAndPath(modid, entry.name)
 

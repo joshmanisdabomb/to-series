@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "to_sky_and_stars:block/test_block_top",
+    "front": "to_sky_and_stars:block/test_block_front",
+    "side": "to_sky_and_stars:block/test_block_side",
+    "top": "to_sky_and_stars:block/test_block_top"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "to_base:block/test_block"
+    }
+  }
+}

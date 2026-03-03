@@ -29,7 +29,7 @@ open class BlockItemLibrary(modid: String, getter: () -> Map<String, () -> Block
 
     open fun createDefault(block: () -> Block, name: String): () -> BlockItem {
         val key = ResourceKey.create(registry.key(), Identifier.fromNamespaceAndPath(modid, name))
-        return { BlockItem(block(), Item.Properties().setId(key)) }
+        return { BlockItem(block(), Item.Properties().setId(key).useBlockDescriptionPrefix()) }
     }
 
 }
