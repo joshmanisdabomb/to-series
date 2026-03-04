@@ -17,6 +17,7 @@ import net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 import java.nio.file.Path
+import kotlin.io.path.div
 
 @Mod(ToSkyAndStarsMod.MOD_ID)
 @EventBusSubscriber
@@ -53,7 +54,7 @@ object ToSkyAndStarsForgeMod {
 
         event.createProvider { DeleteDataProvider(it) { output ->
             val resources = Path.of(output.toString().replace("neoforge", "common").replace("generated", "resources"))
-            val assets = resources.resolve("assets/${ToSkyAndStarsMod.MOD_ID}/")
+            val assets = resources / "assets" / ToSkyAndStarsMod.MOD_ID
             listOf("blockstates", "models", "lang").map(assets::resolve)
         } }
         event.createProvider { CopyDataProvider(it) { output ->

@@ -3,7 +3,8 @@
 	"package": "net.jidb.to.base.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"FireBlockAccessor",
+		"BlockStateBaseAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1

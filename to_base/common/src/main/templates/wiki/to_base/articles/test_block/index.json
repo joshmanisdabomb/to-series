@@ -1,0 +1,13 @@
+{
+  "title": { "of": "minecraft:block / to_base:test_block" },
+  "about": ["minecraft:block / to_base:test_block"],
+  "redirect": ["minecraft:item / to_base:test_block"],
+  "icon": [
+    { "of": "minecraft:block / to_base:test_block" }
+  ],
+  "tags": [
+    "to_base:test",
+    "to_base:test/blocks",
+    "to_base:unobtainable"
+  ]
+}

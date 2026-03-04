@@ -1,0 +1,92 @@
+{
+  "about": [
+    "minecraft:block / to_base:test_block"
+  ],
+  "changelog": [
+    {
+      "content": {
+        "en_us": "Introduced as the first block of the mod."
+      },
+      "version": "yam:u1"
+    },
+    {
+      "content": {
+        "en_us": "Reintroduced as the first block of the mod."
+      },
+      "version": "aimagg:prealpha"
+    },
+    {
+      "content": {
+        "en_us": "Reintroduced as the first block of the mod."
+      },
+      "version": "lcc_forge:prealpha"
+    },
+    {
+      "content": {
+        "en_us": "Reintroduced as the first block of the mod."
+      },
+      "version": "lcc:0.1.0"
+    },
+    {
+      "content": {
+        "en_us": "Reintroduced as the first block of the mod."
+      },
+      "version": "to_base_arch:0.2.0"
+    },
+    {
+      "content": {
+        "en_us": "Reintroduced as the first block of the mod."
+      },
+      "version": "to_base:0.0.3"
+    }
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"The first of many!\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"description\":\"an unobtainable block\",\"plural\":false,\"of\":\"self\"}} is an unobtainable block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / yam:u1\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.0.3\"}}. When mod author {{\"of\":\"to_base:author / to_base:joshmanisdabomb\"}} starts a new modding project, it is the first block implemented for testing purposes.\n\n{{\"of\":\"self\",\"plural\":true}} are the simplest variant of the 5 available {{\"of\":\"to_base:tag / to_base:test/block\",\"plural\":true}}, with the same texture present on each side of the block."
+    }
+  },
+  "factsheet": {
+    "minecraft:block / to_base:test_block": {
+      "burn": {
+        "minecraft:fire": 0
+      },
+      "friction": 0.6,
+      "hardness": 0.5,
+      "ignite": {
+        "minecraft:fire": 0
+      },
+      "rarity": "common",
+      "renewable": false,
+      "resistance": 0.5,
+      "stack_size": 64,
+      "states": [
+        {
+          "default": true,
+          "light": 0,
+          "map_color": 15066419,
+          "properties": {}
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      }
+    }
+  },
+  "icon": [
+    {
+      "of": "minecraft:block / to_base:test_block"
+    }
+  ],
+  "redirect": [
+    "minecraft:item / to_base:test_block"
+  ],
+  "tags": [
+    "to_base:test",
+    "to_base:test/blocks",
+    "to_base:unobtainable"
+  ],
+  "title": {
+    "of": "minecraft:block / to_base:test_block"
+  }
+}

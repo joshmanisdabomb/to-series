@@ -1,0 +1,32 @@
+[
+  {
+    "version": "aimagg:prealpha",
+    "content": {
+      "en_us": "Reintroduced as the second block of the mod."
+    }
+  },
+  {
+    "version": "lcc_forge:prealpha",
+    "content": {
+      "en_us": "Reintroduced as the second block of the mod."
+    }
+  },
+  {
+    "version": "lcc:0.1.0",
+    "content": {
+      "en_us": "Reintroduced as the second block of the mod."
+    }
+  },
+  {
+    "version": "to_base_arch:0.2.0",
+    "content": {
+      "en_us": "Reintroduced as the second block of the mod."
+    }
+  },
+  {
+    "version": "to_base:0.0.3",
+    "content": {
+      "en_us": "Reintroduced as the second block of the mod."
+    }
+  }
+]

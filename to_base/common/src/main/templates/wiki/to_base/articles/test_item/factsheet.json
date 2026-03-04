@@ -1,0 +1,5 @@
+{
+  "minecraft:item / to_base:test_item": {
+    "renewable": false
+  }
+}

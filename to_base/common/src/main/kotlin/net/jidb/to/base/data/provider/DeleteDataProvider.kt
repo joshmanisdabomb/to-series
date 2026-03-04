@@ -10,7 +10,10 @@ import kotlin.io.path.absolute
 import kotlin.io.path.copyToRecursively
 import kotlin.io.path.deleteRecursively
 
-class DeleteDataProvider(val output: PackOutput, val paths: (output: Path) -> List<Path>) : DataProvider {
+open class DeleteDataProvider(val output: PackOutput, val targets: (output: Path) -> List<Path>) : DataProvider {
+
+    constructor(output: PackOutput, path: List<Path>) : this(output, { path })
+    constructor(output: PackOutput, path: Path) : this(output, listOf(path))
 
     @OptIn(ExperimentalPathApi::class)
     override fun run(cached: CachedOutput) = CompletableFuture.runAsync {
@@ -21,8 +24,8 @@ class DeleteDataProvider(val output: PackOutput, val paths: (output: Path) -> Li
         }
         val safes = safe.split(";")
 
-        val targets = paths(output.outputFolder)
-        next@ for (target in targets) {
+        val paths = targets(output.outputFolder)
+        next@ for (target in paths) {
             val abs = target.absolute()
             if (safes.none { abs.startsWith(it) }) {
                 System.err.println("Data provider tried to delete '$abs', but this is not defined in net.jidb.to.base.data.safe as a safe path to delete.")
