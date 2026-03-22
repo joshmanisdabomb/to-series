@@ -1,15 +1,18 @@
 package net.jidb.to.base.content
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.block.HorizontalBlock
-import net.jidb.to.base.library.SimpleRegistryLibrary
+import net.jidb.to.base.block.HorizontalGenericBlock
+import net.jidb.to.base.block.properties.ExtendedBlockProperties
+import net.jidb.to.base.content.block.ResearchDeskBlock
+import net.jidb.to.base.library.BlockLibrary
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
 import net.minecraft.world.level.material.MapColor
 
-object ToBaseBlockLibrary : SimpleRegistryLibrary<Block>(ToBaseMod.MOD_ID) {
+object ToBaseBlockLibrary : BlockLibrary(ToBaseMod.MOD_ID) {
 
     override val registry = BuiltInRegistries.BLOCK
 
@@ -18,10 +21,21 @@ object ToBaseBlockLibrary : SimpleRegistryLibrary<Block>(ToBaseMod.MOD_ID) {
         .mapColor(MapColor.COLOR_YELLOW)
         .strength(0.5f)
         .sound(SoundType.SCAFFOLDING)) }
-    val test_block_2 by this { entry -> HorizontalBlock(BlockBehaviour.Properties.of()
+    val test_block_2 by this { entry -> HorizontalGenericBlock(BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.COLOR_YELLOW)
         .strength(0.5f)
         .sound(SoundType.SCAFFOLDING)) }
+
+    val research_desk by this { entry -> ResearchDeskBlock(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.WOOD)
+        .forceSolidOn()
+        .instrument(NoteBlockInstrument.BASS)
+        .strength(2.5F)
+        .sound(SoundType.WOOD)
+        .ignitedByLava()) }
+        .tag(properties, ExtendedBlockProperties()
+            .setFlammable())
 
 }

@@ -1,0 +1,9 @@
+{
+  "title": { "of": "minecraft:block / to_base:research_desk" },
+  "about": ["minecraft:block / to_base:research_desk"],
+  "redirect": ["minecraft:item / to_base:research_desk"],
+  "icon": ["minecraft:block / to_base:research_desk"],
+  "tags": [
+    "to_base:research"
+  ]
+}

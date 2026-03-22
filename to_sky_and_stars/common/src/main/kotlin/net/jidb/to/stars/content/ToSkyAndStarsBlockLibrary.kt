@@ -1,6 +1,6 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.block.HorizontalBlock
+import net.jidb.to.base.block.HorizontalGenericBlock
 import net.jidb.to.base.library.SimpleRegistryLibrary
 import net.jidb.to.stars.ToSkyAndStarsMod
 import net.minecraft.core.registries.BuiltInRegistries
@@ -13,7 +13,7 @@ object ToSkyAndStarsBlockLibrary : SimpleRegistryLibrary<Block>(ToSkyAndStarsMod
 
     override val registry = BuiltInRegistries.BLOCK
 
-    val test_block by this { entry -> HorizontalBlock(BlockBehaviour.Properties.of()
+    val test_block by this { entry -> HorizontalGenericBlock(BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.COLOR_BLUE)
         .strength(0.5f)

@@ -9,7 +9,7 @@ object ToBaseItemLibrary : SimpleRegistryLibrary<Item>(ToBaseMod.MOD_ID) {
 
     override val registry = BuiltInRegistries.ITEM
 
-    val test_item by this(::i) { entry ->
+    val test_item by this { entry ->
         Item(Item.Properties().setId(getEntryResourceKey(entry)))
     }
 

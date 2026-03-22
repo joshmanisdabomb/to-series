@@ -34,5 +34,11 @@
     "content": {
       "en_us": "Reintroduced as the first block of the mod."
     }
+  },
+  {
+    "version": "to_base:0.0.4",
+    "content": {
+      "en_us": "Added textures."
+    }
   }
 ]

@@ -1,9 +1,6 @@
 package net.jidb.to.base
 
-import net.jidb.to.base.content.ToBaseBlockItemLibrary
-import net.jidb.to.base.content.ToBaseBlockLibrary
-import net.jidb.to.base.content.ToBaseCreativeTabLibrary
-import net.jidb.to.base.content.ToBaseItemLibrary
+import net.jidb.to.base.content.*
 import net.jidb.to.base.service.Services
 import org.slf4j.LoggerFactory
 
@@ -16,6 +13,10 @@ object ToBaseMod {
     val blockItems = ToBaseBlockItemLibrary
     val tabs = ToBaseCreativeTabLibrary
 
+    val menu = ToBaseMenuLibrary
+
+    val itemTags = ToBaseItemTagLibrary
+
     fun init() {
         logger.info("Hello common world from ${MOD_ID}!")
 
@@ -27,5 +28,9 @@ object ToBaseMod {
         items.build()
         blockItems.build()
         tabs.build()
+
+        menu.build()
+
+        itemTags.build()
     }
 }

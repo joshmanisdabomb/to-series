@@ -2,9 +2,7 @@
   "title": { "of": "minecraft:block / to_base:test_block_2" },
   "about": ["minecraft:block / to_base:test_block_2"],
   "redirect": ["minecraft:item / to_base:test_block_2"],
-  "icon": [
-    { "of": "minecraft:block / to_base:test_block_2" }
-  ],
+  "icon": ["minecraft:block / to_base:test_block_2"],
   "tags": [
     "to_base:test",
     "to_base:test/blocks",

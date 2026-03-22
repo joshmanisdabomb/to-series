@@ -15,6 +15,13 @@ dependencies {
     modImplementation(libs.fabricApi)
 
     modImplementation(libs.flk)
+
+    api(libs.commonmark)
+    include(libs.commonmark)
+    api(libs.commonmark.yaml)
+    include(libs.commonmark.yaml)
+    api(libs.modeshape.common)
+    include(libs.modeshape.common)
 }
 
 loom {

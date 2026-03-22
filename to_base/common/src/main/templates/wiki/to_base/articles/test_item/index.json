@@ -1,9 +1,7 @@
 {
   "title": { "of": "minecraft:item / to_base:test_item" },
   "about": ["minecraft:item / to_base:test_item"],
-  "icon": [
-    { "of": "minecraft:item / to_base:test_item" }
-  ],
+  "icon": ["minecraft:item / to_base:test_item"],
   "tags": [
     "to_base:test",
     "to_base:test/items",

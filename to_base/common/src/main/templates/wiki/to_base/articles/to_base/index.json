@@ -1,0 +1,9 @@
+{
+  "title": "To Lay the Foundations",
+  "about": ["to_base:mod / to_base:to_base"],
+  "icon": ["minecraft:item / to_base:test_item"],
+  "tags": [
+    "to_base:to_series",
+    "to_base:library"
+  ]
+}

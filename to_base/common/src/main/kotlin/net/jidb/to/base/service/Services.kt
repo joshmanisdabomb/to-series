@@ -1,11 +1,13 @@
 package net.jidb.to.base.service
 
-import java.util.ServiceLoader
+import java.util.*
 
 object Services {
     val environment = this(EnvironmentService::class.java)
     val register = this(RegisterService::class.java)
 
-    operator fun <T> invoke(clazz: Class<T>): T = ServiceLoader.load(clazz).findFirst()
+    operator fun <T> invoke(clazz: Class<T>) = load(clazz)
+
+    fun <T> load(clazz: Class<T>) = ServiceLoader.load(clazz).findFirst()
         .orElseThrow { IllegalStateException("Failed to load service for ${clazz.name}.") }
 }

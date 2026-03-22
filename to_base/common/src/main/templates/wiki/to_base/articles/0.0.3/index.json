@@ -1,0 +1,10 @@
+{
+  "title": "To Lay the Foundations 0.0.3",
+  "short": "0.0.3",
+  "about": ["to_base:mod_version / to_base:0.0.3"],
+  "icon": ["minecraft:block / to_base:test_block"],
+  "parent": "to_base:mod / to_base:to_base",
+  "previous": "to_base:mod_version / to_base:0.0.2",
+  "next": "to_base:mod_version / to_base:0.0.4",
+  "tags": []
+}

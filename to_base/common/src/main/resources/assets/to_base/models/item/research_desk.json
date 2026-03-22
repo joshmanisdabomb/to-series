@@ -1,0 +1,9 @@
+{
+  "parent": "to_base:item/template_research_desk",
+  "textures": {
+    "0": "to_base:block/research_desk_writing",
+    "1": "to_base:block/research_desk_ink",
+    "2": "to_base:block/research_desk",
+    "3": "to_base:block/research_desk_side"
+  }
+}

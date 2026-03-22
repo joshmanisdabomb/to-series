@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,segment=left": {
+      "model": "to_base:block/research_desk_left",
+      "y": 90
+    },
+    "facing=east,segment=right": {
+      "model": "to_base:block/research_desk_right",
+      "y": 90
+    },
+    "facing=north,segment=left": {
+      "model": "to_base:block/research_desk_left"
+    },
+    "facing=north,segment=right": {
+      "model": "to_base:block/research_desk_right"
+    },
+    "facing=south,segment=left": {
+      "model": "to_base:block/research_desk_left",
+      "y": 180
+    },
+    "facing=south,segment=right": {
+      "model": "to_base:block/research_desk_right",
+      "y": 180
+    },
+    "facing=west,segment=left": {
+      "model": "to_base:block/research_desk_left",
+      "y": 270
+    },
+    "facing=west,segment=right": {
+      "model": "to_base:block/research_desk_right",
+      "y": 270
+    }
+  }
+}

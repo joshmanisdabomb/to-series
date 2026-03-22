@@ -1,19 +1,34 @@
-package net.jidb.to.base.wiki
+package net.jidb.to.base.data.provider.wiki
 
 import com.google.gson.JsonObject
-import net.jidb.to.base.helper.RegistryHelper
 import net.jidb.to.base.helper.addBool
 import net.jidb.to.base.helper.addString
 import net.jidb.to.base.helper.getString
+import net.jidb.to.base.wiki.WikiArticleTokenParser
+import net.jidb.to.base.wiki.language.WikiLanguage
 
-class WikiArticleDataTokenParser(data: JsonObject) : WikiArticleTokenParser(data) {
+class WikiArticleDataTokenParser(protected val data: JsonObject) : WikiArticleTokenParser<String, String>() {
 
+    protected var builder = StringBuilder()
     val changelog by lazy { data.getAsJsonArray("changelog").filterIsInstance<JsonObject>() }
+
+    override fun start() {
+        builder = StringBuilder()
+    }
+
+    override fun append(append: String) {
+        builder.append(append)
+    }
+
+    override fun build() = builder.toString()
+
+    override fun consumeText(content: String, language: WikiLanguage) = content
 
     override fun consumeToken(content: JsonObject, language: WikiLanguage): String {
         val template = content.get("template")?.asString
         return when (template) {
             "introduction" -> consumeIntroductionToken(content, language)
+            "introduction_version" -> consumeModVersionIntroductionToken(content, language)
             else -> consumeReferralToken(content, language)
         }
     }
@@ -50,7 +65,31 @@ class WikiArticleDataTokenParser(data: JsonObject) : WikiArticleTokenParser(data
             addString("of", "to_base:mod_version / ${removed.getString("version")}")
         }, language)
 
-        return language.generateIntroduction(self, content.getString("description"), data.getAsJsonArray("about").first().toString(), plural, past, introVer, reintroVer, removeVer)
+        return language.generateIntroduction(self, content.getString("description"), data.getAsJsonArray("about").first().asString, plural, past, introVer, reintroVer, removeVer)
+    }
+
+    protected fun consumeModVersionIntroductionToken(content: JsonObject, language: WikiLanguage): String {
+        content.addString("of", "self")
+        content.addString("template", "referral")
+
+        val self = consumeReferralToken(content, language)
+        val mod = data.getString("parent")!!.let { consumeReferralToken(JsonObject().apply {
+            addString("template", "referral")
+            addString("of", it)
+        }, language) }
+
+        val previous = data.getString("previous")?.let { consumeReferralToken(JsonObject().apply {
+            addString("template", "referral")
+            addString("of", it)
+            addBool("short", true)
+        }, language) }
+        val next = data.getString("next")?.let { consumeReferralToken(JsonObject().apply {
+            addString("template", "referral")
+            addString("of", it)
+            addBool("short", true)
+        }, language) }
+
+        return language.generateModVersionIntroduction(self, mod, content.getString("ordinal")!!, content.getString("extra") ?: "", previous, next)
     }
 
     protected fun consumeReferralToken(content: JsonObject, language: WikiLanguage): String {

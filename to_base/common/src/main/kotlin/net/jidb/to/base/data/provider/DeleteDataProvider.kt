@@ -7,7 +7,6 @@ import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.absolute
-import kotlin.io.path.copyToRecursively
 import kotlin.io.path.deleteRecursively
 
 open class DeleteDataProvider(val output: PackOutput, val targets: (output: Path) -> List<Path>) : DataProvider {
@@ -37,6 +36,6 @@ open class DeleteDataProvider(val output: PackOutput, val targets: (output: Path
         }
     }
 
-    override fun getName() = "Remove Data from Folder"
+    override fun getName() = "Remove Data from Folder: ${targets(output.outputFolder).map(Path::getFileName).joinToString(", ")}"
 
 }

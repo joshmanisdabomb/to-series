@@ -6,7 +6,7 @@ import net.jidb.to.base.data.provider.DeleteDataProvider
 import net.jidb.to.base.neoforge.ToBaseForgeMod
 import net.jidb.to.base.neoforge.service.ForgeRegisterService
 import net.jidb.to.stars.ToSkyAndStarsMod
-import net.jidb.to.stars.neoforge.data.ToSkyAndStarsLanguageDataProvider
+import net.jidb.to.stars.neoforge.data.ToSkyAndStarsEnglishLanguageDataProvider
 import net.jidb.to.stars.neoforge.data.ToSkyAndStarsModelDataProvider
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
@@ -49,16 +49,12 @@ object ToSkyAndStarsForgeMod {
 
     @SubscribeEvent
     fun onGatherData(event: GatherDataEvent.Client) {
-        event.createProvider(::ToSkyAndStarsLanguageDataProvider)
+        val resources = Path.of(event.generator.packOutput.outputFolder.toString().replace("neoforge", "common").replace("generated", "resources"))
+
+        event.createProvider(::ToSkyAndStarsEnglishLanguageDataProvider)
         event.createProvider(::ToSkyAndStarsModelDataProvider)
 
-        event.createProvider { DeleteDataProvider(it) { output ->
-            val resources = Path.of(output.toString().replace("neoforge", "common").replace("generated", "resources"))
-            val assets = resources / "assets" / ToSkyAndStarsMod.MOD_ID
-            listOf("blockstates", "models", "lang").map(assets::resolve)
-        } }
-        event.createProvider { CopyDataProvider(it) { output ->
-            Path.of(output.toString().replace("neoforge", "common").replace("generated", "resources"))
-        } }
+        event.createProvider { DeleteDataProvider(it, listOf("blockstates", "models", "lang", "wiki").map { resources / "assets" / ToSkyAndStarsMod.MOD_ID / it }) }
+        event.createProvider { CopyDataProvider(it, it.outputFolder,  resources) }
     }
 }

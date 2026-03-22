@@ -1,7 +1,6 @@
 package net.jidb.to.base.library
 
 import net.minecraft.resources.Identifier
-import net.minecraft.world.item.CreativeModeTab
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
@@ -46,6 +45,8 @@ sealed class Library<I, V>(val modid: String) {
     fun <W : V> getEntry(property: KProperty<W>) = getEntries(property).firstOrNull()
 
     open fun getEntryIdentifier(entry: LibraryEntry<out I, out V>) = Identifier.fromNamespaceAndPath(modid, entry.name)
+
+    open fun <T> getEntryTags(list: LibraryTagList<T>, entry: LibraryEntry<out I, out V>): List<T> = list.get(entry)
 
     override fun toString() = "$modid ${this.javaClass}"
 

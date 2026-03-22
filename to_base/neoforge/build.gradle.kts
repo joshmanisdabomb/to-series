@@ -58,4 +58,14 @@ neoForge {
 
 dependencies {
     implementation(libs.kff)
+
+    api(libs.commonmark)
+    jarJar(libs.commonmark) {
+    }
+    api(libs.commonmark.yaml)
+    jarJar(libs.commonmark.yaml) {
+    }
+    api(libs.modeshape.common)
+    jarJar(libs.modeshape.common) {
+    }
 }

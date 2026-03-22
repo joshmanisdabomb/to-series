@@ -1,0 +1,8 @@
+{
+  "title": "To Lay the Foundations 0.0.1",
+  "short": "0.0.1",
+  "about": ["to_base:mod_version / to_base:0.0.1"],
+  "parent": "to_base:mod / to_base:to_base",
+  "next": "to_base:mod_version / to_base:0.0.2",
+  "tags": []
+}

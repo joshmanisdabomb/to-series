@@ -28,6 +28,9 @@ flk = "1.13.9+kotlin.2.3.10"
 mixin = "0.8.5"
 mixinExtras = "0.5.3"
 
+commonmark = "0.27.1"
+modeshape = "5.4.1.Final"
+
 [libraries]
 minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
 fabricLoader = { group = "net.fabricmc", name = "fabric-loader", version.ref = "fabricLoader" }
@@ -36,6 +39,9 @@ flk = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "
 kff = { group = "thedarkcolour", name = "kotlinforforge-neoforge", version.ref = "kff" }
 mixin = { group = "org.spongepowered", name = "mixin", version.ref = "mixin" }
 mixinExtras-common = { group = "io.github.llamalad7", name = "mixinextras-common", version.ref = "mixinExtras" }
+commonmark = { group = "org.commonmark", name = "commonmark", version.ref = "commonmark" }
+commonmark-yaml = { group = "org.commonmark", name = "commonmark-ext-yaml-front-matter", version.ref = "commonmark" }
+modeshape-common = { group = "org.modeshape", name = "modeshape-common", version.ref = "modeshape" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "#c:bookshelves",
+    "S": "#minecraft:wooden_slabs",
+    "W": "#minecraft:planks",
+    "b": "minecraft:book",
+    "i": "minecraft:ink_sac",
+    "p": "minecraft:paper"
+  },
+  "pattern": [
+    "bpi",
+    "SSS",
+    "W B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "to_base:research_desk"
+  }
+}

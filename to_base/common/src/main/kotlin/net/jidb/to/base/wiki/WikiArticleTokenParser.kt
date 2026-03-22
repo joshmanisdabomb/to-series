@@ -2,25 +2,32 @@ package net.jidb.to.base.wiki
 
 import com.google.gson.JsonObject
 import net.jidb.to.base.helper.DATA_GSON
+import net.jidb.to.base.wiki.language.WikiLanguage
 
-abstract class WikiArticleTokenParser(protected val data: JsonObject) {
+abstract class WikiArticleTokenParser<R, F> {
 
-    fun parse(content: String, language: WikiLanguage): String {
+    open fun start() = Unit
+
+    abstract fun append(append: R)
+
+    abstract fun build(): F
+
+    fun parse(content: String, language: WikiLanguage): F {
+        start()
         val matches = JSON_REGEX.findAll(content)
-        val builder = StringBuilder()
         for (match in matches) {
             if (match.value.startsWith("{{")) {
-                builder.append(consumeToken(DATA_GSON.fromJson(match.value.substring(1, match.value.length - 1), JsonObject::class.java), language))
+                append(consumeToken(DATA_GSON.fromJson(match.value.substring(1, match.value.length - 1), JsonObject::class.java), language))
             } else {
-                builder.append(consumeText(match.value, language))
+                append(consumeText(match.value, language))
             }
         }
-        return builder.toString()
+        return build()
     }
 
-    open fun consumeText(content: String, language: WikiLanguage) = content
+    abstract fun consumeText(content: String, language: WikiLanguage): R
 
-    abstract fun consumeToken(content: JsonObject, language: WikiLanguage): String
+    abstract fun consumeToken(content: JsonObject, language: WikiLanguage): R
 
     companion object {
         private val JSON_REGEX = "\\{[^{}]*(?:\\{[^{}]*\\}[^{}]*)*\\}|[^{}]+".toRegex()

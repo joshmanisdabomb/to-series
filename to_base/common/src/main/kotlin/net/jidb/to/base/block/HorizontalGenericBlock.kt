@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 
-open class HorizontalBlock(properties: Properties) : HorizontalDirectionalBlock(properties) {
+open class HorizontalGenericBlock(properties: Properties) : HorizontalDirectionalBlock(properties) {
 
     init {
         registerDefaultState(stateDefinition.any()
@@ -23,7 +23,7 @@ open class HorizontalBlock(properties: Properties) : HorizontalDirectionalBlock(
     public override fun codec() = CODEC
 
     companion object {
-        val CODEC = simpleCodec(::HorizontalBlock)
+        val CODEC = simpleCodec(::HorizontalGenericBlock)
     }
 
 }
