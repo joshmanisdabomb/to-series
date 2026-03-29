@@ -1,5 +1,6 @@
 {
-  "block.to_sky_and_stars.test_block": "Test Starry Block",
+  "block.to_sky_and_stars.nuclear_fire": "Nuclear Fire",
+  "block.to_sky_and_stars.nuclear_waste": "Nuclear Waste",
   "item.to_sky_and_stars.test_item": "Test Starry Item",
   "itemgroup.to_sky_and_stars.tab": "To Sky and Stars"
 }

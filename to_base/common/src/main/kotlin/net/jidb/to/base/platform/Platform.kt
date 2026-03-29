@@ -1,11 +1,14 @@
 package net.jidb.to.base.platform
 
-abstract class Platform {
+interface Platform {
 
-    abstract val type: PlatformType
-    abstract val blocks: BlocksPlatformModule
-    abstract val creativeTabs: CreativeTabsPlatformModule
-    abstract val tags: TagsPlatformModule
-    abstract val inventory: InventoryPlatformModule
+    val type: PlatformType
+
+    val blocks: BlocksPlatformModule
+    val creativeTabs: CreativeTabsPlatformModule
+    val tags: TagsPlatformModule
+    val inventory: InventoryPlatformModule
+    val networking: NetworkingPlatformModule
+    val reloadListeners: ReloadListenerPlatformModule
 
 }

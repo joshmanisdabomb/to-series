@@ -23,7 +23,7 @@ class ToBaseRecipeDataProvider(registries: HolderLookup.Provider, output: Recipe
             .pattern("W B")
             .define('W', ItemTags.PLANKS)
             .define('S', ItemTags.WOODEN_SLABS)
-            .define('B', Services.environment.platform.tags.getCommonItem("bookshelves")!!)
+            .define('B', Services.platform.tags.getCommonItem("bookshelves")!!)
             .define('b', Items.BOOK)
             .define('p', Items.PAPER)
             .define('i', Items.INK_SAC)

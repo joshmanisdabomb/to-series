@@ -28,10 +28,7 @@ import java.nio.file.FileSystems
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
-import kotlin.io.path.div
-import kotlin.io.path.listDirectoryEntries
-import kotlin.io.path.nameWithoutExtension
-import kotlin.io.path.walk
+import kotlin.io.path.*
 
 open class WikiDataProvider(val output: PackOutput, val templates: (output: Path) -> Path) : DataProvider {
 
@@ -47,7 +44,7 @@ open class WikiDataProvider(val output: PackOutput, val templates: (output: Path
 
     open fun getPathProvider() = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "wiki/articles")
 
-    override fun run(cached: CachedOutput) = CompletableFuture.runAsync {
+    override fun run(cached: CachedOutput): CompletableFuture<*> {
         val source = templates(output.outputFolder)
         val articles = source.walk().filter { ARTICLE_MATCHER.matches(source.relativize(it) ) }
         val json = articles.associate { index ->
@@ -91,14 +88,18 @@ open class WikiDataProvider(val output: PackOutput, val templates: (output: Path
             (abouts + redirects).map(JsonElement::getAsString).mapNotNull(RegistryHelper::createResourceKey)
         })
         if (missing?.isNotEmpty() == true) {
-            ToBaseMod.logger.error("Found registry entries with missing articles:\n${missing.map(Any::toString).joinToString("\n")}")
+            ToBaseMod.logger.error("Found registry entries with missing articles:\n${missing.joinToString("\n", transform = Any::toString)}")
             throw RuntimeException("Found ${missing.count()} registry entries with missing articles.")
         }
 
         val out = getPathProvider()
-        CompletableFuture.allOf(*json.map { (k, v) ->
+        return CompletableFuture.allOf(*json.map { (k, v) ->
             //Not interested in debugging why CachedOutput doesn't work here, I don't personally need to cache.
-            CompletableFuture.runAsync { Files.write(out.json(k), DATA_GSON.toJson(v).toByteArray()) }
+            CompletableFuture.runAsync {
+                val path = out.json(k)
+                path.parent.createDirectories()
+                Files.write(path, DATA_GSON.toJson(v).toByteArray())
+            }
         }.toTypedArray())
     }
 

@@ -21,11 +21,12 @@ neoForge {
     runs {
         configureEach {
             systemProperty("neoforge.enabledGameTestNamespaces", modId)
-            ideName = "NeoForge ${name.capitalized()} (${project.path})" // Unify the run config names with fabric
+            ideName = "${project.extra["modName"]}: NeoForge ${name.capitalized()}" // Unify the run config names with fabric
         }
         register("client") {
             client()
             systemProperty("neoforge.enabledGameTestNamespaces", modId)
+            programArguments.addAll("--username", "Client", "--uuid", "019d2706-d4d7-719e-8150-bfc38135de74")
         }
         register("server") {
             server()

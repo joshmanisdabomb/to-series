@@ -5,7 +5,7 @@ import net.jidb.to.base.library.TagLibrary
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.Item
 
-object ToBaseItemTagLibrary : TagLibrary<Item>(ToBaseMod.MOD_ID) {
+object ToBaseItemTagLibrary : TagLibrary<Item>(ToBaseMod.modid) {
 
     override val registryKey = Registries.ITEM
 

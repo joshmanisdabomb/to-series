@@ -10,7 +10,7 @@ open class BlockLibrary(modid: String) : SimpleRegistryLibrary<Block>(modid) {
 
     val properties = ExtendedBlockPropertiesList()
 
-    inner class ExtendedBlockPropertiesList : LibraryTagList<ExtendedBlockProperties>() {
+    inner class ExtendedBlockPropertiesList : LibraryTagList<Block, ExtendedBlockProperties>() {
         fun build() {
             entries.forEach { (key, entry) ->
                 getEntryTags(this, entry).forEach { it.build(entry.value) }

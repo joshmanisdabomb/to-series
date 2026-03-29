@@ -22,7 +22,7 @@ class ForgeRegisterService : BaseRegisterService() {
     companion object {
         private val registers = mutableMapOf<String, MutableMap<Identifier, DeferredRegister<*>>>()
 
-        fun registerMod(modid: String, bus: IEventBus) {
+        fun addListener(modid: String, bus: IEventBus) {
             registers[modid]?.forEach { (key, register) ->
                 register.register(bus)
             }

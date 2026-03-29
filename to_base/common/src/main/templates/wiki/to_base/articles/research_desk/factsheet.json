@@ -1,5 +1,5 @@
 {
   "minecraft:block / to_base:research_desk": {
-    "renewable": false
+    "renewable": true
   }
 }

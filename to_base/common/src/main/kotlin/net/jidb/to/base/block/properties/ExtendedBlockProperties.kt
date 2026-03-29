@@ -7,11 +7,21 @@ import net.minecraft.world.level.block.FireBlock
 class ExtendedBlockProperties {
 
     private val _fireIgnite = mutableMapOf<FireBlock, Int>()
+    val fireIgnite: Map<FireBlock, Int> get() = _fireIgnite
     private val _fireBurn = mutableMapOf<FireBlock, Int>()
+    val fireBurn: Map<FireBlock, Int> get() = _fireIgnite
 
-    fun setFlammable(igniteOdds: Int = 5, burnOdds: Int = 20, block: FireBlock = Blocks.FIRE as FireBlock): ExtendedBlockProperties {
+    var renderLayer = RenderLayer.SOLID
+        private set
+
+    fun flammable(igniteOdds: Int = 5, burnOdds: Int = 20, block: FireBlock = Blocks.FIRE as FireBlock): ExtendedBlockProperties {
         _fireIgnite[block] = igniteOdds
         _fireBurn[block] = burnOdds
+        return this
+    }
+
+    fun renderLayer(type: RenderLayer): ExtendedBlockProperties {
+        renderLayer = type
         return this
     }
 
@@ -20,6 +30,13 @@ class ExtendedBlockProperties {
             fire.setFlammable(block, ignite, _fireBurn[fire]!!)
         }
         return this
+    }
+
+    enum class RenderLayer {
+        SOLID,
+        CUTOUT,
+        TRANSLUCENT,
+        TRIPWIRE
     }
 
 }

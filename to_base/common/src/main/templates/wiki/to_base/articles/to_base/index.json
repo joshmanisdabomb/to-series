@@ -1,6 +1,7 @@
 {
   "title": "To Lay the Foundations",
   "about": ["to_base:mod / to_base:to_base"],
+  "redirect": ["minecraft:creative_mode_tab / to_base:tab"],
   "icon": ["minecraft:item / to_base:test_item"],
   "tags": [
     "to_base:to_series",

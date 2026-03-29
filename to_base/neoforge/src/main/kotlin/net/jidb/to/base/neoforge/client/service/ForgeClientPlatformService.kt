@@ -1,10 +1,10 @@
 package net.jidb.to.base.neoforge.client.service
 
 import net.jidb.to.base.client.service.ClientPlatformService
-import net.jidb.to.base.neoforge.client.platform.ScreenForgeClientPlatformModule
+import net.jidb.to.base.neoforge.client.platform.ForgeClientPlatform
 
 class ForgeClientPlatformService : ClientPlatformService() {
 
-    override val screens = ScreenForgeClientPlatformModule
+    override val platform = ForgeClientPlatform
 
 }

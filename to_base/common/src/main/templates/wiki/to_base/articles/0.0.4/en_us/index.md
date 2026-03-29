@@ -16,4 +16,4 @@ This release sets up a data generator for models, blockstates and language files
 
 ## Changes
 
-- Added textures, models, blockstates and language files for {{"of": "minecraft:block / to_base:test_block"}}, {{"of": "minecraft:block / to_base:test_block2"}} and {{"of": "minecraft:item / to_base:test_item"}}.
+- Added textures, models, blockstates and language files for {{"of": "minecraft:block / to_base:test_block"}}, {{"of": "minecraft:block / to_base:test_block_2"}} and {{"of": "minecraft:item / to_base:test_item"}}.

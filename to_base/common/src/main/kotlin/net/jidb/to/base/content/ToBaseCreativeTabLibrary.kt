@@ -10,12 +10,12 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
 
-object ToBaseCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToBaseMod.MOD_ID), TranslatableLibrary<CreativeModeTab, CreativeModeTab> {
+object ToBaseCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToBaseMod.modid), TranslatableLibrary<CreativeModeTab, CreativeModeTab> {
 
     override val registry = BuiltInRegistries.CREATIVE_MODE_TAB
 
     val tab by this { entry ->
-        Services.environment.platform.creativeTabs.builder()
+        Services.platform.creativeTabs.builder()
             .title(Component.translatable("itemgroup.${modid}.${entry.name}"))
             .icon { ItemStack(ToBaseMod.items.test_item) }
             .displayItems { parameters, output ->

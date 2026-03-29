@@ -1,0 +1,12 @@
+{
+  "entity.generic.nuke_large": {
+    "sounds": [
+      "to_sky_and_stars:entity/generic/nuke_large"
+    ]
+  },
+  "entity.generic.nuke_small": {
+    "sounds": [
+      "to_sky_and_stars:entity/generic/nuke_small"
+    ]
+  }
+}

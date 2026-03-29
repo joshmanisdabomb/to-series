@@ -9,12 +9,12 @@ import net.minecraft.world.item.Items
 import net.neoforged.neoforge.common.data.ItemTagsProvider
 import java.util.concurrent.CompletableFuture
 
-class ToBaseItemTagDataProvider(output: PackOutput, provider: CompletableFuture<HolderLookup.Provider>) : ItemTagsProvider(output, provider, ToBaseMod.MOD_ID) {
+class ToBaseItemTagDataProvider(output: PackOutput, provider: CompletableFuture<HolderLookup.Provider>) : ItemTagsProvider(output, provider, ToBaseMod.modid) {
 
     override fun addTags(provider: HolderLookup.Provider) {
         this.tag(ToBaseItemTagLibrary.research_desk_unlock)
             .add(Items.BOOK)
-            .addTag(Services.environment.platform.tags.getCommonItem("bookshelves")!!)
+            .addTag(Services.platform.tags.getCommonItem("bookshelves")!!)
     }
 
 }

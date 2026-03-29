@@ -1,0 +1,12 @@
+{
+  "title": "To Sky and Stars 0.1.0",
+  "short": "0.1.0",
+  "about": ["to_base:mod_version / to_sky_and_stars:0.1.0"],
+  "icon": ["minecraft:block / to_sky_and_stars:nuclear_waste"],
+  "parent": "to_base:mod / to_base:to_sky_and_stars",
+  "previous": "to_base:mod_version / to_sky_and_stars:0.0.3",
+  "tags": [
+    "to_sky_and_stars:nuclear",
+    "to_base:major_release"
+  ]
+}

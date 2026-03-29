@@ -5,7 +5,7 @@ import net.jidb.to.base.library.SimpleRegistryLibrary
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Item
 
-object ToBaseItemLibrary : SimpleRegistryLibrary<Item>(ToBaseMod.MOD_ID) {
+object ToBaseItemLibrary : SimpleRegistryLibrary<Item>(ToBaseMod.modid) {
 
     override val registry = BuiltInRegistries.ITEM
 

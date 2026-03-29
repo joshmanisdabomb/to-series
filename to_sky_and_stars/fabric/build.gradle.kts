@@ -32,13 +32,16 @@ loom {
     runs {
         named("client") {
             client()
-            setConfigName("Fabric Client")
+            configName = "${project.extra["modName"]}: Fabric Client"
+            appendProjectPathToConfigName = false
             ideConfigGenerated(true)
             runDir("runs/client")
+            programArgs("--username", "Client", "--uuid", "019d2706-d4d7-719e-8150-bfc38135de74")
         }
         named("server") {
             server()
-            setConfigName("Fabric Server")
+            configName = "${project.extra["modName"]}: Fabric Server"
+            appendProjectPathToConfigName = false
             ideConfigGenerated(true)
             runDir("runs/server")
         }

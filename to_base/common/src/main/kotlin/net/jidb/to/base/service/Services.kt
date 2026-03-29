@@ -5,6 +5,7 @@ import java.util.*
 object Services {
     val environment = this(EnvironmentService::class.java)
     val register = this(RegisterService::class.java)
+    val platform get() = environment.platform
 
     operator fun <T> invoke(clazz: Class<T>) = load(clazz)
 

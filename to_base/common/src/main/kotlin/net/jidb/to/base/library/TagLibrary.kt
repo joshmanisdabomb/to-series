@@ -11,5 +11,5 @@ abstract class TagLibrary<T : Any>(modid: String) : AdvancedLibrary<Identifier, 
 
     operator fun invoke() = invoke(::i) { getEntryIdentifier(it) }
 
-    override fun <J : Identifier> i(entry: Library<Identifier, TagKey<T>>.LibraryEntry<out Identifier, out TagKey<T>>, input: () -> J): () -> TagKey<T> = { -> TagKey.create(registryKey, input()) }
+    override fun <J : Identifier> i(entry: Library<Identifier, TagKey<T>>.LibraryEntry<out Identifier, out TagKey<T>>, input: () -> J) = { -> TagKey.create(registryKey, input()) }
 }

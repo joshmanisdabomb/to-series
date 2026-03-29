@@ -8,10 +8,10 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.MenuType
 
-object ToBaseMenuLibrary : SimpleRegistryLibrary<MenuType<*>>(ToBaseMod.MOD_ID) {
+object ToBaseMenuLibrary : SimpleRegistryLibrary<MenuType<*>>(ToBaseMod.modid) {
 
     override val registry = BuiltInRegistries.MENU
 
-    val research by this { Services.environment.platform.inventory.createMenuType(::ResearchMenu, FeatureFlags.DEFAULT_FLAGS) }
+    val research by this { Services.platform.inventory.createMenuType(::ResearchMenu, FeatureFlags.DEFAULT_FLAGS) }
 
 }

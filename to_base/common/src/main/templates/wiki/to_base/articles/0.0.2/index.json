@@ -5,5 +5,7 @@
   "parent": "to_base:mod / to_base:to_base",
   "previous": "to_base:mod_version / to_base:0.0.1",
   "next": "to_base:mod_version / to_base:0.0.3",
-  "tags": []
+  "tags": [
+    "to_base:minor_release"
+  ]
 }

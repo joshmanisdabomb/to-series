@@ -1,0 +1,32 @@
+[
+  {
+    "version": "yam:u1",
+    "content": {
+      "en_us": "Introduced as a consequence of a nuclear explosion."
+    }
+  },
+  {
+    "version": "aimagg:a0.1.1",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  },
+  {
+    "version": "lcc_forge:a0.3",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  },
+  {
+    "version": "lcc:0.4.0",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  },
+  {
+    "version": "to_sky_and_stars:0.1.0",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  }
+]

@@ -1,66 +1,49 @@
 package net.jidb.to.base.neoforge
 
 import net.jidb.to.base.ToBaseMod
+import net.jidb.to.base.data.ToBaseData
 import net.jidb.to.base.data.provider.CopyDataProvider
 import net.jidb.to.base.data.provider.DeleteDataProvider
 import net.jidb.to.base.data.provider.WikiDataProvider
 import net.jidb.to.base.data.provider.wiki.RegistryWikiDataEnforcer
-import net.jidb.to.base.neoforge.content.data.ToBaseEnglishLanguageDataProvider
-import net.jidb.to.base.neoforge.content.data.ToBaseItemTagDataProvider
-import net.jidb.to.base.neoforge.content.data.ToBaseModelDataProvider
-import net.jidb.to.base.neoforge.content.data.ToBaseRecipeDataProvider
-import net.jidb.to.base.neoforge.service.ForgeRegisterService
-import net.minecraft.core.registries.BuiltInRegistries
+import net.jidb.to.base.neoforge.content.data.*
+import net.jidb.to.base.neoforge.mod.ToForgeMod
+import net.minecraft.data.loot.LootTableProvider
+import net.minecraft.data.loot.LootTableProvider.SubProviderEntry
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
-import net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import net.neoforged.neoforge.data.event.GatherDataEvent
-import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 import java.nio.file.Path
 import kotlin.io.path.div
 import kotlin.io.path.isDirectory
 
-
 @Mod(ToBaseMod.MOD_ID)
 @EventBusSubscriber
-object ToBaseForgeMod {
-    init {
-        ToBaseMod.init()
-        ToBaseMod.logger.info("Hello world from Forge!")
-
-        ForgeRegisterService.registerMod(ToBaseMod.MOD_ID, MOD_BUS)
-    }
-
-    @SubscribeEvent
-    fun onCommonSetup(event: FMLCommonSetupEvent) {
-        ToBaseMod.logger.info("Hello! This is working!")
-        ToBaseMod.blocks.properties.build()
-    }
-
-    @SubscribeEvent
-    fun onServerSetup(event: FMLDedicatedServerSetupEvent) {
-        ToBaseMod.logger.info("Server starting...")
-    }
+object ToBaseForgeMod : ToForgeMod() {
+    override val common get() = ToBaseMod
 
     @SubscribeEvent
     fun onGatherData(event: GatherDataEvent.Client) {
         val resources = Path.of(event.generator.packOutput.outputFolder.toString().replace("neoforge", "common").replace("generated", "resources"))
 
-        event.createProvider { CopyDataProvider(it, resources.parent / "templates" / "models", it.outputFolder / "assets" / ToBaseMod.MOD_ID / "models") { dst, src ->
+        event.createProvider { DeleteDataProvider(it, ToBaseData.getReplaceableResources(resources)) }
+
+        event.createProvider { CopyDataProvider(it, resources.parent / "templates" / "models", it.outputFolder / "assets" / ToBaseMod.modid / "models") { dst, src ->
             if (!src.isDirectory()) dst.resolveSibling("template_" + dst.fileName.toString()) else dst
         } }
 
         event.createProvider(::ToBaseEnglishLanguageDataProvider)
         event.createProvider(::ToBaseModelDataProvider)
+        event.createProvider(::ToBaseBlockTagDataProvider)
         event.createProvider(::ToBaseItemTagDataProvider)
+        event.createProvider { output, lookupProvider -> LootTableProvider(output, mutableSetOf(), listOf(
+            SubProviderEntry(::ToBaseBlockLootDataProvider, LootContextParamSets.BLOCK)
+        ), lookupProvider) }
         event.createProvider(ToBaseRecipeDataProvider::Runner)
-        event.createProvider { WikiDataProvider(it, resources.parent / "templates" / "wiki").enforce(RegistryWikiDataEnforcer(ToBaseMod.MOD_ID) { key ->
-            key.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier() || key.registry() == BuiltInRegistries.MENU.key().identifier()
-        }) }
+        event.createProvider { WikiDataProvider(it, resources.parent / "templates" / "wiki").enforce(RegistryWikiDataEnforcer(ToBaseMod.modid)) }
 
-        event.createProvider { DeleteDataProvider(it, listOf("blockstates", "models", "lang", "wiki").map { resources / "assets" / ToBaseMod.MOD_ID / it }) }
         event.createProvider { CopyDataProvider(it, it.outputFolder, resources) }
     }
 }

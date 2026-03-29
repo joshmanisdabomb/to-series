@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "to_base:research_desk",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "segment": "left"
+              }
+            }
+          ],
+          "name": "to_base:research_desk"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "to_base:blocks/research_desk"
+}

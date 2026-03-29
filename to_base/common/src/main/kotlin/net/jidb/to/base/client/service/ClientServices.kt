@@ -4,7 +4,8 @@ import net.jidb.to.base.service.Services
 
 object ClientServices {
 
-    val platform = this(ClientPlatformService::class.java)
+    private val _platform = this(ClientPlatformService::class.java)
+    val platform get() = _platform.platform
 
     operator fun <T> invoke(clazz: Class<T>) = Services.load(clazz)
 

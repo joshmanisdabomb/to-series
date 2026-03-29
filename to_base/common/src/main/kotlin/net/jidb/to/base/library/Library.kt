@@ -7,8 +7,9 @@ import kotlin.reflect.KProperty
 sealed class Library<I, V>(val modid: String) {
 
     internal val _entries = mutableMapOf<String, LibraryEntry<out I, out V>>()
-    val entries by lazy { _entries.toMap() }
-    val values by lazy { entries.mapValues { it.value.value } }
+    lateinit var entries: Map<String, LibraryEntry<out I, out V>>
+        private set
+    val values by lazy { entries.mapValues { it.value.value }.values }
 
     var initialised = false
         private set
@@ -21,6 +22,7 @@ sealed class Library<I, V>(val modid: String) {
         for (entry in _entries.values) {
             entry.build()
         }
+        entries = _entries.toMap()
         initialised = true
         afterBuild()
         return entries
@@ -39,14 +41,14 @@ sealed class Library<I, V>(val modid: String) {
 
     open fun afterBuild(entry: LibraryEntry<out I, out V>) = Unit
 
-    fun <W : V> getEntries(value: W): List<LibraryEntry<out I, W>> = entries.filter { it.value.value == value } as List<Library<I, V>.LibraryEntry<out I, W>>
-    fun <W : V> getEntries(property: KProperty<W>): List<LibraryEntry<out I, W>> = entries.filter { it.value.property == property } as List<Library<I, V>.LibraryEntry<out I, W>>
+    fun <W : V> getEntries(value: W): List<LibraryEntry<out I, W>> = _entries.filter { it.value.value == value }.values.toList() as List<Library<I, V>.LibraryEntry<out I, W>>
+    fun <W : V> getEntries(property: KProperty<W>): List<LibraryEntry<out I, W>> = _entries.filter { it.value.property == property }.values.toList() as List<Library<I, V>.LibraryEntry<out I, W>>
     fun <W : V> getEntry(value: W) = getEntries(value).firstOrNull()
     fun <W : V> getEntry(property: KProperty<W>) = getEntries(property).firstOrNull()
 
-    open fun getEntryIdentifier(entry: LibraryEntry<out I, out V>) = Identifier.fromNamespaceAndPath(modid, entry.name)
+    open fun getEntryIdentifier(entry: LibraryEntry<out I, out V>) = entry.id
 
-    open fun <T> getEntryTags(list: LibraryTagList<T>, entry: LibraryEntry<out I, out V>): List<T> = list.get(entry)
+    open fun <T> getEntryTags(list: LibraryTagList<V, T>, entry: LibraryEntry<out I, out V>): List<T> = list.get(entry)
 
     override fun toString() = "$modid ${this.javaClass}"
 
@@ -59,6 +61,7 @@ sealed class Library<I, V>(val modid: String) {
         lateinit var property: KProperty<*>
             private set
         val name get() = property.name
+        val id by lazy { Identifier.fromNamespaceAndPath(modid, name) }
         var index by Delegates.notNull<Int>()
             private set
 
@@ -114,7 +117,7 @@ sealed class Library<I, V>(val modid: String) {
             return this
         }
 
-        fun <T> tag(list: LibraryTagList<T>, value: T): Library<I, V>.LibraryEntry<J, W> {
+        fun <T> tag(list: LibraryTagList<V, T>, value: T): Library<I, V>.LibraryEntry<J, W> {
             list.add(this, value)
             return this
         }

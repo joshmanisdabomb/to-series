@@ -17,7 +17,7 @@ import net.minecraft.client.renderer.block.model.VariantMutator
 import net.minecraft.data.PackOutput
 
 
-class ToBaseModelDataProvider(output: PackOutput) : ModelProvider(output, ToBaseMod.MOD_ID) {
+class ToBaseModelDataProvider(output: PackOutput) : ModelProvider(output, ToBaseMod.modid) {
 
     companion object {
         val NUMERIC_TEXTURES = List(16) { TextureSlot.create(it.toString()) }
@@ -41,7 +41,7 @@ class ToBaseModelDataProvider(output: PackOutput) : ModelProvider(output, ToBase
         blockModels.blockStateOutput.accept(
             MultiVariantGenerator.dispatch(ToBaseMod.blocks.research_desk, BlockModelGenerators.variants(Variant(research_desk_left)))
                 .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING)
-                .with(PropertyDispatch.modify(ResearchDeskBlock.segment)
+                .with(PropertyDispatch.modify(ResearchDeskBlock.SEGMENT)
                     .select(ResearchDeskBlock.ResearchDeskSegment.LEFT, VariantMutator.MODEL.withValue(research_desk_left))
                     .select(ResearchDeskBlock.ResearchDeskSegment.RIGHT, VariantMutator.MODEL.withValue(research_desk_right))
         ))

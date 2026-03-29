@@ -1,0 +1,5 @@
+{
+  "minecraft:item / to_sky_and_stars:test_item": {
+    "renewable": false
+  }
+}

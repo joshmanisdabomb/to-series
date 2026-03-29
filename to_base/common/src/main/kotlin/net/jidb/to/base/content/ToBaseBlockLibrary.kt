@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
 import net.minecraft.world.level.material.MapColor
 
-object ToBaseBlockLibrary : BlockLibrary(ToBaseMod.MOD_ID) {
+object ToBaseBlockLibrary : BlockLibrary(ToBaseMod.modid) {
 
     override val registry = BuiltInRegistries.BLOCK
 
@@ -36,6 +36,6 @@ object ToBaseBlockLibrary : BlockLibrary(ToBaseMod.MOD_ID) {
         .sound(SoundType.WOOD)
         .ignitedByLava()) }
         .tag(properties, ExtendedBlockProperties()
-            .setFlammable())
+            .flammable())
 
 }

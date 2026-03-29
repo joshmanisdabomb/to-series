@@ -17,13 +17,13 @@
   "entrypoints": {
     "main": [
       {
-        "value": "net.jidb.to.stars.fabric.ToSkyAndStarsFabricMod",
+        "value": "net.jidb.to.stars.fabric.ToStarsFabricMod",
         "adapter": "kotlin"
       }
     ],
     "client": [
       {
-        "value": "net.jidb.to.stars.fabric.client.ToSkyAndStarsFabricClientMod",
+        "value": "net.jidb.to.stars.fabric.client.ToStarsFabricClientMod",
         "adapter": "kotlin"
       }
     ]

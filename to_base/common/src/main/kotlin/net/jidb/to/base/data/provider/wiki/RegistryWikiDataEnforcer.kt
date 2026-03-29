@@ -7,6 +7,7 @@ class RegistryWikiDataEnforcer(val check: (ResourceKey<*>) -> Boolean) : WikiDat
 
     constructor(modid: String, except: (ResourceKey<*>) -> Boolean) : this({ it.identifier().namespace == modid && !except(it) })
     constructor(modid: String, except: List<ResourceKey<*>>) : this(modid, { except.contains(it) })
+    constructor(modid: String) : this(modid, { false })
 
     override fun enforce(created: List<ResourceKey<*>>): List<ResourceKey<*>> {
         return BuiltInRegistries.REGISTRY.flatMap { it.registryKeySet().filter { check(it) }.filter { !created.contains(it) } }

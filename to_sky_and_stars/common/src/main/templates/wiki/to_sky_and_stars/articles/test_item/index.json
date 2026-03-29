@@ -1,0 +1,10 @@
+{
+  "title": { "of": "minecraft:item / to_sky_and_stars:test_item" },
+  "about": ["minecraft:item / to_sky_and_stars:test_item"],
+  "icon": ["minecraft:item / to_sky_and_stars:test_item"],
+  "tags": [
+    "to_base:test",
+    "to_base:test/items",
+    "to_base:unobtainable"
+  ]
+}

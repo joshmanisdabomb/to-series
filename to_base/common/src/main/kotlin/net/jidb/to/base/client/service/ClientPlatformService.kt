@@ -1,9 +1,7 @@
 package net.jidb.to.base.client.service
 
-import net.jidb.to.base.client.platform.ScreenClientPlatformModule
+import net.jidb.to.base.client.platform.ClientPlatform
 
 abstract class ClientPlatformService {
-
-    abstract val screens: ScreenClientPlatformModule
-
+    abstract val platform: ClientPlatform
 }

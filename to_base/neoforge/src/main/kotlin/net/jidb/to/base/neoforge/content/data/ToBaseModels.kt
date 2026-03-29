@@ -12,9 +12,9 @@ import java.util.*
 
 object ToBaseModels {
 
-    private fun loc(name: String, prefix: String) = Identifier.fromNamespaceAndPath(ToBaseMod.MOD_ID, "$prefix/$name")
-    private fun blockLoc(name: String) = Identifier.fromNamespaceAndPath(ToBaseMod.MOD_ID, "block/$name")
-    private fun itemLoc(name: String) = Identifier.fromNamespaceAndPath(ToBaseMod.MOD_ID, "item/$name")
+    private fun loc(name: String, prefix: String) = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "$prefix/$name")
+    private fun blockLoc(name: String) = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "block/$name")
+    private fun itemLoc(name: String) = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "item/$name")
 
     val TEXTURES_RESEARCH_DESK = { identifier: Identifier ->
         TextureMapping()
