@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.0,
+  "group": "to_sky_and_stars:uranium",
+  "ingredient": "to_sky_and_stars:deepslate_uranium_ore",
+  "result": {
+    "count": 1,
+    "id": "to_sky_and_stars:uranium"
+  }
+}

@@ -6,10 +6,10 @@ import net.minecraft.world.level.block.Block
 
 abstract class TagsPlatformModule {
 
-    protected val blockTags: Map<String, TagKey<Block>> by lazy {
+    val blockTags: Map<String, TagKey<Block>> by lazy {
         reflectedBlockTags().filter { it.location.namespace == "c" }.associateBy { it.location.path.lowercase() }
     }
-    protected val itemTags: Map<String, TagKey<Item>> by lazy {
+    val itemTags: Map<String, TagKey<Item>> by lazy {
         reflectedItemTags().filter { it.location.namespace == "c" }.associateBy { it.location.path.lowercase() }
     }
 

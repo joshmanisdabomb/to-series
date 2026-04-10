@@ -1,6 +1,21 @@
 {
+  "block.to_sky_and_stars.deepslate_uranium_ore": "Deepslate Uranium Ore",
+  "block.to_sky_and_stars.enriched_uranium_block": "Block of Enriched Uranium",
+  "block.to_sky_and_stars.heavy_uranium_block": "Block of Heavy Uranium",
+  "block.to_sky_and_stars.heavy_uranium_shielding": "Heavy Uranium Shielding",
   "block.to_sky_and_stars.nuclear_fire": "Nuclear Fire",
   "block.to_sky_and_stars.nuclear_waste": "Nuclear Waste",
-  "item.to_sky_and_stars.test_item": "Test Starry Item",
+  "block.to_sky_and_stars.uranium_block": "Block of Uranium",
+  "block.to_sky_and_stars.uranium_ore": "Uranium Ore",
+  "item.to_sky_and_stars.enriched_uranium": "Enriched Uranium",
+  "item.to_sky_and_stars.enriched_uranium_block": "Block of Enriched Uranium",
+  "item.to_sky_and_stars.enriched_uranium_nugget": "Enriched Uranium Nugget",
+  "item.to_sky_and_stars.heavy_uranium": "Heavy Uranium",
+  "item.to_sky_and_stars.heavy_uranium_block": "Block of Heavy Uranium",
+  "item.to_sky_and_stars.heavy_uranium_nugget": "Heavy Uranium Nugget",
+  "item.to_sky_and_stars.test_item": "Test Item",
+  "item.to_sky_and_stars.uranium": "Uranium",
+  "item.to_sky_and_stars.uranium_block": "Block of Uranium",
+  "item.to_sky_and_stars.uranium_nugget": "Uranium Nugget",
   "itemgroup.to_sky_and_stars.tab": "To Sky and Stars"
 }

@@ -15,7 +15,7 @@ class NuclearExplosionParticle(level: ClientLevel, x: Double, y: Double, z: Doub
     init {
         quadSize = random.nextFloat() * 2.5f + 4.5f
         val time = power.mod(1.0f) + floor(power).times(0.5f)
-        lifetime = ((random.nextDouble()).pow(1.5).times(25.0) + 10.0 + time.times(25.0)).roundToInt()
+        lifetime = ((random.nextDouble()).pow(1.5).times(40.0) + 30.0 + time.times(40.0)).roundToInt()
         xd = xSpeed
         yd = ySpeed
         zd = zSpeed

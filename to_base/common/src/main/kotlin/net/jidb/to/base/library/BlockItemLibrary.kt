@@ -8,11 +8,12 @@ import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 
-open class BlockItemLibrary(modid: String, getter: () -> Map<String, () -> Block>) : SimpleLibrary<BlockItem?>(modid), RegistryKeyLibrary<BlockItem?, BlockItem?, Item> {
+open class BlockItemLibrary(modid: String, getter: () -> Map<String, () -> Block>) : SimpleLibrary<BlockItem?>(modid), IResourceKeyLibrary<BlockItem?, BlockItem?, Item> {
 
     constructor(modid: String, library: Library<*, out Block>) : this(modid, { library.entries.mapValues { it.value.getter } })
 
-    override val registry = BuiltInRegistries.ITEM
+    val registry = BuiltInRegistries.ITEM
+    override val registryKey get() = registry.key()
 
     private val blocks by lazy(getter)
 

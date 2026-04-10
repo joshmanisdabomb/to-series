@@ -36,7 +36,7 @@ loom {
             appendProjectPathToConfigName = false
             ideConfigGenerated(true)
             runDir("runs/client")
-            programArgs("--username", "Client", "--uuid", "019d2706-d4d7-719e-8150-bfc38135de74")
+            property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
         }
         named("server") {
             server()
@@ -44,6 +44,7 @@ loom {
             appendProjectPathToConfigName = false
             ideConfigGenerated(true)
             runDir("runs/server")
+            property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
         }
     }
 }

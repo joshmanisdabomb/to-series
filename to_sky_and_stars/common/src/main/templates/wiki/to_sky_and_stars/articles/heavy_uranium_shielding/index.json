@@ -1,0 +1,10 @@
+{
+  "title": { "of": "minecraft:block / to_sky_and_stars:heavy_uranium_shielding" },
+  "about": ["minecraft:block / to_sky_and_stars:heavy_uranium_shielding"],
+  "redirect": ["minecraft:item / to_sky_and_stars:heavy_uranium_shielding"],
+  "icon": ["minecraft:block / to_sky_and_stars:heavy_uranium_shielding"],
+  "tags": [
+    "to_sky_and_stars:uranium",
+    "to_sky_and_stars:heavy_uranium"
+  ]
+}

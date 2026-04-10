@@ -1,0 +1,11 @@
+{
+  "title": { "of": "minecraft:block / to_sky_and_stars:uranium_ore" },
+  "about": ["minecraft:block / to_sky_and_stars:uranium_ore", "minecraft:block / to_sky_and_stars:deepslate_uranium_ore"],
+  "redirect": ["minecraft:item / to_sky_and_stars:uranium_ore", "minecraft:item / to_sky_and_stars:deepslate_uranium_ore"],
+  "icon": ["minecraft:block / to_sky_and_stars:uranium_ore", "minecraft:block / to_sky_and_stars:deepslate_uranium_ore"],
+  "tags": [
+    "to_sky_and_stars:uranium",
+    "to_base:ore",
+    "to_base:resource"
+  ]
+}

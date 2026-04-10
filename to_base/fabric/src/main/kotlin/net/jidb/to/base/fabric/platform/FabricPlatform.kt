@@ -11,6 +11,7 @@ object FabricPlatform : Platform {
     override val tags = TagsFabricPlatformModule
     override val inventory = InventoryFabricPlatformModule
     override val networking = NetworkingFabricPlatformModule
+    override val biomes = BiomeFabricPlatformModule
     override val reloadListeners = ReloadListenerFabricPlatformModule
 
 }

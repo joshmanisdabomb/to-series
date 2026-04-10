@@ -26,10 +26,12 @@
   "container.to_base.research.type.minecraft:block": "Block",
   "container.to_base.research.type.minecraft:entity_type": "Entity",
   "container.to_base.research.type.minecraft:item": "Item",
+  "container.to_base.research.type.mixed": "Mixed Types",
   "container.to_base.research.type.to_base:author": "Mod Author",
-  "container.to_base.research.type.to_base:concept": "Cnncept",
+  "container.to_base.research.type.to_base:concept": "Concept",
   "container.to_base.research.type.to_base:mod": "Mod",
   "container.to_base.research.type.to_base:mod_version": "Mod Version",
+  "item.to_base.research_desk": "Researcher's Desk",
   "item.to_base.test_item": "Test Item",
   "itemgroup.to_base.tab": "To Lay the Foundations",
   "tag.item.to_base.research_desk_unlock": "Researcher's Desk Unlock Items"

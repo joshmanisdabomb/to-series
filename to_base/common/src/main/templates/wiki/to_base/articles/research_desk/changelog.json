@@ -4,5 +4,11 @@
     "content": {
       "en_us": "Introduced"
     }
+  },
+  {
+    "version": "to_base:0.2.0",
+    "content": {
+      "en_us": "Now drops itself in the middle of the block when broken."
+    }
   }
 ]

@@ -5,6 +5,8 @@ flavor: "The client is always right!"
 # Introduction
 {{"template": "introduction_version", "ordinal": "sixth", "extra": ", and the second major 0.x release"}}.
 
+This release focuses on providing structure to the {{"of": "to_base:tag / to_base:to_series"}} of mods, with a skeletal structure that they can each implement.
+
 # In this Release
 
 ## Additions

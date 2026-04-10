@@ -1,0 +1,11 @@
+{
+  "title": { "of": "minecraft:item / to_sky_and_stars:heavy_uranium_nugget" },
+  "about": ["minecraft:item / to_sky_and_stars:heavy_uranium_nugget"],
+  "icon": ["minecraft:item / to_sky_and_stars:heavy_uranium_nugget"],
+  "tags": [
+    "to_sky_and_stars:uranium",
+    "to_sky_and_stars:heavy_uranium",
+    "to_base:nugget",
+    "to_base:resource"
+  ]
+}

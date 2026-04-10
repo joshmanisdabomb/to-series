@@ -52,10 +52,6 @@ sealed class Library<I, V>(val modid: String) {
 
     override fun toString() = "$modid ${this.javaClass}"
 
-    protected operator fun <J : I, W : V> invoke(builder: LibraryEntry<out I, out V>.(() -> J) -> () -> W, initial: (LibraryEntry<J, W>) -> J): LibraryEntry<J, W> {
-        return LibraryEntry(builder, initial)
-    }
-
     inner class LibraryEntry<J : I, W : V>(val builder: LibraryEntry<out I, out V>.(() -> J) -> () -> W, val initial: (LibraryEntry<J, W>) -> J) {
 
         lateinit var property: KProperty<*>

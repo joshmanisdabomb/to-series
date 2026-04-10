@@ -13,7 +13,7 @@ class TestItem(properties: Properties) : Item(properties) {
     override fun useOn(context: UseOnContext): InteractionResult {
         val level = context.level
         if (level is ServerLevel) {
-            val explosion = NuclearExplosion(level, context.player, Explosion.getDefaultDamageSource(level, context.player), Vec3(context.clickedPos.relative(context.clickedFace)).add(0.5, 0.5, 0.5), 20f)
+            val explosion = NuclearExplosion(level, context.player, Explosion.getDefaultDamageSource(level, context.player), Vec3(context.clickedPos.relative(context.clickedFace)).add(0.5, 0.5, 0.5), 70f)
             explosion.run()
         }
 

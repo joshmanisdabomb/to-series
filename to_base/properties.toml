@@ -1,7 +1,7 @@
 # Namespace properties for to_base
 
 group = "net.jidb.to.base"
-version = "0.2.0"
+version = "0.3.0"
 modId = "to_base"
 modName = "To Lay the Foundations"
 description = "Base mod for To series mods."

@@ -17,6 +17,18 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             .title(Component.translatable("itemgroup.${modid}.${entry.name}"))
             .icon { ItemStack(ToStarsMod.items.test_item) }
             .displayItems { parameters, output ->
+                output.accept(ItemStack(ToStarsMod.blocks.uranium_ore))
+                output.accept(ItemStack(ToStarsMod.blocks.deepslate_uranium_ore))
+                output.accept(ItemStack(ToStarsMod.items.uranium_nugget))
+                output.accept(ItemStack(ToStarsMod.items.uranium))
+                output.accept(ItemStack(ToStarsMod.blocks.uranium_block))
+                output.accept(ItemStack(ToStarsMod.items.enriched_uranium_nugget))
+                output.accept(ItemStack(ToStarsMod.items.enriched_uranium))
+                output.accept(ItemStack(ToStarsMod.blocks.enriched_uranium_block))
+                output.accept(ItemStack(ToStarsMod.items.heavy_uranium_nugget))
+                output.accept(ItemStack(ToStarsMod.items.heavy_uranium))
+                output.accept(ItemStack(ToStarsMod.blocks.heavy_uranium_block))
+                output.accept(ItemStack(ToStarsMod.blocks.heavy_uranium_shielding))
                 output.accept(ItemStack(ToStarsMod.blocks.nuclear_waste))
                 output.accept(ItemStack(ToStarsMod.items.test_item))
             }

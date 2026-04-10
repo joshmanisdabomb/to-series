@@ -7,6 +7,9 @@ abstract class ToMod : IToMod, ToContentMod {
     override val logger by lazy { LoggerFactory.getLogger(modid) }
 
     override fun init() {
+        configuredFeatures?.build()
+        placedFeatures?.build()
+
         blocks?.build()
         items?.build()
         blockItems?.build()
@@ -22,6 +25,8 @@ abstract class ToMod : IToMod, ToContentMod {
         itemTags?.build()
 
         sounds?.build()
+
+        biomeMods?.build()
 
         reloadListeners?.build()
     }

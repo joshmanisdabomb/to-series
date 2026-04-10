@@ -17,6 +17,10 @@ object KotlinHelper {
     }
     inline operator fun <reified T> Iterable<T>.times(times: Int) = repeat(this, times)
 
+    inline fun <reified T> filterNotNull(array: Array<T?>): Array<T> = array.mapNotNull { it }.toTypedArray()
+    @JvmName("filterNotNullExt")
+    inline fun <reified T> Array<T?>.filterNotNull(): Array<T> = filterNotNull(this)
+
     fun squared(number: Byte) = number * number
     @JvmName("squaredByte")
     fun Byte.squared() = squared(this)

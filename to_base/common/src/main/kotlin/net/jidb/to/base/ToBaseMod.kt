@@ -15,5 +15,6 @@ object ToBaseMod : ToMod() {
 
     override val menus = ToBaseMenuLibrary
 
+    override val blockTags = ToBaseBlockTagLibrary
     override val itemTags = ToBaseItemTagLibrary
 }

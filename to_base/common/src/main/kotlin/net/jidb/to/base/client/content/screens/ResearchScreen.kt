@@ -538,7 +538,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             if (article.about.size == 1 && first.first.toString() == "to_base:mod_version") {
                 return WikiArticleManager.index.byResource[article.parent]!!.first().title
             }
-            val token = with (article.about) {
+            val token = with (article.about.map { it.first }.toSet()) {
                 if (this.size > 1) "mixed" else first.first.toString()
             }
             return Component.translatable("container.${ToBaseMod.modid}.research.type.$token")

@@ -160,11 +160,26 @@ class NuclearExplosion(
             pos.set(x, y, z)
             val state = level.getBlockState(pos)
             if (!state.isAir) {
-                val fluidResistance = level.getFluidState(pos).amount.div(8f)
-                val blockResistance = if (state.block is LiquidBlock) 0f else state.block.explosionResistance
-                val resistance = maxOf(blockResistance, fluidResistance)
                 val remaining = t / maxDistance
-                tMax -= resistance.times(resistance).times(0.04f - (remaining * remaining).times(0.035f))
+                if (state.`is`(ToStarsMod.blockTags.nuke_immune)) {
+                    break
+                }
+
+                var blockResistance = state.block.explosionResistance
+                if (blockResistance > 100000) {
+                    break
+                }
+
+                if (!state.`is`(ToStarsMod.blockTags.nuke_passthrough) && !state.isAir) {
+                    if (state.`is`(ToStarsMod.blockTags.nuke_shielding)) {
+                        blockResistance = 1000000f
+                    } else if (state.block is LiquidBlock) {
+                        blockResistance = 0f
+                    }
+                    val fluidResistance = level.getFluidState(pos).amount.div(8f)
+                    val resistance = maxOf(blockResistance, fluidResistance)
+                    tMax -= resistance.times(0.2 - (remaining * remaining).times(0.175)).coerceAtLeast(0.01) * level.random.nextDouble()
+                }
 
                 if (tMax <= 0.0) break
 
@@ -289,7 +304,7 @@ class NuclearExplosion(
     }
 
     fun updateClients() {
-        val players = level.getPlayers { it.distanceToSqr(origin) <= 1000.0 }
+        val players = level.getPlayers { it.distanceToSqr(origin) <= 1000000.0 }
         for (player in players) {
             Services.platform.networking.sendToPlayer(player, NuclearExplosionPayload(strength, origin.toVector3f(), knockback[player.uuid]?.toVector3f() ?: Vector3f(0f, 0f, 0f)))
         }

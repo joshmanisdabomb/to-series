@@ -1,0 +1,5 @@
+{
+  "minecraft:item / to_sky_and_stars:uranium_nugget": {
+    "renewable": false
+  }
+}

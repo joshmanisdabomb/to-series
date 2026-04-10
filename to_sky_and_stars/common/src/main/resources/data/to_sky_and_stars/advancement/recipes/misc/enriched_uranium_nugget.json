@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_enriched_uranium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_sky_and_stars:enriched_uranium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_sky_and_stars:enriched_uranium_nugget"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_enriched_uranium"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_sky_and_stars:enriched_uranium_nugget"
+    ]
+  }
+}

@@ -1,18 +1,20 @@
 {
-	"required": true,
-	"package": "net.jidb.to.base.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"BlockStateBaseAccessor",
-		"FireBlockAccessor"
-	],
-	"client": [
-		"client.GuiGraphicsAccessor"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "net.jidb.to.base.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockStateBaseAccessor",
+    "FireBlockAccessor"
+  ],
+  "client": [
+    "client.BlockModelGeneratorsAccessor",
+    "client.GuiGraphicsAccessor",
+    "client.ItemModelGeneratorsAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }

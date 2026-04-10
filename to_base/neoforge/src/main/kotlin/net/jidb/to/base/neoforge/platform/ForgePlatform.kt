@@ -11,6 +11,7 @@ object ForgePlatform : Platform {
     override val tags = TagsForgePlatformModule
     override val inventory = InventoryForgePlatformModule
     override val networking = NetworkingForgePlatformModule
+    override val biomes = BiomeForgePlatformModule
     override val reloadListeners = ReloadListenerForgePlatformModule
 
 }

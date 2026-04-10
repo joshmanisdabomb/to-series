@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "to_sky_and_stars:heavy_uranium"
+  ],
+  "result": {
+    "count": 9,
+    "id": "to_sky_and_stars:heavy_uranium_nugget"
+  }
+}

@@ -9,6 +9,7 @@ interface Platform {
     val tags: TagsPlatformModule
     val inventory: InventoryPlatformModule
     val networking: NetworkingPlatformModule
+    val biomes: BiomePlatformModule
     val reloadListeners: ReloadListenerPlatformModule
 
 }

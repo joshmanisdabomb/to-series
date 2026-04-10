@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_starter": {
+    "has_research_desk_unlock": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_starter"
+      "has_research_desk_unlock"
     ]
   ],
   "rewards": {

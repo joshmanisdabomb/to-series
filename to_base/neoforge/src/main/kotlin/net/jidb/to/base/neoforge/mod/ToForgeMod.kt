@@ -5,6 +5,7 @@ import net.jidb.to.base.neoforge.platform.NetworkingForgePlatformModule
 import net.jidb.to.base.neoforge.platform.ReloadListenerForgePlatformModule
 import net.jidb.to.base.neoforge.service.ForgeRegisterService
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
+import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
@@ -20,6 +21,8 @@ abstract class ToForgeMod : ToPlatformMod {
         NetworkingForgePlatformModule.registry.addListener(common.modid, MOD_BUS)
         ReloadListenerForgePlatformModule.registry.addListener(common.modid, FORGE_BUS)
     }
+
+    abstract fun subscribeStub(event: FMLConstructModEvent)
 
     fun onCommonSetup(event: FMLCommonSetupEvent) {
         common.setup()

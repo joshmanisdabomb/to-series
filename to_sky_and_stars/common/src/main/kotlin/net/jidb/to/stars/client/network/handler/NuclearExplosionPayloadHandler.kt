@@ -30,7 +30,7 @@ object NuclearExplosionPayloadHandler {
         val oz = origin.z().toDouble()
         val ov = Vec3(ox, oy, oz)
 
-        val count = ((4.0 / 3.0) * Math.PI * strength * strength * strength * 0.01).roundToInt().coerceAtLeast(1)
+        val count = ((4.0 / 3.0) * Math.PI * strength * strength * strength * 0.01).roundToInt().coerceIn(1, 13000)
         val pos = BlockPos.MutableBlockPos()
         repeat(count) {
             val ry = level.random.nextDouble() * 2 - 1

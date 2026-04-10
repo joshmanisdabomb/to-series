@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "to_sky_and_stars:uranium",
+  "key": {
+    "#": "to_sky_and_stars:uranium_nugget"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "to_sky_and_stars:uranium"
+  }
+}
