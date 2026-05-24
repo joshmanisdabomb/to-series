@@ -1,12 +1,34 @@
 {
+  "entity.atomic_bomb.activate": {
+    "sounds": [
+      "to_sky_and_stars:entity/atomic_bomb/activate"
+    ],
+    "subtitle": "subtitles.to_sky_and_stars.entity.atomic_bomb.activate"
+  },
+  "entity.atomic_bomb.cut": {
+    "sounds": [
+      "to_sky_and_stars:entity/atomic_bomb/cut1",
+      "to_sky_and_stars:entity/atomic_bomb/cut2",
+      "to_sky_and_stars:entity/atomic_bomb/cut3"
+    ],
+    "subtitle": "subtitles.to_sky_and_stars.entity.atomic_bomb.cut"
+  },
+  "entity.atomic_bomb.timer": {
+    "sounds": [
+      "to_sky_and_stars:entity/atomic_bomb/timer"
+    ],
+    "subtitle": "subtitles.to_sky_and_stars.entity.atomic_bomb.timer"
+  },
   "entity.generic.nuke_large": {
     "sounds": [
       "to_sky_and_stars:entity/generic/nuke_large"
-    ]
+    ],
+    "subtitle": "subtitles.to_sky_and_stars.entity.generic.nuke_large"
   },
   "entity.generic.nuke_small": {
     "sounds": [
       "to_sky_and_stars:entity/generic/nuke_small"
-    ]
+    ],
+    "subtitle": "subtitles.to_sky_and_stars.entity.generic.nuke_small"
   }
 }

@@ -126,7 +126,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
 
         home = this.addRenderableWidget(
             SpriteIconButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.home"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.home"),
                 { changeMode(ResearchScreenMode.HOME) },
                 false
             )
@@ -138,14 +138,14 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             setPosition(leftPos + leftToolbarX, topPos + toolbarY)
         }
         searchText = this.addRenderableWidget(
-            EditBox(this.font, imageWidth - 62, toolbarHeight,  Component.translatable("container.${ToBaseMod.modid}.research.search"))
+            EditBox(this.font, imageWidth - 62, toolbarHeight,  Component.translatable("gui.${ToBaseMod.modid}.research.search"))
         ).apply {
-            setHint(Component.translatable("container.${ToBaseMod.modid}.research.search.hint"))
+            setHint(Component.translatable("gui.${ToBaseMod.modid}.research.search.hint"))
             setPosition(leftPos + leftToolbarX, topPos + toolbarY)
         }
         search = this.addRenderableWidget(
             SpriteIconButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.search.button"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.search.button"),
                 { this.startSearch() },
                 false
             )
@@ -157,7 +157,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
         openInBrowser = this.addRenderableWidget(
             SpriteIconButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.browser"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.browser"),
                 { ConfirmLinkScreen.confirmLink(this, "${URL}/${(if (mode == ResearchScreenMode.PAGE) currentArticle?.id else null) ?: ""}").onPress(it) },
                 false
             )
@@ -171,7 +171,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
 
         listAll = this.addRenderableWidget(
             PlainTextButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.lists.all"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.lists.all"),
                 {
                     currentList = WikiArticleManager.index.all
                     listTitle = it.message
@@ -185,10 +185,10 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
         listBlocks = this.addRenderableWidget(
             PlainTextButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.lists.minecraft:block"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.lists.minecraft:block"),
                 {
                     currentList = WikiArticleManager.index.byRegistry[Registries.BLOCK.identifier()] ?: emptyList()
-                    listTitle = Component.translatable("container.${ToBaseMod.modid}.research.list.list", it.message)
+                    listTitle = Component.translatable("gui.${ToBaseMod.modid}.research.list.list", it.message)
                     changeMode(ResearchScreenMode.LIST)
                 }
             )
@@ -199,10 +199,10 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
         listItems = this.addRenderableWidget(
             PlainTextButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.lists.minecraft:item"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.lists.minecraft:item"),
                 {
                     currentList = WikiArticleManager.index.byRegistry[Registries.ITEM.identifier()] ?: emptyList()
-                    listTitle = Component.translatable("container.${ToBaseMod.modid}.research.list.list", it.message)
+                    listTitle = Component.translatable("gui.${ToBaseMod.modid}.research.list.list", it.message)
                     changeMode(ResearchScreenMode.LIST)
                 }
             )
@@ -213,10 +213,10 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
         listEntities = this.addRenderableWidget(
             PlainTextButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.lists.minecraft:entity_type"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.lists.minecraft:entity_type"),
                 {
                     currentList = WikiArticleManager.index.byRegistry[Registries.ENTITY_TYPE.identifier()] ?: emptyList()
-                    listTitle = Component.translatable("container.${ToBaseMod.modid}.research.list.list", it.message)
+                    listTitle = Component.translatable("gui.${ToBaseMod.modid}.research.list.list", it.message)
                     changeMode(ResearchScreenMode.LIST)
                 }
             )
@@ -227,7 +227,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
         listToStars = this.addRenderableWidget(
             PlainTextButton.builder(
-                Component.translatable("container.${ToBaseMod.modid}.research.lists.to_sky_and_stars"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.lists.to_sky_and_stars"),
                 {
                     currentList = WikiArticleManager.index.byMod["to_sky_and_stars"] ?: emptyList()
                     listTitle = it.message
@@ -356,7 +356,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
                 graphics.drawString(this.font, subtitle, tx, subtitleY, 0xFF808080.toInt(), false)
             }
             ResearchScreenMode.HOME -> {
-                graphics.drawString(this.font, Component.translatable("container.${ToBaseMod.modid}.research.inventory"), inventoryLabelX, inventoryLabelY, 0xFF404040.toInt(), false)
+                graphics.drawString(this.font, Component.translatable("gui.${ToBaseMod.modid}.research.inventory"), inventoryLabelX, inventoryLabelY, 0xFF404040.toInt(), false)
             }
             ResearchScreenMode.LIST -> {
                 graphics.drawString(this.font, listTitle!!, labelX, labelY, 0xFF404040.toInt(), false)
@@ -381,7 +381,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         currentList = WikiArticleManager.index.all.filter {
             StringDecomposer.getPlainText(it.title).lowercase().contains(searchText!!.value.lowercase())
         }
-        listTitle = Component.translatable("container.${ToBaseMod.modid}.research.list.search", searchText!!.value)
+        listTitle = Component.translatable("gui.${ToBaseMod.modid}.research.list.search", searchText!!.value)
         changeMode(ResearchScreenMode.LIST)
     }
 
@@ -541,7 +541,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             val token = with (article.about.map { it.first }.toSet()) {
                 if (this.size > 1) "mixed" else first.first.toString()
             }
-            return Component.translatable("container.${ToBaseMod.modid}.research.type.$token")
+            return Component.translatable("gui.${ToBaseMod.modid}.research.type.$token")
         }
 
         private fun getSlotArticle(slot: Slot): WikiArticle? {

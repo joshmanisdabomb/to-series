@@ -1,0 +1,11 @@
+{
+  "parent": "to_sky_and_stars:item/template_atomic_bomb",
+  "textures": {
+    "0": "to_sky_and_stars:block/atomic_bomb_tail_side",
+    "1": "to_sky_and_stars:block/atomic_bomb_tail",
+    "2": "to_sky_and_stars:block/atomic_bomb_fin",
+    "3": "to_sky_and_stars:block/atomic_bomb_core",
+    "4": "to_sky_and_stars:block/atomic_bomb_head",
+    "particle": "to_sky_and_stars:block/atomic_bomb_fin"
+  }
+}

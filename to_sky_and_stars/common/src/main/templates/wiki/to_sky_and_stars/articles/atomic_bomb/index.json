@@ -1,0 +1,20 @@
+{
+  "title": { "of": "minecraft:block / to_sky_and_stars:atomic_bomb" },
+  "about": ["minecraft:block / to_sky_and_stars:atomic_bomb"],
+  "redirect": [
+    "minecraft:item / to_sky_and_stars:atomic_bomb",
+    "minecraft:block_entity_type / to_sky_and_stars:atomic_bomb",
+    "minecraft:menu / to_sky_and_stars:atomic_bomb",
+    "minecraft:entity_type / to_sky_and_stars:atomic_bomb",
+    "minecraft:ticket_type / to_sky_and_stars:atomic_bomb",
+    "minecraft:sound_event / to_sky_and_stars:entity.atomic_bomb.activate",
+    "minecraft:sound_event / to_sky_and_stars:entity.atomic_bomb.cut",
+    "minecraft:sound_event / to_sky_and_stars:entity.atomic_bomb.timer"
+  ],
+  "icon": ["minecraft:block / to_sky_and_stars:atomic_bomb"],
+  "tags": [
+    "to_base:redstone",
+    "to_base:explosives",
+    "to_sky_and_stars:nuclear"
+  ]
+}

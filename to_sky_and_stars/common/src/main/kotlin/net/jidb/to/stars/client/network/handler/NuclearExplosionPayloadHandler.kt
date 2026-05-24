@@ -1,8 +1,8 @@
 package net.jidb.to.stars.client.network.handler
 
 import net.jidb.to.base.client.network.ClientPayloadContext
+import net.jidb.to.base.client.sound.DistantSoundInstance
 import net.jidb.to.stars.ToStarsMod
-import net.jidb.to.stars.client.sound.DistantSoundInstance
 import net.jidb.to.stars.network.NuclearExplosionPayload
 import net.minecraft.client.Minecraft
 import net.minecraft.client.multiplayer.ClientLevel

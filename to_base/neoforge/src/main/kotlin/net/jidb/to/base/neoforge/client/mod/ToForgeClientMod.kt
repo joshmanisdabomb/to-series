@@ -2,10 +2,7 @@ package net.jidb.to.base.neoforge.client.mod
 
 import net.jidb.to.base.client.mod.ToPlatformClientMod
 import net.jidb.to.base.neoforge.client.data.mod.ToForgeDataMod
-import net.jidb.to.base.neoforge.client.platform.NetworkingForgeClientPlatformModule
-import net.jidb.to.base.neoforge.client.platform.ParticleForgeClientPlatformModule
-import net.jidb.to.base.neoforge.client.platform.ReloadListenerForgeClientPlatformModule
-import net.jidb.to.base.neoforge.client.platform.ScreenForgeClientPlatformModule
+import net.jidb.to.base.neoforge.client.platform.*
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 import net.neoforged.neoforge.data.event.GatherDataEvent
@@ -21,6 +18,7 @@ abstract class ToForgeClientMod : ToPlatformClientMod {
         MOD_BUS.addListener(::onClientSetup)
         MOD_BUS.addListener(::onGatherData)
 
+        EntitiesForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         NetworkingForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         ParticleForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         ScreenForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)

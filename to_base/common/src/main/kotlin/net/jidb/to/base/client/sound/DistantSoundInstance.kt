@@ -1,4 +1,4 @@
-package net.jidb.to.stars.client.sound
+package net.jidb.to.base.client.sound
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
@@ -25,11 +25,12 @@ class DistantSoundInstance(event: SoundEvent, source: SoundSource, val ox: Doubl
         val cameraPos = Minecraft.getInstance().gameRenderer.mainCamera.position()
         val vector = cameraPos.subtract(ox, oy, oz)
         val distance = vector.length().toFloat()
-        val clamp = vector.normalize().scale(-10.0)
+        volume = range.minus(distance).div(range).coerceIn(0f, 1f)
+
+        val clamp = vector.normalize().scale(if (volume <= 0f) 10000.0 else -10.0)
         x = cameraPos.x + clamp.x
         y = cameraPos.y + clamp.y
         z = cameraPos.z + clamp.z
-        volume = range.minus(distance).div(range).coerceIn(0f, 1f)
     }
 
 }

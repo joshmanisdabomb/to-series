@@ -8,6 +8,6 @@
   ],
   "icon": ["minecraft:block / to_sky_and_stars:nuclear_fire"],
   "tags": [
-    "to_base:nuclear"
+    "to_sky_and_stars:nuclear"
   ]
 }

@@ -29,6 +29,7 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
                 output.accept(ItemStack(ToStarsMod.items.heavy_uranium))
                 output.accept(ItemStack(ToStarsMod.blocks.heavy_uranium_block))
                 output.accept(ItemStack(ToStarsMod.blocks.heavy_uranium_shielding))
+                output.accept(ItemStack(ToStarsMod.blocks.atomic_bomb))
                 output.accept(ItemStack(ToStarsMod.blocks.nuclear_waste))
                 output.accept(ItemStack(ToStarsMod.items.test_item))
             }

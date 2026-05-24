@@ -1,4 +1,5 @@
 {
+  "block.to_sky_and_stars.atomic_bomb": "Atomic Bomb",
   "block.to_sky_and_stars.deepslate_uranium_ore": "Deepslate Uranium Ore",
   "block.to_sky_and_stars.enriched_uranium_block": "Block of Enriched Uranium",
   "block.to_sky_and_stars.heavy_uranium_block": "Block of Heavy Uranium",
@@ -7,6 +8,18 @@
   "block.to_sky_and_stars.nuclear_waste": "Nuclear Waste",
   "block.to_sky_and_stars.uranium_block": "Block of Uranium",
   "block.to_sky_and_stars.uranium_ore": "Uranium Ore",
+  "entity_type.to_sky_and_stars.atomic_bomb": "Atomic Bomb",
+  "gui.to_sky_and_stars.atomic_bomb.bullet": "Add an Enriched Uranium Nugget",
+  "gui.to_sky_and_stars.atomic_bomb.detonate": "Detonate!",
+  "gui.to_sky_and_stars.atomic_bomb.detonate.error": "Missing requirements:",
+  "gui.to_sky_and_stars.atomic_bomb.detonate.error.bullet": "Slot 2: Enriched Uranium Nugget",
+  "gui.to_sky_and_stars.atomic_bomb.detonate.error.explosive": "Slot 1: TNT",
+  "gui.to_sky_and_stars.atomic_bomb.detonate.error.fuel": "Slot 3: Enriched Uranium",
+  "gui.to_sky_and_stars.atomic_bomb.detonate.info": "Explosion Strength: %s\nFuse Time: %s",
+  "gui.to_sky_and_stars.atomic_bomb.detonate.info.fuse": "%s seconds",
+  "gui.to_sky_and_stars.atomic_bomb.detonate.info.strength": "%s",
+  "gui.to_sky_and_stars.atomic_bomb.explosive": "Add 1 TNT",
+  "gui.to_sky_and_stars.atomic_bomb.fuel": "Add up to %s Enriched Uranium\nor %s Blocks of Enriched Uranium",
   "item.to_sky_and_stars.enriched_uranium": "Enriched Uranium",
   "item.to_sky_and_stars.enriched_uranium_block": "Block of Enriched Uranium",
   "item.to_sky_and_stars.enriched_uranium_nugget": "Enriched Uranium Nugget",
@@ -17,5 +30,10 @@
   "item.to_sky_and_stars.uranium": "Uranium",
   "item.to_sky_and_stars.uranium_block": "Block of Uranium",
   "item.to_sky_and_stars.uranium_nugget": "Uranium Nugget",
-  "itemgroup.to_sky_and_stars.tab": "To Sky and Stars"
+  "itemgroup.to_sky_and_stars.tab": "To Sky and Stars",
+  "subtitles.to_sky_and_stars.entity.atomic_bomb.activate": "Atomic Bomb activated",
+  "subtitles.to_sky_and_stars.entity.atomic_bomb.cut": "Atomic Bomb defused",
+  "subtitles.to_sky_and_stars.entity.atomic_bomb.timer": "Atomic Bomb ticks",
+  "subtitles.to_sky_and_stars.entity.generic.nuke_large": "Nuclear Explosion",
+  "subtitles.to_sky_and_stars.entity.generic.nuke_small": "Nuclear Explosion"
 }

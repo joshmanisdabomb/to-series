@@ -4,6 +4,6 @@
   "redirect": ["minecraft:item / to_sky_and_stars:nuclear_waste"],
   "icon": ["minecraft:block / to_sky_and_stars:nuclear_waste"],
   "tags": [
-    "to_base:nuclear"
+    "to_sky_and_stars:nuclear"
   ]
 }

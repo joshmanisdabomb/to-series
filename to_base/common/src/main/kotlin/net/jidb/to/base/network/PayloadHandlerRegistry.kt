@@ -4,6 +4,6 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 
 interface PayloadHandlerRegistry<C : PayloadContext> {
 
-    operator fun <P : CustomPacketPayload> get(type: CustomPacketPayload.Type<P>): (data: P, context: C) -> Unit
+    operator fun <P : CustomPacketPayload> get(type: CustomPacketPayload.Type<P>): ((data: P, context: C) -> Unit)?
 
 }

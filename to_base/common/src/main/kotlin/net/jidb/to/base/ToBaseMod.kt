@@ -2,6 +2,8 @@ package net.jidb.to.base
 
 import net.jidb.to.base.content.*
 import net.jidb.to.base.mod.ToMod
+import net.jidb.to.base.network.payload.DistantSoundPayload
+import net.jidb.to.base.service.Services
 
 object ToBaseMod : ToMod() {
     const val MOD_ID = "to_base"
@@ -17,4 +19,10 @@ object ToBaseMod : ToMod() {
 
     override val blockTags = ToBaseBlockTagLibrary
     override val itemTags = ToBaseItemTagLibrary
+
+    override fun init() {
+        super.init()
+
+        Services.platform.networking.register(DistantSoundPayload.Companion)
+    }
 }

@@ -58,13 +58,13 @@ class WikiArticleDisplayTokenParser(val self: Identifier, protected val context:
                 }
                 return Component.literal("${resource.first.path}.${resource.second.namespace}.${resource.second.path}")
                     .withStyle(Style.EMPTY.withColor(TextColor.fromLegacyFormat(ChatFormatting.GOLD)).withItalic(true)
-                        .withHoverEvent(HoverEvent.ShowText(Component.translatable("container.${ToBaseMod.modid}.research.404")
+                        .withHoverEvent(HoverEvent.ShowText(Component.translatable("gui.${ToBaseMod.modid}.research.404")
                             .withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.fromLegacyFormat(ChatFormatting.YELLOW))))))
             }
         }
         return Component.literal("{${content}}")
             .withStyle(Style.EMPTY.withColor(TextColor.fromLegacyFormat(ChatFormatting.DARK_RED)).withItalic(true)
-                .withHoverEvent(HoverEvent.ShowText(Component.translatable("container.${ToBaseMod.modid}.research.500")
+                .withHoverEvent(HoverEvent.ShowText(Component.translatable("gui.${ToBaseMod.modid}.research.500")
                     .withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.fromLegacyFormat(ChatFormatting.RED))))))
     }
 

@@ -29,7 +29,7 @@ class ResearchMenu(id: Int, playerInventory: Inventory, val access: ContainerLev
 
     override fun quickMoveStack(player: Player, index: Int): ItemStack {
         var result = ItemStack.EMPTY
-        val slot = this.slots.get(index)
+        val slot = this.slots[index]
 
         if (slot.hasItem()) {
             val stackInSlot = slot.item

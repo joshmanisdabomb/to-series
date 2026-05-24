@@ -4,6 +4,7 @@
   "about": ["to_base:mod_version / to_base:0.3.0"],
   "parent": "to_base:mod / to_base:to_base",
   "previous": "to_base:mod_version / to_base:0.2.0",
+  "next": "to_base:mod_version / to_base:0.4.0",
   "tags": [
     "to_base:major_release"
   ]

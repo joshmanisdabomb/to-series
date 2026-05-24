@@ -1,0 +1,241 @@
+{
+  "credit": "Made with Blockbench",
+  "elements": [
+    {
+      "faces": {
+        "east": {
+          "cullface": "east",
+          "rotation": 180,
+          "texture": "#4",
+          "uv": [
+            6,
+            3,
+            14,
+            6
+          ]
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#1",
+          "uv": [
+            0,
+            1,
+            16,
+            7
+          ]
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#4",
+          "uv": [
+            6,
+            3,
+            14,
+            6
+          ]
+        }
+      },
+      "from": [
+        0,
+        4.68629,
+        -0.02
+      ],
+      "name": "octagon",
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          -16
+        ]
+      },
+      "to": [
+        16,
+        11.31371,
+        16.02
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "rotation": 270,
+          "texture": "#4",
+          "uv": [
+            6,
+            4.5,
+            14,
+            7.5
+          ]
+        },
+        "south": {
+          "cullface": "south",
+          "rotation": 270,
+          "texture": "#1",
+          "uv": [
+            16,
+            6,
+            0,
+            0
+          ]
+        },
+        "up": {
+          "rotation": 90,
+          "texture": "#4",
+          "uv": [
+            6,
+            4.5,
+            14,
+            7.5
+          ]
+        }
+      },
+      "from": [
+        4.68629,
+        0,
+        0
+      ],
+      "name": "octagon",
+      "rotation": {
+        "angle": 45,
+        "axis": "z",
+        "origin": [
+          8,
+          8,
+          -16
+        ]
+      },
+      "to": [
+        11.31371,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "rotation": 270,
+          "texture": "#4",
+          "uv": [
+            6,
+            1.5,
+            14,
+            4.5
+          ]
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#1",
+          "uv": [
+            6,
+            0,
+            0,
+            16
+          ]
+        },
+        "up": {
+          "rotation": 90,
+          "texture": "#4",
+          "uv": [
+            6,
+            1.5,
+            14,
+            4.5
+          ]
+        }
+      },
+      "from": [
+        4.68629,
+        0,
+        0
+      ],
+      "name": "octagon",
+      "rotation": {
+        "angle": -45,
+        "axis": "z",
+        "origin": [
+          8,
+          8,
+          -16
+        ]
+      },
+      "to": [
+        11.31371,
+        16,
+        16
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "rotation": 90,
+          "texture": "#4",
+          "uv": [
+            6,
+            0,
+            14,
+            3
+          ]
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#1",
+          "uv": [
+            5,
+            0,
+            11,
+            16
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "rotation": 90,
+          "texture": "#4",
+          "uv": [
+            6,
+            0,
+            14,
+            3
+          ]
+        }
+      },
+      "from": [
+        4.68629,
+        0,
+        -0.01
+      ],
+      "name": "octagon",
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          8,
+          8,
+          -16
+        ]
+      },
+      "to": [
+        11.31371,
+        16,
+        16.01
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "children": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "name": "octagon",
+      "origin": [
+        8,
+        8,
+        8
+      ]
+    }
+  ]
+}

@@ -4,6 +4,7 @@
     "0": "to_base:block/research_desk_writing",
     "1": "to_base:block/research_desk_ink",
     "2": "to_base:block/research_desk",
-    "3": "to_base:block/research_desk_side"
+    "3": "to_base:block/research_desk_side",
+    "particle": "to_base:block/research_desk"
   }
 }

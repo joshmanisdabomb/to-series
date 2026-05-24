@@ -3,6 +3,7 @@ package net.jidb.to.stars.content
 import net.jidb.to.base.block.properties.ExtendedBlockProperties
 import net.jidb.to.base.library.BlockLibrary
 import net.jidb.to.stars.ToStarsMod
+import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.block.NuclearFireBlock
 import net.jidb.to.stars.block.NuclearWasteBlock
 import net.minecraft.core.registries.BuiltInRegistries
@@ -87,5 +88,12 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .requiresCorrectToolForDrops()
         .strength(7.5F, 14.0F)
         .sound(SoundType.FUNGUS)) }
+
+    val atomic_bomb by this { entry -> AtomicBombBlock(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.METAL)
+        .requiresCorrectToolForDrops()
+        .strength(9.0F, 90.0F)
+        .sound(SoundType.METAL)) }
 
 }

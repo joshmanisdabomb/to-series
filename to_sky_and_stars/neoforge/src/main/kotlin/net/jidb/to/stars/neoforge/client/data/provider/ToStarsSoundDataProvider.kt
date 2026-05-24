@@ -14,11 +14,32 @@ class ToStarsSoundDataProvider(output: PackOutput, provider: CompletableFuture<H
             .with(
                 sound(ToStarsMod.sounds.nuke_small.location.withPath { it.replace('.', '/') }, SoundDefinition.SoundType.SOUND)
             )
+            .subtitle("subtitles." + ToStarsMod.sounds.nuke_small.location.toString().replace(":", "."))
         )
         add(ToStarsMod.sounds.nuke_large, SoundDefinition.definition()
             .with(
                 sound(ToStarsMod.sounds.nuke_large.location.withPath { it.replace('.', '/') }, SoundDefinition.SoundType.SOUND)
             )
+            .subtitle("subtitles." + ToStarsMod.sounds.nuke_large.location.toString().replace(":", "."))
+        )
+
+        add(ToStarsMod.sounds.atomic_bomb_activate, SoundDefinition.definition()
+            .with(
+                sound(ToStarsMod.sounds.atomic_bomb_activate.location.withPath { it.replace('.', '/') }, SoundDefinition.SoundType.SOUND)
+            )
+            .subtitle("subtitles." + ToStarsMod.sounds.atomic_bomb_activate.location.toString().replace(":", "."))
+        )
+        add(ToStarsMod.sounds.atomic_bomb_timer, SoundDefinition.definition()
+            .with(
+                sound(ToStarsMod.sounds.atomic_bomb_timer.location.withPath { it.replace('.', '/') }, SoundDefinition.SoundType.SOUND)
+            )
+            .subtitle("subtitles." + ToStarsMod.sounds.atomic_bomb_timer.location.toString().replace(":", "."))
+        )
+        add(ToStarsMod.sounds.atomic_bomb_cut, SoundDefinition.definition()
+            .with(*Array(3, { k ->
+                sound(ToStarsMod.sounds.atomic_bomb_cut.location.withPath { it.replace('.', '/') }.withSuffix("${k+1}"), SoundDefinition.SoundType.SOUND)
+            }))
+            .subtitle("subtitles." + ToStarsMod.sounds.atomic_bomb_cut.location.toString().replace(":", "."))
         )
     }
 

@@ -14,12 +14,21 @@ object ToStarsMod : ToMod() {
     override val blockItems = ToStarsBlockItemLibrary
     override val tabs = ToStarsCreativeTabLibrary
 
+    override val blockEntities = ToStarsBlockEntityLibrary
+    override val menus = ToStarsMenuLibrary
+
+    override val entities = ToStarsEntityLibrary
+
     override val payloads = ToStarsPayloadLibrary
+    override val payloadHandlers = ToStarsPayloadHandlerLibrary
 
     override val blockTags = ToStarsBlockTagLibrary
+    override val itemTags = ToStarsItemTagLibrary
 
     override val particles = ToStarsParticleLibrary
     override val sounds = ToStarsSoundLibrary
+
+    override val tickets = ToStarsTicketLibrary
 
     override val configuredFeatures = ToStarsConfiguredFeatureLibrary
     override val placedFeatures = ToStarsPlacedFeatureLibrary

@@ -5,6 +5,7 @@
   "icon": ["minecraft:block / to_sky_and_stars:heavy_uranium_shielding"],
   "tags": [
     "to_sky_and_stars:uranium",
-    "to_sky_and_stars:heavy_uranium"
+    "to_sky_and_stars:heavy_uranium",
+    "to_sky_and_stars:nuclear"
   ]
 }

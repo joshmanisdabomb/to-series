@@ -6,6 +6,7 @@ import net.jidb.to.base.mod.ToContentMod
 abstract class ToClientMod : IToClientMod, ToContentClientMod {
 
     override fun clientInit() {
+        entityRenderers?.build()
         payloadHandlers?.build()
         particles?.build()
         screens?.build()

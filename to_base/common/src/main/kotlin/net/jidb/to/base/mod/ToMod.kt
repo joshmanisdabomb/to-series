@@ -15,16 +15,21 @@ abstract class ToMod : IToMod, ToContentMod {
         blockItems?.build()
         tabs?.build()
 
+        entities?.build()
+        blockEntities?.build()
         menus?.build()
         particles?.build()
 
-        payloadHandlers?.build()
         payloads?.build()
+        payloadHandlers?.build()
+        payloads?.register(payloadHandlers)
 
         blockTags?.build()
         itemTags?.build()
 
         sounds?.build()
+
+        tickets?.build()
 
         biomeMods?.build()
 
