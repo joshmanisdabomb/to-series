@@ -1,6 +1,6 @@
 package net.jidb.to.stars.block.entity
 
-import net.jidb.to.base.network.payload.DistantSoundPayload
+import net.jidb.to.base.hooks.network.DistantSoundPayload
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.entity.AtomicBombEntity

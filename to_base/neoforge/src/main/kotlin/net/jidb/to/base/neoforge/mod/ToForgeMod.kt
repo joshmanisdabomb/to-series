@@ -9,7 +9,10 @@ import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
+
 abstract class ToForgeMod : ToPlatformMod {
+    open val eventHandler: Any? = null
+
     init {
         common.init()
         init()
@@ -17,9 +20,11 @@ abstract class ToForgeMod : ToPlatformMod {
         ForgeRegisterService.addListener(common.modid, MOD_BUS)
 
         MOD_BUS.addListener(::onCommonSetup)
+        eventHandler?.also(FORGE_BUS::register)
 
         NetworkingForgePlatformModule.registry.addListener(common.modid, MOD_BUS)
         ReloadListenerForgePlatformModule.registry.addListener(common.modid, FORGE_BUS)
+        ForgeRegisterService.registry.addListener(common.modid, MOD_BUS)
     }
 
     abstract fun subscribeStub(event: FMLConstructModEvent)

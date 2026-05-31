@@ -21,7 +21,15 @@ dependencies {
 
 subprojectInclude.call(":to_base")
 
+configurations.annotationProcessor {
+    resolutionStrategy {
+        force("org.spongepowered:mixin:0.8.5:processor")
+    }
+}
+
 loom {
+    officialMojangMappings()
+
     val aw = project(":to_sky_and_stars:common").file("src/main/resources/${modId}.accesswidener")
     if (aw.exists()) {
         accessWidenerPath.set(aw)
@@ -37,6 +45,8 @@ loom {
             ideConfigGenerated(true)
             runDir("runs/client")
             property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
+            property("mixin.debug.export.decompile", "true")
+            property("mixin.debug.export", "true")
         }
         named("server") {
             server()
@@ -45,6 +55,8 @@ loom {
             ideConfigGenerated(true)
             runDir("runs/server")
             property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
+            property("mixin.debug.export.decompile", "true")
+            property("mixin.debug.export", "true")
         }
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
 import net.minecraft.tags.TagKey
 
-abstract class TagLibrary<T : Any>(modid: String) : AdvancedLibrary<Identifier, TagKey<T>>(modid) {
+abstract class TagLibrary<T : Any>(modid: String) : AdvancedLibrary<Identifier, TagKey<T>>(modid), AdvancedLibraryBuilder<Identifier, TagKey<T>> {
 
     abstract val registryKey: ResourceKey<Registry<T>>
 

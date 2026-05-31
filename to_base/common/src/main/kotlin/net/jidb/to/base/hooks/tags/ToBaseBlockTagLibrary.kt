@@ -1,4 +1,4 @@
-package net.jidb.to.base.content
+package net.jidb.to.base.hooks.tags
 
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.library.TagLibrary

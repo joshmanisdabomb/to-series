@@ -61,6 +61,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             else it
         } }
         addModule(::CompactRecipeDataCollectionModule)
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.root_advancement_unlock) }
     }
     val uranium_ores by this {
         addAffects(clear = true) { it.identifier().path.contains("uranium_ore") }

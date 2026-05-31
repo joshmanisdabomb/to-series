@@ -9,7 +9,8 @@
     "minecraft:ticket_type / to_sky_and_stars:atomic_bomb",
     "minecraft:sound_event / to_sky_and_stars:entity.atomic_bomb.activate",
     "minecraft:sound_event / to_sky_and_stars:entity.atomic_bomb.cut",
-    "minecraft:sound_event / to_sky_and_stars:entity.atomic_bomb.timer"
+    "minecraft:sound_event / to_sky_and_stars:entity.atomic_bomb.timer",
+    "minecraft:trigger_type / to_sky_and_stars:atomic_bomb"
   ],
   "icon": ["minecraft:block / to_sky_and_stars:atomic_bomb"],
   "tags": [

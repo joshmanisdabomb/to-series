@@ -29,7 +29,8 @@
     ]
   },
   "mixins": [
-    "to_base.mixins.json"
+    "to_base.mixins.json",
+    "to_base.fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",

@@ -1,6 +1,6 @@
 package net.jidb.to.stars.entity
 
-import net.jidb.to.base.network.payload.DistantSoundPayload
+import net.jidb.to.base.hooks.network.DistantSoundPayload
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.AtomicBombBlock
@@ -13,6 +13,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.server.level.ServerPlayer
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.Mth
@@ -149,8 +150,13 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
     }
 
     private fun explode(level: ServerLevel) {
-        val explosion = NuclearExplosion(level, getOwner(), Explosion.getDefaultDamageSource(level, getOwner()), position().add(0.0, 0.5, 0.0), getExplosionStrength(getUraniumCount(stacks[2])).toFloat())
+        val owner = getOwner()
+        val explosion = NuclearExplosion(level, owner, Explosion.getDefaultDamageSource(level, getOwner()), position().add(0.0, 0.5, 0.0), getExplosionStrength(getUraniumCount(stacks[2])).toFloat())
         explosion.run()
+
+        if (owner is ServerPlayer) {
+            ToStarsMod.advancementTriggers.atomic_bomb.trigger(owner, this)
+        }
     }
 
     private fun drop(level: ServerLevel) {

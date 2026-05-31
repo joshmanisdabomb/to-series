@@ -1,8 +1,8 @@
-package net.jidb.to.base.client.network.handler
+package net.jidb.to.base.client.hooks.network.handler
 
 import net.jidb.to.base.client.network.ClientPayloadContext
 import net.jidb.to.base.client.sound.DistantSoundInstance
-import net.jidb.to.base.network.payload.DistantSoundPayload
+import net.jidb.to.base.hooks.network.DistantSoundPayload
 import net.minecraft.client.Minecraft
 
 object DistantSoundPayloadHandler {

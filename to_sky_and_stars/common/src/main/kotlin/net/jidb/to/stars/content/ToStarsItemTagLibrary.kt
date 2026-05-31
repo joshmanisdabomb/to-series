@@ -9,6 +9,8 @@ object ToStarsItemTagLibrary : TagLibrary<Item>(ToStarsMod.modid) {
 
     override val registryKey = Registries.ITEM
 
+    val root_advancement_unlock by this()
+
     val enriched_uranium by this()
 
 }

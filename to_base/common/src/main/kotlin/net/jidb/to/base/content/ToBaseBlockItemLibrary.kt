@@ -3,4 +3,4 @@ package net.jidb.to.base.content
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.library.BlockItemLibrary
 
-object ToBaseBlockItemLibrary : BlockItemLibrary(ToBaseMod.modid, ToBaseMod.blocks)
+object ToBaseBlockItemLibrary : BlockItemLibrary(ToBaseMod.modid, ToBaseMod.content.blocks)

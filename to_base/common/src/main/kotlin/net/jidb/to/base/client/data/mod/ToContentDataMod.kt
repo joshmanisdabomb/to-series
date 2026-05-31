@@ -8,6 +8,7 @@ import net.jidb.to.base.library.SimpleLibrary
 import net.minecraft.client.data.models.ModelProvider
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
+import net.minecraft.data.advancements.AdvancementSubProvider
 import net.minecraft.data.loot.BlockLootSubProvider
 import net.minecraft.data.tags.TagsProvider
 import net.minecraft.network.chat.Component
@@ -23,6 +24,7 @@ interface ToContentDataMod {
     val models: List<(output: PackOutput) -> ModelProvider> get() = emptyList()
     val tags: List<(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) -> TagsProvider<*>> get() = emptyList()
     val blockLoot: List<(provider: HolderLookup.Provider) -> BlockLootSubProvider> get() = emptyList()
+    val advancements: List<AdvancementSubProvider> get() = emptyList()
     val wiki: List<WikiDataEnforcer?>? get() = emptyList()
 
     val configuredFeatures: DatapackLibrary<ConfiguredFeature<*, *>>? get() = null

@@ -1,4 +1,4 @@
-package net.jidb.to.base.network.payload
+package net.jidb.to.base.hooks.network
 
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.network.PayloadEntry

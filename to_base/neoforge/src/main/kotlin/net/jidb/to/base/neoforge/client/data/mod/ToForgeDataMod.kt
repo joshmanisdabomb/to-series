@@ -19,6 +19,7 @@ import net.minecraft.core.HolderSet
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.PackOutput
+import net.minecraft.data.advancements.AdvancementProvider
 import net.minecraft.data.loot.LootTableProvider
 import net.minecraft.data.loot.LootTableProvider.SubProviderEntry
 import net.minecraft.data.tags.TagsProvider
@@ -88,6 +89,9 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
             SubProviderEntry(provider, LootContextParamSets.BLOCK)
         ), lookup) } }.forEach { event.createProvider(it) }
         recipes.forEach { event.createProvider(it) }
+        if (advancements.isNotEmpty()) {
+            event.createProvider { output, lookup -> AdvancementProvider(output, lookup, advancements) }
+        }
         particles.forEach { event.createProvider(it) }
         sounds.forEach { event.createProvider(it) }
 

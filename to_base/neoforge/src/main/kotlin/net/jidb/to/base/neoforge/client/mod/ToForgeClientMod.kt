@@ -6,9 +6,11 @@ import net.jidb.to.base.neoforge.client.platform.*
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 import net.neoforged.neoforge.data.event.GatherDataEvent
+import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
 abstract class ToForgeClientMod : ToPlatformClientMod {
+    open val eventHandler: Any? = null
     open val data: ((event: GatherDataEvent.Client) -> ToForgeDataMod)? = null
 
     init {
@@ -17,6 +19,7 @@ abstract class ToForgeClientMod : ToPlatformClientMod {
 
         MOD_BUS.addListener(::onClientSetup)
         MOD_BUS.addListener(::onGatherData)
+        eventHandler?.also(FORGE_BUS::register)
 
         EntitiesForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         NetworkingForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)

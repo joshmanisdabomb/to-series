@@ -17,12 +17,12 @@ object ToBaseCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToBaseM
     val tab by this { entry ->
         Services.platform.creativeTabs.builder()
             .title(Component.translatable("itemgroup.${modid}.${entry.name}"))
-            .icon { ItemStack(ToBaseMod.items.test_item) }
+            .icon { ItemStack(ToBaseMod.content.items.test_item) }
             .displayItems { parameters, output ->
-                output.accept(ItemStack(ToBaseMod.blocks.research_desk))
-                output.accept(ItemStack(ToBaseMod.blocks.test_block))
-                output.accept(ItemStack(ToBaseMod.blocks.test_block_2))
-                output.accept(ItemStack(ToBaseMod.items.test_item))
+                output.accept(ItemStack(ToBaseMod.content.blocks.research_desk))
+                output.accept(ItemStack(ToBaseMod.content.blocks.test_block))
+                output.accept(ItemStack(ToBaseMod.content.blocks.test_block_2))
+                output.accept(ItemStack(ToBaseMod.content.items.test_item))
             }
             .build()
     }

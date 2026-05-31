@@ -20,7 +20,7 @@ import net.minecraft.world.item.Items
 object ToBaseDataLibrary : DataCollectionLibrary(ToBaseMod.modid) {
 
     val test_block by this {
-        addModule { SilkBlockLootDataCollectionModule(ToBaseMod.items.test_item) }
+        addModule { SilkBlockLootDataCollectionModule(ToBaseMod.content.items.test_item) }
     }
     val test_block_2 by this {
         addModule { HorizontalBlockModelClientDataCollectionModule(TexturedModel.ORIENTABLE.updateTexture {
@@ -31,7 +31,7 @@ object ToBaseDataLibrary : DataCollectionLibrary(ToBaseMod.modid) {
     val research_desk by this {
         addModule { SimpleLanguageClientDataCollectionModule("Researcher's Desk") }
         addModule { CustomBlockLootDataCollectionModule { collection, event -> event.helper.propertyBlockLoot(
-            ToBaseMod.blocks.research_desk,
+            ToBaseMod.content.blocks.research_desk,
             ResearchDeskBlock.SEGMENT,
             ResearchDeskBlock.ResearchDeskSegment.LEFT)
         } }

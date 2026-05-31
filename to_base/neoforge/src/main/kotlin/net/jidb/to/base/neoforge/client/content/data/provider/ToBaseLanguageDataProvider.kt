@@ -8,9 +8,9 @@ import net.minecraft.network.chat.contents.TranslatableContents
 
 class ToBaseLanguageDataProvider(tokens: Map<String, Map<String, Component>>, output: PackOutput) : MultiLanguageDataProvider(tokens, output, ToBaseMod.modid) {
     override fun addTranslations() {
-        add((ToBaseMod.tabs.tab.displayName.contents as TranslatableContents).key, "To Lay the Foundations")
+        add((ToBaseMod.content.tabs.tab.displayName.contents as TranslatableContents).key, "To Lay the Foundations")
 
-        add(ToBaseMod.itemTags.research_desk_unlock, "Researcher's Desk Unlock Items")
+        add(ToBaseMod.content.itemTags.research_desk_unlock, "Researcher's Desk Unlock Items")
 
         add("gui.$modid.research.home", "Back to Homepage")
         add("gui.$modid.research.search", "Search Box")

@@ -19,10 +19,10 @@ import net.minecraft.world.level.block.Block
 class ResearchDeskBlockModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {
-        val research_desk_left = ToBaseModels.RESEARCH_DESK_LEFT.create(ToBaseMod.blocks.research_desk, event.block.modelOutput)
-        val research_desk_right = ToBaseModels.RESEARCH_DESK_RIGHT.create(ToBaseMod.blocks.research_desk, event.block.modelOutput)
+        val research_desk_left = ToBaseModels.RESEARCH_DESK_LEFT.create(ToBaseMod.content.blocks.research_desk, event.block.modelOutput)
+        val research_desk_right = ToBaseModels.RESEARCH_DESK_RIGHT.create(ToBaseMod.content.blocks.research_desk, event.block.modelOutput)
         event.block.blockStateOutput.accept(
-            MultiVariantGenerator.dispatch(ToBaseMod.blocks.research_desk, BlockModelGenerators.variants(Variant(research_desk_left)))
+            MultiVariantGenerator.dispatch(ToBaseMod.content.blocks.research_desk, BlockModelGenerators.variants(Variant(research_desk_left)))
                 .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING)
                 .with(PropertyDispatch.modify(ResearchDeskBlock.SEGMENT)
                     .select(ResearchDeskBlock.ResearchDeskSegment.LEFT, VariantMutator.MODEL.withValue(research_desk_left))
@@ -33,11 +33,11 @@ class ResearchDeskBlockModelClientDataCollectionModule : ClientDataCollectionMod
 
     override fun generateItemModels(collection: DataCollection<Item>, event: ModelClientDataCollectionEvent): Boolean {
         val research_desk_item = ToBaseModels.TEMPLATE_RESEARCH_DESK_ITEM.create(
-            ToBaseMod.blocks.research_desk.asItem(),
-            ToBaseModels.TEXTURES_RESEARCH_DESK(ToBaseMod.blocks.research_desk.identifier.withPrefix("block/")),
+            ToBaseMod.content.blocks.research_desk.asItem(),
+            ToBaseModels.TEXTURES_RESEARCH_DESK(ToBaseMod.content.blocks.research_desk.identifier.withPrefix("block/")),
             event.item.modelOutput
         )
-        event.item.itemModelOutput.accept(ToBaseMod.blocks.research_desk.asItem(), ItemModelUtils.plainModel(research_desk_item))
+        event.item.itemModelOutput.accept(ToBaseMod.content.blocks.research_desk.asItem(), ItemModelUtils.plainModel(research_desk_item))
         return true
     }
 

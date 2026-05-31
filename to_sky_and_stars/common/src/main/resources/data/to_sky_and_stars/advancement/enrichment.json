@@ -1,0 +1,33 @@
+{
+  "parent": "to_sky_and_stars:uranium",
+  "criteria": {
+    "has_enriched_uranium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_sky_and_stars:enriched_uranium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_sky_and_stars.enrichment.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "to_sky_and_stars:enriched_uranium"
+    },
+    "title": {
+      "translate": "advancements.to_sky_and_stars.enrichment.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_enriched_uranium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

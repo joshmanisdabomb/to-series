@@ -28,6 +28,17 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("subtitles.$modid.entity.atomic_bomb.activate", "Atomic Bomb activated")
         add("subtitles.$modid.entity.atomic_bomb.timer", "Atomic Bomb ticks")
         add("subtitles.$modid.entity.atomic_bomb.cut", "Atomic Bomb defused")
+
+        add("advancements.$modid.root.title", "To Sky and Stars")
+        add("advancements.$modid.root.description", "Space race and missile mod.")
+        add("advancements.$modid.uranium.title", "Uranium Fever")
+        add("advancements.$modid.uranium.description", "Mine Uranium")
+        add("advancements.$modid.enrichment.title", "Enrichment Activities")
+        add("advancements.$modid.enrichment.description", "Refine Uranium in a Centrifuge")
+        add("advancements.$modid.nuke.title", "The World is the Problem")
+        add("advancements.$modid.nuke.description", "Detonate an Atomic Bomb (must use GUI)")
+        add("advancements.$modid.nuke_race.title", "Nuclear Arms Race")
+        add("advancements.$modid.nuke_race.description", "Be the first person on the server to detonate an Atomic Bomb")
     }
 
 }

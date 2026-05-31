@@ -67,6 +67,7 @@ sealed class Library<I, V>(val modid: String) {
             private set
         var evalValue = false
             private set
+        private var defer: ((() -> Unit) -> Unit)? = null
         var evaluated = false
             private set
 
@@ -90,16 +91,27 @@ sealed class Library<I, V>(val modid: String) {
                 throw LibraryException("${property.name} in ${this@Library} is already built.")
             }
             beforeBuild(this)
-            val input: () -> J
-            if (evalInput) {
+
+            val input = if (evalInput) {
                 val resolved = initial(this)
-                input = { resolved }
+                ({ resolved })
             } else {
-                input = { initial(this) }
+                ({ initial(this) })
             }
-            getter = builder(this, input)
-            if (evalValue) value
-            initialised = true
+
+            val defer = defer
+            if (defer != null) {
+                defer {
+                    getter = builder(this, input)
+                    if (evalValue) value
+                    initialised = true
+                }
+            } else {
+                getter = builder(this, input)
+                if (evalValue) value
+                initialised = true
+            }
+
             afterBuild(this)
         }
 
@@ -115,6 +127,11 @@ sealed class Library<I, V>(val modid: String) {
 
         fun <T> tag(list: LibraryTagList<V, T>, value: T): Library<I, V>.LibraryEntry<J, W> {
             list.add(this, value)
+            return this
+        }
+
+        fun deferBuild(consumer: (() -> Unit) -> Unit): Library<I, V>.LibraryEntry<J, W> {
+            defer = consumer
             return this
         }
 

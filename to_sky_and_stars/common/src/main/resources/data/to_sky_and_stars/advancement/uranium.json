@@ -1,0 +1,33 @@
+{
+  "parent": "to_sky_and_stars:root",
+  "criteria": {
+    "has_uranium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_sky_and_stars:uranium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_sky_and_stars.uranium.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "to_sky_and_stars:uranium"
+    },
+    "title": {
+      "translate": "advancements.to_sky_and_stars.uranium.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_uranium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

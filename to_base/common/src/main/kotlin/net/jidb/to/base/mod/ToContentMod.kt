@@ -1,8 +1,11 @@
 package net.jidb.to.base.mod
 
+import net.jidb.to.base.event.Event
+import net.jidb.to.base.event.EventHandler
 import net.jidb.to.base.library.*
 import net.jidb.to.base.network.ServerPayloadContext
 import net.jidb.to.base.platform.ReloadListenerPlatformModule
+import net.minecraft.advancements.CriterionTrigger
 import net.minecraft.core.particles.ParticleType
 import net.minecraft.resources.ResourceKey
 import net.minecraft.server.level.TicketType
@@ -14,6 +17,7 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
+import net.minecraft.world.level.saveddata.SavedDataType
 
 interface ToContentMod {
     val blocks: BlockLibrary? get() = null
@@ -26,12 +30,17 @@ interface ToContentMod {
     val particles: SimpleRegistryLibrary<ParticleType<*>>? get() = null
     val payloadHandlers: PayloadHandlerLibrary<ServerPayloadContext>? get() = null
     val payloads: PayloadLibrary? get() = null
+    val registries: RegistryRegistryLibrary? get() = null
     val blockTags: TagLibrary<Block>? get() = null
     val itemTags: TagLibrary<Item>? get() = null
     val sounds: SoundEventLibrary? get() = null
     val biomeMods: BiomeModLibrary? get() = null
     val reloadListeners: ReloadListenerLibrary<ReloadListenerPlatformModule>? get() = null
+    val events: SimpleLibrary<Event<*, *>>? get() = null
+    val eventHandlers: SimpleLibrary<EventHandler<*, *>>? get() = null
+    val advancementTriggers: SimpleRegistryLibrary<CriterionTrigger<*>>? get() = null
     val tickets: SimpleRegistryLibrary<TicketType>? get() = null
+    val savedData: SimpleLibrary<SavedDataType<*>>? get() = null
     val configuredFeatures: Library<*, ResourceKey<ConfiguredFeature<*, *>>>? get() = null
     val placedFeatures: Library<*, ResourceKey<PlacedFeature>>? get() = null
 }

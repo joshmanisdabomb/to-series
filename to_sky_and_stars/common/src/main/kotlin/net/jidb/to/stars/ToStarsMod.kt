@@ -28,7 +28,10 @@ object ToStarsMod : ToMod() {
     override val particles = ToStarsParticleLibrary
     override val sounds = ToStarsSoundLibrary
 
+    override val eventHandlers = ToStarsEventHandlerLibrary
+    override val advancementTriggers = ToStarsAdvancementTriggerLibrary
     override val tickets = ToStarsTicketLibrary
+    override val savedData = ToStarsSavedDataLibrary
 
     override val configuredFeatures = ToStarsConfiguredFeatureLibrary
     override val placedFeatures = ToStarsPlacedFeatureLibrary

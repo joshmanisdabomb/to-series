@@ -8,12 +8,14 @@ import net.jidb.to.stars.content.ToStarsBiomeModLibrary
 import net.jidb.to.stars.neoforge.client.data.content.ToStarsConfiguredFeatureDataLibrary
 import net.jidb.to.stars.neoforge.client.data.content.ToStarsDataLibrary
 import net.jidb.to.stars.neoforge.client.data.content.ToStarsPlacedFeatureDataLibrary
+import net.jidb.to.stars.neoforge.client.data.provider.ToStarsAdvancementDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsLanguageDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsParticleDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSoundDataProvider
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemCopyTagDataProvider
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.core.registries.Registries
 import net.minecraft.data.PackOutput
 import net.minecraft.data.tags.TagsProvider
 import net.minecraft.world.level.block.Block
@@ -29,6 +31,7 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
         { output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>, blockTags: CompletableFuture<TagsProvider.TagLookup<Block>> -> AutoCopyTagDataProvider(ToStarsMod.blockTags.values.associateBy { it.location }, ToStarsMod.itemTags?.values?.associateBy { it.location } ?: emptyMap(), output, lookup, blockTags, modid) },
         ::ToStarsItemCopyTagDataProvider
     )
+    override val advancements = listOf(ToStarsAdvancementDataProvider())
     override val particles = listOf(::ToStarsParticleDataProvider)
     override val sounds = listOf(::ToStarsSoundDataProvider)
 
@@ -37,7 +40,7 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
     override val biomeMods = listOf(ToStarsBiomeModLibrary)
 
     override val wiki = listOf(RegistryWikiDataEnforcer(ToStarsMod.modid, {
-        it.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier()
+        it.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier() || (it.registry() == Registries.TRIGGER_TYPE.identifier() && it.identifier().path == "race")
     }))
 
 }

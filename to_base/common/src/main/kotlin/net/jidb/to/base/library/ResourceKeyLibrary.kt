@@ -3,7 +3,7 @@ package net.jidb.to.base.library
 import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
 
-abstract class ResourceKeyLibrary<T : Any>(modid: String) : AdvancedLibrary<Identifier, ResourceKey<T>>(modid), IResourceKeyLibrary<Identifier, ResourceKey<T>, T> {
+abstract class ResourceKeyLibrary<T : Any>(modid: String) : AdvancedLibrary<Identifier, ResourceKey<T>>(modid), IResourceKeyLibrary<Identifier, ResourceKey<T>, T>, AdvancedLibraryBuilder<Identifier, ResourceKey<T>> {
 
     override fun <J : Identifier> i(entry: Library<Identifier, ResourceKey<T>>.LibraryEntry<out Identifier, out ResourceKey<T>>, input: () -> J): () -> ResourceKey<T> {
         return { ResourceKey.create(registryKey, input()) }

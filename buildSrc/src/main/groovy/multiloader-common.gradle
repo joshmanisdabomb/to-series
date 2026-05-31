@@ -40,6 +40,9 @@ repositories {
         name = "kotlinforforge"
         url = uri("https://thedarkcolour.github.io/KotlinForForge/")
     }
+    maven {
+        url = uri("https://repo.spongepowered.org/maven")
+    }
 }
 
 // Declare capabilities on the outgoing configurations.

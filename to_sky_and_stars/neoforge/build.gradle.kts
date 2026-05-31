@@ -23,6 +23,8 @@ neoForge {
     runs {
         configureEach {
             systemProperty("neoforge.enabledGameTestNamespaces", modId)
+            systemProperty("mixin.debug.export.decompile", "true")
+            systemProperty("mixin.debug.export", "true")
             ideName = "${project.extra["modName"]}: NeoForge ${name.capitalized()}" // Unify the run config names with fabric
         }
         register("client") {
