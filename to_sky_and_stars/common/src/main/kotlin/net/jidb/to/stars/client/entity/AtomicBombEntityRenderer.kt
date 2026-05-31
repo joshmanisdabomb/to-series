@@ -8,13 +8,22 @@ import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.entity.state.AtomicBombEntityState
 import net.jidb.to.stars.entity.AtomicBombEntity
 import net.minecraft.client.renderer.SubmitNodeCollector
+import net.minecraft.client.renderer.block.BlockModelRenderState
+import net.minecraft.client.renderer.block.model.BlockDisplayContext
 import net.minecraft.client.renderer.entity.EntityRenderer
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import net.minecraft.client.renderer.entity.TntMinecartRenderer
-import net.minecraft.client.renderer.state.CameraRenderState
+import net.minecraft.client.renderer.state.level.CameraRenderState
 import net.minecraft.util.Mth
 
 class AtomicBombEntityRenderer(context: EntityRendererProvider.Context) : EntityRenderer<AtomicBombEntity, AtomicBombEntityState>(context) {
+
+    val middle = BlockModelRenderState()
+        .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.SEGMENT, AtomicBombBlock.AtomicBombSegment.MIDDLE), BlockDisplayContext.create()) }
+    val head = BlockModelRenderState()
+        .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.SEGMENT, AtomicBombBlock.AtomicBombSegment.HEAD), BlockDisplayContext.create()) }
+    val tail = BlockModelRenderState()
+        .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.SEGMENT, AtomicBombBlock.AtomicBombSegment.TAIL), BlockDisplayContext.create()) }
 
     init {
         shadowRadius = 0.98f
@@ -52,12 +61,6 @@ class AtomicBombEntityRenderer(context: EntityRendererProvider.Context) : Entity
         super.extractRenderState(entity, state, partialTick)
         state.yRot = entity.yRot
         state.fuse = entity.entityData[AtomicBombEntity.data_timer] - partialTick + 1.0f
-    }
-
-    companion object {
-        val head by lazy { ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.SEGMENT, AtomicBombBlock.AtomicBombSegment.HEAD) }
-        val middle by lazy { ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.SEGMENT, AtomicBombBlock.AtomicBombSegment.MIDDLE) }
-        val tail by lazy { ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.SEGMENT, AtomicBombBlock.AtomicBombSegment.TAIL) }
     }
 
 }

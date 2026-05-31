@@ -15,7 +15,7 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.data.advancements.AdvancementSubProvider
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
-import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.ItemStackTemplate
 import java.util.*
 import java.util.function.Consumer
 
@@ -26,7 +26,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
 
         val root = Advancement.Builder.advancement()
             .display(
-                ItemStack(ToStarsMod.items.test_item),
+                ItemStackTemplate(ToStarsMod.items.test_item),
                 Component.translatable("advancements.${ToStarsMod.modid}.root.title"),
                 Component.translatable("advancements.${ToStarsMod.modid}.root.description"),
                 Identifier.fromNamespaceAndPath(ToStarsMod.modid, "gui/advancements/background"),
@@ -43,7 +43,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
         val uranium = Advancement.Builder.advancement()
             .parent(root)
             .display(
-                ItemStack(ToStarsMod.items.uranium),
+                ItemStackTemplate(ToStarsMod.items.uranium),
                 Component.translatable("advancements.${ToStarsMod.modid}.uranium.title"),
                 Component.translatable("advancements.${ToStarsMod.modid}.uranium.description"),
                 null,
@@ -58,7 +58,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
         val enrichment = Advancement.Builder.advancement()
             .parent(uranium)
             .display(
-                ItemStack(ToStarsMod.items.enriched_uranium),
+                ItemStackTemplate(ToStarsMod.items.enriched_uranium),
                 Component.translatable("advancements.${ToStarsMod.modid}.enrichment.title"),
                 Component.translatable("advancements.${ToStarsMod.modid}.enrichment.description"),
                 null,
@@ -73,7 +73,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
         val nuke = Advancement.Builder.advancement()
             .parent(enrichment)
             .display(
-                ItemStack(ToStarsMod.blocks.atomic_bomb),
+                ItemStackTemplate(ToStarsMod.blocks.atomic_bomb.asItem()),
                 Component.translatable("advancements.${ToStarsMod.modid}.nuke.title"),
                 Component.translatable("advancements.${ToStarsMod.modid}.nuke.description"),
                 null,
@@ -90,7 +90,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
         val nuke_race = Advancement.Builder.advancement()
             .parent(nuke)
             .display(
-                ItemStack(ToStarsMod.blocks.atomic_bomb),
+                ItemStackTemplate(ToStarsMod.blocks.atomic_bomb.asItem()),
                 Component.translatable("advancements.${ToStarsMod.modid}.nuke_race.title"),
                 Component.translatable("advancements.${ToStarsMod.modid}.nuke_race.description"),
                 null,

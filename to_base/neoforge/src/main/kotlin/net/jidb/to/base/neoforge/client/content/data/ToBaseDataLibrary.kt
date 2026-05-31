@@ -14,6 +14,7 @@ import net.jidb.to.base.neoforge.client.content.data.module.ResearchDeskBlockMod
 import net.jidb.to.base.service.Services
 import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
+import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.Items
 
@@ -24,7 +25,8 @@ object ToBaseDataLibrary : DataCollectionLibrary(ToBaseMod.modid) {
     }
     val test_block_2 by this {
         addModule { HorizontalBlockModelClientDataCollectionModule(TexturedModel.ORIENTABLE.updateTexture {
-            it.put(TextureSlot.BOTTOM, it.get(TextureSlot.BOTTOM).withPath { it.replace("_bottom", "_top") })
+            val material = it.get(TextureSlot.BOTTOM)
+            it.put(TextureSlot.BOTTOM, Material(material.sprite().withPath { it.replace("_bottom", "_top") }, material.forceTranslucent))
         }) }
     }
 

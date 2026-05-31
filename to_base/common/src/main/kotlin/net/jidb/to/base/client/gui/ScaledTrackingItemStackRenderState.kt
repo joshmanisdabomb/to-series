@@ -3,11 +3,11 @@ package net.jidb.to.base.client.gui
 import com.mojang.blaze3d.vertex.PoseStack
 import net.jidb.to.base.mixin.client.GuiGraphicsAccessor
 import net.minecraft.client.Minecraft
-import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.gui.navigation.ScreenRectangle
-import net.minecraft.client.gui.render.state.GuiItemRenderState
 import net.minecraft.client.renderer.SubmitNodeCollector
 import net.minecraft.client.renderer.item.TrackingItemStackRenderState
+import net.minecraft.client.renderer.state.gui.GuiItemRenderState
 import net.minecraft.world.item.ItemDisplayContext
 import net.minecraft.world.item.ItemStack
 import org.joml.Matrix3x2f
@@ -29,7 +29,7 @@ class ScaledTrackingItemStackRenderState(val scale: Float) : TrackingItemStackRe
     override fun getModelBoundingBox() = super.getModelBoundingBox().inflate(0.25)
 
     companion object {
-        fun renderItem(graphics: GuiGraphics, stack: ItemStack, x: Int, y: Int, scale: Float = 1f, scissors: ScreenRectangle? = null, seed: Int = 0) {
+        fun extractItem(graphics: GuiGraphicsExtractor, stack: ItemStack, x: Int, y: Int, scale: Float = 1f, scissors: ScreenRectangle? = null, seed: Int = 0) {
             val minecraft = Minecraft.getInstance()
             val state = ScaledTrackingItemStackRenderState(scale)
 
@@ -39,7 +39,6 @@ class ScaledTrackingItemStackRenderState(val scale: Float) : TrackingItemStackRe
             val offset = ((scale - 1f) * 8f).toInt()
 
             val renderState = GuiItemRenderState(
-                stack.item.name.string,
                 Matrix3x2f(graphics.pose()),
                 state,
                 x + offset,
@@ -47,7 +46,7 @@ class ScaledTrackingItemStackRenderState(val scale: Float) : TrackingItemStackRe
                 scissors
             )
 
-            (graphics as GuiGraphicsAccessor).`to_base$getGuiRenderState`().submitItem(renderState)
+            (graphics as GuiGraphicsAccessor).`to_base$getGuiRenderState`().addItem(renderState)
         }
     }
 

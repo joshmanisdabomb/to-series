@@ -8,6 +8,7 @@ import net.minecraft.client.data.models.model.ModelTemplate
 import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
+import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.resources.Identifier
 import java.util.*
 
@@ -15,11 +16,11 @@ object ToStarsModels {
 
     val TEXTURES_ATOMIC_BOMB = { identifier: Identifier ->
         TextureMapping()
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[0], identifier.withSuffix("_tail_side"))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[1], identifier.withSuffix("_tail"))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[2], identifier.withSuffix("_fin"))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[3], identifier.withSuffix("_core"))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[4], identifier.withSuffix("_head"))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[0], Material(identifier.withSuffix("_tail_side")))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[1], Material(identifier.withSuffix("_tail")))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[2], Material(identifier.withSuffix("_fin")))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[3], Material(identifier.withSuffix("_core")))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[4], Material(identifier.withSuffix("_head")))
             .copySlot(ToDataClientHelper.NUMERIC_TEXTURES[2], TextureSlot.PARTICLE)
     }
 

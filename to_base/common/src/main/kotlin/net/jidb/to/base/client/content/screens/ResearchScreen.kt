@@ -10,7 +10,7 @@ import net.jidb.to.base.service.Services
 import net.jidb.to.base.wiki.WikiArticle
 import net.jidb.to.base.wiki.WikiArticleLink
 import net.minecraft.client.gui.ActiveTextCollector
-import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.gui.components.*
 import net.minecraft.client.gui.components.events.GuiEventListener
 import net.minecraft.client.gui.navigation.ScreenRectangle
@@ -36,7 +36,7 @@ import net.minecraft.world.level.block.Block
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
-class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected val originalTitle: Component) : AbstractContainerScreen<ResearchMenu>(menu, playerInventory, Component.empty()) {
+class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected val originalTitle: Component) : AbstractContainerScreen<ResearchMenu>(menu, playerInventory, Component.empty(), 230, 219) {
 
     protected var mode = ResearchScreenMode.HOME
 
@@ -65,13 +65,11 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
     private var scrollHeight = 0
     private var scrollDragPoint: Int? = null
 
-    private val fullWidth = 230
-    private val fullHeight = 219
     private val toolbarY = 8
     private val toolbarWidth = 20
     private val toolbarHeight = 20
     private val leftToolbarX = 8
-    private val rightToolbarX = fullWidth - 8 - toolbarWidth
+    private val rightToolbarX = imageWidth - 8 - toolbarWidth
     private val contentX = 9
     private val contentWidth = 195
     private val contentRight = contentX + contentWidth
@@ -82,7 +80,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
     private val contentListHeight = 165
     private val contentPadding = 3
     private val contentLineHeight = 9
-    private val contentBottom = fullHeight - 8
+    private val contentBottom = imageHeight - 8
     private val listsButtonWidth = 192
     private val listButtonHeight = 26
     private val contentListY = contentBottom - contentListHeight
@@ -105,9 +103,6 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         get() = if (mode == ResearchScreenMode.LIST) contentListHeight else contentPageHeight
 
     init {
-        imageWidth = fullWidth
-        imageHeight = fullHeight
-
         inventoryLabelX = (leftPos + (imageWidth / 2)) - (18 * 4.5).toInt()
         inventoryLabelY = imageHeight - 94
 
@@ -298,7 +293,9 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         setScrollPosition(0)
     }
 
-    override fun renderBg(graphics: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int) {
+    override fun extractBackground(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, partialTick: Float) {
+        super.extractBackground(graphics, mouseX, mouseY, partialTick)
+
         val i = leftPos
         val j = (height - imageHeight) / 2
         graphics.blit(RenderPipelines.GUI_TEXTURED, mode.texture, i, j, 0.0f, 0.0f, imageWidth, imageHeight, 256, 256)
@@ -306,7 +303,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         if (mode == ResearchScreenMode.PAGE) {
             val icon = getArticleIcon(icons, iconTicks)
             if (icon != null) {
-                renderArticleIcon(icon, graphics, i + iconOffsetX, j + iconOffsetY, 2f)
+                extractArticleIcon(icon, graphics, i + iconOffsetX, j + iconOffsetY, 2f)
             }
         }
         if (mode != ResearchScreenMode.HOME) {
@@ -315,22 +312,20 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
     }
 
-    override fun render(graphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
-        super.render(graphics, mouseX, mouseY, partialTick)
+    override fun extractContents(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, partialTick: Float) {
+        super.extractContents(graphics, mouseX, mouseY, partialTick)
 
         graphics.enableScissor(leftPos + contentX, topPos + contentY, leftPos + contentRight, topPos + contentBottom)
         if (mode == ResearchScreenMode.PAGE) {
-            articleText?.render(graphics, mouseX, mouseY, partialTick)
+            articleText?.extractRenderState(graphics, mouseX, mouseY, partialTick)
         } else if (mode == ResearchScreenMode.LIST) {
-            listButtons.forEach { it.render(graphics, mouseX, mouseY, partialTick) }
+            listButtons.forEach { it.extractRenderState(graphics, mouseX, mouseY, partialTick) }
         }
         graphics.disableScissor()
-
-        this.renderTooltip(graphics, mouseX, mouseY)
     }
 
-    override fun renderTooltip(graphics: GuiGraphics, mouseX: Int, mouseY: Int) {
-        super.renderTooltip(graphics, mouseX, mouseY)
+    override fun extractTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int) {
+        super.extractTooltip(graphics, mouseX, mouseY)
         if (mode == ResearchScreenMode.PAGE) {
             if (mouseX-leftPos-iconOffsetX in 0 .. iconOffsetSize && mouseY-topPos-iconOffsetY in 0 .. iconOffsetSize) {
                 val icon = getArticleIcon(icons, iconTicks)
@@ -341,37 +336,37 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
     }
 
-    override fun renderLabels(graphics: GuiGraphics, mouseX: Int, mouseY: Int) {
+    override fun extractLabels(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int) {
         when (mode) {
             ResearchScreenMode.PAGE -> {
                 val title = Component.empty().append(currentArticle!!.short).withoutShadow()
                 val tx = if (icons.isNotEmpty()) titleX else contentX
                 graphics.pose().pushMatrix()
                 graphics.pose().scaleAround(2F, 2F, tx.toFloat(), titleY.toFloat())
-                graphics.textRenderer(GuiGraphics.HoveredTextEffects.NONE).acceptScrolling(title.copy().withColor(0xFF3E3E3E.toInt()), 0, tx + 1, tx + titleWidth + 1, titleY + 1, titleY + titleHeight + 1)
-                graphics.textRenderer(GuiGraphics.HoveredTextEffects.NONE).acceptScrolling(title, 0, tx, titleX + titleWidth, titleY, titleY + titleHeight)
+                graphics.textRenderer(GuiGraphicsExtractor.HoveredTextEffects.NONE).acceptScrolling(title.copy().withColor(0xFF3E3E3E.toInt()), 0, tx + 1, tx + titleWidth + 1, titleY + 1, titleY + titleHeight + 1)
+                graphics.textRenderer(GuiGraphicsExtractor.HoveredTextEffects.NONE).acceptScrolling(title, 0, tx, titleX + titleWidth, titleY, titleY + titleHeight)
                 graphics.pose().popMatrix()
 
                 val subtitle = getArticleSubtitle(currentArticle!!)
-                graphics.drawString(this.font, subtitle, tx, subtitleY, 0xFF808080.toInt(), false)
+                graphics.text(this.font, subtitle, tx, subtitleY, 0xFF808080.toInt(), false)
             }
             ResearchScreenMode.HOME -> {
-                graphics.drawString(this.font, Component.translatable("gui.${ToBaseMod.modid}.research.inventory"), inventoryLabelX, inventoryLabelY, 0xFF404040.toInt(), false)
+                graphics.text(this.font, Component.translatable("gui.${ToBaseMod.modid}.research.inventory"), inventoryLabelX, inventoryLabelY, 0xFF404040.toInt(), false)
             }
             ResearchScreenMode.LIST -> {
-                graphics.drawString(this.font, listTitle!!, labelX, labelY, 0xFF404040.toInt(), false)
+                graphics.text(this.font, listTitle!!, labelX, labelY, 0xFF404040.toInt(), false)
             }
         }
     }
 
-    override fun renderSlot(guiGraphics: GuiGraphics, slot: Slot, mouseX: Int, mouseY: Int) {
-        super.renderSlot(guiGraphics, slot, mouseX, mouseY)
+    override fun extractSlot(graphics: GuiGraphicsExtractor, slot: Slot, mouseX: Int, mouseY: Int) {
+        super.extractSlot(graphics, slot, mouseX, mouseY)
         if (getSlotArticle(slot) != null) {
             if (slot == hoveredSlot) {
-                guiGraphics.requestCursor(CursorTypes.POINTING_HAND)
+                graphics.requestCursor(CursorTypes.POINTING_HAND)
             }
         } else {
-            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, slot_locked, slot.x - 4, slot.y - 4, 24, 24)
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, slot_locked, slot.x - 4, slot.y - 4, 24, 24)
         }
     }
 
@@ -522,10 +517,10 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             return icons[iconTicks.toInt().div(40) % icons.size]
         }
 
-        private fun renderArticleIcon(icon: Any, graphics: GuiGraphics, x: Int, y: Int, scale: Float = 1f, scissors: ScreenRectangle? = null) {
+        private fun extractArticleIcon(icon: Any, graphics: GuiGraphicsExtractor, x: Int, y: Int, scale: Float = 1f, scissors: ScreenRectangle? = null) {
             when (icon) {
                 is ItemLike -> {
-                    ScaledTrackingItemStackRenderState.renderItem(graphics, ItemStack(icon), x, y, scale, scissors)
+                    ScaledTrackingItemStackRenderState.extractItem(graphics, ItemStack(icon), x, y, scale, scissors)
                 }
             }
         }
@@ -563,25 +558,25 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         val icons = getArticleIcons(article)
         var iconTicks = 0f
 
-        override fun renderContents(graphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
-            this.renderDefaultSprite(graphics)
-            this.renderDefaultLabel(graphics.textRendererForWidget(this, GuiGraphics.HoveredTextEffects.NONE))
+        override fun extractContents(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, partialTick: Float) {
+            this.extractDefaultSprite(graphics)
+            this.extractDefaultLabel(graphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE))
 
             val icon = getArticleIcon(icons, iconTicks)
             if (icon != null) {
-                renderArticleIcon(icon, graphics, x + listButtonIconX, y + listButtonIconY, scissors = scissors.transformAxisAligned(graphics.pose()))
+                extractArticleIcon(icon, graphics, x + listButtonIconX, y + listButtonIconY, scissors = scissors.transformAxisAligned(graphics.pose()))
             }
             if (!isHovered) {
                 iconTicks += partialTick
             }
         }
 
-        override fun renderScrollingStringOverContents(activeTextCollector: ActiveTextCollector, text: Component, padding: Int) {
-            val i = this.getX() + padding + (if (icons.isNotEmpty()) listButtonIconPadding else listButtonPadding)
-            val j = this.getX() + this.getWidth() - padding
+        override fun extractScrollingStringOverContents(output: ActiveTextCollector, message: Component, margin: Int) {
+            val i = this.getX() + margin + (if (icons.isNotEmpty()) listButtonIconPadding else listButtonPadding)
+            val j = this.getX() + this.getWidth() - margin
             val k = this.getY()
             val l = this.getY() + this.getHeight()
-            activeTextCollector.acceptScrolling(text, 0, i, j, k, l)
+            output.acceptScrolling(message, 0, i, j, k, l)
         }
     }
 

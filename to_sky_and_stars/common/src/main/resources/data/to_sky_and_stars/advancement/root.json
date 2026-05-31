@@ -18,7 +18,6 @@
       "translate": "advancements.to_sky_and_stars.root.description"
     },
     "icon": {
-      "count": 1,
       "id": "to_sky_and_stars:test_item"
     },
     "show_toast": false,

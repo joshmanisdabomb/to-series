@@ -6,7 +6,6 @@
   "group": "to_sky_and_stars:uranium",
   "ingredient": "to_sky_and_stars:uranium_ore",
   "result": {
-    "count": 1,
     "id": "to_sky_and_stars:uranium"
   }
 }

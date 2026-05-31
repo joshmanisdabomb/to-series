@@ -8,6 +8,6 @@ import net.minecraft.server.packs.resources.PreparableReloadListener
 
 object ReloadListenerFabricClientPlatformModule : ReloadListenerClientPlatformModule() {
 
-    override fun register(identifier: Identifier, listener: PreparableReloadListener) = ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloader(identifier, listener)
+    override fun register(identifier: Identifier, listener: PreparableReloadListener) = ResourceLoader.get(PackType.CLIENT_RESOURCES).registerReloadListener(identifier, listener)
 
 }

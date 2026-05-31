@@ -2,7 +2,6 @@ package net.jidb.to.base.client.platform
 
 interface ClientPlatform {
 
-    val blocks: BlocksClientPlatformModule
     val entities: EntitiesClientPlatformModule
     val particles: ParticleClientPlatformModule
     val screens: ScreenClientPlatformModule

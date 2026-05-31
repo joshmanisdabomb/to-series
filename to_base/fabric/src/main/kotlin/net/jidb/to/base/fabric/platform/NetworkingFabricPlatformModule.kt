@@ -22,12 +22,12 @@ object NetworkingFabricPlatformModule : NetworkingPlatformModule() {
 
     override fun <P : CustomPacketPayload> register(entry: PayloadEntry<P>, serverHandler: ((P, ServerPayloadContext) -> Unit)?) {
         if (entry.phase != Phase.PLAY) {
-            if (entry.side != Side.C2S) PayloadTypeRegistry.configurationS2C().register(entry.type, entry.codec)
-            if (entry.side != Side.S2C) PayloadTypeRegistry.configurationC2S().register(entry.type, entry.codec)
+            if (entry.side != Side.C2S) PayloadTypeRegistry.clientboundConfiguration().register(entry.type, entry.codec)
+            if (entry.side != Side.S2C) PayloadTypeRegistry.serverboundConfiguration().register(entry.type, entry.codec)
         }
         if (entry.phase != Phase.CONFIGURATION) {
-            if (entry.side != Side.C2S) PayloadTypeRegistry.playS2C().register(entry.type, entry.codec)
-            if (entry.side != Side.S2C) PayloadTypeRegistry.playC2S().register(entry.type, entry.codec)
+            if (entry.side != Side.C2S) PayloadTypeRegistry.clientboundPlay().register(entry.type, entry.codec)
+            if (entry.side != Side.S2C) PayloadTypeRegistry.serverboundPlay().register(entry.type, entry.codec)
         }
         if (entry.side != Side.S2C) {
             val handler = serverHandler ?: error("C2S payloads must have a server handler.")
@@ -75,7 +75,7 @@ object NetworkingFabricPlatformModule : NetworkingPlatformModule() {
     }
 
     override fun sendToPlayerInDimension(level: ServerLevel, payload: CustomPacketPayload, vararg others: CustomPacketPayload) {
-        PlayerLookup.world(level).forEach {
+        PlayerLookup.level(level).forEach {
             sendToPlayer(it, payload, *others)
         }
     }

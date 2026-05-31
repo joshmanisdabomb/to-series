@@ -6,7 +6,7 @@ import net.jidb.to.stars.entity.AtomicBombEntity
 import net.jidb.to.stars.inventory.menu.AtomicBombMenu
 import net.jidb.to.stars.network.AtomicBombDetonatePayload
 import net.minecraft.ChatFormatting
-import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.components.WidgetSprites
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
@@ -21,7 +21,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerListener
 import net.minecraft.world.item.ItemStack
 
-class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: Component) : AbstractContainerScreen<AtomicBombMenu>(menu, playerInventory, title) {
+class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: Component) : AbstractContainerScreen<AtomicBombMenu>(menu, playerInventory, title, 176, 171) {
 
     private var detonate: Button? = null
     private val detonateListener = object : ContainerListener {
@@ -36,9 +36,6 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
     private var errors: IntArray = intArrayOf(0, 1, 2)
 
     init {
-        imageWidth = 176
-        imageHeight = 171
-
         inventoryLabelX = 8
         inventoryLabelY = imageHeight - 94
     }
@@ -64,20 +61,15 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
         menu.addSlotListener(detonateListener)
     }
 
-    override fun renderBg(graphics: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int) {
+    override fun extractBackground(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, partialTick: Float) {
+        super.extractBackground(graphics, mouseX, mouseY, partialTick)
         val i = leftPos
         val j = (height - imageHeight) / 2
         graphics.blit(RenderPipelines.GUI_TEXTURED, texture, i, j, 0.0f, 0.0f, imageWidth, imageHeight, 256, 256)
     }
 
-    override fun render(graphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
-        super.render(graphics, mouseX, mouseY, partialTick)
-
-        this.renderTooltip(graphics, mouseX, mouseY)
-    }
-
-    override fun renderTooltip(graphics: GuiGraphics, mouseX: Int, mouseY: Int) {
-        super.renderTooltip(graphics, mouseX, mouseY)
+    override fun extractTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int) {
+        super.extractTooltip(graphics, mouseX, mouseY)
 
         if (initiated) {
             return
@@ -153,9 +145,9 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
             Identifier.fromNamespaceAndPath(ToStarsMod.modid, "atomic_bomb/button_highlighted")
         )
 
-        override fun renderContents(graphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
+        override fun extractContents(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, partialTick: Float) {
             graphics.blitSprite(RenderPipelines.GUI_TEXTURED, sprites.get(this.active, this.isHoveredOrFocused), this.x, this.y, this.getWidth(), this.getHeight(), ARGB.white(this.alpha))
-            this.renderDefaultLabel(graphics.textRendererForWidget(this, GuiGraphics.HoveredTextEffects.NONE))
+            this.extractDefaultLabel(graphics.textRendererForWidget(this, GuiGraphicsExtractor.HoveredTextEffects.NONE))
         }
 
     }

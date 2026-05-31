@@ -19,7 +19,7 @@ abstract class NetworkingPlatformModule {
     abstract fun sendToPlayer(player: ServerPlayer, payload: CustomPacketPayload, vararg others: CustomPacketPayload)
     open fun sendToPlayersNear(level: ServerLevel, pos: Vec3i, radius: Double, payload: CustomPacketPayload, vararg others: CustomPacketPayload, exclude: ServerPlayer? = null) = sendToPlayersNear(level, Vec3(pos), radius, payload, *others, exclude = exclude)
     abstract fun sendToPlayersNear(level: ServerLevel, pos: Vec3, radius: Double, payload: CustomPacketPayload, vararg others: CustomPacketPayload, exclude: ServerPlayer? = null)
-    open fun sendToPlayersTrackingPos(level: ServerLevel, pos: BlockPos, payload: CustomPacketPayload, vararg others: CustomPacketPayload) = sendToPlayersTrackingChunk(level, ChunkPos(pos), payload, *others)
+    open fun sendToPlayersTrackingPos(level: ServerLevel, pos: BlockPos, payload: CustomPacketPayload, vararg others: CustomPacketPayload) = sendToPlayersTrackingChunk(level, ChunkPos.containing(pos), payload, *others)
     abstract fun sendToPlayersTrackingChunk(level: ServerLevel, pos: ChunkPos, payload: CustomPacketPayload, vararg others: CustomPacketPayload)
     abstract fun sendToPlayersTrackingEntity(entity: Entity, payload: CustomPacketPayload, vararg others: CustomPacketPayload)
     open fun sendToPlayersTrackingEntityAndSelf(entity: Entity, payload: CustomPacketPayload, vararg others: CustomPacketPayload) {

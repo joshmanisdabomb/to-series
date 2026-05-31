@@ -15,7 +15,7 @@ class FabricRegisterService : BaseRegisterService() {
 
     override fun <T : Any> createRegistry(key: ResourceKey<Registry<T>>, default: Identifier?, sync: Boolean): Registry<T> {
         return when (default) {
-            null -> FabricRegistryBuilder.createSimple(key)
+            null -> FabricRegistryBuilder.create(key)
             else -> FabricRegistryBuilder.createDefaulted(key, default)
         }.apply {
             if (sync) {

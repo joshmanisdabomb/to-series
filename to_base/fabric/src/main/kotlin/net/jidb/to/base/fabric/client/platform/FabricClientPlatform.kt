@@ -4,7 +4,6 @@ import net.jidb.to.base.client.platform.ClientPlatform
 
 object FabricClientPlatform : ClientPlatform {
 
-    override val blocks = BlocksFabricClientPlatformModule
     override val entities = EntitiesFabricClientPlatformModule
     override val particles = ParticleFabricClientPlatformModule
     override val screens = ScreenFabricClientPlatformModule

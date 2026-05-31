@@ -1,5 +1,3 @@
-import org.jetbrains.dokka.gradle.DokkaTask
-
 plugins {
     id 'multiloader-common'
     id "org.jetbrains.kotlin.jvm"
@@ -40,7 +38,11 @@ ext.subprojectInclude = { String basePath ->
                 requireCapability("$baseGroup:$baseModId")
             }
         }
-        implementation(project(path: "${basePath}:fabric", configuration: "namedElements"))
+        implementation(project(path: "${basePath}:fabric")) {
+            capabilities {
+                requireCapability("$baseGroup:$baseModId-fabric")
+            }
+        }
     }
 }
 
@@ -100,13 +102,17 @@ tasks.named('sourcesJar', Jar) {
     from(configurations.commonResources)
 }
 
-// Use dokka to generate javadoc for both Java and Kotlin sources
-// instead of using the builtin javadoc tools. This allows mixing
-// Kotlin and Java
-tasks.named("dokkaJavadoc", DokkaTask) {
-    dependsOn(configurations.commonJava)
-    dependsOn(configurations.commonKotlin)
+dokka {
     dokkaSourceSets.configureEach {
-        sourceRoots.from(configurations.commonJava.singleFile, configurations.commonKotlin.singleFile)
+        sourceRoots.from(
+                configurations.commonJava,
+                configurations.commonKotlin
+        )
     }
 }
+
+tasks.named("dokkaGenerate") {
+    dependsOn(configurations.commonJava)
+    dependsOn(configurations.commonKotlin)
+}
+

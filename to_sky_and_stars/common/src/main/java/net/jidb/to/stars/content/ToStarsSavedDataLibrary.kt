@@ -8,6 +8,6 @@ import net.minecraft.world.level.saveddata.SavedDataType
 
 object ToStarsSavedDataLibrary : SimpleLibrary<SavedDataType<*>>(ToStarsMod.modid) {
 
-    val advancement_race by this { SavedDataTypeConstructor.createType(it.id.toString(), ::AdvancementRaceSavedData, AdvancementRaceSavedData.codec, null) }
+    val advancement_race by this { SavedDataTypeConstructor.createType(it.id, ::AdvancementRaceSavedData, AdvancementRaceSavedData.codec, null) }
 
 }

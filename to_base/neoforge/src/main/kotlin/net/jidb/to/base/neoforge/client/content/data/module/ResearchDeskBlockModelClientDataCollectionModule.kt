@@ -11,8 +11,8 @@ import net.minecraft.client.data.models.BlockModelGenerators
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator
 import net.minecraft.client.data.models.blockstates.PropertyDispatch
 import net.minecraft.client.data.models.model.ItemModelUtils
-import net.minecraft.client.renderer.block.model.Variant
-import net.minecraft.client.renderer.block.model.VariantMutator
+import net.minecraft.client.renderer.block.dispatch.Variant
+import net.minecraft.client.renderer.block.dispatch.VariantMutator
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 

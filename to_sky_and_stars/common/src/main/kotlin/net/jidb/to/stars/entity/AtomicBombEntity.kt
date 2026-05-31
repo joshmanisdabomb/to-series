@@ -93,7 +93,7 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
                     explode(level)
                     discard()
                 } else if (entityData[data_timer] >= 0) {
-                    updateInWaterStateAndDoFluidPushing()
+                    updateFluidInteraction()
 
                     if (entityData[data_timer] % 20 == 0) {
                         Services.platform.networking.sendToPlayersTrackingEntity(this, DistantSoundPayload(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(ToStarsMod.sounds.atomic_bomb_timer), SoundSource.BLOCKS, position().toVector3f(), 96f, 1.6f - (entityData[data_timer] / 1400f).coerceIn(0.0f, 1.0f).pow(0.25f).times(0.8f), 0))
@@ -168,7 +168,7 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         }
     }
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+    override fun interact(player: Player, hand: InteractionHand, location: Vec3): InteractionResult {
         val level = this.level() as? ServerLevel
         if (level != null && entityData[data_timer] >= 0) {
             val stack = player.getItemInHand(hand)
@@ -184,7 +184,7 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
                 discard()
             }
         }
-        return super.interact(player, hand)
+        return super.interact(player, hand, location)
     }
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {

@@ -1,29 +1,25 @@
 [versions]
-java = "21"
-kotlin = "2.3.10"
-moddev = "2.0.140"
-loom = "1.13-SNAPSHOT"
-dokka = "1.9.20"
+java = "25"
+kotlin = "2.3.21"
+moddev = "2.0.141"
+loom = "1.16-SNAPSHOT"
+dokka = "2.2.0"
 
-minecraft = "1.21.11"
-minecraftRange = "[1.21.11, 1.22)"
+minecraft = "26.1.2"
+minecraftRange = "[26.1.2, 26.2)"
 
-# The version of ParchmentMC that is used, see https://parchmentmc.org/docs/getting-started#choose-a-version for new versions
-parchment = "2025.12.20"
-parchmentMC = "1.21.11"
-
-neoforge = "21.11.38-beta"
-neoforgeRange = "[21.11.37, 21.12)"
+neoforge = "26.1.2.70-beta"
+neoforgeRange = "[26.1.2.69, 26.2)"
 ## This is the version of minecraft that the 'common' project uses, you can find a list of all versions here
 ## https://projects.neoforged.net/neoforged/neoform
-neoForm = "1.21.11-20251209.172050"
-kff = "6.1.0"
-kffRange = "[6.1, )"
+neoForm = "26.1.2-1"
+kff = "6.2.0"
+kffRange = "[6.2, )"
 
-fabricLoader = "0.18.4"
-fabricApi = "0.141.3+1.21.11"
-fabricVersion = "0.141.3"
-flk = "1.13.9+kotlin.2.3.10"
+fabricLoader = "0.19.2"
+fabricApi = "0.150.0+26.1.2"
+fabricVersion = "0.150.0"
+flk = "1.13.11+kotlin.2.3.21"
 
 mixin = "0.8.5"
 mixinExtras = "0.5.3"
@@ -47,4 +43,4 @@ modeshape-common = { group = "org.modeshape", name = "modeshape-common", version
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 moddev = { id = "net.neoforged.moddev", version.ref = "moddev" }
-loom = { id = "fabric-loom", version.ref = "loom" }
+loom = { id = "net.fabricmc.fabric-loom", version.ref = "loom" }

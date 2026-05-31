@@ -6,11 +6,14 @@ import com.google.gson.JsonObject
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.client.data.provider.wiki.WikiArticleDataTokenParser
 import net.jidb.to.base.client.data.provider.wiki.WikiDataEnforcer
+import net.jidb.to.base.data.ToDataItemHelper
 import net.jidb.to.base.helper.*
 import net.jidb.to.base.mixin.BlockStateBaseAccessor
 import net.jidb.to.base.mixin.FireBlockAccessor
 import net.jidb.to.base.wiki.language.WikiLanguage
+import net.minecraft.core.HolderLookup
 import net.minecraft.core.Registry
+import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.CachedOutput
 import net.minecraft.data.DataProvider
@@ -18,8 +21,7 @@ import net.minecraft.data.PackOutput
 import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
 import net.minecraft.tags.TagKey
-import net.minecraft.util.Util
-import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Rarity
 import net.minecraft.world.level.ItemLike
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.FireBlock
@@ -30,9 +32,9 @@ import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
 import kotlin.io.path.*
 
-open class WikiDataProvider(val output: PackOutput, val templates: (output: Path) -> Path) : DataProvider {
+open class WikiDataProvider(val output: PackOutput, val lookup: CompletableFuture<HolderLookup.Provider>, val templates: (output: Path) -> Path) : DataProvider {
 
-    constructor(output: PackOutput, path: Path) : this(output, { path })
+    constructor(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>, path: Path) : this(output, lookup, { path })
 
     var enforcer: WikiDataEnforcer? = null
         private set
@@ -45,62 +47,64 @@ open class WikiDataProvider(val output: PackOutput, val templates: (output: Path
     open fun getPathProvider() = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "wiki/articles")
 
     override fun run(cached: CachedOutput): CompletableFuture<*> {
-        val source = templates(output.outputFolder)
-        val articles = source.walk().filter { ARTICLE_MATCHER.matches(source.relativize(it) ) }
-        val json = articles.associate { index ->
-            val root = index.parent
-            val contents = Files.readString(index)
-            val json = DATA_GSON.fromJson(contents, JsonObject::class.java)
+        return lookup.thenCompose { provider ->
+            val source = templates(output.outputFolder)
+            val articles = source.walk().filter { ARTICLE_MATCHER.matches(source.relativize(it) ) }
+            val json = articles.associate { index ->
+                val root = index.parent
+                val contents = Files.readString(index)
+                val json = DATA_GSON.fromJson(contents, JsonObject::class.java)
 
-            val changelog = try {
-                DATA_GSON.fromJson(Files.readString(root / "changelog.json"), JsonArray::class.java)
-            } catch (e: IOException) {
-                null
-            }
-            val factsheet = try {
-                DATA_GSON.fromJson(Files.readString(root / "factsheet.json"), JsonObject::class.java)
-            } catch (e: IOException) {
-                null
-            }
-            val resources = json.getAsJsonArray("about").mapNotNull {
-                val key = RegistryHelper.createResourceKey(it.asString) ?: return@mapNotNull null
-                val resource = RegistryHelper.getResource(key) ?: return@mapNotNull null
-                key to resource
-            }.toMap()
+                val changelog = try {
+                    DATA_GSON.fromJson(Files.readString(root / "changelog.json"), JsonArray::class.java)
+                } catch (e: IOException) {
+                    null
+                }
+                val factsheet = try {
+                    DATA_GSON.fromJson(Files.readString(root / "factsheet.json"), JsonObject::class.java)
+                } catch (e: IOException) {
+                    null
+                }
+                val resources = json.getAsJsonArray("about").mapNotNull {
+                    val key = RegistryHelper.createResourceKey(it.asString) ?: return@mapNotNull null
+                    val resource = RegistryHelper.getResource(key) ?: return@mapNotNull null
+                    key to resource
+                }.toMap()
 
-            if (changelog != null) {
-                json.add("changelog", changelog)
-            }
-            if (factsheet != null) {
-                json.add("factsheet", writeFactsheet(factsheet, resources))
+                if (changelog != null) {
+                    json.add("changelog", changelog)
+                }
+                if (factsheet != null) {
+                    json.add("factsheet", writeFactsheet(factsheet, resources, provider))
+                }
+
+                val parser = WikiArticleDataTokenParser(json)
+                json.add("content", writeContent(root, parser))
+
+                val identifier = Identifier.fromNamespaceAndPath(index.parent.parent.parent.fileName.toString(), index.parent.fileName.toString())
+                identifier to json
             }
 
-            val parser = WikiArticleDataTokenParser(json)
-            json.add("content", writeContent(root, parser))
+            val missing = enforcer?.enforce(json.values.flatMap {
+                val abouts = it.get("about")?.asJsonArray?.toList() ?: emptyList()
+                val redirects = it.get("redirect")?.asJsonArray?.toList() ?: emptyList()
+                (abouts + redirects).map(JsonElement::getAsString).mapNotNull(RegistryHelper::createResourceKey)
+            })
+            if (missing?.isNotEmpty() == true) {
+                ToBaseMod.logger.error("Found registry entries with missing articles:\n${missing.joinToString("\n", transform = Any::toString)}")
+                throw RuntimeException("Found ${missing.count()} registry entries with missing articles.")
+            }
 
-            val identifier = Identifier.fromNamespaceAndPath(index.parent.parent.parent.fileName.toString(), index.parent.fileName.toString())
-            identifier to json
+            val out = getPathProvider()
+            CompletableFuture.allOf(*json.map { (k, v) ->
+                //Not interested in debugging why CachedOutput doesn't work here, I don't personally need to cache.
+                CompletableFuture.runAsync {
+                    val path = out.json(k)
+                    path.parent.createDirectories()
+                    Files.write(path, DATA_GSON.toJson(v).toByteArray())
+                }
+            }.toTypedArray())
         }
-
-        val missing = enforcer?.enforce(json.values.flatMap {
-            val abouts = it.get("about")?.asJsonArray?.toList() ?: emptyList()
-            val redirects = it.get("redirect")?.asJsonArray?.toList() ?: emptyList()
-            (abouts + redirects).map(JsonElement::getAsString).mapNotNull(RegistryHelper::createResourceKey)
-        })
-        if (missing?.isNotEmpty() == true) {
-            ToBaseMod.logger.error("Found registry entries with missing articles:\n${missing.joinToString("\n", transform = Any::toString)}")
-            throw RuntimeException("Found ${missing.count()} registry entries with missing articles.")
-        }
-
-        val out = getPathProvider()
-        return CompletableFuture.allOf(*json.map { (k, v) ->
-            //Not interested in debugging why CachedOutput doesn't work here, I don't personally need to cache.
-            CompletableFuture.runAsync {
-                val path = out.json(k)
-                path.parent.createDirectories()
-                Files.write(path, DATA_GSON.toJson(v).toByteArray())
-            }
-        }.toTypedArray())
     }
 
     protected open fun writeContent(article: Path, parser: WikiArticleDataTokenParser) = JsonObject().apply {
@@ -115,7 +119,7 @@ open class WikiDataProvider(val output: PackOutput, val templates: (output: Path
         }
     }
 
-    protected open fun writeFactsheet(input: JsonObject, resources: Map<ResourceKey<*>, Any>) = input.apply {
+    protected open fun writeFactsheet(input: JsonObject, resources: Map<ResourceKey<*>, Any>, lookup: HolderLookup.Provider) = input.apply {
         resources.forEach { (key, resource) ->
             getOrCreateObject(RegistryHelper.keyToString(key)) { original ->
                 if (resource is Block) {
@@ -133,7 +137,7 @@ open class WikiDataProvider(val output: PackOutput, val templates: (output: Path
                     if (!original.has("states")) {
                         original.addSerialisableArray("states", resource.stateDefinition.possibleStates.toTypedArray()) { state -> JsonObject().also {
                             it.addProperty("default", state == resource.defaultBlockState())
-                            it.addStringObject("properties", state.values.toList().associate { (k, v) -> k.name to Util.getPropertyName(k, v) })
+                            it.addStringObject("properties", state.values.toList().associate { it.property().name to it.valueName() })
                             it.addProperty("light", state.lightEmission)
                             it.addOrNull("map_color", (state as BlockStateBaseAccessor).`to_base$getDefaultMapColor`().col)
                         } }
@@ -149,9 +153,8 @@ open class WikiDataProvider(val output: PackOutput, val templates: (output: Path
                 when (resource) {
                     is ItemLike -> {
                         val item = resource.asItem()
-                        val stack = ItemStack(item, 1)
-                        original.getOrPut("stack_size", stack.maxStackSize)
-                        original.getOrPut("rarity", stack.rarity.name.lowercase())
+                        original.getOrPut("stack_size", ToDataItemHelper.getDefaultComponentValue(item, DataComponents.MAX_STACK_SIZE, lookup) ?: 64)
+                        original.getOrPut("rarity", (ToDataItemHelper.getDefaultComponentValue(item, DataComponents.RARITY, lookup) ?: Rarity.COMMON).name.lowercase())
 
                         original.getOrCreateObject("tags") {
                             it.add("minecraft:item", getTagJson(BuiltInRegistries.ITEM, item))

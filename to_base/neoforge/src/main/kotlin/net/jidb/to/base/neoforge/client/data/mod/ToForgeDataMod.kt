@@ -129,8 +129,8 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
             }
         )
 
-        wiki?.map { enforcer -> GatherDataEvent.DataProviderFromOutput {
-            val provider = WikiDataProvider(it, resources.parent / "templates" / "wiki")
+        wiki?.map { enforcer -> GatherDataEvent.DataProviderFromOutputLookup { output, lookup ->
+            val provider = WikiDataProvider(output, lookup, resources.parent / "templates" / "wiki")
             if (enforcer != null) provider.enforce(enforcer)
             provider
         } }?.forEach(event::createProvider)

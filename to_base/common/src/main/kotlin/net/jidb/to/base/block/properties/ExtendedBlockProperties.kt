@@ -1,5 +1,6 @@
 package net.jidb.to.base.block.properties
 
+import net.jidb.to.base.mixin.FireBlockAccessor
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.FireBlock
@@ -27,7 +28,7 @@ class ExtendedBlockProperties {
 
     fun build(block: Block): ExtendedBlockProperties {
         for ((fire, ignite) in _fireIgnite) {
-            fire.setFlammable(block, ignite, _fireBurn[fire]!!)
+            (fire as FireBlockAccessor).`to_base$setFlammable`(block, ignite, _fireBurn[fire]!!)
         }
         return this
     }

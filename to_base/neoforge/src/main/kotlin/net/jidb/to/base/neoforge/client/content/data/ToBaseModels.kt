@@ -8,6 +8,7 @@ import net.minecraft.client.data.models.model.ModelTemplate
 import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
+import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.resources.Identifier
 import java.util.*
 
@@ -15,10 +16,10 @@ object ToBaseModels {
 
     val TEXTURES_RESEARCH_DESK = { identifier: Identifier ->
         TextureMapping()
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[0], identifier.withSuffix("_writing"))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[1], identifier.withSuffix("_ink"))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[2], identifier)
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[3], identifier.withSuffix("_side"))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[0], Material(identifier.withSuffix("_writing")))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[1],  Material(identifier.withSuffix("_ink")))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[2],  Material(identifier))
+            .put(ToDataClientHelper.NUMERIC_TEXTURES[3],  Material(identifier.withSuffix("_side")))
             .copySlot(ToDataClientHelper.NUMERIC_TEXTURES[2], TextureSlot.PARTICLE)
     }
 

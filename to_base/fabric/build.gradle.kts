@@ -7,14 +7,11 @@ val modId: String by project
 
 dependencies {
     minecraft(libs.minecraft)
-    mappings(loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${libs.versions.parchmentMC.get()}:${libs.versions.parchment.get()}@zip")
-    })
-    modImplementation(libs.fabricLoader)
-    modImplementation(libs.fabricApi)
 
-    modImplementation(libs.flk)
+    implementation(libs.fabricLoader)
+    implementation(libs.fabricApi)
+
+    implementation(libs.flk)
 
     api(libs.commonmark)
     include(libs.commonmark)
@@ -31,8 +28,6 @@ configurations.annotationProcessor {
 }
 
 loom {
-    officialMojangMappings()
-
     val aw = project(":to_base:common").file("src/main/resources/${modId}.accesswidener")
     if (aw.exists()) {
         accessWidenerPath.set(aw)

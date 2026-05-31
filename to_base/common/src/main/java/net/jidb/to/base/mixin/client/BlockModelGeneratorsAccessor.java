@@ -15,6 +15,9 @@ public interface BlockModelGeneratorsAccessor {
     @Accessor("blockStateOutput")
     Consumer<BlockModelDefinitionGenerator> to_base$getBlockStateOutput();
 
+    @Invoker("createTrivialCube")
+    void to_base$createTrivialCube(Block block);
+
     @Invoker("createHorizontallyRotatedBlock")
     void to_base$createHorizontallyRotatedBlock(Block horizontallyRotatedBlock, TexturedModel.Provider provider);
 }
