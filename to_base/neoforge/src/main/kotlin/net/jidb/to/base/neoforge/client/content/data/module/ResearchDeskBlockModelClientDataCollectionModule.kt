@@ -1,11 +1,11 @@
 package net.jidb.to.base.neoforge.client.content.data.module
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.client.data.collection.event.ModelClientDataCollectionEvent
-import net.jidb.to.base.client.data.collection.module.ClientDataCollectionModule
+import net.jidb.to.base.api.helper.IdentifierHelper.identifier
+import net.jidb.to.base.client.data.api.collection.event.ModelClientDataCollectionEvent
+import net.jidb.to.base.client.data.api.collection.module.ClientDataCollectionModule
 import net.jidb.to.base.content.block.ResearchDeskBlock
-import net.jidb.to.base.data.collection.DataCollection
-import net.jidb.to.base.helper.IdentifierHelper.identifier
+import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.base.neoforge.client.content.data.ToBaseModels
 import net.minecraft.client.data.models.BlockModelGenerators
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator
@@ -33,11 +33,11 @@ class ResearchDeskBlockModelClientDataCollectionModule : ClientDataCollectionMod
 
     override fun generateItemModels(collection: DataCollection<Item>, event: ModelClientDataCollectionEvent): Boolean {
         val research_desk_item = ToBaseModels.TEMPLATE_RESEARCH_DESK_ITEM.create(
-            ToBaseMod.content.blocks.research_desk.asItem(),
-            ToBaseModels.TEXTURES_RESEARCH_DESK(ToBaseMod.content.blocks.research_desk.identifier.withPrefix("block/")),
+            collection.`object`,
+            ToBaseModels.TEXTURES_RESEARCH_DESK(collection.`object`.identifier.withPrefix("block/")),
             event.item.modelOutput
         )
-        event.item.itemModelOutput.accept(ToBaseMod.content.blocks.research_desk.asItem(), ItemModelUtils.plainModel(research_desk_item))
+        event.item.itemModelOutput.accept(collection.`object`, ItemModelUtils.plainModel(research_desk_item))
         return true
     }
 

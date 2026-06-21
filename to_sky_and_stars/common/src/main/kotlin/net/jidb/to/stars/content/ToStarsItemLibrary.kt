@@ -1,6 +1,6 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.library.SimpleRegistryLibrary
+import net.jidb.to.base.api.library.SimpleRegistryLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.item.TestItem
 import net.minecraft.core.registries.BuiltInRegistries

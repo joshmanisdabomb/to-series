@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "to_sky_and_stars:block/creative_power_source"
+  }
+}

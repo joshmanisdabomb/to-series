@@ -1,17 +1,17 @@
 package net.jidb.to.stars.neoforge.client.data
 
-import net.jidb.to.base.client.data.provider.wiki.RegistryWikiDataEnforcer
+import net.jidb.to.base.client.data.pub.provider.wiki.RegistryWikiDataEnforcer
 import net.jidb.to.base.neoforge.client.data.mod.ToForgeDataMod
 import net.jidb.to.base.neoforge.data.provider.AutoCopyTagDataProvider
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.content.ToStarsBiomeModLibrary
-import net.jidb.to.stars.neoforge.client.data.content.ToStarsConfiguredFeatureDataLibrary
 import net.jidb.to.stars.neoforge.client.data.content.ToStarsDataLibrary
-import net.jidb.to.stars.neoforge.client.data.content.ToStarsPlacedFeatureDataLibrary
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsAdvancementDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsLanguageDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsParticleDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSoundDataProvider
+import net.jidb.to.stars.neoforge.data.content.ToStarsConfiguredFeatureDataLibrary
+import net.jidb.to.stars.neoforge.data.content.ToStarsPlacedFeatureDataLibrary
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemCopyTagDataProvider
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.BuiltInRegistries

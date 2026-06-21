@@ -1,7 +1,7 @@
 package net.jidb.to.stars.client.network.handler
 
-import net.jidb.to.base.client.network.ClientPayloadContext
-import net.jidb.to.base.client.sound.DistantSoundInstance
+import net.jidb.to.base.client.api.network.ClientPayloadContext
+import net.jidb.to.base.client.pub.sound.DistantSoundInstance
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.network.NuclearExplosionPayload
 import net.minecraft.client.Minecraft

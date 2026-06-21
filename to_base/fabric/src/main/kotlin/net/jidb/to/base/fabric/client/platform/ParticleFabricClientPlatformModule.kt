@@ -1,7 +1,7 @@
 package net.jidb.to.base.fabric.client.platform
 
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry
-import net.jidb.to.base.client.platform.ParticleClientPlatformModule
+import net.jidb.to.base.client.api.platform.ParticleClientPlatformModule
 import net.minecraft.client.particle.ParticleProvider
 import net.minecraft.client.particle.SpriteSet
 import net.minecraft.core.particles.ParticleOptions

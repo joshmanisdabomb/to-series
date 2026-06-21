@@ -1,6 +1,6 @@
 package net.jidb.to.stars.block.entity
 
-import net.jidb.to.base.hooks.network.DistantSoundPayload
+import net.jidb.to.base.pub.network.DistantSoundPayload
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.entity.AtomicBombEntity
@@ -9,7 +9,6 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.NonNullList
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.ContainerHelper
@@ -58,7 +57,7 @@ class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlo
         level?.setBlock(blockPos, Blocks.AIR.defaultBlockState(), 18)
     }
 
-    override fun getDefaultName() = Companion.defaultName
+    override fun getDefaultName() = blockState.block.name
 
     override fun getItems() = inventory
 
@@ -98,10 +97,6 @@ class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlo
     override fun saveAdditional(output: ValueOutput) {
         ContainerHelper.saveAllItems(output, items)
         super.saveAdditional(output)
-    }
-
-    companion object {
-        private val defaultName: Component = Component.translatable("block.${ToStarsMod.modid}.atomic_bomb")
     }
 
 }

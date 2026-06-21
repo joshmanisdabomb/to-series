@@ -2,8 +2,8 @@ package net.jidb.to.base.fabric.platform
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext
-import net.jidb.to.base.level.biome.BiomeMod
-import net.jidb.to.base.platform.BiomePlatformModule
+import net.jidb.to.base.api.level.biome.BiomeMod
+import net.jidb.to.base.api.platform.BiomePlatformModule
 
 object BiomeFabricPlatformModule : BiomePlatformModule() {
 

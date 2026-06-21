@@ -1,7 +1,7 @@
 package net.jidb.to.stars.level
 
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet
-import net.jidb.to.base.helper.KotlinHelper.squared
+import net.jidb.to.base.api.helper.KotlinHelper.squared
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.network.NuclearExplosionPayload

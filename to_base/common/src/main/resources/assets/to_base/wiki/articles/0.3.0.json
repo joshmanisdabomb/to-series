@@ -1,1 +1,18 @@
-{"title":"To Lay the Foundations 0.3.0","short":"0.3.0","about":["to_base:mod_version / to_base:0.3.0"],"parent":"to_base:mod / to_base:to_base","previous":"to_base:mod_version / to_base:0.2.0","next":"to_base:mod_version / to_base:0.4.0","tags":["to_base:major_release"],"content":{"en_us":{"index":"---\nflavor: \"Make generating data great again.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"seventh\",\"extra\":\", and the third major 0.x release\",\"of\":\"self\"}} is the seventh release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the third major 0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.2.0\",\"short\":true}}, and the following release is {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.4.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release focuses on improving the data generation process, by allowing each mod to define a cascading set of data for single or multiple blocks, items, and other registry types that need data.\n\n# In this Release\n\n## Additions\n- Added ToForgeDataMod to simplify writing data generators, similar to the ToMod classes added in {{\"of\":\"to_base:mod_version / to_base:0.2.0\"}}.\n- Added the Data Collection API, a cascading data generation system that allows mods to define data of multiple categories for multiple entries in a single place.\n- Added AutoCopyTagDataProvider, a data provider that automatically scans for vanilla and common block tags, as well as receiving custom modded tags, and copies their entries to corresponding item tags.\n- Added MultiLanguageDataProvider, a data provider that generates language files for multiple locales at once.\n\n## Changes\n- Data generation split into common and client packages."}}}
+{
+  "title": "To Lay the Foundations 0.3.0",
+  "short": "0.3.0",
+  "about": [
+    "to_base:mod_version / to_base:0.3.0"
+  ],
+  "parent": "to_base:mod / to_base:to_base",
+  "previous": "to_base:mod_version / to_base:0.2.0",
+  "next": "to_base:mod_version / to_base:0.4.0",
+  "tags": [
+    "to_base:major_release"
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Make generating data great again.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"seventh\",\"extra\":\", and the third major 0.x release\",\"of\":\"self\"}} is the seventh release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the third major 0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.2.0\",\"short\":true}}, and the following release is {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.4.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release focuses on improving the data generation process, by allowing each mod to define a cascading set of data for single or multiple blocks, items, and other registry types that need data.\n\n# In this Release\n\n## Additions\n- Added ToForgeDataMod to simplify writing data generators, similar to the ToMod classes added in {{\"of\":\"to_base:mod_version / to_base:0.2.0\"}}.\n- Added the Data Collection API, a cascading data generation system that allows mods to define data of multiple categories for multiple entries in a single place.\n- Added AutoCopyTagDataProvider, a data provider that automatically scans for vanilla and common block tags, as well as receiving custom modded tags, and copies their entries to corresponding item tags.\n- Added MultiLanguageDataProvider, a data provider that generates language files for multiple locales at once.\n\n## Changes\n- Data generation split into common and client packages."
+    }
+  }
+}

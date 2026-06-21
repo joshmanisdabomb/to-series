@@ -13,6 +13,8 @@ dependencies {
 
     implementation(libs.flk)
 
+    compileOnly(libs.techReborn)
+
     api(libs.commonmark)
     include(libs.commonmark)
     api(libs.commonmark.yaml)

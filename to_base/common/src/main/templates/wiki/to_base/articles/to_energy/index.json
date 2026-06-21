@@ -1,0 +1,12 @@
+{
+  "title": "To Energy",
+  "about": ["to_base:concept / to_base:to_energy"],
+  "redirect": [
+    "minecraft:data_component_type / to_base:energy_data",
+    "to_base:block_networks / to_base:to_energy"
+  ],
+  "tags": [
+    "to_base:concept",
+    "to_base:energy"
+  ]
+}

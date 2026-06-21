@@ -1,6 +1,6 @@
 package net.jidb.to.base.mixin;
 
-import net.jidb.to.base.data.ToDataItemHelper;
+import net.jidb.to.base.data.api.ToDataItemHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentInitializers;
 import net.minecraft.core.component.DataComponentType;

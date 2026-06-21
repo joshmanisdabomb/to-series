@@ -1,1 +1,75 @@
-{"title":{"of":"minecraft:item / to_base:test_item"},"about":["minecraft:item / to_base:test_item"],"icon":["minecraft:item / to_base:test_item"],"tags":["to_base:test","to_base:test/items","to_base:unobtainable"],"changelog":[{"version":"yam:u1","content":{"en_us":"Introduced as the first item of the mod. Right-clicking with this item would teleport the player to {{\"of\": \"minecraft:dimension / yam:sheol\"}}"}},{"version":"aimagg:prealpha","content":{"en_us":"Reintroduced as the first item of the mod."}},{"version":"lcc_forge:prealpha","content":{"en_us":"Reintroduced as the first item of the mod."}},{"version":"lcc:0.1.0","content":{"en_us":"Reintroduced as the first item of the mod."}},{"version":"to_base_arch:0.1.0","content":{"en_us":"Reintroduced as the first item of the mod."}},{"version":"to_base:0.0.3","content":{"en_us":"Reintroduced as the first item of the mod."}},{"version":"to_base:0.0.4","content":{"en_us":"Added textures."}}],"factsheet":{"minecraft:item / to_base:test_item":{"renewable":false,"stack_size":64,"rarity":"common","tags":{"minecraft:item":[]}}},"content":{"en_us":{"index":"---\nflavor: \"Built like American traffic signage.\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"description\":\"an unobtainable item\",\"plural\":false,\"of\":\"self\"}} is an unobtainable item introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / yam:u1\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.0.3\"}}. When mod author {{\"of\":\"to_base:author / to_base:joshmanisdabomb\"}} starts a new modding project, it is the first item implemented for testing purposes.\n\n# History\nIn {{\"of\":\"to_base:mod_version / yam:u1\"}}, right-clicking with this item would teleport the player to {{\"of\":\"minecraft:dimension / yam:sheol\"}}. This debug method was the only way to reach the dimension."}}}
+{
+  "title": {
+    "of": "minecraft:item / to_base:test_item"
+  },
+  "about": [
+    "minecraft:item / to_base:test_item"
+  ],
+  "icon": [
+    "minecraft:item / to_base:test_item"
+  ],
+  "tags": [
+    "to_base:test",
+    "to_base:test/items",
+    "to_base:unobtainable"
+  ],
+  "changelog": [
+    {
+      "version": "yam:u1",
+      "content": {
+        "en_us": "Introduced as the first item of the mod. Right-clicking with this item would teleport the player to {{\"of\": \"minecraft:dimension / yam:sheol\"}}"
+      }
+    },
+    {
+      "version": "aimagg:prealpha",
+      "content": {
+        "en_us": "Reintroduced as the first item of the mod."
+      }
+    },
+    {
+      "version": "lcc_forge:prealpha",
+      "content": {
+        "en_us": "Reintroduced as the first item of the mod."
+      }
+    },
+    {
+      "version": "lcc:0.1.0",
+      "content": {
+        "en_us": "Reintroduced as the first item of the mod."
+      }
+    },
+    {
+      "version": "to_base_arch:0.1.0",
+      "content": {
+        "en_us": "Reintroduced as the first item of the mod."
+      }
+    },
+    {
+      "version": "to_base:0.0.3",
+      "content": {
+        "en_us": "Reintroduced as the first item of the mod."
+      }
+    },
+    {
+      "version": "to_base:0.0.4",
+      "content": {
+        "en_us": "Added textures."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:item / to_base:test_item": {
+      "renewable": false,
+      "stack_size": 64,
+      "rarity": "common",
+      "tags": {
+        "minecraft:item": []
+      }
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Built like American traffic signage.\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"description\":\"an unobtainable item\",\"plural\":false,\"of\":\"self\"}} is an unobtainable item introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / yam:u1\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.0.3\"}}. When mod author {{\"of\":\"to_base:author / to_base:joshmanisdabomb\"}} starts a new modding project, it is the first item implemented for testing purposes.\n\n# History\nIn {{\"of\":\"to_base:mod_version / yam:u1\"}}, right-clicking with this item would teleport the player to {{\"of\":\"minecraft:dimension / yam:sheol\"}}. This debug method was the only way to reach the dimension."
+    }
+  }
+}

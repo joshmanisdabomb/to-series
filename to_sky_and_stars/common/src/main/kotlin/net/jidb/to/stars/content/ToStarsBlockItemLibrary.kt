@@ -1,10 +1,43 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.library.BlockItemLibrary
+import net.jidb.to.base.api.helper.IdentifierHelper.identifier
+import net.jidb.to.base.api.info.TooltipEngine
+import net.jidb.to.base.pub.block.ToEnergyCableBlock
+import net.jidb.to.base.pub.library.BlockItemLibrary
 import net.jidb.to.stars.ToStarsMod
+import net.jidb.to.stars.info.MachineTier
+import net.jidb.to.stars.info.ToStarsTooltipEngine
+import net.minecraft.core.component.DataComponents
+import net.minecraft.core.registries.Registries
+import net.minecraft.resources.ResourceKey
+import net.minecraft.world.item.BlockItem
+import net.minecraft.world.item.Item
 
 object ToStarsBlockItemLibrary : BlockItemLibrary(ToStarsMod.MOD_ID, ToStarsMod.blocks) {
 
-    val nuclear_fire by this { null }.evaluateValue()
+    val nuclear_fire by this()
+
+    val copper_machine_enclosure by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }
+    val iron_machine_enclosure by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }
+
+    val copper_power_bank by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }
+    val iron_power_bank by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }
+
+    val power_cable by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getPowerCableInfo(block() as ToEnergyCableBlock)))) }
 
 }

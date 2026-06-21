@@ -1,6 +1,6 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.library.TagLibrary
+import net.jidb.to.base.pub.library.TagLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.level.block.Block

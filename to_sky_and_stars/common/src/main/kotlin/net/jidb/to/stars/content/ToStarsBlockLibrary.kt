@@ -1,11 +1,10 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.block.properties.ExtendedBlockProperties
-import net.jidb.to.base.library.BlockLibrary
+import net.jidb.to.base.api.block.properties.ExtendedBlockProperties
+import net.jidb.to.base.pub.library.BlockLibrary
 import net.jidb.to.stars.ToStarsMod
-import net.jidb.to.stars.block.AtomicBombBlock
-import net.jidb.to.stars.block.NuclearFireBlock
-import net.jidb.to.stars.block.NuclearWasteBlock
+import net.jidb.to.stars.block.*
+import net.jidb.to.stars.info.MachineTier
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.util.ColorRGBA
 import net.minecraft.util.valueproviders.UniformInt
@@ -95,5 +94,56 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .requiresCorrectToolForDrops()
         .strength(9.0F, 90.0F)
         .sound(SoundType.METAL)) }
+
+    val copper_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_ORANGE)
+        .requiresCorrectToolForDrops()
+        .strength(4.0F, 5.0F)
+        .instrument(NoteBlockInstrument.TRUMPET)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+    val iron_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.METAL)
+        .requiresCorrectToolForDrops()
+        .strength(5.0F, 9.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.NETHERITE_BLOCK)) }
+
+    val copper_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_ORANGE)
+        .requiresCorrectToolForDrops()
+        .strength(4.0F, 5.0F)
+        .instrument(NoteBlockInstrument.TRUMPET)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+    val iron_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .strength(3.0F, 8.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.COPPER_BULB)) }
+
+    val power_cable by this { entry -> LossyToEnergyCableBlock(0.02f, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_ORANGE)
+        .requiresCorrectToolForDrops()
+        .strength(1.1F, 1.0F)
+        .instrument(NoteBlockInstrument.TRUMPET)
+        .sound(SoundType.COPPER_GRATE)) }
+    val heat_pipe by this { entry -> HeatCableBlock(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .strength(3.0F, 8.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.COPPER_BULB)) }
+    val creative_power_source by this { entry -> InfiniteEnergyBlock(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_ORANGE)
+        .strength(-1.0F, 3600000.0F)
+        .instrument(NoteBlockInstrument.TRUMPET)
+        .sound(SoundType.COPPER_BULB)) }
 
 }

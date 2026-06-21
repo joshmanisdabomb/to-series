@@ -2,13 +2,13 @@ package net.jidb.to.base.client.content.screens
 
 import com.mojang.blaze3d.platform.cursor.CursorTypes
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.client.gui.ScaledTrackingItemStackRenderState
-import net.jidb.to.base.client.wiki.WikiArticleManager
+import net.jidb.to.base.api.helper.RegistryHelper
+import net.jidb.to.base.api.wiki.WikiArticle
+import net.jidb.to.base.api.wiki.WikiArticleLink
+import net.jidb.to.base.client.content.wiki.WikiArticleManager
+import net.jidb.to.base.client.pub.gui.ScaledTrackingItemStackRenderState
 import net.jidb.to.base.content.inventory.menu.ResearchMenu
-import net.jidb.to.base.helper.RegistryHelper
 import net.jidb.to.base.service.Services
-import net.jidb.to.base.wiki.WikiArticle
-import net.jidb.to.base.wiki.WikiArticleLink
 import net.minecraft.client.gui.ActiveTextCollector
 import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.gui.components.*
@@ -126,7 +126,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
                 false
             )
                 .width(toolbarWidth)
-                .sprite(Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research_home"), 14, 14)
+                .sprite(Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research/home"), 14, 14)
                 .withTootip()
                 .build()
         ).apply {
@@ -145,7 +145,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
                 false
             )
                 .width(toolbarWidth)
-                .sprite(Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research_search"), 14, 14)
+                .sprite(Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research/search"), 14, 14)
                 .build()
         ).apply {
             setPosition(leftPos + imageWidth - 54, topPos + toolbarY)
@@ -157,7 +157,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
                 false
             )
                 .width(toolbarWidth)
-                .sprite(Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research_browser"), 15, 14)
+                .sprite(Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research/browser"), 15, 14)
                 .withTootip()
                 .build()
         ).apply {
@@ -496,9 +496,9 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
     companion object {
         private const val URL = "https://to.jidb.net"
 
-        val scrollbar_thumb = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scrollbar_thumb")
-        val scrollbar_thumb_disabled = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scrollbar_thumb_disabled")
-        val slot_locked = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research_slot")
+        val scrollbar_thumb = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb")
+        val scrollbar_thumb_disabled = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb_disabled")
+        val slot_locked = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research/slot")
 
         private const val listButtonIconX = 5
         private const val listButtonIconY = 5

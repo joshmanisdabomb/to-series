@@ -1,15 +1,15 @@
 package net.jidb.to.base.neoforge.client.data.mod
 
-import net.jidb.to.base.client.data.collection.event.LangClientDataCollectionEvent
-import net.jidb.to.base.client.data.mod.ToCollectionDataMod
-import net.jidb.to.base.client.data.provider.MultiLanguageDataProvider
-import net.jidb.to.base.client.data.provider.WikiDataProvider
-import net.jidb.to.base.data.AggregateTagLookup
-import net.jidb.to.base.data.ToDataHelper
-import net.jidb.to.base.data.collection.event.ConfiguredFeatureDataCollectionEvent
-import net.jidb.to.base.data.collection.event.PlacedFeatureDataCollectionEvent
-import net.jidb.to.base.data.provider.CopyDataProvider
-import net.jidb.to.base.data.provider.DeleteDataProvider
+import net.jidb.to.base.client.data.api.collection.event.LangClientDataCollectionEvent
+import net.jidb.to.base.client.data.api.mod.ToCollectionDataMod
+import net.jidb.to.base.client.data.api.provider.MultiLanguageDataProvider
+import net.jidb.to.base.client.data.pub.provider.WikiDataProvider
+import net.jidb.to.base.data.api.AggregateTagLookup
+import net.jidb.to.base.data.api.ToDataHelper
+import net.jidb.to.base.data.api.collection.event.ConfiguredFeatureDataCollectionEvent
+import net.jidb.to.base.data.api.collection.event.PlacedFeatureDataCollectionEvent
+import net.jidb.to.base.data.pub.provider.CopyDataProvider
+import net.jidb.to.base.data.pub.provider.DeleteDataProvider
 import net.jidb.to.base.neoforge.client.data.collection.provider.CollectionModelDataProvider
 import net.jidb.to.base.neoforge.data.collection.provider.CollectionBlockLootDataProvider
 import net.jidb.to.base.neoforge.data.collection.provider.CollectionBlockTagDataProvider

@@ -67,9 +67,13 @@ jobs:
         with:
           arguments: ${{ steps.gradle_args.outputs.gradle_datagen }}
 
-      - name: Verify Data Generators
+      - name: Verify Same Content for Data Generators
         shell: bash
-        run: git diff --exit-code
+        run: "git diff --exit-code"
+
+      - name: Verify CI Enforcement of Data Generators
+        shell: bash
+        run: '! find -name "enforcer_report.txt" | grep -q .'
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3

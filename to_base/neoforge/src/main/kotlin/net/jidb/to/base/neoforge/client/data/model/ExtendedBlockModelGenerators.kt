@@ -1,18 +1,20 @@
 package net.jidb.to.base.neoforge.client.data.model
 
-import net.jidb.to.base.client.data.model.IExtendedBlockModelGenerators
+import net.jidb.to.base.client.data.api.model.IExtendedBlockModelGenerators
 import net.minecraft.client.data.models.BlockModelGenerators
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator
+import net.minecraft.client.data.models.blockstates.PropertyDispatch
 import net.minecraft.client.data.models.model.TexturedModel
 import net.minecraft.client.renderer.block.dispatch.Variant
+import net.minecraft.core.Direction
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 
 class ExtendedBlockModelGenerators(val models: BlockModelGenerators) : IExtendedBlockModelGenerators {
 
-    override fun createFullRotatedVariantBlock(block: Block) {
-        val variant = Variant(TexturedModel.CUBE.create(block, models.modelOutput))
+    override fun createFullRotatedVariantBlock(block: Block, model: TexturedModel.Provider) {
+        val variant = Variant(model.create(block, models.modelOutput))
         models.blockStateOutput.accept(
             MultiVariantGenerator.dispatch(
                 block, BlockModelGenerators.variants(
@@ -34,6 +36,20 @@ class ExtendedBlockModelGenerators(val models: BlockModelGenerators) : IExtended
                     variant.with(BlockModelGenerators.Y_ROT_270.then(BlockModelGenerators.X_ROT_270))
                 )
             )
+        )
+    }
+
+    override fun createUprightDirectionalBlock(block: Block, top: TexturedModel.Provider, side: TexturedModel.Provider, bottom: TexturedModel.Provider) {
+        val side = side.create(block, models.modelOutput)
+        models.blockStateOutput.accept(
+            MultiVariantGenerator.dispatch(block)
+                .with(PropertyDispatch.initial(BlockStateProperties.FACING)
+                    .select(Direction.EAST, BlockModelGenerators.plainVariant(side).with(BlockModelGenerators.Y_ROT_90))
+                    .select(Direction.SOUTH, BlockModelGenerators.plainVariant(side).with(BlockModelGenerators.Y_ROT_180))
+                    .select(Direction.WEST, BlockModelGenerators.plainVariant(side).with(BlockModelGenerators.Y_ROT_270))
+                    .select(Direction.NORTH, BlockModelGenerators.plainVariant(side))
+                    .select(Direction.UP, BlockModelGenerators.plainVariant(top.create(block, models.modelOutput)))
+                    .select(Direction.DOWN, BlockModelGenerators.plainVariant(bottom.create(block, models.modelOutput))))
         )
     }
 

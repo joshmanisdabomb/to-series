@@ -1,6 +1,6 @@
 package net.jidb.to.base.neoforge.client.platform
 
-import net.jidb.to.base.client.platform.ParticleClientPlatformModule
+import net.jidb.to.base.client.api.platform.ParticleClientPlatformModule
 import net.jidb.to.base.neoforge.platform.DeferredForgeEventRegistry
 import net.minecraft.client.particle.ParticleProvider
 import net.minecraft.client.particle.SpriteSet

@@ -1,8 +1,8 @@
 package net.jidb.to.base.neoforge.data.collection.provider
 
-import net.jidb.to.base.data.collection.DataCollection
-import net.jidb.to.base.data.collection.event.ItemTagDataCollectionEvent
-import net.jidb.to.base.helper.IdentifierHelper.identifier
+import net.jidb.to.base.api.helper.IdentifierHelper.identifier
+import net.jidb.to.base.data.api.collection.DataCollection
+import net.jidb.to.base.data.api.collection.event.ItemTagDataCollectionEvent
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.neoforged.neoforge.common.data.ItemTagsProvider

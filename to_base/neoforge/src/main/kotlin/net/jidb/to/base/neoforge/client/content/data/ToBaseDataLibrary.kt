@@ -1,15 +1,15 @@
 package net.jidb.to.base.neoforge.client.content.data
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.client.data.collection.module.lang.SimpleLanguageClientDataCollectionModule
-import net.jidb.to.base.client.data.collection.module.model.block.HorizontalBlockModelClientDataCollectionModule
+import net.jidb.to.base.client.data.pub.collection.module.lang.SimpleLanguageClientDataCollectionModule
+import net.jidb.to.base.client.data.pub.collection.module.model.block.HorizontalBlockModelClientDataCollectionModule
 import net.jidb.to.base.content.ToBaseItemTagLibrary
 import net.jidb.to.base.content.block.ResearchDeskBlock
-import net.jidb.to.base.data.collection.module.loot.CustomBlockLootDataCollectionModule
-import net.jidb.to.base.data.collection.module.loot.SilkBlockLootDataCollectionModule
-import net.jidb.to.base.data.collection.module.recipe.ShapedRecipeDataCollectionModule
-import net.jidb.to.base.data.collection.module.tag.MiningBlockTagDataCollectionModule
-import net.jidb.to.base.data.library.DataCollectionLibrary
+import net.jidb.to.base.data.api.library.DataCollectionLibrary
+import net.jidb.to.base.data.pub.collection.module.loot.CustomBlockLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.loot.SilkBlockLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.recipe.ShapedRecipeDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.tag.MiningBlockTagDataCollectionModule
 import net.jidb.to.base.neoforge.client.content.data.module.ResearchDeskBlockModelClientDataCollectionModule
 import net.jidb.to.base.service.Services
 import net.minecraft.client.data.models.model.TextureSlot

@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "to_sky_and_stars:block/copper_power_bank_top",
+    "model": {
+      "type": "to_sky_and_stars:power_bank",
+      "base": "to_sky_and_stars:copper_power_bank"
+    }
+  }
+}

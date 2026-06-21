@@ -1,6 +1,6 @@
 package net.jidb.to.stars.neoforge.client.data.provider
 
-import net.jidb.to.base.helper.LibraryHelper.getIdentifier
+import net.jidb.to.base.api.helper.LibraryHelper.getIdentifier
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput

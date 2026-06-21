@@ -1,6 +1,6 @@
 package net.jidb.to.stars.neoforge.client.data.provider
 
-import net.jidb.to.base.client.data.provider.MultiLanguageDataProvider
+import net.jidb.to.base.client.data.api.provider.MultiLanguageDataProvider
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.data.PackOutput
 import net.minecraft.network.chat.Component
@@ -19,9 +19,6 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("gui.$modid.atomic_bomb.detonate.error.explosive", "Slot 1: TNT")
         add("gui.$modid.atomic_bomb.detonate.error.bullet", "Slot 2: Enriched Uranium Nugget")
         add("gui.$modid.atomic_bomb.detonate.error.fuel", "Slot 3: Enriched Uranium")
-        add("gui.$modid.atomic_bomb.detonate.info", "Explosion Strength: %s\nFuse Time: %s")
-        add("gui.$modid.atomic_bomb.detonate.info.strength", "%s")
-        add("gui.$modid.atomic_bomb.detonate.info.fuse", "%s seconds")
 
         add("subtitles.$modid.entity.generic.nuke_small", "Nuclear Explosion")
         add("subtitles.$modid.entity.generic.nuke_large", "Nuclear Explosion")
@@ -39,6 +36,15 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("advancements.$modid.nuke.description", "Detonate an Atomic Bomb (must use GUI)")
         add("advancements.$modid.nuke_race.title", "Nuclear Arms Race")
         add("advancements.$modid.nuke_race.description", "Be the first person on the server to detonate an Atomic Bomb")
+
+        add("tooltip.$modid.atomic_bomb.strength", "Explosion Strength: %s")
+        add("tooltip.$modid.atomic_bomb.strength.value", "%s")
+        add("tooltip.$modid.atomic_bomb.fuse", "Fuse Time: %s")
+        add("tooltip.$modid.atomic_bomb.fuse.value", "%ss")
+        add("tooltip.$modid.machine.tier", "Machine Tier: %s")
+        add("tooltip.$modid.machine.tier.value", "%s")
+        add("tooltip.$modid.power_cable.loss", "Energy Loss per Block: %s")
+        add("tooltip.$modid.power_cable.loss.value", "%s%%")
     }
 
 }

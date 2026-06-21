@@ -1,7 +1,7 @@
 package net.jidb.to.base.neoforge.client.data.collection.provider
 
-import net.jidb.to.base.client.data.collection.event.ModelClientDataCollectionEvent
-import net.jidb.to.base.data.collection.DataCollection
+import net.jidb.to.base.client.data.api.collection.event.ModelClientDataCollectionEvent
+import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.base.neoforge.client.data.model.ExtendedBlockModelGenerators
 import net.minecraft.client.data.models.BlockModelGenerators
 import net.minecraft.client.data.models.ItemModelGenerators

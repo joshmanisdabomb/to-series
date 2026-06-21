@@ -151,7 +151,7 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     override fun rotate(state: BlockState, rotation: Rotation) = state.setValue(FACING, rotation.rotate(state.getValue(FACING)))
 
-    override fun mirror(state: BlockState, mirror: Mirror) = state.rotate(mirror.getRotation(state.getValue(BarrelBlock.FACING)))
+    override fun mirror(state: BlockState, mirror: Mirror) = state.rotate(mirror.getRotation(state.getValue(FACING)))
 
     override fun codec() = CODEC
 

@@ -1,7 +1,7 @@
 package net.jidb.to.base.fabric.mixin;
 
 import net.jidb.to.base.ToBaseMod;
-import net.jidb.to.base.hooks.event.advancements.AdvancementEventContext;
+import net.jidb.to.base.pub.event.advancements.AdvancementEventContext;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.server.PlayerAdvancements;
 import net.minecraft.server.level.ServerPlayer;

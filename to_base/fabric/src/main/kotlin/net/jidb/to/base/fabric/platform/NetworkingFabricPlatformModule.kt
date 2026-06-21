@@ -3,11 +3,11 @@ package net.jidb.to.base.fabric.platform
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
-import net.jidb.to.base.network.PayloadEntry
-import net.jidb.to.base.network.PayloadEntry.Phase
-import net.jidb.to.base.network.PayloadEntry.Side
-import net.jidb.to.base.network.ServerPayloadContext
-import net.jidb.to.base.platform.NetworkingPlatformModule
+import net.jidb.to.base.api.network.PayloadEntry
+import net.jidb.to.base.api.network.PayloadEntry.Phase
+import net.jidb.to.base.api.network.PayloadEntry.Side
+import net.jidb.to.base.api.network.ServerPayloadContext
+import net.jidb.to.base.api.platform.NetworkingPlatformModule
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Vec3i
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload

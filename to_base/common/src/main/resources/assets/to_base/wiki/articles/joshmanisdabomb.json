@@ -1,1 +1,12 @@
-{"title":"joshmanisdabomb","about":["to_base:author / to_base:joshmanisdabomb"],"tags":[],"content":{"en_us":{"index":"---\nflavor: \"Struggles to release a mod.\"\n---\n\n# Introduction\n\n{{\"of\":\"self\"}} is the creator of the {{\"of\":\"to_base:tag / to_base:to_series\"}} of mods. He has been modding Minecraft for over a decade, but this is the first time he has released a mod to the public."}}}
+{
+  "title": "joshmanisdabomb",
+  "about": [
+    "to_base:author / to_base:joshmanisdabomb"
+  ],
+  "tags": [],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Struggles to release a mod.\"\n---\n\n# Introduction\n\n{{\"of\":\"self\"}} is the creator of the {{\"of\":\"to_base:tag / to_base:to_series\"}} of mods. He has been modding Minecraft for over a decade, but this is the first time he has released a mod to the public."
+    }
+  }
+}

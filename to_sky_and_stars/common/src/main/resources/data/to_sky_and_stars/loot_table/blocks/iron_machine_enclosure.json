@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "to_sky_and_stars:iron_machine_enclosure"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "to_sky_and_stars:blocks/iron_machine_enclosure"
+}

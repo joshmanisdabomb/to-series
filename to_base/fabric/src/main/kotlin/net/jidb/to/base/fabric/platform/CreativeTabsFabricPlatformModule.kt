@@ -1,7 +1,7 @@
 package net.jidb.to.base.fabric.platform
 
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab
-import net.jidb.to.base.platform.CreativeTabsPlatformModule
+import net.jidb.to.base.api.platform.CreativeTabsPlatformModule
 import net.minecraft.world.item.CreativeModeTab
 
 object CreativeTabsFabricPlatformModule : CreativeTabsPlatformModule() {

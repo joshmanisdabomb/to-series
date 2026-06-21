@@ -1,1 +1,21 @@
-{"title":"To Lay the Foundations 0.0.4","short":"0.0.4","about":["to_base:mod_version / to_base:0.0.4"],"icon":["minecraft:block / to_base:test_block_2"],"parent":"to_base:mod / to_base:to_base","previous":"to_base:mod_version / to_base:0.0.3","next":"to_base:mod_version / to_base:0.1.0","tags":["to_base:minor_release"],"content":{"en_us":{"index":"---\nflavor: \"I understand it now.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"fourth\",\"extra\":\", and the last 0.0.x release\",\"of\":\"self\"}} is the fourth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the last 0.0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.0.3\",\"short\":true}}, and the following release is {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.1.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release sets up a data generator for models, blockstates and language files.\n\n# In this Release\n\n## Additions\n\n- Added language and model data generators.\n- Copy and Delete data providers, for handling generated resources and moving them into a mod\u0027s asset folder.\n\n## Changes\n\n- Added textures, models, blockstates and language files for {{\"of\":\"minecraft:block / to_base:test_block\"}}, {{\"of\":\"minecraft:block / to_base:test_block_2\"}} and {{\"of\":\"minecraft:item / to_base:test_item\"}}."}}}
+{
+  "title": "To Lay the Foundations 0.0.4",
+  "short": "0.0.4",
+  "about": [
+    "to_base:mod_version / to_base:0.0.4"
+  ],
+  "icon": [
+    "minecraft:block / to_base:test_block_2"
+  ],
+  "parent": "to_base:mod / to_base:to_base",
+  "previous": "to_base:mod_version / to_base:0.0.3",
+  "next": "to_base:mod_version / to_base:0.1.0",
+  "tags": [
+    "to_base:minor_release"
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"I understand it now.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"fourth\",\"extra\":\", and the last 0.0.x release\",\"of\":\"self\"}} is the fourth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the last 0.0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.0.3\",\"short\":true}}, and the following release is {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.1.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release sets up a data generator for models, blockstates and language files.\n\n# In this Release\n\n## Additions\n\n- Added language and model data generators.\n- Copy and Delete data providers, for handling generated resources and moving them into a mod\u0027s asset folder.\n\n## Changes\n\n- Added textures, models, blockstates and language files for {{\"of\":\"minecraft:block / to_base:test_block\"}}, {{\"of\":\"minecraft:block / to_base:test_block_2\"}} and {{\"of\":\"minecraft:item / to_base:test_item\"}}."
+    }
+  }
+}

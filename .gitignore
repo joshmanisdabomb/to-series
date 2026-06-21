@@ -47,3 +47,7 @@ replay_*.log
 # kotlin
 
 .kotlin/
+
+# To Series specific
+
+*/common/src/main/resources/assets/*/wiki/articles/enforcer_report.txt

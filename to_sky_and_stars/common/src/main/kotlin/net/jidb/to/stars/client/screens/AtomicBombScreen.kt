@@ -1,11 +1,12 @@
 package net.jidb.to.stars.client.screens
 
+import net.jidb.to.base.api.info.TooltipEngine
 import net.jidb.to.base.client.service.ClientServices
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.entity.AtomicBombEntity
+import net.jidb.to.stars.info.ToStarsTooltipEngine
 import net.jidb.to.stars.inventory.menu.AtomicBombMenu
 import net.jidb.to.stars.network.AtomicBombDetonatePayload
-import net.minecraft.ChatFormatting
 import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.components.WidgetSprites
@@ -36,7 +37,6 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
     private var errors: IntArray = intArrayOf(0, 1, 2)
 
     init {
-        inventoryLabelX = 8
         inventoryLabelY = imageHeight - 94
     }
 
@@ -90,14 +90,7 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
         } else if (detonate?.isHovered == true) {
             if (errors.isEmpty()) {
                 val count = AtomicBombEntity.getUraniumCount(menu.items[2])
-                tooltip = Component.translatable(
-                    "gui.${ToStarsMod.modid}.atomic_bomb.detonate.info",
-                    Component.translatable("gui.${ToStarsMod.modid}.atomic_bomb.detonate.info.strength", AtomicBombEntity.getExplosionStrength(count))
-                        .withStyle(Style.EMPTY.withColor(ChatFormatting.GREEN)),
-                    Component.translatable("gui.${ToStarsMod.modid}.atomic_bomb.detonate.info.fuse", AtomicBombEntity.getFuseTime(count) / 20)
-                        .withStyle(Style.EMPTY.withColor(ChatFormatting.YELLOW)),
-                )
-                    .withStyle(Style.EMPTY.withColor(ChatFormatting.GRAY))
+                tooltip = TooltipEngine.withLineBreaks(ToStarsTooltipEngine.getAtomicBombInfo(count))
             } else {
                 tooltip = Component.translatable("gui.${ToStarsMod.modid}.atomic_bomb.detonate.error")
                     .withStyle(Style.EMPTY.withBold(true))

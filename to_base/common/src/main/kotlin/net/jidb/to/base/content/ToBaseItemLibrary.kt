@@ -1,7 +1,7 @@
 package net.jidb.to.base.content
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.library.SimpleRegistryLibrary
+import net.jidb.to.base.api.library.SimpleRegistryLibrary
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Item
 

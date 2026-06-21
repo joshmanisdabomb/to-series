@@ -1,7 +1,7 @@
 package net.jidb.to.base.fabric.platform
 
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader
-import net.jidb.to.base.platform.ReloadListenerPlatformModule
+import net.jidb.to.base.api.platform.ReloadListenerPlatformModule
 import net.minecraft.resources.Identifier
 import net.minecraft.server.packs.PackType
 import net.minecraft.server.packs.resources.PreparableReloadListener

@@ -1,10 +1,16 @@
 {
   "values": [
     "to_sky_and_stars:atomic_bomb",
+    "to_sky_and_stars:copper_machine_enclosure",
+    "to_sky_and_stars:copper_power_bank",
     "to_sky_and_stars:deepslate_uranium_ore",
     "to_sky_and_stars:enriched_uranium_block",
+    "to_sky_and_stars:heat_pipe",
     "to_sky_and_stars:heavy_uranium_block",
     "to_sky_and_stars:heavy_uranium_shielding",
+    "to_sky_and_stars:iron_machine_enclosure",
+    "to_sky_and_stars:iron_power_bank",
+    "to_sky_and_stars:power_cable",
     "to_sky_and_stars:uranium_block",
     "to_sky_and_stars:uranium_ore"
   ]

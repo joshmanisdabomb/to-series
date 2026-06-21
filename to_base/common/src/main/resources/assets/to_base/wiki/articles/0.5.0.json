@@ -1,1 +1,18 @@
-{"title":"To Lay the Foundations 0.5.0","short":"0.5.0","about":["to_base:mod_version / to_base:0.5.0"],"parent":"to_base:mod / to_base:to_base","previous":"to_base:mod_version / to_base:0.4.0","tags":["to_base:major_release"],"content":{"en_us":{"index":"---\nflavor: \"This release certainly was an event.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"ninth\",\"extra\":\", and the fifth major 0.x release\",\"of\":\"self\"}} is the ninth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the fifth major 0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.4.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release adds a cross-platform event system, and makes code changes to separate \"content\" from this mod from hooks usable by other mods.\n\n# In this Release\n\n## Additions\n- Added a cross-platform event system, with a new AdvancementGrantPostEvent that can be listened to.\n- Added events and payload libraries to the ToMod class.\n- Added custom registry registration.\n- Added a way for other To mods to wait for this (or another) mod to be initialized before running code.\n\n## Changes\n- Features in the mod considered \"content\", such as the {{\"of\":\"minecraft:block / to_base:research_desk\"}}, were moved into a content sub-ToMod class.\n\n## Fixes\n- Mixins can now be loaded only on the Fabric side."}}}
+{
+  "title": "To Lay the Foundations 0.5.0",
+  "short": "0.5.0",
+  "about": [
+    "to_base:mod_version / to_base:0.5.0"
+  ],
+  "parent": "to_base:mod / to_base:to_base",
+  "previous": "to_base:mod_version / to_base:0.4.0",
+  "next": "to_base:mod_version / to_base:0.6.0",
+  "tags": [
+    "to_base:major_release"
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"This release certainly was an event.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"ninth\",\"extra\":\", and the fifth major 0.x release\",\"of\":\"self\"}} is the ninth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the fifth major 0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.4.0\",\"short\":true}}, and the following release is {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.6.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release adds a cross-platform event system, and makes code changes to separate \"content\" from this mod from hooks usable by other mods.\n\n# In this Release\n\n## Additions\n- Added a cross-platform event system, with a new AdvancementGrantPostEvent that can be listened to.\n- Added events and payload libraries to the ToMod class.\n- Added custom registry registration.\n- Added a way for other To mods to wait for this (or another) mod to be initialized before running code.\n\n## Changes\n- Features in the mod considered \"content\", such as the {{\"of\":\"minecraft:block / to_base:research_desk\"}}, were moved into a content sub-ToMod class.\n\n## Fixes\n- Mixins can now be loaded only on the Fabric side."
+    }
+  }
+}

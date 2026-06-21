@@ -1,0 +1,13 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "from": [3, 3, 3],
+      "to": [13, 13, 13],
+      "faces": {
+        "up": {"uv": [3, 3, 13, 13], "texture": "#core"}
+      }
+    }
+  ]
+}

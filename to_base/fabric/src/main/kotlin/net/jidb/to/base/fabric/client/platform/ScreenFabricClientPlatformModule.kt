@@ -1,6 +1,6 @@
 package net.jidb.to.base.fabric.client.platform
 
-import net.jidb.to.base.client.platform.ScreenClientPlatformModule
+import net.jidb.to.base.client.api.platform.ScreenClientPlatformModule
 import net.minecraft.client.gui.screens.MenuScreens
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.client.gui.screens.inventory.MenuAccess

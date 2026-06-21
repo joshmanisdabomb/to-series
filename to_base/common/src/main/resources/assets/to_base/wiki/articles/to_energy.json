@@ -1,0 +1,33 @@
+{
+  "title": "To Energy",
+  "about": [
+    "to_base:concept / to_base:to_energy"
+  ],
+  "redirect": [
+    "minecraft:data_component_type / to_base:energy_data",
+    "to_base:block_networks / to_base:to_energy"
+  ],
+  "tags": [
+    "to_base:concept",
+    "to_base:energy"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.3.0",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_base:0.6.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Electrifying!\"\n---\n\n# Introduction\n\n{{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is a concept introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.0\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.6.0\"}}. It represents energy in the {{\"of\":\"to_base:tag / to_base:to_series\"}} of mods.\n\nIn a future version, {{\"of\":\"self\"}} will be compatible with other mods in both Neoforge and Fabric (via TechReborn API.)\n"
+    }
+  }
+}

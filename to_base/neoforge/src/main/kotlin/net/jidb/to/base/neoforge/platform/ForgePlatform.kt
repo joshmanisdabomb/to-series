@@ -1,7 +1,7 @@
 package net.jidb.to.base.neoforge.platform
 
-import net.jidb.to.base.platform.Platform
-import net.jidb.to.base.platform.PlatformType
+import net.jidb.to.base.api.platform.Platform
+import net.jidb.to.base.api.platform.PlatformType
 
 object ForgePlatform : Platform {
 
@@ -13,5 +13,6 @@ object ForgePlatform : Platform {
     override val networking = NetworkingForgePlatformModule
     override val biomes = BiomeForgePlatformModule
     override val reloadListeners = ReloadListenerForgePlatformModule
+    override val transfer = TransferForgePlatformModule
 
 }

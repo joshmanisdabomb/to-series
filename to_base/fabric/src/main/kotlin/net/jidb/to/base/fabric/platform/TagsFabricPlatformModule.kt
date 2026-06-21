@@ -2,7 +2,7 @@ package net.jidb.to.base.fabric.platform
 
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
-import net.jidb.to.base.platform.TagsPlatformModule
+import net.jidb.to.base.api.platform.TagsPlatformModule
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block

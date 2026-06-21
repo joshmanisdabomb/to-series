@@ -1,7 +1,7 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.level.biome.BiomeMod
-import net.jidb.to.base.library.BiomeModLibrary
+import net.jidb.to.base.api.level.biome.BiomeMod
+import net.jidb.to.base.pub.library.BiomeModLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.world.level.levelgen.GenerationStep
 

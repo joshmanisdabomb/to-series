@@ -1,8 +1,8 @@
 package net.jidb.to.stars.neoforge.client.data
 
-import net.jidb.to.base.client.data.ToDataClientHelper
-import net.jidb.to.base.helper.IdentifierHelper
-import net.jidb.to.base.helper.IdentifierHelper.identifier
+import net.jidb.to.base.api.helper.IdentifierHelper
+import net.jidb.to.base.api.helper.IdentifierHelper.identifier
+import net.jidb.to.base.client.data.api.ToDataClientHelper
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.client.data.models.model.ModelTemplate
 import net.minecraft.client.data.models.model.TextureMapping
@@ -56,5 +56,39 @@ object ToStarsModels {
         TextureSlot.PARTICLE,
         *ToDataClientHelper.NUMERIC_TEXTURES.take(5).toTypedArray()
     )
+
+    val TEMPLATE_HEAT_PIPE = ModelTemplate(
+        Optional.of(IdentifierHelper.itemPrefix(ToStarsMod.modid, "template_heat_pipe")),
+        Optional.empty(),
+        TextureSlot.PARTICLE,
+        TextureSlot.SIDE,
+        TextureSlot.INSIDE,
+        TextureSlot.END,
+    )
+
+    val TEXTURES_POWER_BANK = { identifier: Identifier ->
+        TextureMapping()
+            .put(TextureSlot.TOP, Material(identifier.withSuffix("_top")))
+            .put(TextureSlot.INNER_TOP, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_top" }))
+            .put(TextureSlot.FRONT, Material(identifier.withSuffix("_front")))
+            .put(TextureSlot.SIDE, Material(identifier.withSuffix("_side")))
+            .put(TextureSlot.INSIDE, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_side" }))
+            .put(TextureSlot.END, Material(identifier.withSuffix("_bottom")))
+            .copySlot(TextureSlot.INSIDE, TextureSlot.PARTICLE)
+    }
+
+    val TEMPLATE_POWER_BANK = ModelTemplate(
+        Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_power_bank")),
+        Optional.empty(),
+        TextureSlot.PARTICLE,
+        TextureSlot.TOP,
+        TextureSlot.INNER_TOP,
+        TextureSlot.FRONT,
+        TextureSlot.SIDE,
+        TextureSlot.INSIDE,
+        TextureSlot.END,
+        TextureSlot.BOTTOM,
+    )
+    val POWER_BANK = TexturedModel.createDefault({ TEXTURES_POWER_BANK(it.identifier.withPrefix("block/")) }, TEMPLATE_POWER_BANK)
 
 }

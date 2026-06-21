@@ -1,7 +1,7 @@
 package net.jidb.to.base.neoforge.client.platform
 
-import net.jidb.to.base.client.network.ClientPayloadContext
-import net.jidb.to.base.client.platform.NetworkingClientPlatformModule
+import net.jidb.to.base.client.api.network.ClientPayloadContext
+import net.jidb.to.base.client.api.platform.NetworkingClientPlatformModule
 import net.jidb.to.base.neoforge.platform.DeferredForgeEventRegistry
 import net.minecraft.client.player.LocalPlayer
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload

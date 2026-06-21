@@ -1,8 +1,8 @@
 package net.jidb.to.base.neoforge.platform
 
-import net.jidb.to.base.network.PayloadEntry
-import net.jidb.to.base.network.ServerPayloadContext
-import net.jidb.to.base.platform.NetworkingPlatformModule
+import net.jidb.to.base.api.network.PayloadEntry
+import net.jidb.to.base.api.network.ServerPayloadContext
+import net.jidb.to.base.api.platform.NetworkingPlatformModule
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ServerLevel

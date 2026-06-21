@@ -1,6 +1,6 @@
 package net.jidb.to.base.neoforge.platform
 
-import net.jidb.to.base.platform.TagsPlatformModule
+import net.jidb.to.base.api.platform.TagsPlatformModule
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block

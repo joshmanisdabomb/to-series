@@ -1,6 +1,6 @@
 package net.jidb.to.base.content
 
-import net.jidb.to.base.mod.ToMod
+import net.jidb.to.base.pub.mod.ToMod
 import org.slf4j.Logger
 
 class ToBaseContentMod(override val modid: String, override val logger: Logger) : ToMod() {

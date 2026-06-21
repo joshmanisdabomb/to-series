@@ -18,6 +18,9 @@ public interface BlockModelGeneratorsAccessor {
     @Invoker("createTrivialCube")
     void to_base$createTrivialCube(Block block);
 
+    @Invoker("createTrivialBlock")
+    void to_base$createTrivialBlock(Block block, TexturedModel.Provider model);
+
     @Invoker("createHorizontallyRotatedBlock")
     void to_base$createHorizontallyRotatedBlock(Block horizontallyRotatedBlock, TexturedModel.Provider provider);
 }

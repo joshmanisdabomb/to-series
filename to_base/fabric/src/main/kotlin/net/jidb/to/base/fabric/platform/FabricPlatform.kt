@@ -1,7 +1,7 @@
 package net.jidb.to.base.fabric.platform
 
-import net.jidb.to.base.platform.Platform
-import net.jidb.to.base.platform.PlatformType
+import net.jidb.to.base.api.platform.Platform
+import net.jidb.to.base.api.platform.PlatformType
 
 object FabricPlatform : Platform {
 
@@ -13,5 +13,6 @@ object FabricPlatform : Platform {
     override val networking = NetworkingFabricPlatformModule
     override val biomes = BiomeFabricPlatformModule
     override val reloadListeners = ReloadListenerFabricPlatformModule
+    override val transfer = TransferFabricPlatformModule
 
 }

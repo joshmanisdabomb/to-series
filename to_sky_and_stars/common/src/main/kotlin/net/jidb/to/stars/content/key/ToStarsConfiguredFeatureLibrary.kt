@@ -1,6 +1,6 @@
 package net.jidb.to.stars.content.key
 
-import net.jidb.to.base.library.ResourceKeyLibrary
+import net.jidb.to.base.api.library.ResourceKeyLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature

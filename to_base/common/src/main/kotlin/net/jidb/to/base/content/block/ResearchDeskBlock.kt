@@ -1,7 +1,7 @@
 package net.jidb.to.base.content.block
 
+import net.jidb.to.base.api.helper.BlockHelper.horizontalPlacement
 import net.jidb.to.base.content.inventory.menu.ResearchMenu
-import net.jidb.to.base.helper.BlockHelper.horizontalPlacement
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.server.level.ServerLevel

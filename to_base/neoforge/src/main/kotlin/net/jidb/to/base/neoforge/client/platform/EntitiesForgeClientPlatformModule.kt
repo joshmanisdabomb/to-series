@@ -1,6 +1,6 @@
 package net.jidb.to.base.neoforge.client.platform
 
-import net.jidb.to.base.client.platform.EntitiesClientPlatformModule
+import net.jidb.to.base.client.api.platform.EntitiesClientPlatformModule
 import net.jidb.to.base.neoforge.platform.DeferredForgeEventRegistry
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import net.minecraft.world.entity.Entity

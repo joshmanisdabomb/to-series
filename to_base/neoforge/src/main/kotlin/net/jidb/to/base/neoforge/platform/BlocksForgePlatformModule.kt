@@ -1,6 +1,6 @@
 package net.jidb.to.base.neoforge.platform
 
-import net.jidb.to.base.platform.BlocksPlatformModule
+import net.jidb.to.base.api.platform.BlocksPlatformModule
 import net.minecraft.core.BlockPos
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity

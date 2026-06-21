@@ -1,6 +1,6 @@
 package net.jidb.to.base.fabric.client.platform
 
-import net.jidb.to.base.client.platform.DataClientPlatformModule
+import net.jidb.to.base.client.api.platform.DataClientPlatformModule
 import net.minecraft.client.data.models.model.TextureSlot
 
 object DataFabricClientPlatformModule : DataClientPlatformModule() {

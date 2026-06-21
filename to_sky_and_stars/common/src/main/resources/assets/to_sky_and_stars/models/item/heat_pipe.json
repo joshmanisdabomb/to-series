@@ -1,0 +1,9 @@
+{
+  "parent": "to_sky_and_stars:item/template_heat_pipe",
+  "textures": {
+    "end": "to_sky_and_stars:block/heat_pipe_end",
+    "inside": "to_sky_and_stars:block/heat_pipe_inside",
+    "particle": "to_sky_and_stars:block/heat_pipe",
+    "side": "to_sky_and_stars:block/heat_pipe"
+  }
+}

@@ -1,1 +1,70 @@
-{"title":{"of":"minecraft:block / to_sky_and_stars:heavy_uranium_block"},"about":["minecraft:block / to_sky_and_stars:heavy_uranium_block"],"redirect":["minecraft:item / to_sky_and_stars:heavy_uranium_block"],"icon":["minecraft:block / to_sky_and_stars:heavy_uranium_block"],"tags":["to_sky_and_stars:uranium","to_sky_and_stars:heavy_uranium","to_base:storage_block","to_base:resource","to_sky_and_stars:nuclear"],"changelog":[{"version":"lcc:0.3.0","content":{"en_us":"Introduced."}},{"version":"to_sky_and_stars:0.1.0","content":{"en_us":"Reintroduced."}}],"factsheet":{"minecraft:block / to_sky_and_stars:heavy_uranium_block":{"renewable":false,"hardness":5.0,"resistance":6.0,"friction":0.6,"ignite":{"minecraft:fire":0,"to_sky_and_stars:nuclear_fire":0},"burn":{"minecraft:fire":0,"to_sky_and_stars:nuclear_fire":0},"states":[{"default":true,"properties":{},"light":0,"map_color":6717235}],"tags":{"minecraft:block":[],"minecraft:item":[]},"stack_size":64,"rarity":"common"}},"content":{"en_us":{"index":"# Introduction\nThe {{\"template\":\"referral\",\"description\":\"a storage block\",\"plural\":false,\"of\":\"self\"}} is a storage block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.0\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_sky_and_stars:0.1.0\"}}. It can be obtained by combining 9 {{\"of\":\"minecraft:item / to_sky_and_stars:heavy_uranium\"}} in a crafting table."}}}
+{
+  "title": {
+    "of": "minecraft:block / to_sky_and_stars:heavy_uranium_block"
+  },
+  "about": [
+    "minecraft:block / to_sky_and_stars:heavy_uranium_block"
+  ],
+  "redirect": [
+    "minecraft:item / to_sky_and_stars:heavy_uranium_block"
+  ],
+  "icon": [
+    "minecraft:block / to_sky_and_stars:heavy_uranium_block"
+  ],
+  "tags": [
+    "to_sky_and_stars:uranium",
+    "to_sky_and_stars:heavy_uranium",
+    "to_base:storage_block",
+    "to_base:resource",
+    "to_sky_and_stars:nuclear"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.3.0",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_sky_and_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_sky_and_stars:heavy_uranium_block": {
+      "renewable": false,
+      "hardness": 5.0,
+      "resistance": 6.0,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0,
+        "to_sky_and_stars:nuclear_fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0,
+        "to_sky_and_stars:nuclear_fire": 0
+      },
+      "states": [
+        {
+          "default": true,
+          "properties": {},
+          "light": 0,
+          "map_color": 6717235
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "# Introduction\nThe {{\"template\":\"referral\",\"description\":\"a storage block\",\"plural\":false,\"of\":\"self\"}} is a storage block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.0\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_sky_and_stars:0.1.0\"}}. It can be obtained by combining 9 {{\"of\":\"minecraft:item / to_sky_and_stars:heavy_uranium\"}} in a crafting table."
+    }
+  }
+}

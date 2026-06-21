@@ -1,8 +1,8 @@
 package net.jidb.to.base.fabric.client.platform
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
-import net.jidb.to.base.client.network.ClientPayloadContext
-import net.jidb.to.base.client.platform.NetworkingClientPlatformModule
+import net.jidb.to.base.client.api.network.ClientPayloadContext
+import net.jidb.to.base.client.api.platform.NetworkingClientPlatformModule
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 
 object NetworkingFabricClientPlatformModule : NetworkingClientPlatformModule() {

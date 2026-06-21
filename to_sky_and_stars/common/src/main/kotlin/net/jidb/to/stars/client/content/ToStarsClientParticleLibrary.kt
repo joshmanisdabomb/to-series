@@ -1,6 +1,6 @@
 package net.jidb.to.stars.client.content
 
-import net.jidb.to.base.client.library.ParticleLibrary
+import net.jidb.to.base.client.pub.library.ParticleLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.client.particle.NuclearExplosionParticle.NuclearExplosionParticleProvider
 

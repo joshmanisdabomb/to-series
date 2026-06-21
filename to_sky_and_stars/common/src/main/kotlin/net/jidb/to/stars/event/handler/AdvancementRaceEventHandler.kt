@@ -1,7 +1,7 @@
 package net.jidb.to.stars.event.handler
 
-import net.jidb.to.base.event.EventHandler
-import net.jidb.to.base.hooks.event.advancements.AdvancementEventContext
+import net.jidb.to.base.api.event.EventHandler
+import net.jidb.to.base.pub.event.advancements.AdvancementEventContext
 import net.jidb.to.stars.ToStarsMod
 
 class AdvancementRaceEventHandler : EventHandler<AdvancementEventContext, Unit>() {

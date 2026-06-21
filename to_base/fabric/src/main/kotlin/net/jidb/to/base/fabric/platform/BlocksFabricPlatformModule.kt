@@ -1,7 +1,7 @@
 package net.jidb.to.base.fabric.platform
 
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
-import net.jidb.to.base.platform.BlocksPlatformModule
+import net.jidb.to.base.api.platform.BlocksPlatformModule
 import net.minecraft.core.BlockPos
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntity

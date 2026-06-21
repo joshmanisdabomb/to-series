@@ -1,9 +1,9 @@
 package net.jidb.to.stars.neoforge.client.data.module
 
-import net.jidb.to.base.client.data.collection.event.ModelClientDataCollectionEvent
-import net.jidb.to.base.client.data.collection.module.ClientDataCollectionModule
-import net.jidb.to.base.data.collection.DataCollection
-import net.jidb.to.base.helper.IdentifierHelper.identifier
+import net.jidb.to.base.api.helper.IdentifierHelper.identifier
+import net.jidb.to.base.client.data.api.collection.event.ModelClientDataCollectionEvent
+import net.jidb.to.base.client.data.api.collection.module.ClientDataCollectionModule
+import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.neoforge.client.data.ToStarsModels
@@ -41,11 +41,11 @@ class AtomicBombBlockModelClientDataCollectionModule : ClientDataCollectionModul
 
     override fun generateItemModels(collection: DataCollection<Item>, event: ModelClientDataCollectionEvent): Boolean {
         val atomic_bomb_item = ToStarsModels.TEMPLATE_ATOMIC_BOMB_ITEM.create(
-            ToStarsMod.blocks.atomic_bomb.asItem(),
-            ToStarsModels.TEXTURES_ATOMIC_BOMB(ToStarsMod.blocks.atomic_bomb.identifier.withPrefix("block/")),
+            collection.`object`,
+            ToStarsModels.TEXTURES_ATOMIC_BOMB(collection.`object`.identifier.withPrefix("block/")),
             event.item.modelOutput
         )
-        event.item.itemModelOutput.accept(ToStarsMod.blocks.atomic_bomb.asItem(), ItemModelUtils.plainModel(atomic_bomb_item))
+        event.item.itemModelOutput.accept(collection.`object`, ItemModelUtils.plainModel(atomic_bomb_item))
         return true
     }
 

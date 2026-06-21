@@ -1,6 +1,6 @@
 package net.jidb.to.base.fabric.platform
 
-import net.jidb.to.base.platform.InventoryPlatformModule
+import net.jidb.to.base.api.platform.InventoryPlatformModule
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.inventory.AbstractContainerMenu

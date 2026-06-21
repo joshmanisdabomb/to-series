@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "to_sky_and_stars:block/iron_power_bank_bottom"
+    },
+    "facing=east": {
+      "model": "to_sky_and_stars:block/iron_power_bank_side",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "to_sky_and_stars:block/iron_power_bank_side"
+    },
+    "facing=south": {
+      "model": "to_sky_and_stars:block/iron_power_bank_side",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "to_sky_and_stars:block/iron_power_bank_top"
+    },
+    "facing=west": {
+      "model": "to_sky_and_stars:block/iron_power_bank_side",
+      "y": 270
+    }
+  }
+}

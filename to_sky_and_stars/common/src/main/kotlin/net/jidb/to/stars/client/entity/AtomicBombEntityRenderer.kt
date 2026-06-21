@@ -2,7 +2,7 @@ package net.jidb.to.stars.client.entity
 
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.math.Axis
-import net.jidb.to.base.helper.KotlinHelper.squared
+import net.jidb.to.base.api.helper.KotlinHelper.squared
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.entity.state.AtomicBombEntityState

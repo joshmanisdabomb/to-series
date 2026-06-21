@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "i": "minecraft:iron_ingot",
+    "w": "minecraft:water_bucket"
+  },
+  "pattern": [
+    "iii",
+    "w w",
+    "iii"
+  ],
+  "result": {
+    "count": 8,
+    "id": "to_sky_and_stars:heat_pipe"
+  }
+}

@@ -1,7 +1,7 @@
 package net.jidb.to.base.fabric.client.mod
 
 import net.fabricmc.api.ClientModInitializer
-import net.jidb.to.base.client.mod.ToPlatformClientMod
+import net.jidb.to.base.client.api.mod.ToPlatformClientMod
 
 abstract class ToFabricClientMod : ToPlatformClientMod, ClientModInitializer {
 

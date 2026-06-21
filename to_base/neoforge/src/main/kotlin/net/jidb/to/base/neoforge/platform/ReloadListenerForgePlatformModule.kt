@@ -1,6 +1,6 @@
 package net.jidb.to.base.neoforge.platform
 
-import net.jidb.to.base.platform.ReloadListenerPlatformModule
+import net.jidb.to.base.api.platform.ReloadListenerPlatformModule
 import net.minecraft.resources.Identifier
 import net.minecraft.server.packs.resources.PreparableReloadListener
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent

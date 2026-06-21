@@ -2,8 +2,8 @@ package net.jidb.to.base.client
 
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.client.content.ToBaseClientContentMod
-import net.jidb.to.base.client.mod.ToClientMod
-import net.jidb.to.base.client.network.handler.ToBaseClientPayloadHandlerLibrary
+import net.jidb.to.base.client.pub.mod.ToClientMod
+import net.jidb.to.base.client.pub.network.handler.ToBaseClientPayloadHandlerLibrary
 
 object ToBaseClientMod : ToClientMod() {
     override val common get() = ToBaseMod

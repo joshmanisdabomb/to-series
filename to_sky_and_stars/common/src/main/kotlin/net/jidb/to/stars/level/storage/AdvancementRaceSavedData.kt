@@ -9,9 +9,9 @@ import net.minecraft.world.level.saveddata.SavedData
 
 class AdvancementRaceSavedData(map: Map<Identifier, EntityReference<Player>>) : SavedData() {
 
-    private val map: MutableMap<Identifier, EntityReference<Player>> = map.toMutableMap()
+    private val map = map.toMutableMap()
 
-    constructor() : this(mutableMapOf())
+    constructor() : this(mapOf())
 
     operator fun get(advancement: Identifier) = map[advancement]
 

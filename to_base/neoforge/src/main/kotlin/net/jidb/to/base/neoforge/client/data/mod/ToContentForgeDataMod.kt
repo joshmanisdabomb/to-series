@@ -1,7 +1,7 @@
 package net.jidb.to.base.neoforge.client.data.mod
 
-import net.jidb.to.base.client.data.mod.ToContentDataMod
-import net.jidb.to.base.data.library.DatapackLibrary
+import net.jidb.to.base.client.data.api.mod.ToContentDataMod
+import net.jidb.to.base.data.api.library.DatapackLibrary
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.minecraft.data.recipes.RecipeProvider

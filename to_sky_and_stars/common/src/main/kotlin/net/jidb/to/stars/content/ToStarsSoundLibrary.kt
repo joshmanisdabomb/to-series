@@ -1,6 +1,6 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.library.SoundEventLibrary
+import net.jidb.to.base.pub.library.SoundEventLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.sounds.SoundEvent
 

@@ -1,6 +1,8 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.library.SimpleRegistryLibrary
+import net.jidb.to.base.ToBaseMod
+import net.jidb.to.base.api.library.SimpleRegistryLibrary
+import net.jidb.to.base.pub.item.component.ToEnergyItemData
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.core.registries.BuiltInRegistries
@@ -26,6 +28,19 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             output(ItemStack(ToStarsMod.items.heavy_uranium))
             output(ItemStack(ToStarsMod.blocks.heavy_uranium_block))
             output(ItemStack(ToStarsMod.blocks.heavy_uranium_shielding))
+            output(ItemStack(ToStarsMod.blocks.copper_machine_enclosure))
+            output(ItemStack(ToStarsMod.blocks.iron_machine_enclosure))
+            output(ItemStack(ToStarsMod.blocks.copper_power_bank))
+            output(ItemStack(ToStarsMod.blocks.copper_power_bank).also {
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.maxInput, ToStarsMod.blocks.copper_power_bank.machine.maxOutput))
+            })
+            output(ItemStack(ToStarsMod.blocks.iron_power_bank))
+            output(ItemStack(ToStarsMod.blocks.iron_power_bank).also {
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(ToStarsMod.blocks.iron_power_bank.machine.bankStorage, ToStarsMod.blocks.iron_power_bank.machine.bankStorage, ToStarsMod.blocks.iron_power_bank.machine.maxInput, ToStarsMod.blocks.iron_power_bank.machine.maxOutput))
+            })
+            output(ItemStack(ToStarsMod.blocks.power_cable))
+            output(ItemStack(ToStarsMod.blocks.heat_pipe))
+            output(ItemStack(ToStarsMod.blocks.creative_power_source))
             output(ItemStack(ToStarsMod.blocks.atomic_bomb))
             output(ItemStack(ToStarsMod.blocks.nuclear_waste))
             output(ItemStack(ToStarsMod.items.test_item))

@@ -6,12 +6,14 @@
     "BlockStateBaseAccessor",
     "FireBlockAccessor",
     "ItemMixin",
-    "ItemPropertiesMixin"
+    "ItemPropertiesMixin",
+    "ItemStackMixin"
   ],
   "client": [
     "client.BlockModelGeneratorsAccessor",
     "client.GuiGraphicsAccessor",
-    "client.ItemModelGeneratorsAccessor"
+    "client.ItemModelGeneratorsAccessor",
+    "client.MinecraftAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

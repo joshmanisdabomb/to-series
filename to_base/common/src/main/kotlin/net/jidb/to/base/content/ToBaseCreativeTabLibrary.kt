@@ -1,9 +1,9 @@
 package net.jidb.to.base.content
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.library.Library
-import net.jidb.to.base.library.SimpleRegistryLibrary
-import net.jidb.to.base.library.TranslatableLibrary
+import net.jidb.to.base.api.library.Library
+import net.jidb.to.base.api.library.SimpleRegistryLibrary
+import net.jidb.to.base.api.library.TranslatableLibrary
 import net.jidb.to.base.service.Services
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.chat.Component

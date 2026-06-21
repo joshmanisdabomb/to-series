@@ -1,6 +1,6 @@
 package net.jidb.to.stars.network
 
-import net.jidb.to.base.network.PayloadEntry
+import net.jidb.to.base.api.network.PayloadEntry
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec

@@ -1,1 +1,47 @@
-{"title":{"of":"minecraft:item / to_sky_and_stars:heavy_uranium_nugget"},"about":["minecraft:item / to_sky_and_stars:heavy_uranium_nugget"],"icon":["minecraft:item / to_sky_and_stars:heavy_uranium_nugget"],"tags":["to_sky_and_stars:uranium","to_sky_and_stars:heavy_uranium","to_base:nugget","to_base:resource","to_sky_and_stars:nuclear"],"changelog":[{"version":"lcc:0.3.0","content":{"en_us":"Introduced."}},{"version":"to_sky_and_stars:0.1.0","content":{"en_us":"Reintroduced."}}],"factsheet":{"minecraft:item / to_sky_and_stars:heavy_uranium_nugget":{"renewable":false,"stack_size":64,"rarity":"common","tags":{"minecraft:item":[]}}},"content":{"en_us":{"index":"---\nflavor: \"In the running for most pointless item.\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is an item introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.0\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_sky_and_stars:0.1.0\"}}. It can be obtained by breaking down {{\"of\":\"minecraft:item / to_sky_and_stars:heavy_uranium\"}} in a crafting table."}}}
+{
+  "title": {
+    "of": "minecraft:item / to_sky_and_stars:heavy_uranium_nugget"
+  },
+  "about": [
+    "minecraft:item / to_sky_and_stars:heavy_uranium_nugget"
+  ],
+  "icon": [
+    "minecraft:item / to_sky_and_stars:heavy_uranium_nugget"
+  ],
+  "tags": [
+    "to_sky_and_stars:uranium",
+    "to_sky_and_stars:heavy_uranium",
+    "to_base:nugget",
+    "to_base:resource",
+    "to_sky_and_stars:nuclear"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.3.0",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_sky_and_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:item / to_sky_and_stars:heavy_uranium_nugget": {
+      "renewable": false,
+      "stack_size": 64,
+      "rarity": "common",
+      "tags": {
+        "minecraft:item": []
+      }
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"In the running for most pointless item.\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is an item introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.0\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_sky_and_stars:0.1.0\"}}. It can be obtained by breaking down {{\"of\":\"minecraft:item / to_sky_and_stars:heavy_uranium\"}} in a crafting table."
+    }
+  }
+}

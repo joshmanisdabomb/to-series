@@ -39,6 +39,6 @@
     "java": ">=${java_version}"
   },
   "suggests": {
-    "another-mod": "*"
+    "team_reborn_energy": "*"
   }
 }

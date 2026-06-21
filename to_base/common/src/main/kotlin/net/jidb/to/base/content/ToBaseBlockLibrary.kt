@@ -1,10 +1,10 @@
 package net.jidb.to.base.content
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.block.HorizontalGenericBlock
-import net.jidb.to.base.block.properties.ExtendedBlockProperties
+import net.jidb.to.base.api.block.properties.ExtendedBlockProperties
 import net.jidb.to.base.content.block.ResearchDeskBlock
-import net.jidb.to.base.library.BlockLibrary
+import net.jidb.to.base.pub.block.HorizontalGenericBlock
+import net.jidb.to.base.pub.library.BlockLibrary
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.SoundType

@@ -1,0 +1,10 @@
+{
+  "title": { "of": "minecraft:block / to_sky_and_stars:power_cable" },
+  "about": ["minecraft:block / to_sky_and_stars:power_cable"],
+  "redirect": ["minecraft:item / to_sky_and_stars:power_cable"],
+  "icon": ["minecraft:block / to_sky_and_stars:power_cable"],
+  "tags": [
+    "to_base:energy",
+    "to_sky_and_stars:cable"
+  ]
+}

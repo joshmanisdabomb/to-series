@@ -1,0 +1,5 @@
+{
+  "minecraft:block / to_sky_and_stars:iron_power_bank": {
+    "renewable": true
+  }
+}

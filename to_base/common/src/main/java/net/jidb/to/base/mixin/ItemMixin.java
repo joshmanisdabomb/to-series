@@ -1,6 +1,6 @@
 package net.jidb.to.base.mixin;
 
-import net.jidb.to.base.data.ToDataItemHelper;
+import net.jidb.to.base.data.api.ToDataItemHelper;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

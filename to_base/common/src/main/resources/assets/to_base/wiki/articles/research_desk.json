@@ -1,1 +1,131 @@
-{"title":{"of":"minecraft:block / to_base:research_desk"},"about":["minecraft:block / to_base:research_desk"],"redirect":["minecraft:item / to_base:research_desk","minecraft:menu / to_base:research"],"icon":["minecraft:block / to_base:research_desk"],"tags":["to_base:research"],"changelog":[{"version":"to_base:0.1.0","content":{"en_us":"Introduced"}},{"version":"to_base:0.2.0","content":{"en_us":"Now drops itself in the middle of the block when broken."}}],"factsheet":{"minecraft:block / to_base:research_desk":{"renewable":true,"hardness":2.5,"resistance":2.5,"friction":0.6,"ignite":{"minecraft:fire":0},"burn":{"minecraft:fire":0},"states":[{"default":true,"properties":{"facing":"north","segment":"left"},"light":0,"map_color":9402184},{"default":false,"properties":{"facing":"north","segment":"right"},"light":0,"map_color":9402184},{"default":false,"properties":{"facing":"south","segment":"left"},"light":0,"map_color":9402184},{"default":false,"properties":{"facing":"south","segment":"right"},"light":0,"map_color":9402184},{"default":false,"properties":{"facing":"west","segment":"left"},"light":0,"map_color":9402184},{"default":false,"properties":{"facing":"west","segment":"right"},"light":0,"map_color":9402184},{"default":false,"properties":{"facing":"east","segment":"left"},"light":0,"map_color":9402184},{"default":false,"properties":{"facing":"east","segment":"right"},"light":0,"map_color":9402184}],"tags":{"minecraft:block":[],"minecraft:item":[]},"stack_size":64,"rarity":"common"}},"content":{"en_us":{"index":"---\nflavor: \"Learning has never been so much fun!\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is a block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.1.0\"}}. It offers an in-game interface for the online wiki for the {{\"of\":\"to_base:tag / to_base:to_series\"}} of mods.\n\n# User Interface\nTo open the user interface, right-click the {{\"of\":\"self\"}}. If you\u0027re holding an item relevant to the mod, you are taken straight to the item\u0027s article. Otherwise, the main menu opens.\n\n## Main Menu\nFrom the homepage, you can open a list of all articles for the To mods. You can also view lists of just blocks, items, and mobs available in the mods, or lists of articles from individual To mods.\n\nYou can also click highlighted items in your inventory to view their articles.\n\nThe top of the homepage allows you to search for articles by name.\n\n## Articles\nArticles are clickable wiki-like pages that provide information about a given topic, such as a block or an item.\n\n# Placement\nWhen placed down in the world, the {{\"of\":\"self\"}} will face the player. It is 2 blocks wide; when the player clicks to place the desk, the left side of the block will be at the cursor.\n\nIf the right side of the desk is obstructed, the desk will be placed right side at the cursor instead."}}}
+{
+  "title": {
+    "of": "minecraft:block / to_base:research_desk"
+  },
+  "about": [
+    "minecraft:block / to_base:research_desk"
+  ],
+  "redirect": [
+    "minecraft:item / to_base:research_desk",
+    "minecraft:menu / to_base:research"
+  ],
+  "icon": [
+    "minecraft:block / to_base:research_desk"
+  ],
+  "tags": [
+    "to_base:research"
+  ],
+  "changelog": [
+    {
+      "version": "to_base:0.1.0",
+      "content": {
+        "en_us": "Introduced"
+      }
+    },
+    {
+      "version": "to_base:0.2.0",
+      "content": {
+        "en_us": "Now drops itself in the middle of the block when broken."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_base:research_desk": {
+      "renewable": true,
+      "hardness": 2.5,
+      "resistance": 2.5,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0
+      },
+      "states": [
+        {
+          "default": true,
+          "properties": {
+            "facing": "north",
+            "segment": "left"
+          },
+          "light": 0,
+          "map_color": 9402184
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "north",
+            "segment": "right"
+          },
+          "light": 0,
+          "map_color": 9402184
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "south",
+            "segment": "left"
+          },
+          "light": 0,
+          "map_color": 9402184
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "south",
+            "segment": "right"
+          },
+          "light": 0,
+          "map_color": 9402184
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "west",
+            "segment": "left"
+          },
+          "light": 0,
+          "map_color": 9402184
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "west",
+            "segment": "right"
+          },
+          "light": 0,
+          "map_color": 9402184
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "east",
+            "segment": "left"
+          },
+          "light": 0,
+          "map_color": 9402184
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "east",
+            "segment": "right"
+          },
+          "light": 0,
+          "map_color": 9402184
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Learning has never been so much fun!\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is a block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.1.0\"}}. It offers an in-game interface for the online wiki for the {{\"of\":\"to_base:tag / to_base:to_series\"}} of mods.\n\n# User Interface\nTo open the user interface, right-click the {{\"of\":\"self\"}}. If you\u0027re holding an item relevant to the mod, you are taken straight to the item\u0027s article. Otherwise, the main menu opens.\n\n## Main Menu\nFrom the homepage, you can open a list of all articles for the To mods. You can also view lists of just blocks, items, and mobs available in the mods, or lists of articles from individual To mods.\n\nYou can also click highlighted items in your inventory to view their articles.\n\nThe top of the homepage allows you to search for articles by name.\n\n## Articles\nArticles are clickable wiki-like pages that provide information about a given topic, such as a block or an item.\n\n# Placement\nWhen placed down in the world, the {{\"of\":\"self\"}} will face the player. It is 2 blocks wide; when the player clicks to place the desk, the left side of the block will be at the cursor.\n\nIf the right side of the desk is obstructed, the desk will be placed right side at the cursor instead."
+    }
+  }
+}

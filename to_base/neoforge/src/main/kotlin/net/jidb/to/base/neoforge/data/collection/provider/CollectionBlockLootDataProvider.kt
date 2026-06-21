@@ -1,7 +1,7 @@
 package net.jidb.to.base.neoforge.data.collection.provider
 
-import net.jidb.to.base.data.collection.DataCollection
-import net.jidb.to.base.data.collection.event.BlockLootDataCollectionEvent
+import net.jidb.to.base.data.api.collection.DataCollection
+import net.jidb.to.base.data.api.collection.event.BlockLootDataCollectionEvent
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.loot.BlockLootSubProvider
 import net.minecraft.world.flag.FeatureFlags

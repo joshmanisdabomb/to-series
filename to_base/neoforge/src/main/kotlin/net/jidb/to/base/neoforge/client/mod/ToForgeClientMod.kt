@@ -1,6 +1,6 @@
 package net.jidb.to.base.neoforge.client.mod
 
-import net.jidb.to.base.client.mod.ToPlatformClientMod
+import net.jidb.to.base.client.api.mod.ToPlatformClientMod
 import net.jidb.to.base.neoforge.client.data.mod.ToForgeDataMod
 import net.jidb.to.base.neoforge.client.platform.*
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
@@ -21,11 +21,14 @@ abstract class ToForgeClientMod : ToPlatformClientMod {
         MOD_BUS.addListener(::onGatherData)
         eventHandler?.also(FORGE_BUS::register)
 
+        BlocksForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         EntitiesForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         NetworkingForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         ParticleForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         ScreenForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         ReloadListenerForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
+        ModelsForgeClientPlatformModule.layer_registry.addListener(client.common.modid, MOD_BUS)
+        ModelsForgeClientPlatformModule.special_registry.addListener(client.common.modid, MOD_BUS)
     }
 
     abstract fun subscribeStub(event: FMLConstructModEvent)

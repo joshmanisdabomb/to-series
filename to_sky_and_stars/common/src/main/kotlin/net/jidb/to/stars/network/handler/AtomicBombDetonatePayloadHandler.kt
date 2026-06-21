@@ -1,6 +1,6 @@
 package net.jidb.to.stars.network.handler
 
-import net.jidb.to.base.network.ServerPayloadContext
+import net.jidb.to.base.api.network.ServerPayloadContext
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.entity.AtomicBombBlockEntity
 import net.jidb.to.stars.inventory.menu.AtomicBombMenu
