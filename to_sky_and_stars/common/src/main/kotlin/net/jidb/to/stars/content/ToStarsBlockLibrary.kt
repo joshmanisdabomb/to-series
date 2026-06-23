@@ -1,6 +1,5 @@
 package net.jidb.to.stars.content
 
-import net.jidb.to.base.api.block.properties.ExtendedBlockProperties
 import net.jidb.to.base.pub.library.BlockLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.*
@@ -38,8 +37,6 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .lightLevel { 15 }
         .sound(SoundType.SCULK_SENSOR)
         .pushReaction(PushReaction.DESTROY)) }
-        .tag(properties, ExtendedBlockProperties()
-            .renderLayer(ExtendedBlockProperties.RenderLayer.CUTOUT))
 
     val uranium_ore by this { entry -> DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
@@ -102,12 +99,12 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .strength(4.0F, 5.0F)
         .instrument(NoteBlockInstrument.TRUMPET)
         .sound(SoundType.COPPER_GOLEM_STATUE)) }
-    val iron_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of()
+    val gold_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
-        .mapColor(MapColor.METAL)
+        .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
         .strength(5.0F, 9.0F)
-        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .instrument(NoteBlockInstrument.BELL)
         .sound(SoundType.NETHERITE_BLOCK)) }
 
     val copper_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
@@ -117,12 +114,12 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .strength(4.0F, 5.0F)
         .instrument(NoteBlockInstrument.TRUMPET)
         .sound(SoundType.COPPER_GOLEM_STATUE)) }
-    val iron_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
+    val gold_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
-        .mapColor(MapColor.DEEPSLATE)
+        .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
         .strength(3.0F, 8.0F)
-        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .instrument(NoteBlockInstrument.BELL)
         .sound(SoundType.COPPER_BULB)) }
 
     val power_cable by this { entry -> LossyToEnergyCableBlock(0.02f, BlockBehaviour.Properties.of()

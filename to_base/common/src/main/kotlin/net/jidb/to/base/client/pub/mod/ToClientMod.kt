@@ -2,9 +2,9 @@ package net.jidb.to.base.client.pub.mod
 
 import net.jidb.to.base.api.mod.ToContentMod
 import net.jidb.to.base.api.mod.ToModListener
-import net.jidb.to.base.client.api.block.properties.ExtendedClientBlockProperties
 import net.jidb.to.base.client.api.mod.IToClientMod
 import net.jidb.to.base.client.api.mod.ToContentClientMod
+import net.jidb.to.base.client.api.properties.ExtendedClientBlockProperties
 
 abstract class ToClientMod : IToClientMod, ToContentClientMod, ToModListener<ToClientMod> {
 
@@ -22,6 +22,8 @@ abstract class ToClientMod : IToClientMod, ToContentClientMod, ToModListener<ToC
         payloadHandlers?.build()
         modelLayers?.build()
         specialModels?.build()
+        blockTints?.build()
+        itemTints?.build()
         particles?.build()
         screens?.build()
         events?.build()

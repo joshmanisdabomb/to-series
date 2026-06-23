@@ -10,6 +10,11 @@ class ClientSide : Side {
 
     override val side = SideType.CLIENT
 
+    override fun getClientLevel() = minecraft.level
+    override fun getClientPlayer() = minecraft.player
+
     override fun hasShiftDown() = minecraft.hasShiftDown()
+    override fun hasAltDown() = minecraft.hasAltDown()
+    override fun hasControlDown() = minecraft.hasControlDown()
 
 }

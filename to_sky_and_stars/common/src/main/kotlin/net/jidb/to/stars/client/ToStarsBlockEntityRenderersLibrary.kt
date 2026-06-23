@@ -2,7 +2,7 @@ package net.jidb.to.stars.client
 
 import net.jidb.to.base.client.pub.library.BlockEntityRendererLibrary
 import net.jidb.to.stars.ToStarsMod
-import net.jidb.to.stars.client.block.EnergyStorageBlockEntityRenderer
+import net.jidb.to.stars.client.block.render.EnergyStorageBlockEntityRenderer
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
 
 object ToStarsBlockEntityRenderersLibrary : BlockEntityRendererLibrary(ToStarsMod.modid) {

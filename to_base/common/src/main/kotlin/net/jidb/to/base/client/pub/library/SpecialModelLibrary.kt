@@ -12,7 +12,7 @@ open class SpecialModelLibrary(modid: String) : SimpleLibrary<MapCodec<out Speci
     operator fun <R : SpecialModelRenderer.Unbaked<*>> invoke(model: MapCodec<R>, id: Identifier? = null): Library<MapCodec<out SpecialModelRenderer.Unbaked<*>>, MapCodec<out SpecialModelRenderer.Unbaked<*>>>.LibraryEntry<MapCodec<R>, MapCodec<R>> {
         return invoke({
             val model = it()
-            ClientServices.platform.models.registerSpecialModel(this.id, model);
+            ClientServices.platform.models.registerSpecialModel(id ?: this.id, model);
             { model }
         }, { model })
     }

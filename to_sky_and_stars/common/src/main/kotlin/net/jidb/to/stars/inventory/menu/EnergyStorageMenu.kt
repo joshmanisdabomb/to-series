@@ -22,8 +22,8 @@ class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val contai
 
         container.startOpen(playerInventory.player)
 
-        addSlot(EnergyItemSlot(container, 0, 69, 36))
-        addSlot(EnergyItemSlot(container, 1, 91, 36))
+        addSlot(EnergyItemSlot(container, 0, 69, 36, ::slotsChanged))
+        addSlot(EnergyItemSlot(container, 1, 91, 36, ::slotsChanged))
 
         addStandardInventorySlots(playerInventory, 8, 83)
 

@@ -7,6 +7,8 @@ flavor: "We've got the energy, I'll tell you all about it!"
 
 This release adds features focused on allowing mods to transfer energy and items between blocks and items.
 
+This version of the mod and all downstream {{"of": "to_base:tag / to_base:to_series"}} mods has been updated to Minecraft 26.1.2.
+
 # In this Release
 
 ## Additions

@@ -4,7 +4,7 @@ import net.jidb.to.base.client.data.api.collection.event.ModelClientDataCollecti
 import net.jidb.to.base.client.data.api.collection.module.ClientDataCollectionModule
 import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.stars.ToStarsMod
-import net.jidb.to.stars.client.render.special.EnergyStorageSpecialRenderer
+import net.jidb.to.stars.client.item.render.EnergyStorageSpecialRenderer
 import net.jidb.to.stars.neoforge.client.data.ToStarsModels
 import net.minecraft.client.data.models.model.ItemModelUtils
 import net.minecraft.client.data.models.model.ModelLocationUtils

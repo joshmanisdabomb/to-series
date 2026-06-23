@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "to_sky_and_stars:item/gold_battery",
+    "layer1": "to_sky_and_stars:item/gold_battery_overlay"
+  }
+}

@@ -13,6 +13,6 @@ object ToStarsBlockEntityLibrary : SimpleRegistryLibrary<BlockEntityType<*>>(ToS
     override val registry = BuiltInRegistries.BLOCK_ENTITY_TYPE
 
     val atomic_bomb by this { Services.platform.blocks.createBlockEntityType(::AtomicBombBlockEntity, ToStarsMod.blocks.atomic_bomb) }
-    val power_bank by this { Services.platform.blocks.createBlockEntityType(::EnergyStorageBlockEntity, ToStarsMod.blocks.copper_power_bank, ToStarsMod.blocks.iron_power_bank) }
+    val power_bank by this { Services.platform.blocks.createBlockEntityType(::EnergyStorageBlockEntity, ToStarsMod.blocks.copper_power_bank, ToStarsMod.blocks.gold_power_bank) }
 
 }

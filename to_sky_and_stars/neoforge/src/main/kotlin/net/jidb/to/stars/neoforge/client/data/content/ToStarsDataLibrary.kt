@@ -5,6 +5,7 @@ import net.jidb.to.base.client.data.pub.collection.module.lang.StorageIdentifier
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FireBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FullRotatingBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.SimpleBlockModelClientDataCollectionModule
+import net.jidb.to.base.client.data.pub.collection.module.model.item.TintedItemModelClientDataCollectionModule
 import net.jidb.to.base.data.api.library.DataCollectionLibrary
 import net.jidb.to.base.data.pub.collection.module.loot.CustomBlockLootDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.loot.NoopBlockLootDataCollectionModule
@@ -21,6 +22,7 @@ import net.jidb.to.base.data.pub.collection.module.tag.SimpleItemTagDataCollecti
 import net.jidb.to.base.neoforge.client.content.data.module.Cable4BlockModelClientDataCollectionModule
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.AtomicBombBlock
+import net.jidb.to.stars.client.item.tint.BatteryItemTint
 import net.jidb.to.stars.neoforge.client.data.module.AtomicBombBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.HeatCableBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.PowerBankModelClientDataCollectionModule
@@ -110,7 +112,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     }
 
     val machine_enclosure_tier_1 by this {
-        addAffects(clear = true) { listOf(ToStarsMod.blocks.copper_machine_enclosure, ToStarsMod.blocks.iron_machine_enclosure).any { block -> block.identifier.path == it.identifier().path } }
+        addAffects(clear = true) { listOf(ToStarsMod.blocks.copper_machine_enclosure, ToStarsMod.blocks.gold_machine_enclosure).any { block -> block.identifier.path == it.identifier().path } }
         addModule { SimpleBlockModelClientDataCollectionModule(TexturedModel.CUBE_TOP_BOTTOM.updateTexture {
             val material = it.get(TextureSlot.BOTTOM)
             it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom"), material.forceTranslucent))
@@ -129,19 +131,23 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, Items.COPPER_INGOT)
             this
         } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.root_advancement_unlock) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_power_bank_unlock) }
     }
-    val iron_machine_enclosure by this {
+    val gold_machine_enclosure by this {
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
-            pattern("iii")
+            pattern("ggg")
             pattern("rMr")
-            pattern("rIr")
+            pattern("iGi")
             define('r', Items.REDSTONE)
             define('M', ToStarsMod.blocks.copper_machine_enclosure)
-            define('I', Blocks.IRON_BLOCK)
+            define('G', Blocks.GOLD_BLOCK)
+            define('g', Items.GOLD_INGOT)
             define('i', Items.IRON_INGOT)
             event.helper.createHas(this, ToStarsMod.blocks.copper_machine_enclosure)
             this
         } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_battery_unlock) }
     }
 
     val power_cable by this {
@@ -172,45 +178,81 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     }
 
     val power_bank_tier_1 by this {
-        addAffects(clear = true) { listOf(ToStarsMod.blocks.copper_power_bank, ToStarsMod.blocks.iron_power_bank).any { block -> block.identifier.path == it.identifier().path } }
+        addAffects(clear = true) { listOf(ToStarsMod.blocks.copper_power_bank, ToStarsMod.blocks.gold_power_bank).any { block -> block.identifier.path == it.identifier().path } }
         addModule { PowerBankModelClientDataCollectionModule(1) }
-        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule(::EnergySilkBlockLootDataCollectionModule)
     }
     val copper_power_bank by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
             pattern("bpb")
             pattern("bpb")
             pattern("RMR")
-            define('b', Items.REDSTONE) //TODO battery
+            define('b', ToStarsMod.itemTags.batteries)
             define('R', Blocks.REDSTONE_BLOCK)
             define('M', ToStarsMod.blocks.copper_machine_enclosure)
             define('p', ToStarsMod.blocks.power_cable)
-            event.helper.createHas(this, Items.REDSTONE /*TODO battery*/, ToStarsMod.blocks.copper_machine_enclosure)
+            event.helper.createHas(this, ToStarsMod.itemTags.copper_power_bank_unlock)
             this
         } }
     }
-    val iron_power_bank by this {
+    val gold_power_bank by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
             pattern("bpb")
             pattern("bpb")
             pattern("RMR")
-            define('b', Items.REDSTONE) //TODO battery
+            define('b', ToStarsMod.itemTags.batteries)
             define('R', Blocks.REDSTONE_BLOCK)
-            define('M', ToStarsMod.blocks.iron_machine_enclosure)
+            define('M', ToStarsMod.blocks.gold_machine_enclosure)
             define('p', ToStarsMod.blocks.power_cable)
-            event.helper.createHas(this, ToStarsMod.blocks.iron_machine_enclosure)
+            event.helper.createHas(this, ToStarsMod.blocks.gold_machine_enclosure)
             this
         } }
         addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().path + "_from_upgrade") { collection, event ->
-            pattern("iii")
+            pattern("ggg")
             pattern("rMr")
-            pattern("rIr")
+            pattern("iGi")
             define('r', Items.REDSTONE)
             define('M', ToStarsMod.blocks.copper_power_bank)
-            define('I', Blocks.IRON_BLOCK)
+            define('G', Blocks.GOLD_BLOCK)
+            define('g', Items.GOLD_INGOT)
             define('i', Items.IRON_INGOT)
-            event.helper.createHas(this, ToStarsMod.blocks.iron_machine_enclosure, ToStarsMod.blocks.copper_power_bank)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_power_bank)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_battery_unlock) }
+    }
+
+    val batteries by this {
+        addAffects(clear = true) { it.identifier().path.endsWith("_battery") }
+        addModule { TintedItemModelClientDataCollectionModule(BatteryItemTint()) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.batteries) }
+    }
+    val copper_battery by this {
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern(" n ")
+            pattern("crc")
+            pattern("crc")
+            define('n', Items.IRON_NUGGET)
+            define('c', Items.COPPER_INGOT)
+            define('r', Items.REDSTONE)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_machine_enclosure)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_power_bank_unlock) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_battery_unlock) }
+    }
+    val gold_battery by this {
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern(" i ")
+            pattern("gbg")
+            pattern("grg")
+            define('b', ToStarsMod.items.copper_battery)
+            define('i', Items.IRON_INGOT)
+            define('g', Items.GOLD_INGOT)
+            define('r', Blocks.REDSTONE_BLOCK)
+            event.helper.createHas(this, ToStarsMod.itemTags.gold_battery_unlock)
             this
         } }
     }

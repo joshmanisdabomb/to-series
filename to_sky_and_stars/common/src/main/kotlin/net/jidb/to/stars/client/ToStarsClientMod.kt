@@ -13,7 +13,7 @@ object ToStarsClientMod : ToClientMod() {
     override val entityRenderers = ToStarsEntityRenderersLibrary
     override val modelLayers = ToStarsModelLayersLibrary
     override val specialModels = ToStarsSpecialModelLibrary
+    override val itemTints = ToStarsItemTintsLibrary
     override val particles = ToStarsClientParticleLibrary
     override val screens = ToStarsScreenLibrary
-
 }

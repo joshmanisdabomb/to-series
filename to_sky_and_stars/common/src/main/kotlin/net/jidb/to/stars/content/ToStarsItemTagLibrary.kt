@@ -10,7 +10,10 @@ object ToStarsItemTagLibrary : TagLibrary<Item>(ToStarsMod.modid) {
     override val registryKey = Registries.ITEM
 
     val root_advancement_unlock by this()
+    val copper_power_bank_unlock by this()
+    val gold_battery_unlock by this()
 
     val enriched_uranium by this()
+    val batteries by this()
 
 }

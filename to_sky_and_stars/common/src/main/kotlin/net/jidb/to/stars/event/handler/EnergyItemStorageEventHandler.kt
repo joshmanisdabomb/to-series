@@ -10,7 +10,9 @@ class EnergyItemStorageEventHandler : EventHandler<ModifyItemComponentEventConte
 
     override fun invoke(context: ModifyItemComponentEventContext) {
         context.modify(ToStarsMod.blocks.copper_power_bank) { components, item -> components.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(0, ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.maxInput, ToStarsMod.blocks.copper_power_bank.machine.maxOutput)) }
-        context.modify(ToStarsMod.blocks.iron_power_bank) { components, item -> components.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(0, ToStarsMod.blocks.iron_power_bank.machine.bankStorage, ToStarsMod.blocks.iron_power_bank.machine.maxInput, ToStarsMod.blocks.iron_power_bank.machine.maxOutput)) }
+        context.modify(ToStarsMod.blocks.gold_power_bank) { components, item -> components.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(0, ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.maxInput, ToStarsMod.blocks.gold_power_bank.machine.maxOutput)) }
+        context.modify(ToStarsMod.items.copper_battery) { components, item -> components.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(0, ToStarsMod.items.copper_battery.machine.batteryStorage, ToStarsMod.items.copper_battery.machine.maxInput, ToStarsMod.items.copper_battery.machine.maxOutput)) }
+        context.modify(ToStarsMod.items.gold_battery) { components, item -> components.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(0, ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.maxInput, ToStarsMod.items.gold_battery.machine.maxOutput)) }
     }
 
 }

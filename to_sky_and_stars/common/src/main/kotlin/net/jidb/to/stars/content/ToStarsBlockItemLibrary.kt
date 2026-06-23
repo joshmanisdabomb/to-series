@@ -7,6 +7,7 @@ import net.jidb.to.base.pub.library.BlockItemLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.info.MachineTier
 import net.jidb.to.stars.info.ToStarsTooltipEngine
+import net.jidb.to.stars.item.BatteryBlockItem
 import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
@@ -21,16 +22,16 @@ object ToStarsBlockItemLibrary : BlockItemLibrary(ToStarsMod.MOD_ID, ToStarsMod.
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }
-    val iron_machine_enclosure by this { block, initial -> BlockItem(block!!(), Item.Properties()
+    val gold_machine_enclosure by this { block, initial -> BlockItem(block!!(), Item.Properties()
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }
 
-    val copper_power_bank by this { block, initial -> BlockItem(block!!(), Item.Properties()
+    val copper_power_bank by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }
-    val iron_power_bank by this { block, initial -> BlockItem(block!!(), Item.Properties()
+    val gold_power_bank by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }

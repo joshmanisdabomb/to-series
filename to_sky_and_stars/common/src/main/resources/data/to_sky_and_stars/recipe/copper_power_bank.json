@@ -4,7 +4,7 @@
   "key": {
     "M": "to_sky_and_stars:copper_machine_enclosure",
     "R": "minecraft:redstone_block",
-    "b": "minecraft:redstone",
+    "b": "#to_sky_and_stars:batteries",
     "p": "to_sky_and_stars:power_cable"
   },
   "pattern": [

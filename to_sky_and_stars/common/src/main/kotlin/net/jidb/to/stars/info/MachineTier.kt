@@ -9,6 +9,7 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val maxInput = 256L
         override val maxOutput = 256L
 
+        override val batteryStorage = 4000L
         override val bankStorage = 40000L
 
         override val machineBuffer = 4000L
@@ -20,17 +21,19 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val maxInput = 512L
         override val maxOutput = 512L
 
+        override val batteryStorage = 12000L
         override val bankStorage = 100000L
 
         override val machineBuffer = 10000L
         override val machineSpeed = 0.75f
 
-        override val chatColor = ChatFormatting.WHITE.color!!
+        override val chatColor = ChatFormatting.YELLOW.color!!
     };
 
     abstract val maxInput: Long
     abstract val maxOutput: Long
 
+    abstract val batteryStorage: Long
     abstract val bankStorage: Long
 
     abstract val machineBuffer: Long

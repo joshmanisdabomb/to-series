@@ -1,7 +1,7 @@
 package net.jidb.to.base.content
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.api.block.properties.ExtendedBlockProperties
+import net.jidb.to.base.api.properties.ExtendedBlockProperties
 import net.jidb.to.base.content.block.ResearchDeskBlock
 import net.jidb.to.base.pub.block.HorizontalGenericBlock
 import net.jidb.to.base.pub.library.BlockLibrary

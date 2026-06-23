@@ -1,5 +1,6 @@
 package net.jidb.to.base.mixin.client;
 
+import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ItemModelOutput;
 import net.minecraft.client.data.models.model.ModelInstance;
@@ -22,4 +23,7 @@ public interface ItemModelGeneratorsAccessor {
 
     @Invoker("generateFlatItem")
     void to_base$generateFlatItem(Item item, ModelTemplate modelTemplate);
+
+    @Invoker("generateItemWithTintedOverlay")
+    void to_base$generateItemWithTintedOverlay(Item item, String overlaySuffix, ItemTintSource overlayTint);
 }

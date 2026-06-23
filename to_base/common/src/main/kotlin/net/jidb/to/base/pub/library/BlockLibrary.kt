@@ -1,8 +1,8 @@
 package net.jidb.to.base.pub.library
 
-import net.jidb.to.base.api.block.properties.ExtendedBlockProperties
 import net.jidb.to.base.api.library.LibraryTagList
 import net.jidb.to.base.api.library.SimpleRegistryLibrary
+import net.jidb.to.base.api.properties.ExtendedBlockProperties
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.level.block.Block
 

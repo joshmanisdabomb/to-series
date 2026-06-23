@@ -29,6 +29,8 @@ abstract class ToForgeClientMod : ToPlatformClientMod {
         ReloadListenerForgeClientPlatformModule.registry.addListener(client.common.modid, MOD_BUS)
         ModelsForgeClientPlatformModule.layer_registry.addListener(client.common.modid, MOD_BUS)
         ModelsForgeClientPlatformModule.special_registry.addListener(client.common.modid, MOD_BUS)
+        ModelsForgeClientPlatformModule.block_tint_registry.addListener(client.common.modid, MOD_BUS)
+        ModelsForgeClientPlatformModule.item_tint_registry.addListener(client.common.modid, MOD_BUS)
     }
 
     abstract fun subscribeStub(event: FMLConstructModEvent)

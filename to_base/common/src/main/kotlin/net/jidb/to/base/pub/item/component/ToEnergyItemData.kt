@@ -15,7 +15,6 @@ data class ToEnergyItemData(val energy: Long, val max: Long, val maxInput: Long,
 
     override fun addToTooltip(context: Item.TooltipContext, consumer: Consumer<Component>, flag: TooltipFlag, components: DataComponentGetter) {
         ToBaseTooltipEngine.getEnergyItemInfo(this, Services.side.hasShiftDown()).forEach(consumer::accept)
-        flag.isAdvanced
     }
 
     companion object {

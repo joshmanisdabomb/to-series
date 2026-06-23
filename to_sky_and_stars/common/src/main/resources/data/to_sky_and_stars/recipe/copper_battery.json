@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "c": "minecraft:copper_ingot",
+    "n": "minecraft:iron_nugget",
+    "r": "minecraft:redstone"
+  },
+  "pattern": [
+    " n ",
+    "crc",
+    "crc"
+  ],
+  "result": {
+    "id": "to_sky_and_stars:copper_battery"
+  }
+}

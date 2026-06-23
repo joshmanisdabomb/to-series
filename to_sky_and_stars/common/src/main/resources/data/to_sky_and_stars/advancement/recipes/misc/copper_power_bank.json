@@ -1,14 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_redstone_or_copper_machine_enclosure": {
+    "has_copper_power_bank_unlock": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:redstone"
-          },
-          {
-            "items": "to_sky_and_stars:copper_machine_enclosure"
+            "items": "#to_sky_and_stars:copper_power_bank_unlock"
           }
         ]
       },
@@ -24,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_redstone_or_copper_machine_enclosure"
+      "has_copper_power_bank_unlock"
     ]
   ],
   "rewards": {

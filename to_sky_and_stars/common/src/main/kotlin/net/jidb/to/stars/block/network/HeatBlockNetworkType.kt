@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState
 class HeatBlockNetworkType : BlockNetworkType() {
 
     override fun getPositionType(level: LevelReader, pos: BlockPos, state: BlockState, from: Direction?): BlockNetworkPositionType? {
-        if (from == Direction.UP && state.block.identifier == Identifier.fromNamespaceAndPath("to_sky_and_stars", "iron_machine_enclosure")) return BlockNetworkPositionType.NODE
+        if (from == Direction.UP && state.block.identifier == Identifier.fromNamespaceAndPath("to_sky_and_stars", "gold_machine_enclosure")) return BlockNetworkPositionType.NODE
         if (state.block is HeatCableBlock) return BlockNetworkPositionType.PATH
         return null
     }

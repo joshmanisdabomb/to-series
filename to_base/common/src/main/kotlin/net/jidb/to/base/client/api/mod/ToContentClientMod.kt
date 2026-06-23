@@ -14,6 +14,8 @@ interface ToContentClientMod {
     val payloadHandlers: ClientPayloadHandlerLibrary? get() = null
     val modelLayers: ModelLayerLibrary? get() = null
     val specialModels: SpecialModelLibrary? get() = null
+    val blockTints: BlockTintLibrary? get() = null
+    val itemTints: ItemTintLibrary? get() = null
     val particles: ParticleLibrary? get() = null
     val screens: ScreenLibrary? get() = null
     val events: SimpleLibrary<Event<*, *>>? get() = null
