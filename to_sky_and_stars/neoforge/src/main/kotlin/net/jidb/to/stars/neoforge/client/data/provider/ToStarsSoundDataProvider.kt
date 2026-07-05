@@ -41,6 +41,19 @@ class ToStarsSoundDataProvider(output: PackOutput, provider: CompletableFuture<H
             }))
             .subtitle("subtitles." + ToStarsMod.sounds.atomic_bomb_cut.location.toString().replace(":", "."))
         )
+
+        add(ToStarsMod.sounds.generator_crackle, SoundDefinition.definition()
+            .with(*Array(4, { k ->
+                sound(ToStarsMod.sounds.generator_crackle.location.withPath { it.replace('.', '/') }.withSuffix("${k+1}"), SoundDefinition.SoundType.SOUND)
+            }))
+            .subtitle("subtitles." + ToStarsMod.sounds.generator_crackle.location.toString().replace(":", "."))
+        )
+        add(ToStarsMod.sounds.generator_empty, SoundDefinition.definition()
+            .with(
+                sound(ToStarsMod.sounds.generator_empty.location.withPath { it.replace('.', '/') }, SoundDefinition.SoundType.SOUND)
+            )
+            .subtitle("subtitles." + ToStarsMod.sounds.generator_empty.location.toString().replace(":", "."))
+        )
     }
 
 }

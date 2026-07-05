@@ -30,6 +30,8 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             output(ItemStack(ToStarsMod.blocks.heavy_uranium_shielding))
             output(ItemStack(ToStarsMod.blocks.copper_machine_enclosure))
             output(ItemStack(ToStarsMod.blocks.gold_machine_enclosure))
+            output(ItemStack(ToStarsMod.blocks.copper_solid_generator))
+            output(ItemStack(ToStarsMod.blocks.gold_solid_generator))
             output(ItemStack(ToStarsMod.blocks.copper_power_bank))
             output(ItemStack(ToStarsMod.blocks.copper_power_bank).also {
                 it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.maxInput, ToStarsMod.blocks.copper_power_bank.machine.maxOutput))

@@ -5,6 +5,7 @@ import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.inventory.menu.AtomicBombMenu
 import net.jidb.to.stars.inventory.menu.EnergyStorageMenu
+import net.jidb.to.stars.inventory.menu.SolidGeneratorMenu
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.world.inventory.MenuType
@@ -15,5 +16,6 @@ object ToStarsMenuLibrary : SimpleRegistryLibrary<MenuType<*>>(ToStarsMod.modid)
 
     val atomic_bomb by this { Services.platform.inventory.createMenuType(::AtomicBombMenu, FeatureFlags.DEFAULT_FLAGS) }
     val energy_storage by this { Services.platform.inventory.createMenuType(::EnergyStorageMenu, FeatureFlags.DEFAULT_FLAGS) }
+    val solid_generator by this { Services.platform.inventory.createMenuType(::SolidGeneratorMenu, FeatureFlags.DEFAULT_FLAGS) }
 
 }

@@ -6,11 +6,11 @@ import net.jidb.to.base.data.api.collection.DataCollection
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceKey
 
-open class IdentifierLanguageClientDataCollectionModule() : ClientDataCollectionModule() {
+open class IdentifierLanguageClientDataCollectionModule(val modifyId: (id: String) -> String = { it }) : ClientDataCollectionModule() {
 
     override fun generateLang(collection: DataCollection<*>, event: LangClientDataCollectionEvent): Map<String, Map<String, Component>>? {
         val translationKey = getTranslationKey(collection.entry)
-        val name = inflector(getEntryName(collection.entry))
+        val name = inflector(modifyId(getEntryName(collection.entry)))
         return mapOf("en_us" to mapOf(translationKey to Component.literal(name)))
     }
 
@@ -20,9 +20,7 @@ open class IdentifierLanguageClientDataCollectionModule() : ClientDataCollection
 
     protected open fun inflector(name: String) = name
         .replace('_', ' ')
-        .split(' ')
-        .joinToString(" ") {
-            it.replaceFirstChar { it.uppercase() }
-        }
+        .split(' ').joinToString(" ") { it.replaceFirstChar(Char::uppercase) }
+        .split('-').joinToString("-") { it.replaceFirstChar(Char::uppercase) }
 
 }

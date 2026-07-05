@@ -10,10 +10,10 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.EnumProperty
 
 object BlockHelper {
-    fun horizontalPlacement(state: BlockState, context: BlockPlaceContext, property: EnumProperty<Direction> = HorizontalDirectionalBlock.FACING): BlockState {
+    fun horizontalPlayerPlacement(state: BlockState, context: BlockPlaceContext, property: EnumProperty<Direction> = HorizontalDirectionalBlock.FACING): BlockState {
         return state.setValue(property, context.horizontalDirection.opposite)
     }
-    fun Block.horizontalPlacement(context: BlockPlaceContext, property: EnumProperty<Direction> = HorizontalDirectionalBlock.FACING) = horizontalPlacement(defaultBlockState(), context, property)
+    fun Block.horizontalPlayerPlacement(context: BlockPlaceContext, property: EnumProperty<Direction> = HorizontalDirectionalBlock.FACING) = horizontalPlayerPlacement(defaultBlockState(), context, property)
 
     fun horizontalFacePlacement(state: BlockState, context: BlockPlaceContext, default: Direction = context.horizontalDirection.opposite, property: EnumProperty<Direction> = HorizontalDirectionalBlock.FACING): BlockState {
         return state.setValue(property, context.clickedFace.let { if (it.axis == Direction.Axis.Y) default else it })

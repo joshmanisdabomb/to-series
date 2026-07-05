@@ -15,5 +15,6 @@ object ToStarsItemTagLibrary : TagLibrary<Item>(ToStarsMod.modid) {
 
     val enriched_uranium by this()
     val batteries by this()
+    val heat_generator_2x by this()
 
 }

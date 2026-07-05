@@ -51,17 +51,16 @@ class EnergyStorageBlock(val machine: MachineTier, properties: Properties) : Bas
 
     override fun mirror(state: BlockState, mirror: Mirror) = state.rotate(mirror.getRotation(state.getValue(FACING)))
 
-    override fun codec() = CODEC
+    override fun codec() = codec
 
     companion object {
-        val CODEC =
-            RecordCodecBuilder.mapCodec {
-                it.group(
-                    MachineTier.CODEC.fieldOf("machine").forGetter(EnergyStorageBlock::machine),
-                    propertiesCodec()
-                )
-                    .apply(it, ::EnergyStorageBlock)
-            }
+        val codec = RecordCodecBuilder.mapCodec {
+            it.group(
+                MachineTier.codec.fieldOf("machine").forGetter(EnergyStorageBlock::machine),
+                propertiesCodec()
+            )
+                .apply(it, ::EnergyStorageBlock)
+        }
     }
 
 }

@@ -36,6 +36,15 @@ object ToStarsBlockItemLibrary : BlockItemLibrary(ToStarsMod.MOD_ID, ToStarsMod.
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }
 
+    val copper_solid_generator by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getGeneratorInfo(MachineTier.ONE)))) }
+    val gold_solid_generator by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getGeneratorInfo(MachineTier.ONE_5)))) }
+
     val power_cable by this { block, initial -> BlockItem(block!!(), Item.Properties()
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))
         .useBlockDescriptionPrefix()

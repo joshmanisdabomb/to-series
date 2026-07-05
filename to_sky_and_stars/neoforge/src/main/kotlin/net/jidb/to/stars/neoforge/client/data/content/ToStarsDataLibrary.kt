@@ -1,6 +1,6 @@
 package net.jidb.to.stars.neoforge.client.data.content
 
-import net.jidb.to.base.api.helper.IdentifierHelper.identifier
+import net.jidb.to.base.client.data.pub.collection.module.lang.IdentifierLanguageClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.lang.StorageIdentifierLanguageClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FireBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FullRotatingBlockModelClientDataCollectionModule
@@ -25,6 +25,7 @@ import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.item.tint.BatteryItemTint
 import net.jidb.to.stars.neoforge.client.data.module.AtomicBombBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.HeatCableBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.LitMachineBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.PowerBankModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.data.module.EnergySilkBlockLootDataCollectionModule
 import net.minecraft.client.data.models.model.TextureSlot
@@ -112,12 +113,11 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     }
 
     val machine_enclosure_tier_1 by this {
-        addAffects(clear = true) { listOf(ToStarsMod.blocks.copper_machine_enclosure, ToStarsMod.blocks.gold_machine_enclosure).any { block -> block.identifier.path == it.identifier().path } }
+        addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_machine_enclosure") }
         addModule { SimpleBlockModelClientDataCollectionModule(TexturedModel.CUBE_TOP_BOTTOM.updateTexture {
             val material = it.get(TextureSlot.BOTTOM)
             it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom"), material.forceTranslucent))
         }) }
-        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
     }
     val copper_machine_enclosure by this {
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -133,6 +133,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.root_advancement_unlock) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_power_bank_unlock) }
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
     }
     val gold_machine_enclosure by this {
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -148,6 +149,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             this
         } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_battery_unlock) }
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
     }
 
     val power_cable by this {
@@ -177,10 +179,13 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule(::NoopBlockLootDataCollectionModule)
     }
 
-    val power_bank_tier_1 by this {
-        addAffects(clear = true) { listOf(ToStarsMod.blocks.copper_power_bank, ToStarsMod.blocks.gold_power_bank).any { block -> block.identifier.path == it.identifier().path } }
-        addModule { PowerBankModelClientDataCollectionModule(1) }
+    val power_banks by this {
+        addAffects(clear = true) { it.identifier().path.endsWith("_power_bank") }
         addModule(::EnergySilkBlockLootDataCollectionModule)
+    }
+    val power_bank_tier_1 by this {
+        addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_power_bank") }
+        addModule { PowerBankModelClientDataCollectionModule(1) }
     }
     val copper_power_bank by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
@@ -253,6 +258,70 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             define('g', Items.GOLD_INGOT)
             define('r', Blocks.REDSTONE_BLOCK)
             event.helper.createHas(this, ToStarsMod.itemTags.gold_battery_unlock)
+            this
+        } }
+    }
+
+    val generators by this {
+        addAffects(clear = true) { it.identifier().path.endsWith("_generator") }
+        addModule { IdentifierLanguageClientDataCollectionModule { it.replace("solid", "solid-fired").replace("fluid", "liquid-fired") } }
+    }
+    val generator_tier_1 by this {
+        addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_generator") }
+        addModule {
+            val unlit = TexturedModel.ORIENTABLE.updateTexture {
+                val bottom = it.get(TextureSlot.BOTTOM)
+                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom"), bottom.forceTranslucent))
+                val side = it.get(TextureSlot.SIDE)
+                it.put(TextureSlot.SIDE, Material(side.sprite.withPath { it.replace("_solid_generator", "_machine_enclosure") }, side.forceTranslucent))
+                val top = it.get(TextureSlot.TOP)
+                it.put(TextureSlot.TOP, Material(top.sprite.withPath { it.replace("solid_", "").replace("fluid_", "").replace("_top", "") }, top.forceTranslucent))
+                val front = it.get(TextureSlot.FRONT)
+                it.put(TextureSlot.FRONT, Material(front.sprite.withPath { it.replace("_front", "") }, front.forceTranslucent))
+            }
+            LitMachineBlockModelClientDataCollectionModule(unlit, unlit.updateTexture {
+                val top = it.get(TextureSlot.TOP)
+                it.put(TextureSlot.TOP, Material(top.sprite.withSuffix("_lit"), top.forceTranslucent))
+                val front = it.get(TextureSlot.FRONT)
+                it.put(TextureSlot.FRONT, Material(front.sprite.withSuffix("_lit"), front.forceTranslucent))
+            })
+        }
+    }
+    val copper_solid_generator by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern("e")
+            pattern("m")
+            pattern("f")
+            define('e', Blocks.IRON_BARS)
+            define('m', ToStarsMod.blocks.copper_machine_enclosure)
+            define('f', Blocks.FURNACE)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_machine_enclosure)
+            this
+        } }
+    }
+    val gold_solid_generator by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern("e")
+            pattern("m")
+            pattern("f")
+            define('e', Blocks.IRON_BARS)
+            define('m', ToStarsMod.blocks.gold_machine_enclosure)
+            define('f', Blocks.FURNACE)
+            event.helper.createHas(this, ToStarsMod.blocks.gold_machine_enclosure)
+            this
+        } }
+        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().path + "_from_upgrade") { collection, event ->
+            pattern("ggg")
+            pattern("rMr")
+            pattern("iGi")
+            define('r', Items.REDSTONE)
+            define('M', ToStarsMod.blocks.copper_solid_generator)
+            define('G', Blocks.GOLD_BLOCK)
+            define('g', Items.GOLD_INGOT)
+            define('i', Items.IRON_INGOT)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_solid_generator)
             this
         } }
     }

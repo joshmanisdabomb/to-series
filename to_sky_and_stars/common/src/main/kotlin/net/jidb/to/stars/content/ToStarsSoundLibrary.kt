@@ -13,4 +13,7 @@ object ToStarsSoundLibrary : SoundEventLibrary(ToStarsMod.MOD_ID) {
     val atomic_bomb_timer by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("entity.").withPath { it.replace("atomic_bomb_", "atomic_bomb.")}) }
     val atomic_bomb_cut by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("entity.").withPath { it.replace("atomic_bomb_", "atomic_bomb.")}) }
 
+    val generator_crackle by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("block.").withPath { it.replace("generator_", "generator.")}) }
+    val generator_empty by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("block.").withPath { it.replace("generator_", "generator.")}) }
+
 }

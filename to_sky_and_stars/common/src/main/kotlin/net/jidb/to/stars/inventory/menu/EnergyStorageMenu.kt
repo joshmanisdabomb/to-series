@@ -1,7 +1,7 @@
 package net.jidb.to.stars.inventory.menu
 
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.api.inventory.ContainerDataSchema
+import net.jidb.to.base.pub.block.entity.ToEnergyBlockEntityHandler
 import net.jidb.to.base.pub.inventory.slot.EnergyItemSlot
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.world.Container
@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack
 
 class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val container: Container, internal val data: ContainerData) : AbstractContainerMenu(ToStarsMod.menus.energy_storage, id) {
 
-    constructor(id: Int, playerInventory: Inventory) : this(id, playerInventory, SimpleContainer(allSlots.size), SimpleContainerData(dataSchema.getDataSize()))
+    constructor(id: Int, playerInventory: Inventory) : this(id, playerInventory, SimpleContainer(allSlots.size), SimpleContainerData(ToEnergyBlockEntityHandler.dataSchema.getDataSize()))
 
     init {
         checkContainerSize(container, allSlots.size)
@@ -27,7 +27,7 @@ class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val contai
 
         addStandardInventorySlots(playerInventory, 8, 83)
 
-        checkContainerDataCount(data, dataSchema.getDataSize())
+        checkContainerDataCount(data, ToEnergyBlockEntityHandler.dataSchema.getDataSize())
 
         addDataSlots(data)
     }
@@ -79,27 +79,6 @@ class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val contai
         val transferFromSlots = intArrayOf(0)
         val transferToSlots = intArrayOf(1)
         val allSlots = intArrayOf(*transferFromSlots, *transferToSlots)
-
-        val dataSchema = ContainerDataSchema<EnergyStorageDataKey>()
-            .defineLong(EnergyStorageDataKey.TOTAL)
-            .defineLong(EnergyStorageDataKey.CAPACITY)
-            .defineLong(EnergyStorageDataKey.MAX_INPUT)
-            .defineLong(EnergyStorageDataKey.MAX_OUTPUT)
-            .defineLong(EnergyStorageDataKey.INSERT_CHANGE)
-            .defineLong(EnergyStorageDataKey.INSERT_AVERAGE)
-            .defineLong(EnergyStorageDataKey.EXTRACT_CHANGE)
-            .defineLong(EnergyStorageDataKey.EXTRACT_AVERAGE)
-    }
-
-    enum class EnergyStorageDataKey {
-        TOTAL,
-        CAPACITY,
-        MAX_INPUT,
-        MAX_OUTPUT,
-        INSERT_CHANGE,
-        INSERT_AVERAGE,
-        EXTRACT_CHANGE,
-        EXTRACT_AVERAGE,
     }
 
 }

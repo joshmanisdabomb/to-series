@@ -25,7 +25,7 @@ class EnergyStorageBlockEntityRenderer(context: BlockEntityRendererProvider.Cont
 
     override fun extractRenderState(blockEntity: EnergyStorageBlockEntity, state: EnergyStorageBlockEntityState, partialTicks: Float, cameraPosition: Vec3, breakProgress: ModelFeatureRenderer.CrumblingOverlay?) {
         super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress)
-        state.fill = blockEntity.energy.toFloat() / blockEntity.capacity
+        state.fill = blockEntity.energy.energy.toFloat() / blockEntity.energy.capacity
         state.direction = blockEntity.blockState.getValue(DirectionalBlock.FACING)
     }
 

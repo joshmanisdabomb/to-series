@@ -15,6 +15,12 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val machineBuffer = 4000L
         override val machineSpeed = 0.5f
 
+        override val generatorHeat = 0.01f
+        override val generatorInitial = 100f
+        override val generatorRange = 250f
+        override val generatorBonus = 50f
+        override val generatorCooling = 0.99f
+
         override val chatColor = 0xFFE38407.toInt()
     },
     ONE_5(1.5f) {
@@ -26,6 +32,12 @@ enum class MachineTier(val number: Float) : StringRepresentable {
 
         override val machineBuffer = 10000L
         override val machineSpeed = 0.75f
+
+        override val generatorHeat = 0.015f
+        override val generatorInitial = 100f
+        override val generatorRange = 300f
+        override val generatorBonus = 100f
+        override val generatorCooling = 0.994f
 
         override val chatColor = ChatFormatting.YELLOW.color!!
     };
@@ -39,12 +51,18 @@ enum class MachineTier(val number: Float) : StringRepresentable {
     abstract val machineBuffer: Long
     abstract val machineSpeed: Float
 
+    abstract val generatorHeat: Float
+    abstract val generatorInitial: Float
+    abstract val generatorRange: Float
+    abstract val generatorBonus: Float
+    abstract val generatorCooling: Float
+
     abstract val chatColor: Int
 
     override fun getSerializedName() = name.lowercase()
 
     companion object {
-        val CODEC = StringRepresentable.fromEnum(::values)
+        val codec = StringRepresentable.fromEnum(::values)
     }
 
 }

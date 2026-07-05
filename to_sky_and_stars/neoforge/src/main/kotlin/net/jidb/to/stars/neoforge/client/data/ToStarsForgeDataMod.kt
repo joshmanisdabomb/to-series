@@ -13,6 +13,7 @@ import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSoundDataProvider
 import net.jidb.to.stars.neoforge.data.content.ToStarsConfiguredFeatureDataLibrary
 import net.jidb.to.stars.neoforge.data.content.ToStarsPlacedFeatureDataLibrary
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemCopyTagDataProvider
+import net.jidb.to.stars.neoforge.data.provider.ToStarsItemTagDataProvider
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
@@ -34,6 +35,7 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
     override val advancements = listOf(ToStarsAdvancementDataProvider())
     override val particles = listOf(::ToStarsParticleDataProvider)
     override val sounds = listOf(::ToStarsSoundDataProvider)
+    override val tags = listOf(::ToStarsItemTagDataProvider)
 
     override val configuredFeatures = ToStarsConfiguredFeatureDataLibrary
     override val placedFeatures = ToStarsPlacedFeatureDataLibrary

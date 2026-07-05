@@ -1,4 +1,19 @@
 {
+  "block.generator.crackle": {
+    "sounds": [
+      "to_sky_and_stars:block/generator/crackle1",
+      "to_sky_and_stars:block/generator/crackle2",
+      "to_sky_and_stars:block/generator/crackle3",
+      "to_sky_and_stars:block/generator/crackle4"
+    ],
+    "subtitle": "subtitles.to_sky_and_stars.block.generator.crackle"
+  },
+  "block.generator.empty": {
+    "sounds": [
+      "to_sky_and_stars:block/generator/empty"
+    ],
+    "subtitle": "subtitles.to_sky_and_stars.block.generator.empty"
+  },
   "entity.atomic_bomb.activate": {
     "sounds": [
       "to_sky_and_stars:entity/atomic_bomb/activate"

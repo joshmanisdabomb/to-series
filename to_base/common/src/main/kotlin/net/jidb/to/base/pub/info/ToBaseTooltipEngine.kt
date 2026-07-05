@@ -43,8 +43,8 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
         return Component.translatable("tooltip.$modid.number.si", sign, formatted, suffix)
     }
 
-    fun createPlusComponent(amount: Long, value: Any): Any {
-        if (amount <= 0L) return value
+    fun createPlusComponent(amount: Number, value: Any): Any {
+        if (amount.toFloat() <= 0f) return value
         return Component.translatable("tooltip.$modid.number.plus", value)
     }
 
@@ -122,13 +122,15 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
         }
 
         if (advanced == false) {
-            ret.add(Component.translatable("tooltip.$modid.more", Component.keybind("key.$modid.keyboard.shift").withStyle(ChatFormatting.BOLD))
-                .withStyle(Style.EMPTY.withColor(0xFF562CCB.toInt())))
+            ret.add(getAdvancedPrompt())
         }
 
         return ret
     }
 
     fun getEnergyItemInfo(data: ToEnergyItemData, advanced: Boolean? = null) = getEnergyInfo(data.energy, data.max, data.maxInput, data.maxOutput, advanced = advanced)
+
+    fun getAdvancedPrompt() = Component.translatable("tooltip.$modid.more", Component.keybind("key.$modid.keyboard.shift").withStyle(ChatFormatting.BOLD))
+        .withStyle(Style.EMPTY.withColor(0xFF562CCB.toInt()))
 
 }

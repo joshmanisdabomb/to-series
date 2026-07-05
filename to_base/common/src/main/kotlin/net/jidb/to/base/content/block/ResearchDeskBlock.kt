@@ -1,6 +1,6 @@
 package net.jidb.to.base.content.block
 
-import net.jidb.to.base.api.helper.BlockHelper.horizontalPlacement
+import net.jidb.to.base.api.helper.BlockHelper.horizontalPlayerPlacement
 import net.jidb.to.base.content.inventory.menu.ResearchMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
@@ -52,9 +52,9 @@ class ResearchDeskBlock(properties: Properties) : HorizontalDirectionalBlock(pro
             if (!context.level.getBlockState(pos2).canBeReplaced(context) || !context.level.isUnobstructed(state, pos2, CollisionContext.empty())) {
                 return null
             }
-            return horizontalPlacement(context).setValue(SEGMENT, ResearchDeskSegment.RIGHT)
+            return horizontalPlayerPlacement(context).setValue(SEGMENT, ResearchDeskSegment.RIGHT)
         }
-        return horizontalPlacement(context).setValue(SEGMENT, ResearchDeskSegment.LEFT)
+        return horizontalPlayerPlacement(context).setValue(SEGMENT, ResearchDeskSegment.LEFT)
     }
 
     override fun setPlacedBy(level: Level, pos: BlockPos, state: BlockState, placer: LivingEntity?, stack: ItemStack) {

@@ -2,7 +2,7 @@ package net.jidb.to.base.client.data.pub.collection.module.lang
 
 import net.minecraft.resources.ResourceKey
 
-class StorageIdentifierLanguageClientDataCollectionModule() : IdentifierLanguageClientDataCollectionModule() {
+class StorageIdentifierLanguageClientDataCollectionModule(modifyId: (id: String) -> String = { it }) : IdentifierLanguageClientDataCollectionModule(modifyId) {
 
     override fun getEntryName(key: ResourceKey<*>): String {
         val before = super.getEntryName(key)

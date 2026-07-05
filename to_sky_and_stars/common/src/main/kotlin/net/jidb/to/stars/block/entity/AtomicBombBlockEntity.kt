@@ -77,7 +77,7 @@ class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlo
 
     override fun canPlaceItem(slot: Int, stack: ItemStack): Boolean {
         val current = inventory[slot]
-        if (current.count >= AtomicBombMenu.getMaxStackSize(current)) {
+        if (current.count > AtomicBombMenu.getMaxStackSize(current)) {
             return false
         }
 

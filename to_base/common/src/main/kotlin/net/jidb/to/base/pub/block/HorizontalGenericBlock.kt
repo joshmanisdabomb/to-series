@@ -1,6 +1,6 @@
 package net.jidb.to.base.pub.block
 
-import net.jidb.to.base.api.helper.BlockHelper.horizontalPlacement
+import net.jidb.to.base.api.helper.BlockHelper.horizontalPlayerPlacement
 import net.minecraft.core.Direction
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.block.Block
@@ -18,7 +18,7 @@ open class HorizontalGenericBlock(properties: Properties) : HorizontalDirectiona
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) = builder.add(FACING).let {}
 
-    override fun getStateForPlacement(context: BlockPlaceContext) = horizontalPlacement(context)
+    override fun getStateForPlacement(context: BlockPlaceContext) = horizontalPlayerPlacement(context)
 
     public override fun codec() = CODEC
 

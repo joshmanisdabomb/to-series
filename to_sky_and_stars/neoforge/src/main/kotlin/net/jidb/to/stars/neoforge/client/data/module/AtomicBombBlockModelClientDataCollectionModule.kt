@@ -4,7 +4,6 @@ import net.jidb.to.base.api.helper.IdentifierHelper.identifier
 import net.jidb.to.base.client.data.api.collection.event.ModelClientDataCollectionEvent
 import net.jidb.to.base.client.data.api.collection.module.ClientDataCollectionModule
 import net.jidb.to.base.data.api.collection.DataCollection
-import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.neoforge.client.data.ToStarsModels
 import net.minecraft.client.data.models.BlockModelGenerators
@@ -21,11 +20,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
 class AtomicBombBlockModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {
-        val atomic_bomb_head = ToStarsModels.ATOMIC_BOMB_HEAD.create(ToStarsMod.blocks.atomic_bomb, event.block.modelOutput)
-        val atomic_bomb_middle = ToStarsModels.ATOMIC_BOMB_MIDDLE.create(ToStarsMod.blocks.atomic_bomb, event.block.modelOutput)
-        val atomic_bomb_tail = ToStarsModels.ATOMIC_BOMB_TAIL.create(ToStarsMod.blocks.atomic_bomb, event.block.modelOutput)
+        val atomic_bomb_head = ToStarsModels.ATOMIC_BOMB_HEAD.create(collection.`object`, event.block.modelOutput)
+        val atomic_bomb_middle = ToStarsModels.ATOMIC_BOMB_MIDDLE.create(collection.`object`, event.block.modelOutput)
+        val atomic_bomb_tail = ToStarsModels.ATOMIC_BOMB_TAIL.create(collection.`object`, event.block.modelOutput)
         event.block.blockStateOutput.accept(
-            MultiVariantGenerator.dispatch(ToStarsMod.blocks.atomic_bomb, BlockModelGenerators.variants(Variant(atomic_bomb_head)))
+            MultiVariantGenerator.dispatch(collection.`object`, BlockModelGenerators.variants(Variant(atomic_bomb_head)))
                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
                     .select(Direction.EAST, BlockModelGenerators.NOP)
                     .select(Direction.SOUTH, BlockModelGenerators.Y_ROT_90)

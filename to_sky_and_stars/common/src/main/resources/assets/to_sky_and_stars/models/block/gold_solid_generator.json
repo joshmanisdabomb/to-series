@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "to_sky_and_stars:block/machine_enclosure_1_bottom",
+    "front": "to_sky_and_stars:block/gold_solid_generator",
+    "side": "to_sky_and_stars:block/gold_machine_enclosure_side",
+    "top": "to_sky_and_stars:block/gold_generator"
+  }
+}
