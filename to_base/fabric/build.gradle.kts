@@ -40,23 +40,23 @@ loom {
     runs {
         named("client") {
             client()
-            configName = "${project.extra["modName"]}: Fabric Client"
-            appendProjectPathToConfigName = false
-            ideConfigGenerated(true)
-            runDir("runs/client")
-            property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
-            property("mixin.debug.export.decompile", "true")
-            property("mixin.debug.export", "true")
+            displayName.set("${project.extra["modName"]}: Fabric Client")
+            appendProjectPathToDisplayName.set(false)
+            generateRunConfig.set(true)
+            runDirectory.set(project.file("runs/client"))
+            systemProperties.put("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
+            systemProperties.put("mixin.debug.export.decompile", "true")
+            systemProperties.put("mixin.debug.export", "true")
         }
         named("server") {
             server()
-            configName = "${project.extra["modName"]}: Fabric Server"
-            appendProjectPathToConfigName = false
-            ideConfigGenerated(true)
-            runDir("runs/server")
-            property("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
-            property("mixin.debug.export.decompile", "true")
-            property("mixin.debug.export", "true")
+            displayName.set("${project.extra["modName"]}: Fabric Server")
+            appendProjectPathToDisplayName.set(false)
+            generateRunConfig.set(true)
+            runDirectory.set(project.file("runs/server"))
+            systemProperties.put("fabric-tag-conventions-v2.missingTagTranslationWarning", "VERBOSE")
+            systemProperties.put("mixin.debug.export.decompile", "true")
+            systemProperties.put("mixin.debug.export", "true")
         }
     }
 }

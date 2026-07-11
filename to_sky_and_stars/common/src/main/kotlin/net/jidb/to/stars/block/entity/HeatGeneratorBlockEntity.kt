@@ -6,6 +6,7 @@ import net.jidb.to.stars.inventory.menu.HeatGeneratorMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.NonNullList
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.Mth
 import net.minecraft.world.ContainerHelper
@@ -104,11 +105,33 @@ abstract class HeatGeneratorBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
 
     override fun loadAdditional(input: ValueInput) {
         super.loadAdditional(input)
+        heat = input.getFloatOr("heat", 0f)
+        heatChange = input.getFloatOr("heatChange", heatChange)
+        heatAdd = input.getFloatOr("heatAdd", heatAdd)
+        heatSpeed = input.getFloatOr("heatSpeed", heatSpeed)
+        heatValue = input.getFloatOr("heatValue", heatValue)
+        heatInitial = input.getFloatOr("heatInitial", heatInitial)
+        heatRange = input.getFloatOr("heatRange", heatRange)
+        heatBonus = input.getFloatOr("heatBonus", heatBonus)
+        heatCooling = input.getFloatOr("heatCooling", heatCooling)
+        heatDuration = input.getShortOr("heatDuration", heatDuration).toShort()
+        heatMaxDuration = input.getShortOr("heatMaxDuration", heatMaxDuration).toShort()
         items.clear()
         ContainerHelper.loadAllItems(input, items)
     }
 
     override fun saveAdditional(output: ValueOutput) {
+        output.putFloat("heat", heat)
+        output.putFloat("heatChange", heatChange)
+        output.putFloat("heatAdd", heatAdd)
+        output.putFloat("heatSpeed", heatSpeed)
+        output.putFloat("heatValue", heatValue)
+        output.putFloat("heatInitial", heatInitial)
+        output.putFloat("heatRange", heatRange)
+        output.putFloat("heatBonus", heatBonus)
+        output.putFloat("heatCooling", heatCooling)
+        output.putShort("heatDuration", heatDuration)
+        output.putShort("heatMaxDuration", heatMaxDuration)
         ContainerHelper.saveAllItems(output, items)
         super.saveAdditional(output)
     }
@@ -162,6 +185,11 @@ abstract class HeatGeneratorBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
             } else if (!lit && entity.heat > 0f) {
                 level.setBlock(pos, state.setValue(BlockStateProperties.LIT, true), 3)
                 setChanged(level, pos, state)
+            }
+
+            if (level is ServerLevel) {
+                val above = pos.above()
+                ToStarsMod.blocks.boiler.setHeat(level, level.getBlockState(above), above, entity.heat, Direction.DOWN)
             }
         }
     }

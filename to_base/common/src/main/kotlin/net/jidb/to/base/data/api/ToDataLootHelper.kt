@@ -1,6 +1,6 @@
 package net.jidb.to.base.data.api
 
-import net.minecraft.advancements.criterion.*
+import net.minecraft.advancements.predicates.*
 import net.minecraft.core.Holder
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.component.predicates.DataComponentPredicates

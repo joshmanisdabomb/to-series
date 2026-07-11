@@ -5,6 +5,7 @@ import net.fabricmc.loader.api.FabricLoader
 import net.jidb.to.base.api.side.ServerSide
 import net.jidb.to.base.client.api.side.ClientSide
 import net.jidb.to.base.fabric.platform.FabricPlatform
+import kotlin.jvm.optionals.getOrNull
 import net.jidb.to.base.service.EnvironmentService as BaseEnvironmentService
 
 class FabricEnvironmentService : BaseEnvironmentService() {
@@ -14,5 +15,6 @@ class FabricEnvironmentService : BaseEnvironmentService() {
     override val side = if (FabricLoader.getInstance().environmentType == EnvType.CLIENT) ClientSide() else ServerSide()
 
     override fun isModLoaded(modId: String) = FabricLoader.getInstance().isModLoaded(modId)
+    override fun getModVersion(modId: String) = FabricLoader.getInstance().getModContainer(modId).getOrNull()?.metadata?.version?.friendlyString
 
 }

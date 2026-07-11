@@ -10,7 +10,7 @@ import net.jidb.to.base.api.network.ServerPayloadContext
 import net.jidb.to.base.api.platform.ReloadListenerPlatformModule
 import net.jidb.to.base.api.transfer.TransferContextProvider
 import net.jidb.to.base.pub.library.*
-import net.minecraft.advancements.CriterionTrigger
+import net.minecraft.advancements.triggers.CriterionTrigger
 import net.minecraft.core.component.DataComponentType
 import net.minecraft.core.particles.ParticleType
 import net.minecraft.resources.ResourceKey
@@ -52,4 +52,5 @@ interface ToContentMod {
     val transferProviders: SimpleLibrary<TransferContextProvider<*>>? get() = null
     val configuredFeatures: Library<*, ResourceKey<ConfiguredFeature<*, *>>>? get() = null
     val placedFeatures: Library<*, ResourceKey<PlacedFeature>>? get() = null
+    val damageTypes: DamageTypeLibrary? get() = null
 }

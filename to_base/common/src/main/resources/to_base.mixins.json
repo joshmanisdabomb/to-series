@@ -10,10 +10,10 @@
     "ItemStackMixin"
   ],
   "client": [
+    "client.BlockEntityRenderDispatcherAccessor",
     "client.BlockModelGeneratorsAccessor",
     "client.GuiGraphicsAccessor",
-    "client.ItemModelGeneratorsAccessor",
-    "client.MinecraftAccessor"
+    "client.ItemModelGeneratorsAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

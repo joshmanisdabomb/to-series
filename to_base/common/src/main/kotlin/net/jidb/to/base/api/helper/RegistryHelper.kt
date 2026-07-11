@@ -4,9 +4,16 @@ import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
+import net.minecraft.world.item.Item
+import net.minecraft.world.level.block.Block
 import kotlin.jvm.optionals.getOrNull
 
 object RegistryHelper {
+
+    operator fun get(block: Block) = BuiltInRegistries.BLOCK.getResourceKey(block).get()
+    val Block.resourceKey get() = get(this)
+    operator fun get(item: Item) = BuiltInRegistries.ITEM.getResourceKey(item).get()
+    val Item.resourceKey get() = get(this)
 
     fun splitResourceKey(key: String): Pair<Identifier, Identifier> {
         val split = key.split(" / ")

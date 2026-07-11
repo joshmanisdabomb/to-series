@@ -3,6 +3,7 @@ package net.jidb.to.stars
 import net.jidb.to.base.pub.mod.ToMod
 import net.jidb.to.stars.content.*
 import net.jidb.to.stars.content.key.ToStarsConfiguredFeatureLibrary
+import net.jidb.to.stars.content.key.ToStarsDamageTypeLibrary
 import net.jidb.to.stars.content.key.ToStarsPlacedFeatureLibrary
 
 object ToStarsMod : ToMod() {
@@ -37,4 +38,5 @@ object ToStarsMod : ToMod() {
     override val configuredFeatures = ToStarsConfiguredFeatureLibrary
     override val placedFeatures = ToStarsPlacedFeatureLibrary
     override val biomeMods = ToStarsBiomeModLibrary
+    override val damageTypes = ToStarsDamageTypeLibrary
 }

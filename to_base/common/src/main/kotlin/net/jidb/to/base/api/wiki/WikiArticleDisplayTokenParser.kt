@@ -7,7 +7,6 @@ import net.jidb.to.base.api.helper.addBool
 import net.jidb.to.base.api.helper.addString
 import net.jidb.to.base.api.helper.getBool
 import net.jidb.to.base.api.wiki.language.WikiLanguage
-import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.*
 import net.minecraft.resources.Identifier
 
@@ -45,27 +44,27 @@ class WikiArticleDisplayTokenParser(val self: Identifier, protected val context:
                 if (key == "self") {
                     val article = context[self]!!
                     return Component.empty().append(getReferralTitle(content, article, language))
-                        .withStyle(Style.EMPTY.withColor(TextColor.fromLegacyFormat(ChatFormatting.DARK_GREEN))
+                        .withStyle(Style.EMPTY.withColor(TextColor.DARK_GREEN)
                             .withHoverEvent(HoverEvent.ShowText(article.title)))
                 }
                 val resource = RegistryHelper.splitResourceKey(key)
                 val article = context.byResource[resource]?.first()
                 if (article != null) {
                     return Component.empty().append(getReferralTitle(content, article, language))
-                        .withStyle(Style.EMPTY.withColor(TextColor.fromLegacyFormat(ChatFormatting.BLUE)).withUnderlined(true)
+                        .withStyle(Style.EMPTY.withColor(TextColor.BLUE).withUnderlined(true)
                             .withHoverEvent(HoverEvent.ShowText(article.title))
                             .withClickEvent(WikiArticleLink(article)))
                 }
                 return Component.literal("${resource.first.path}.${resource.second.namespace}.${resource.second.path}")
-                    .withStyle(Style.EMPTY.withColor(TextColor.fromLegacyFormat(ChatFormatting.GOLD)).withItalic(true)
+                    .withStyle(Style.EMPTY.withColor(TextColor.GOLD).withItalic(true)
                         .withHoverEvent(HoverEvent.ShowText(Component.translatable("gui.${ToBaseMod.modid}.research.404")
-                            .withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.fromLegacyFormat(ChatFormatting.YELLOW))))))
+                            .withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.YELLOW)))))
             }
         }
         return Component.literal("{${content}}")
-            .withStyle(Style.EMPTY.withColor(TextColor.fromLegacyFormat(ChatFormatting.DARK_RED)).withItalic(true)
+            .withStyle(Style.EMPTY.withColor(TextColor.DARK_RED).withItalic(true)
                 .withHoverEvent(HoverEvent.ShowText(Component.translatable("gui.${ToBaseMod.modid}.research.500")
-                    .withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.fromLegacyFormat(ChatFormatting.RED))))))
+                    .withStyle(Style.EMPTY.withItalic(true).withColor(TextColor.RED)))))
     }
 
     private fun getReferralTitle(template: JsonObject, article: WikiArticle, language: WikiLanguage): Component {

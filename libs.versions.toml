@@ -1,25 +1,25 @@
 [versions]
 java = "25"
-kotlin = "2.3.21"
+kotlin = "2.4.0"
 moddev = "2.0.141"
-loom = "1.16-SNAPSHOT"
+loom = "1.17-SNAPSHOT"
 dokka = "2.2.0"
 
-minecraft = "26.1.2"
-minecraftRange = "[26.1.2, 26.2)"
+minecraft = "26.2"
+minecraftRange = "[26.2, 26.3)"
 
-neoforge = "26.1.2.70-beta"
-neoforgeRange = "[26.1.2.69, 26.2)"
+neoforge = "26.2.0.8-beta"
+neoforgeRange = "[26.2.0.7, 26.3)"
 ## This is the version of minecraft that the 'common' project uses, you can find a list of all versions here
 ## https://projects.neoforged.net/neoforged/neoform
-neoForm = "26.1.2-1"
-kff = "6.2.0"
-kffRange = "[6.2, )"
+neoForm = "26.2-1"
+kff = "6.3.0"
+kffRange = "[6.3, )"
 
-fabricLoader = "0.19.2"
-fabricApi = "0.150.0+26.1.2"
-fabricVersion = "0.150.0"
-flk = "1.13.11+kotlin.2.3.21"
+fabricLoader = "0.19.3"
+fabricApi = "0.154.2+26.2"
+fabricVersion = "0.154.2"
+flk = "1.13.12+kotlin.2.4.0"
 
 mixin = "0.8.5"
 mixinExtras = "0.5.3"

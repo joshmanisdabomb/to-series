@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.entity.BaseContainerBlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
+import net.minecraft.world.phys.Vec3
 
 class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlockEntity(ToStarsMod.blockEntities.atomic_bomb, pos, state), WorldlyContainer {
 
@@ -36,7 +37,7 @@ class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlo
         val entity = AtomicBombEntity(level, blockPos.x + 0.5, blockPos.y.toDouble(), blockPos.z + 0.5, facing, inventory, true, owner)
         level.addFreshEntity(entity)
 
-        Services.platform.networking.sendToPlayersTrackingPos(level, blockPos, DistantSoundPayload(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(ToStarsMod.sounds.atomic_bomb_activate), SoundSource.BLOCKS, blockPos.center.toVector3f(), 120f, 0.8f + level.random.nextFloat().times(0.4f), 0))
+        Services.platform.networking.sendToPlayersTrackingPos(level, blockPos, DistantSoundPayload(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(ToStarsMod.sounds.atomic_bomb_activate), SoundSource.BLOCKS, Vec3.atCenterOf(blockPos).toVector3f(), 120f, 0.8f + level.random.nextFloat().times(0.4f), 0))
     }
 
     fun fall() {

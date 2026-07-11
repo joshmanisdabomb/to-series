@@ -4,10 +4,10 @@ import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.base.data.api.collection.event.BlockLootDataCollectionEvent
 import net.jidb.to.base.data.api.collection.module.DataCollectionModule
-import net.minecraft.advancements.criterion.DataComponentMatchers
-import net.minecraft.advancements.criterion.EnchantmentPredicate
-import net.minecraft.advancements.criterion.ItemPredicate
-import net.minecraft.advancements.criterion.MinMaxBounds
+import net.minecraft.advancements.predicates.DataComponentMatchers
+import net.minecraft.advancements.predicates.EnchantmentPredicate
+import net.minecraft.advancements.predicates.ItemPredicate
+import net.minecraft.advancements.predicates.MinMaxBounds
 import net.minecraft.core.component.predicates.DataComponentPredicates
 import net.minecraft.core.component.predicates.EnchantmentsPredicate
 import net.minecraft.core.registries.Registries

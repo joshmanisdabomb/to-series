@@ -22,6 +22,7 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
 
         configuredFeatures?.build()
         placedFeatures?.build()
+        damageTypes?.build()
 
         blockNetworks?.build()
         itemComponents?.build()

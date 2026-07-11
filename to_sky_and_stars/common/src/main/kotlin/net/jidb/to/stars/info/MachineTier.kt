@@ -1,6 +1,6 @@
 package net.jidb.to.stars.info
 
-import net.minecraft.ChatFormatting
+import net.minecraft.network.chat.TextColor
 import net.minecraft.util.StringRepresentable
 
 enum class MachineTier(val number: Float) : StringRepresentable {
@@ -39,7 +39,7 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val generatorBonus = 100f
         override val generatorCooling = 0.994f
 
-        override val chatColor = ChatFormatting.YELLOW.color!!
+        override val chatColor = TextColor.YELLOW.value
     };
 
     abstract val maxInput: Long

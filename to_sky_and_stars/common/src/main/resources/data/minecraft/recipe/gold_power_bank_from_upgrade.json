@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "G": "minecraft:gold_block",
     "M": "to_sky_and_stars:copper_power_bank",

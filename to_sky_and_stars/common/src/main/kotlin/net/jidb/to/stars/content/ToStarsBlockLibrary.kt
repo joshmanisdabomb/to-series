@@ -1,5 +1,6 @@
 package net.jidb.to.stars.content
 
+import net.jidb.to.base.api.helper.KotlinHelper.either
 import net.jidb.to.base.pub.library.BlockLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.*
@@ -8,9 +9,11 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.util.ColorRGBA
 import net.minecraft.util.valueproviders.UniformInt
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.DropExperienceBlock
 import net.minecraft.world.level.block.SoundType
 import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
 import net.minecraft.world.level.material.MapColor
 import net.minecraft.world.level.material.PushReaction
@@ -126,16 +129,22 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.COLOR_ORANGE)
         .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(13, 0) }
         .strength(4.0F, 5.0F)
+        .isValidSpawn { state, blockGetter, blockPos, entityType -> entityType.fireImmune() }
         .instrument(NoteBlockInstrument.TRUMPET)
         .sound(SoundType.COPPER_GOLEM_STATUE)) }
     val gold_solid_generator by this { entry -> SolidGeneratorBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(13, 0) }
         .strength(5.0F, 9.0F)
+        .isValidSpawn { state, blockGetter, blockPos, entityType -> entityType.fireImmune() }
         .instrument(NoteBlockInstrument.BELL)
         .sound(SoundType.NETHERITE_BLOCK)) }
+    val boiler by this { entry -> BoilingCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
+        .setId(getEntryResourceKey(entry))) }
 
     val power_cable by this { entry -> LossyToEnergyCableBlock(0.02f, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))

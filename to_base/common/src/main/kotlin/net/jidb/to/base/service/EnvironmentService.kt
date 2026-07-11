@@ -9,6 +9,7 @@ abstract class EnvironmentService {
     abstract val side: Side
 
     abstract fun isModLoaded(modId: String): Boolean
+    abstract fun getModVersion(modId: String): String?
 
     enum class Environment {
         DEV, BUILD

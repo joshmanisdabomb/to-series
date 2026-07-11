@@ -11,7 +11,7 @@ import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.MenuProvider
 import net.minecraft.world.SimpleMenuProvider
-import net.minecraft.world.entity.EntityType
+import net.minecraft.world.entity.EntityTypes
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.item.ItemEntity
 import net.minecraft.world.entity.player.Player
@@ -100,7 +100,7 @@ class ResearchDeskBlock(properties: Properties) : HorizontalDirectionalBlock(pro
 
         if (level is ServerLevel) {
             getDrops(state.setValue(SEGMENT, ResearchDeskSegment.LEFT), level, pos, blockEntity, player, tool).forEach { stack ->
-                val d0 = EntityType.ITEM.height.toDouble() / 2.0
+                val d0 = EntityTypes.ITEM.height.toDouble() / 2.0
                 val d1 = pos.x.toDouble() + 0.5 + direction.stepX.times(0.5) + Mth.nextDouble(level.random, -0.25, 0.25)
                 val d2 = pos.y.toDouble() + 0.5 + direction.stepY.times(0.5) + Mth.nextDouble(level.random, -0.25, 0.25) - d0
                 val d3 = pos.z.toDouble() + 0.5 + direction.stepZ.times(0.5) + Mth.nextDouble(level.random, -0.25, 0.25)

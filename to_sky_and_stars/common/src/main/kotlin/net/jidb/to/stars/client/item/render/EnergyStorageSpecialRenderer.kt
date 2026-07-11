@@ -3,7 +3,7 @@ package net.jidb.to.stars.client.item.render
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.jidb.to.base.ToBaseMod
-import net.jidb.to.base.mixin.client.MinecraftAccessor
+import net.jidb.to.base.mixin.client.BlockEntityRenderDispatcherAccessor
 import net.jidb.to.stars.client.render.EnergyStorageRenderer
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.SubmitNodeCollector
@@ -25,7 +25,7 @@ class EnergyStorageSpecialRenderer(val block: Block) : SpecialModelRenderer<Floa
 
     val default by lazy { block.defaultBlockState().setValue(DirectionalBlock.FACING, Direction.UP) }
     val model by lazy { BlockModelRenderState()
-        .also { (Minecraft.getInstance() as MinecraftAccessor).`to_base$getBlockModelResolver`().update(
+        .also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update(
             it,
             default,
             BlockDisplayContext.create()

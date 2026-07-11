@@ -44,6 +44,7 @@ object ToStarsBlockItemLibrary : BlockItemLibrary(ToStarsMod.MOD_ID, ToStarsMod.
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getGeneratorInfo(MachineTier.ONE_5)))) }
+    val boiler by this()
 
     val power_cable by this { block, initial -> BlockItem(block!!(), Item.Properties()
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))

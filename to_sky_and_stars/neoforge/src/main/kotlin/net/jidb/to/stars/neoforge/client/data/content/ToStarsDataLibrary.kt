@@ -7,10 +7,7 @@ import net.jidb.to.base.client.data.pub.collection.module.model.block.FullRotati
 import net.jidb.to.base.client.data.pub.collection.module.model.block.SimpleBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.item.TintedItemModelClientDataCollectionModule
 import net.jidb.to.base.data.api.library.DataCollectionLibrary
-import net.jidb.to.base.data.pub.collection.module.loot.CustomBlockLootDataCollectionModule
-import net.jidb.to.base.data.pub.collection.module.loot.NoopBlockLootDataCollectionModule
-import net.jidb.to.base.data.pub.collection.module.loot.OreBlockLootDataCollectionModule
-import net.jidb.to.base.data.pub.collection.module.loot.SilkBlockLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.loot.*
 import net.jidb.to.base.data.pub.collection.module.recipe.CompactRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.OreRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.ShapedRecipeDataCollectionModule
@@ -23,17 +20,15 @@ import net.jidb.to.base.neoforge.client.content.data.module.Cable4BlockModelClie
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.item.tint.BatteryItemTint
-import net.jidb.to.stars.neoforge.client.data.module.AtomicBombBlockModelClientDataCollectionModule
-import net.jidb.to.stars.neoforge.client.data.module.HeatCableBlockModelClientDataCollectionModule
-import net.jidb.to.stars.neoforge.client.data.module.LitMachineBlockModelClientDataCollectionModule
-import net.jidb.to.stars.neoforge.client.data.module.PowerBankModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.*
 import net.jidb.to.stars.neoforge.data.module.EnergySilkBlockLootDataCollectionModule
 import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
 import net.minecraft.client.resources.model.sprite.Material
+import net.minecraft.core.registries.Registries
 import net.minecraft.resources.Identifier
 import net.minecraft.tags.BlockTags
-import net.minecraft.tags.ItemTags
+import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
 import net.neoforged.neoforge.common.Tags
@@ -105,7 +100,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             pattern("bdc")
             pattern("ccc")
             define('c', Blocks.IRON_BLOCK)
-            define('b', ItemTags.BUTTONS)
+            define('b', TagKey.create(Registries.ITEM, Identifier.withDefaultNamespace("buttons")))
             define('d', Blocks.DISPENSER)
             event.helper.createHas(this, ToStarsMod.itemTags.enriched_uranium)
             this
@@ -126,7 +121,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             pattern("iii")
             define('p', ToStarsMod.blocks.power_cable)
             define('c', Items.COPPER_INGOT)
-            define('C', Blocks.COPPER_BLOCK)
+            define('C', Blocks.COPPER_BLOCK.weathering.unaffected)
             define('i', Items.IRON_INGOT)
             event.helper.createHas(this, Items.COPPER_INGOT)
             this
@@ -260,6 +255,13 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.itemTags.gold_battery_unlock)
             this
         } }
+    }
+
+    val boiler by this {
+        addModule(::BoilingCauldronBlockModelClientDataCollectionModule)
+        addModule { SimpleBlockTagDataCollectionModule(BlockTags.CAULDRONS) }
+        addModule { SimpleBlockLootDataCollectionModule(Items.CAULDRON) }
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE) }
     }
 
     val generators by this {

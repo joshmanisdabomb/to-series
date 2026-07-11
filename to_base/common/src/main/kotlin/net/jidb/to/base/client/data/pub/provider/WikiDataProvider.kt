@@ -89,7 +89,7 @@ open class WikiDataProvider(val output: PackOutput, val lookup: CompletableFutur
             val missing = enforcer?.enforce(json.values.flatMap {
                 val abouts = it.get("about")?.asJsonArray?.toList() ?: emptyList()
                 val redirects = it.get("redirect")?.asJsonArray?.toList() ?: emptyList()
-                (abouts + redirects).map(JsonElement::getAsString).mapNotNull(RegistryHelper::createResourceKey)
+                (abouts + redirects).map(JsonElement::getAsString).mapNotNull(RegistryHelper::splitResourceKey)
             })
             if (missing?.isNotEmpty() == true) {
                 val report = "Found registry entries with missing articles:\n${missing.joinToString("\n", transform = Any::toString)}"

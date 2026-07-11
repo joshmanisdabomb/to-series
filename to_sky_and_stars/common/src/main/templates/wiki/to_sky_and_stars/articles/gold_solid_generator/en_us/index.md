@@ -4,13 +4,13 @@ flavor: "Absolute flames from start to finish."
 
 # Introduction
 
-The {{"template": "introduction", "description": "a heat generating block"}}. It burns solid fuel to produce heat, which can be transferred to {{"of": "minecraft:block / to_sky_and_stars:boiler", "plural": true}} with {{"of": "minecraft:block / to_sky_and_stars:heat_pipe", "plural": true}}.
+The {{"template": "introduction", "description": "a heat generating block"}}. It burns solid fuel to produce {{"of": "to_base:concept / to_sky_and_stars:heat"}}, which can be transferred to {{"of": "minecraft:block / to_sky_and_stars:boiler", "plural": true}} directly, or with {{"of": "minecraft:block / to_sky_and_stars:heat_pipe", "plural": true}}.
 
 Solid fuels include all fuels usable in a {{"of": "minecraft:block / minecraft:furnace"}}, excluding fluid buckets such as a {{"of": "minecraft:item / minecraft:lava_bucket"}}.
 
 # Fuel
 
-You can insert any valid fuel into the fuel slot by right-clicking the block to open the GUI. Once inserted, the {{"of": "self"}} begins providing heat at an initial 100°C.
+You can insert any valid fuel into the fuel slot by right-clicking the block to open the GUI. Once inserted, the {{"of": "self"}} begins providing {{"of": "to_base:concept / to_sky_and_stars:heat"}} at an initial 100°C.
 
 Each item of fuel consumed gradually increases the temperature, lasting as long as the fuel's burn duration. For a {{"of": "self"}}, any fuel adds +0.015°C per tick but lasts 0.75x as long as it would in a {{"of": "minecraft:block / minecraft:furnace"}}.
 
@@ -22,7 +22,7 @@ Once the temperature has climbed to 400°C, a bonus 100°C is added, resulting i
 
 # Cooling
 
-When heat is stored in a {{"of": "self"}} but no more fuel is remaining, the temperature cools down at a rate of 0.6% per tick, until it reaches 100°C. After this, the temperature is instantly reset to 0°C.
+When {{"of": "to_base:concept / to_sky_and_stars:heat"}} is stored in a {{"of": "self"}} but no more fuel is remaining, the temperature cools down at a rate of 0.6% per tick, until it reaches 100°C. After this, the temperature is instantly reset to 0°C.
 
 # Upgrading
 

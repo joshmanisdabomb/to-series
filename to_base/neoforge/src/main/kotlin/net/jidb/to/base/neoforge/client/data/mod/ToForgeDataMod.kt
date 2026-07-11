@@ -81,10 +81,6 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
 
         languages.forEach { event.createProvider(it) }
         models.forEach { event.createProvider(it) }
-        val tagProviders = tags.map { event.createProvider(it) }
-        val blockTagLookups = tagProviders.filterIsInstance<BlockTagsProvider>().map { it.contentsGetter() } + collectionBlockTagProvider.contentsGetter()
-        val blockTagLookup: CompletableFuture<TagsProvider.TagLookup<Block>> = CompletableFuture.supplyAsync { AggregateTagLookup(blockTagLookups.map(CompletableFuture<TagsProvider.TagLookup<Block>>::get)) }
-        copyTags.forEach { event.createProvider { output, lookup -> it(output, lookup, blockTagLookup) } }
         blockLoot.map { provider -> GatherDataEvent.DataProviderFromOutputLookup { output, lookup -> LootTableProvider(output, mutableSetOf(), listOf(
             SubProviderEntry(provider, LootContextParamSets.BLOCK)
         ), lookup) } }.forEach { event.createProvider(it) }
@@ -127,7 +123,17 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
                     }
                 }
             }
+            .add(Registries.DAMAGE_TYPE) {
+                val library = damageTypes ?: return@add
+                library.context = it
+                library.build()
+            }
         )
+
+        val tagProviders = tags.map { event.createProvider(it) }
+        val blockTagLookups = tagProviders.filterIsInstance<BlockTagsProvider>().map { it.contentsGetter() } + collectionBlockTagProvider.contentsGetter()
+        val blockTagLookup: CompletableFuture<TagsProvider.TagLookup<Block>> = CompletableFuture.supplyAsync { AggregateTagLookup(blockTagLookups.map(CompletableFuture<TagsProvider.TagLookup<Block>>::get)) }
+        copyTags.forEach { event.createProvider { output, lookup -> it(output, lookup, blockTagLookup) } }
 
         wiki?.map { enforcer -> GatherDataEvent.DataProviderFromOutputLookup { output, lookup ->
             val provider = WikiDataProvider(output, lookup, resources.parent / "templates" / "wiki")

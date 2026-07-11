@@ -8,8 +8,8 @@ import net.minecraft.advancements.Advancement
 import net.minecraft.advancements.AdvancementHolder
 import net.minecraft.advancements.AdvancementRewards
 import net.minecraft.advancements.AdvancementType
-import net.minecraft.advancements.criterion.InventoryChangeTrigger.TriggerInstance
-import net.minecraft.advancements.criterion.ItemPredicate
+import net.minecraft.advancements.predicates.ItemPredicate
+import net.minecraft.advancements.triggers.InventoryChangeTrigger
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.advancements.AdvancementSubProvider
@@ -35,7 +35,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
                 false,
                 false
             )
-            .addCriterion("has_relevant", TriggerInstance.hasItems(
+            .addCriterion("has_relevant", InventoryChangeTrigger.TriggerInstance.hasItems(
                 ItemPredicate.Builder.item().of(getter, ToStarsItemTagLibrary.root_advancement_unlock))
             )
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "root"))
@@ -52,7 +52,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
                 true,
                 false
             )
-            .addCriterion("has_uranium", TriggerInstance.hasItems(ToStarsMod.items.uranium))
+            .addCriterion("has_uranium", InventoryChangeTrigger.TriggerInstance.hasItems(ToStarsMod.items.uranium))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "uranium"))
 
         val enrichment = Advancement.Builder.advancement()
@@ -67,7 +67,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
                 true,
                 false
             )
-            .addCriterion("has_enriched_uranium", TriggerInstance.hasItems(ToStarsMod.items.enriched_uranium))
+            .addCriterion("has_enriched_uranium", InventoryChangeTrigger.TriggerInstance.hasItems(ToStarsMod.items.enriched_uranium))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "enrichment"))
 
         val nuke = Advancement.Builder.advancement()

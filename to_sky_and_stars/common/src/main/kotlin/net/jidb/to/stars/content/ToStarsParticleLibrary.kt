@@ -1,6 +1,7 @@
 package net.jidb.to.stars.content
 
 import net.jidb.to.base.api.library.SimpleRegistryLibrary
+import net.jidb.to.base.pub.particle.AccessibleSimpleParticleType
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.core.particles.ParticleType
 import net.minecraft.core.particles.PowerParticleOption
@@ -15,6 +16,9 @@ object ToStarsParticleLibrary : SimpleRegistryLibrary<ParticleType<*>>(ToStarsMo
             override fun codec() = PowerParticleOption.codec(this)
 
             override fun streamCodec() = PowerParticleOption.streamCodec(this)
-        } }
+        }
+    }
+    val steam by this { AccessibleSimpleParticleType(false) }
+    val foam by this { AccessibleSimpleParticleType(false) }
 
 }

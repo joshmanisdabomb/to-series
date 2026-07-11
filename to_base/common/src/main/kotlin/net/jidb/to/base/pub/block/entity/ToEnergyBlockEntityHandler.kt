@@ -72,21 +72,21 @@ class ToEnergyBlockEntityHandler(defaultCapacity: Long, defaultMaxInput: Long, d
 
     fun loadAdditional(input: ValueInput) {
         energy = input.getLongOr("energy", 0L)
-        capacity = input.getLongOr("capacity", capacity)
-        maxInput = input.getLongOr("maxInput", maxInput)
-        maxOutput = input.getLongOr("maxOutput", maxOutput)
+        capacity = input.getLongOr("energyMaxCapacity", capacity)
+        maxInput = input.getLongOr("energyMaxInput", maxInput)
+        maxOutput = input.getLongOr("energyMaxOutput", maxOutput)
     }
 
     fun saveAdditional(output: ValueOutput) {
         output.putLong("energy", energy)
-        output.putLong("capacity", capacity)
-        output.putLong("maxInput", maxInput)
-        output.putLong("maxOutput", maxOutput)
+        output.putLong("energyMaxCapacity", capacity)
+        output.putLong("energyMaxInput", maxInput)
+        output.putLong("energyMaxOutput", maxOutput)
     }
 
     fun getUpdateTag(tag: CompoundTag, registries: HolderLookup.Provider) {
         tag.putLong("energy", energy)
-        tag.putLong("capacity", capacity)
+        tag.putLong("energyMaxCapacity", capacity)
     }
 
     fun applyImplicitComponents(components: DataComponentGetter) {

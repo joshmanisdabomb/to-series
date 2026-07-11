@@ -1,9 +1,9 @@
 package net.jidb.to.base.client.data.pub.provider.wiki
 
-import net.minecraft.resources.ResourceKey
+import net.minecraft.resources.Identifier
 
 interface WikiDataEnforcer {
 
-    fun enforce(created: List<ResourceKey<*>>): List<ResourceKey<*>>
+    fun enforce(created: List<Pair<Identifier, Identifier>>): List<Pair<Identifier, Identifier>>
 
 }

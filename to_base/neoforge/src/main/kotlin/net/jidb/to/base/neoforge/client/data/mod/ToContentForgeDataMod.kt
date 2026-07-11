@@ -6,6 +6,7 @@ import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.minecraft.data.recipes.RecipeProvider
 import net.minecraft.data.tags.TagsProvider
+import net.minecraft.world.damagesource.DamageType
 import net.minecraft.world.level.block.Block
 import net.neoforged.neoforge.client.data.ParticleDescriptionProvider
 import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider
@@ -22,4 +23,5 @@ interface ToContentForgeDataMod : ToContentDataMod {
     val sounds: List<(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) -> SoundDefinitionsProvider> get() = emptyList()
 
     val biomeModifiers: DatapackLibrary<BiomeModifier>? get() = null
+    val damageTypes: DatapackLibrary<DamageType>? get() = null
 }

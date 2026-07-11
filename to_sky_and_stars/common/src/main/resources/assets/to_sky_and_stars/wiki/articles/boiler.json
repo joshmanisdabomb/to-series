@@ -1,0 +1,116 @@
+{
+  "title": {
+    "of": "minecraft:block / to_sky_and_stars:boiler"
+  },
+  "about": [
+    "minecraft:block / to_sky_and_stars:boiler"
+  ],
+  "redirect": [
+    "minecraft:block_entity_type / to_sky_and_stars:boiler",
+    "minecraft:particle_type / to_sky_and_stars:steam",
+    "minecraft:particle_type / to_sky_and_stars:foam"
+  ],
+  "icon": [
+    "minecraft:block / minecraft:cauldron"
+  ],
+  "tags": [
+    "to_sky_and_stars:heat"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.3.2",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_sky_and_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_sky_and_stars:boiler": {
+      "renewable": true,
+      "hardness": 2.0,
+      "resistance": 2.0,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0,
+        "to_sky_and_stars:nuclear_fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0,
+        "to_sky_and_stars:nuclear_fire": 0
+      },
+      "states": [
+        {
+          "default": false,
+          "properties": {
+            "level": "1",
+            "unstable": "true"
+          },
+          "light": 0,
+          "map_color": 7368816
+        },
+        {
+          "default": true,
+          "properties": {
+            "level": "1",
+            "unstable": "false"
+          },
+          "light": 0,
+          "map_color": 7368816
+        },
+        {
+          "default": false,
+          "properties": {
+            "level": "2",
+            "unstable": "true"
+          },
+          "light": 0,
+          "map_color": 7368816
+        },
+        {
+          "default": false,
+          "properties": {
+            "level": "2",
+            "unstable": "false"
+          },
+          "light": 0,
+          "map_color": 7368816
+        },
+        {
+          "default": false,
+          "properties": {
+            "level": "3",
+            "unstable": "true"
+          },
+          "light": 0,
+          "map_color": 7368816
+        },
+        {
+          "default": false,
+          "properties": {
+            "level": "3",
+            "unstable": "false"
+          },
+          "light": 0,
+          "map_color": 7368816
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Bubble, bubble, toil and trouble.\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"description\":\"a block\",\"plural\":false,\"of\":\"self\"}} is a block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.2\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_sky_and_stars:0.1.0\"}}. It is one of the key components of converting {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} into {{\"of\":\"to_base:concept / to_sky_and_stars:to_energy\"}}.\n\n# Obtaining\nThis block is not crafted, but is formed by boiling a vanilla {{\"of\":\"minecraft:block / minecraft:cauldron\"}} filled with {{\"of\":\"minecraft:block / minecraft:water\"}}.\n\nA {{\"of\":\"minecraft:block / minecraft:cauldron\"}} can be boiled with the {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} produced by a {{\"of\":\"to_base:tag / to_sky_and_stars:machine/generator\"}} by being directly connected above the generator, or connected by a {{\"of\":\"minecraft:block / to_sky_and_stars:heat_pipe\"}} on the side of the {{\"of\":\"minecraft:block / minecraft:cauldron\"}}.\n\n# Usage\nThe steam produced by an active {{\"of\":\"self\"}} can be directly converted to energy with a {{\"of\":\"minecraft:block / to_sky_and_stars:turbine\"}} placed up to 3 blocks directly above. The conversion rate of {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} to {{\"of\":\"to_base:concept / to_sky_and_stars:to_energy\"}} depends on the tier of {{\"of\":\"to_base:tag / to_sky_and_stars:machine/enclosure\"}} the {{\"of\":\"minecraft:block / to_sky_and_stars:turbine\"}} is attached to.\n\nA single {{\"of\":\"self\"}} can support between 100°C and 200°C of {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} inclusive.\n\nAny extra heat beyond this range will be lost (indicated by foam being sprayed out of the {{\"of\":\"minecraft:block / minecraft:cauldron\"}}) so multiple {{\"of\":\"self\",\"plural\":true}} connected with {{\"of\":\"minecraft:block / to_sky_and_stars:heat_pipe\",\"plural\":true}} are needed to convert the maximum potential energy from a single {{\"of\":\"to_base:tag / to_sky_and_stars:machine/generator\"}}."
+    }
+  }
+}

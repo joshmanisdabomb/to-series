@@ -3,10 +3,10 @@ package net.jidb.to.base.pub.info
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.api.info.TooltipEngine
 import net.jidb.to.base.pub.item.component.ToEnergyItemData
-import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
+import net.minecraft.network.chat.TextColor
 import kotlin.math.absoluteValue
 import kotlin.math.log10
 import kotlin.math.pow
@@ -66,7 +66,7 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
 
     fun getEnergyInfo(energy: Long, capacity: Long, maxInput: Long, maxOutput: Long, insertChange: Long? = null, insertAverage: Long? = null, extractChange: Long? = null, extractAverage: Long? = null, averageDuration: String = "s", advanced: Boolean? = null): List<MutableComponent> {
         val ret = mutableListOf(
-            createPropertyComponent("energy", "stored", ChatFormatting.YELLOW.color!!,
+            createPropertyComponent("energy", "stored", TextColor.YELLOW.value,
                 createSIComponent(energy, 1, advanced ?: false),
                 createSIComponent(capacity, 1, advanced ?: false)),
         )
@@ -114,10 +114,10 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
             val change = (insertChange ?: 0L) - (extractChange ?: 0L)
             if (change > 0L) {
                 val ticks = (capacity - energy) / change
-                ret.add(createPropertyComponent("energy", "result.full", ChatFormatting.WHITE.color!!, createDurationComponent(ticks)))
+                ret.add(createPropertyComponent("energy", "result.full", TextColor.WHITE.value, createDurationComponent(ticks)))
             } else if (change < 0L) {
                 val ticks = energy / -change
-                ret.add(createPropertyComponent("energy", "result.empty", ChatFormatting.WHITE.color!!, createDurationComponent(ticks)))
+                ret.add(createPropertyComponent("energy", "result.empty", TextColor.WHITE.value, createDurationComponent(ticks)))
             }
         }
 
@@ -130,7 +130,7 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
 
     fun getEnergyItemInfo(data: ToEnergyItemData, advanced: Boolean? = null) = getEnergyInfo(data.energy, data.max, data.maxInput, data.maxOutput, advanced = advanced)
 
-    fun getAdvancedPrompt() = Component.translatable("tooltip.$modid.more", Component.keybind("key.$modid.keyboard.shift").withStyle(ChatFormatting.BOLD))
+    fun getAdvancedPrompt() = Component.translatable("tooltip.$modid.more", Component.keybind("key.$modid.keyboard.shift").withStyle(Style.EMPTY.withBold(true)))
         .withStyle(Style.EMPTY.withColor(0xFF562CCB.toInt()))
 
 }

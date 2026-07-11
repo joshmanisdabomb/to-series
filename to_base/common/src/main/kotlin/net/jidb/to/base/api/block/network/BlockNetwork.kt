@@ -14,7 +14,7 @@ data class BlockNetwork(val id: UUID, val type: BlockNetworkType, val nodes: Set
 
     val positions: Set<BlockPos> = nodes + paths
     val routes: Map<BlockPos, Map<BlockPos, BlockNetworkPath>> by lazy(::computeNodeRoutes)
-    val connections: Map<BlockPos, Set<Direction>> by lazy { routes.mapValues { (source, map) -> map.values.mapNotNull { it.outgoing }.toSet() } }
+    val connections: Map<BlockPos, Set<Direction>> by lazy { nodes.associateWith { node -> Direction.entries.filter { node.relative(it) in paths }.toSet() } }
 
     fun getShortestPath(from: BlockPos, to: BlockPos): BlockNetworkPath? {
         return routes[from]?.get(to)

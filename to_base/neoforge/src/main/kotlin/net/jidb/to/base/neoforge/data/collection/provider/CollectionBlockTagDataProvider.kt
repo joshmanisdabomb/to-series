@@ -1,6 +1,6 @@
 package net.jidb.to.base.neoforge.data.collection.provider
 
-import net.jidb.to.base.api.helper.IdentifierHelper.identifier
+import net.jidb.to.base.api.helper.RegistryHelper.resourceKey
 import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.base.data.api.collection.event.BlockTagDataCollectionEvent
 import net.minecraft.core.HolderLookup
@@ -14,7 +14,7 @@ class CollectionBlockTagDataProvider(private val collections: Iterable<DataColle
         val event = BlockTagDataCollectionEvent()
         val tags = event.process(collections)
         tags?.forEach { (key, blocks) ->
-            tag(key).addAll(blocks.toSortedSet(Comparator.comparing { it.identifier }))
+            tag(key).addAll(blocks.map { it.resourceKey }.toSortedSet())
         }
     }
 

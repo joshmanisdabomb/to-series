@@ -2,13 +2,16 @@ package net.jidb.to.stars.block
 
 import net.jidb.to.base.api.helper.BlockHelper.horizontalPlayerPlacement
 import net.jidb.to.stars.ToStarsMod
+import net.jidb.to.stars.block.entity.HeatGeneratorBlockEntity
 import net.jidb.to.stars.info.MachineTier
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.particles.ParticleTypes
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.RandomSource
 import net.minecraft.world.InteractionResult
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.Level
@@ -18,6 +21,8 @@ import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT
 import net.minecraft.world.phys.BlockHitResult
+import kotlin.math.ceil
+import kotlin.math.sqrt
 
 abstract class HeatGeneratorBlock(val machine: MachineTier, properties: Properties) : BaseEntityBlock(properties) {
 
@@ -56,7 +61,6 @@ abstract class HeatGeneratorBlock(val machine: MachineTier, properties: Properti
 
             val direction: Direction = state.getValue(AbstractFurnaceBlock.FACING)
             val axis = direction.axis
-            val r = 0.52
             val ss = random.nextDouble() * 0.6 - 0.3
             val dx = if (axis == Direction.Axis.X) direction.stepX * 0.52 else ss
             val dy = random.nextDouble() * 6.0 / 16.0
@@ -64,5 +68,13 @@ abstract class HeatGeneratorBlock(val machine: MachineTier, properties: Properti
             level.addParticle(ParticleTypes.SMOKE, x + dx, y + dy, z + dz, 0.0, 0.0, 0.0)
             level.addParticle(ParticleTypes.FLAME, x + dx, y + dy, z + dz, 0.0, 0.0, 0.0)
         }
+    }
+
+    override fun stepOn(level: Level, pos: BlockPos, state: BlockState, entity: Entity) {
+        if (!state.getValue(LIT) || entity.isSteppingCarefully || entity.fireImmune() || level !is ServerLevel) return super.stepOn(level, pos, state, entity)
+        val source = ToStarsMod.damageTypes.getSource(ToStarsMod.damageTypes.heated, level.registryAccess())
+        val heat = (level.getBlockEntity(pos) as? HeatGeneratorBlockEntity)?.heat ?: 0f
+        val damage = ceil(sqrt(heat.div(100f)).times(10f)).div(10f)
+        entity.hurtServer(level, source, damage)
     }
 }

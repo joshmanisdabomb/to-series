@@ -1,5 +1,7 @@
 package net.jidb.to.stars.neoforge.client.data
 
+import net.jidb.to.base.client.data.pub.provider.wiki.CompositeWikiDataEnforcer
+import net.jidb.to.base.client.data.pub.provider.wiki.ModWikiDataEnforcer
 import net.jidb.to.base.client.data.pub.provider.wiki.RegistryWikiDataEnforcer
 import net.jidb.to.base.neoforge.client.data.mod.ToForgeDataMod
 import net.jidb.to.base.neoforge.data.provider.AutoCopyTagDataProvider
@@ -11,7 +13,9 @@ import net.jidb.to.stars.neoforge.client.data.provider.ToStarsLanguageDataProvid
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsParticleDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSoundDataProvider
 import net.jidb.to.stars.neoforge.data.content.ToStarsConfiguredFeatureDataLibrary
+import net.jidb.to.stars.neoforge.data.content.ToStarsDamageTypeDataLibrary
 import net.jidb.to.stars.neoforge.data.content.ToStarsPlacedFeatureDataLibrary
+import net.jidb.to.stars.neoforge.data.provider.ToStarsDamageTypeTagDataProvider
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemCopyTagDataProvider
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemTagDataProvider
 import net.minecraft.core.HolderLookup
@@ -35,14 +39,16 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
     override val advancements = listOf(ToStarsAdvancementDataProvider())
     override val particles = listOf(::ToStarsParticleDataProvider)
     override val sounds = listOf(::ToStarsSoundDataProvider)
-    override val tags = listOf(::ToStarsItemTagDataProvider)
+    override val tags = listOf(::ToStarsItemTagDataProvider, ::ToStarsDamageTypeTagDataProvider)
+
+    override val damageTypes = ToStarsDamageTypeDataLibrary
 
     override val configuredFeatures = ToStarsConfiguredFeatureDataLibrary
     override val placedFeatures = ToStarsPlacedFeatureDataLibrary
     override val biomeMods = listOf(ToStarsBiomeModLibrary)
 
-    override val wiki = listOf(RegistryWikiDataEnforcer(ToStarsMod.modid, {
+    override val wiki = listOf(CompositeWikiDataEnforcer(RegistryWikiDataEnforcer(ToStarsMod.modid, {
         it.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier() || (it.registry() == Registries.TRIGGER_TYPE.identifier() && it.identifier().path == "race")
-    }))
+    }), ModWikiDataEnforcer(ToStarsMod.modid)))
 
 }

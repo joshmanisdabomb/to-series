@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "b": "to_sky_and_stars:copper_battery",
     "g": "minecraft:gold_ingot",

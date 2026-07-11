@@ -4,7 +4,7 @@ import net.jidb.to.base.api.library.SimpleRegistryLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.advancements.AtomicBombAdvancementTrigger
 import net.jidb.to.stars.advancements.RaceAdvancementTrigger
-import net.minecraft.advancements.CriterionTrigger
+import net.minecraft.advancements.triggers.CriterionTrigger
 import net.minecraft.core.registries.BuiltInRegistries
 
 object ToStarsAdvancementTriggerLibrary : SimpleRegistryLibrary<CriterionTrigger<*>>(ToStarsMod.modid) {

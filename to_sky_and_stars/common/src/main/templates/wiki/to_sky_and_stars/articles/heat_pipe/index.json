@@ -1,7 +1,7 @@
 {
   "title": { "of": "minecraft:block / to_sky_and_stars:heat_pipe" },
   "about": ["minecraft:block / to_sky_and_stars:heat_pipe"],
-  "redirect": ["minecraft:item / to_sky_and_stars:heat_pipe", "to_base:block_networks / to_sky_and_stars:heat"],
+  "redirect": ["minecraft:item / to_sky_and_stars:heat_pipe"],
   "icon": ["minecraft:block / to_sky_and_stars:heat_pipe"],
   "tags": [
     "to_sky_and_stars:heat",

@@ -1,0 +1,17 @@
+{
+  "title": "To Lay the Foundations 0.8.0",
+  "short": "0.8.0",
+  "about": [
+    "to_base:mod_version / to_base:0.8.0"
+  ],
+  "parent": "to_base:mod / to_base:to_base",
+  "previous": "to_base:mod_version / to_base:0.7.0",
+  "tags": [
+    "to_base:major_release"
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Now with more sulfur!\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"twelth\",\"extra\":\", and the eighth major 0.x release\",\"of\":\"self\"}} is the twelth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the eighth major 0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.7.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release mainly adds support for custom damage types and sources.\n\nThis version of the mod and all downstream {{\"of\":\"to_base:tag / to_base:to_series\"}} mods has been updated to Minecraft 26.2.\n\n# In this Release\n\n## Additions\n- Added damage type library with support for caching damage sources.\n- A new wiki data enforcer to check the existence of articles for the current mod version.\n- Environment Service can now check mod version of a given mod ID cross-platform.\n- Added dedicated IdentifierHelper::get functions to get block and item identifiers, now backing the previous IdentifierHelper::identifier Kotlin extension functions.\n- Added RegistryHelper::get dedicated functions and RegistryHelper::resourceKey extension functions.\n\n## Changes\n- Wiki data enforcers now are based on reporting identifier pairs, rather than resource keys.\n- BlockModelResolver is now accessed from BlockEntityRenderDispatcher mixin, rather than the Minecraft client instance.\n\n## Fixes\n- BlockNetworks previously would not store a connection entry with only one node in the network."
+    }
+  }
+}

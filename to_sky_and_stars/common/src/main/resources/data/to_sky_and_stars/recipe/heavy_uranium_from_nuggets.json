@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "group": "to_sky_and_stars:heavy_uranium",
   "key": {
     "#": "to_sky_and_stars:heavy_uranium_nugget"

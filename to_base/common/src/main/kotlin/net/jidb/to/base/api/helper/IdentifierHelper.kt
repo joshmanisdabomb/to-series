@@ -10,7 +10,9 @@ object IdentifierHelper {
     fun blockPrefix(modid: String, path: String) = Identifier.fromNamespaceAndPath(modid, path).withPrefix("block/")
     fun itemPrefix(modid: String, path: String) = Identifier.fromNamespaceAndPath(modid, path).withPrefix("item/")
 
-    val Block.identifier get() = BuiltInRegistries.BLOCK.getKey(this)
-    val Item.identifier get() = BuiltInRegistries.ITEM.getKey(this)
+    operator fun get(block: Block) = BuiltInRegistries.BLOCK.getKey(block)
+    val Block.identifier get() = get(this)
+    operator fun get(item: Item) = BuiltInRegistries.ITEM.getKey(item)
+    val Item.identifier get() = get(this)
 
 }

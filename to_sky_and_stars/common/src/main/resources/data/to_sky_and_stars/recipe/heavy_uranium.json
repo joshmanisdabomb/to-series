@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "group": "to_sky_and_stars:heavy_uranium",
   "ingredients": [
     "to_sky_and_stars:heavy_uranium_block"

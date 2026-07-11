@@ -11,6 +11,11 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
     override fun addTranslations() {
         add((ToStarsMod.tabs.tab.displayName.contents as TranslatableContents).key, "To Sky and Stars")
 
+        add("death.attack.$modid.heated", $$"%1$s couldn't stand the heat from a generator")
+        add("death.attack.$modid.heated.player", $$"%1$s couldn't stand the heat while trying to escape %2$s")
+        add("death.attack.$modid.boiled", $$"%1$s was boiled alive")
+        add("death.attack.$modid.boiled.player", $$"%1$s was boiled alive while trying to escape %2$s")
+
         add("gui.$modid.atomic_bomb.explosive", "Add 1 TNT")
         add("gui.$modid.atomic_bomb.bullet", "Add an Enriched Uranium Nugget")
         add("gui.$modid.atomic_bomb.fuel", "Add up to %s Enriched Uranium\nor %s Blocks of Enriched Uranium")

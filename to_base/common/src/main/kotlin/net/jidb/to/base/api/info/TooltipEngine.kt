@@ -1,9 +1,9 @@
 package net.jidb.to.base.api.info
 
-import net.minecraft.ChatFormatting
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
+import net.minecraft.network.chat.TextColor
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
@@ -19,7 +19,7 @@ abstract class TooltipEngine(val modid: String) {
         return Component.translatable("$prefix.${modid}.$topic$suffix",
             Component.translatable("$prefix.${modid}.$topic$suffix.value", *value)
                 .withStyle(Style.EMPTY.withColor(color)))
-            .withStyle(Style.EMPTY.withColor(ChatFormatting.GRAY))
+            .withStyle(Style.EMPTY.withColor(TextColor.GRAY))
     }
 
     companion object {

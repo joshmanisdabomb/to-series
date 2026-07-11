@@ -22,7 +22,7 @@ class DistantSoundInstance(event: SoundEvent, source: SoundSource, val ox: Doubl
     }
 
     private fun calculate() {
-        val cameraPos = Minecraft.getInstance().gameRenderer.mainCamera.position()
+        val cameraPos = Minecraft.getInstance().gameRenderer.mainCamera().position()
         val vector = cameraPos.subtract(ox, oy, oz)
         val distance = vector.length().toFloat()
         volume = range.minus(distance).div(range).coerceIn(0f, 1f)
