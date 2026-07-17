@@ -85,10 +85,13 @@
   "tooltip.to_base.more": "Hold down %s for more info...",
   "tooltip.to_base.number.plus": "+%s",
   "tooltip.to_base.number.si": "%s%s %s",
+  "tooltip.to_base.number.si.-m": "m",
   "tooltip.to_base.number.si.e": "E",
   "tooltip.to_base.number.si.g": "G",
   "tooltip.to_base.number.si.k": "k",
   "tooltip.to_base.number.si.m": "M",
+  "tooltip.to_base.number.si.n": "n",
   "tooltip.to_base.number.si.p": "P",
-  "tooltip.to_base.number.si.t": "T"
+  "tooltip.to_base.number.si.t": "T",
+  "tooltip.to_base.number.si.u": "μ"
 }

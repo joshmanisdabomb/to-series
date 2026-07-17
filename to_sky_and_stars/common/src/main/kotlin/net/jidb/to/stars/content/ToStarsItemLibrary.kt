@@ -38,4 +38,7 @@ object ToStarsItemLibrary : SimpleRegistryLibrary<Item>(ToStarsMod.MOD_ID) {
         .setId(getEntryResourceKey(entry))
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }
 
+    val magnetic_iron by this { entry -> Item(Item.Properties()
+        .setId(getEntryResourceKey(entry))) }
+
 }

@@ -33,8 +33,8 @@ class HeatBlockNetworkType : BlockNetworkType() {
 
         cauldrons.onEachIndexed { index, (pos, state) ->
             if (!level.isLoaded(pos)) return@onEachIndexed
+            val connections = network.connections[pos]?.filter { it.axis.isHorizontal } ?: return@onEachIndexed
             val heat = if (index < active) share else 0f
-            val connections = network.connections[pos] ?: return@onEachIndexed
             for (direction in connections) {
                 ToStarsMod.blocks.boiler.setHeat(level, state, pos, heat / connections.count(), direction)
             }

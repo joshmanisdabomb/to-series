@@ -9,10 +9,10 @@ object InfiniteToEnergyTransferContext : ToEnergyTransferContext {
 
     override fun getAmountAt(resource: Unit, index: Int) = Long.MAX_VALUE
 
-    override fun getCapacityAt(resource: Unit, index: Int): Long = Long.MAX_VALUE
+    override fun getCapacityAt(resource: Unit, index: Int) = Long.MAX_VALUE
 
     override fun insert(resource: Unit, amount: Long, transaction: TransferTransaction) = 0L
 
-    override fun extract(resource: Unit, amount: Long, transaction: TransferTransaction): Long = amount
+    override fun extract(resource: Unit, amount: Long, transaction: TransferTransaction) = amount
 
 }

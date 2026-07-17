@@ -6,13 +6,13 @@ import net.minecraft.util.StringRepresentable
 enum class MachineTier(val number: Float) : StringRepresentable {
 
     ONE(1.0f) {
-        override val maxInput = 256L
-        override val maxOutput = 256L
+        override val maxInput = 256000L
+        override val maxOutput = 256000L
 
-        override val batteryStorage = 4000L
-        override val bankStorage = 40000L
+        override val batteryStorage = 4000000L
+        override val bankStorage = 40000000L
 
-        override val machineBuffer = 4000L
+        override val machineBuffer = 4000000L
         override val machineSpeed = 0.5f
 
         override val generatorHeat = 0.01f
@@ -21,16 +21,18 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val generatorBonus = 50f
         override val generatorCooling = 0.99f
 
+        override val turbineRate = 2f
+
         override val chatColor = 0xFFE38407.toInt()
     },
     ONE_5(1.5f) {
-        override val maxInput = 512L
-        override val maxOutput = 512L
+        override val maxInput = 512000L
+        override val maxOutput = 512000L
 
-        override val batteryStorage = 12000L
-        override val bankStorage = 100000L
+        override val batteryStorage = 12000000L
+        override val bankStorage = 100000000L
 
-        override val machineBuffer = 10000L
+        override val machineBuffer = 10000000L
         override val machineSpeed = 0.75f
 
         override val generatorHeat = 0.015f
@@ -38,6 +40,8 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val generatorRange = 300f
         override val generatorBonus = 100f
         override val generatorCooling = 0.994f
+
+        override val turbineRate = 2.5f
 
         override val chatColor = TextColor.YELLOW.value
     };
@@ -56,6 +60,8 @@ enum class MachineTier(val number: Float) : StringRepresentable {
     abstract val generatorRange: Float
     abstract val generatorBonus: Float
     abstract val generatorCooling: Float
+
+    abstract val turbineRate: Float
 
     abstract val chatColor: Int
 

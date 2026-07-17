@@ -1,6 +1,8 @@
 package net.jidb.to.base.client.pub.gui.components
 
 import net.jidb.to.base.ToBaseMod
+import net.jidb.to.base.api.helper.KotlinHelper.orNull
+import net.jidb.to.base.api.info.TooltipEngine
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphicsExtractor
@@ -25,8 +27,8 @@ class EnergyBarWidget(val energy: () -> Long, val capacity: () -> Long, x: Int, 
 
     override fun createNarrationMessage() = Component.translatable(
         "tooltip.${ToBaseMod.modid}.energy.stored.value",
-        ToBaseTooltipEngine.createSIComponent(energy(), 1, Minecraft.getInstance().hasShiftDown()),
-        ToBaseTooltipEngine.createSIComponent(capacity(), 1, Minecraft.getInstance().hasShiftDown())
+        ToBaseTooltipEngine.createSIComponent(energy(), TooltipEngine.number1rdp, "-m", forceUnit = Minecraft.getInstance().hasShiftDown().orNull("")),
+        ToBaseTooltipEngine.createSIComponent(capacity(), TooltipEngine.number1rdp, "-m", forceUnit = Minecraft.getInstance().hasShiftDown().orNull(""))
     )
 
     override fun updateWidgetNarration(output: NarrationElementOutput) {

@@ -146,6 +146,30 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
     val boiler by this { entry -> BoilingCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
         .setId(getEntryResourceKey(entry))) }
 
+    val copper_turbine by this { entry -> TurbineBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_ORANGE)
+        .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(5, 0) }
+        .strength(4.0F, 5.0F)
+        .instrument(NoteBlockInstrument.TRUMPET)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+    val gold_turbine by this { entry -> TurbineBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.GOLD)
+        .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(5, 0) }
+        .strength(5.0F, 9.0F)
+        .instrument(NoteBlockInstrument.BELL)
+        .sound(SoundType.NETHERITE_BLOCK)) }
+    val rotor_blades by this { entry -> RotorBlock(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .strength(3.0F, 8.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.METAL)) }
+
     val power_cable by this { entry -> LossyToEnergyCableBlock(0.02f, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.COLOR_ORANGE)

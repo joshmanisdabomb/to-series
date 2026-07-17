@@ -1,0 +1,13 @@
+{
+  "title": { "of": "minecraft:block / to_sky_and_stars:copper_turbine" },
+  "about": ["minecraft:block / to_sky_and_stars:copper_turbine"],
+  "redirect": ["minecraft:item / to_sky_and_stars:copper_turbine"],
+  "icon": ["minecraft:block / to_sky_and_stars:copper_turbine"],
+  "tags": [
+    "to_sky_and_stars:heat",
+    "to_sky_and_stars:machine",
+    "to_sky_and_stars:machine/tier1",
+    "to_sky_and_stars:machine/generator",
+    "to_sky_and_stars:turbine"
+  ]
+}

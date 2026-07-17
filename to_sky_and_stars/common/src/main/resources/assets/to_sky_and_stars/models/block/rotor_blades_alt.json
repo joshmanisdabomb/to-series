@@ -1,0 +1,8 @@
+{
+  "parent": "to_sky_and_stars:block/template_rotor_blades_alt",
+  "textures": {
+    "fan": "to_sky_and_stars:block/rotor_blades",
+    "particle": "to_sky_and_stars:block/rotor_blades",
+    "stem": "to_sky_and_stars:block/rotor_blades_stem"
+  }
+}

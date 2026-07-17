@@ -45,6 +45,9 @@ class ToBaseLanguageDataProvider(tokens: Map<String, Map<String, Component>>, ou
         add("gui.$modid.components.energy.display", "%s / %s")
         add("gui.$modid.components.energy.narration", "Energy %sTE out of %sTE")
 
+        add("tooltip.$modid.number.si.n", "n")
+        add("tooltip.$modid.number.si.u", "μ")
+        add("tooltip.$modid.number.si.-m", "m")
         add("tooltip.$modid.number.si", "%s%s %s")
         add("tooltip.$modid.number.si.k", "k")
         add("tooltip.$modid.number.si.m", "M")

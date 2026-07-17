@@ -12,5 +12,6 @@ object ToStarsDamageTypeDataLibrary : DatapackLibrary<DamageType>(ToStarsMod.mod
 
     val heated by this { DamageType("$modid.heated", 0.0F, DamageEffects.BURNING) }
     val boiled by this { DamageType("$modid.boiled", 0.0F, DamageEffects.BURNING) }
+    val rotor_blades by this { DamageType("$modid.rotor_blades", 0.0F) }
 
 }

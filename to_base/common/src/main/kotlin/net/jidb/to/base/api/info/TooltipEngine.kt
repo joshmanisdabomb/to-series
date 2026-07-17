@@ -23,10 +23,13 @@ abstract class TooltipEngine(val modid: String) {
     }
 
     companion object {
-        val number0dp = DecimalFormat("###,###")
-        val number1dp = DecimalFormat("###,###.#")
-        val number2dp = DecimalFormat("###,###.##")
-        val number3dp = DecimalFormat("###,###.###")
+        val number0dp = DecimalFormat("###,##0")
+        val number1dp = DecimalFormat("###,##0.#")
+        val number1rdp = DecimalFormat("###,##0.0")
+        val number2dp = DecimalFormat("###,##0.##")
+        val number2rdp = DecimalFormat("###,##0.00")
+        val number3dp = DecimalFormat("###,##0.###")
+        val number3rdp = DecimalFormat("###,##0.000")
 
         fun withLineBreaks(components: List<Component>): MutableComponent {
             val ret = Component.empty()

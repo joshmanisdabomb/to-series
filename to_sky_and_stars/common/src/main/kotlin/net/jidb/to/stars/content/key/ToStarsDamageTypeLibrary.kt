@@ -10,5 +10,6 @@ object ToStarsDamageTypeLibrary : DamageTypeLibrary(ToStarsMod.modid) {
 
     val heated by this()
     val boiled by this()
+    val rotor_blades by this()
 
 }

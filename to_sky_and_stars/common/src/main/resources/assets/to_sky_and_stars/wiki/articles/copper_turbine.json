@@ -1,0 +1,130 @@
+{
+  "title": {
+    "of": "minecraft:block / to_sky_and_stars:copper_turbine"
+  },
+  "about": [
+    "minecraft:block / to_sky_and_stars:copper_turbine"
+  ],
+  "redirect": [
+    "minecraft:item / to_sky_and_stars:copper_turbine"
+  ],
+  "icon": [
+    "minecraft:block / to_sky_and_stars:copper_turbine"
+  ],
+  "tags": [
+    "to_sky_and_stars:heat",
+    "to_sky_and_stars:machine",
+    "to_sky_and_stars:machine/tier1",
+    "to_sky_and_stars:machine/generator",
+    "to_sky_and_stars:turbine"
+  ],
+  "changelog": [
+    {
+      "version": "to_sky_and_stars:0.1.0",
+      "content": {
+        "en_us": "Introduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_sky_and_stars:copper_turbine": {
+      "renewable": true,
+      "hardness": 4.0,
+      "resistance": 5.0,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0,
+        "to_sky_and_stars:nuclear_fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0,
+        "to_sky_and_stars:nuclear_fire": 0
+      },
+      "states": [
+        {
+          "default": false,
+          "properties": {
+            "facing": "north",
+            "lit": "true"
+          },
+          "light": 5,
+          "map_color": 14188339
+        },
+        {
+          "default": true,
+          "properties": {
+            "facing": "north",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "south",
+            "lit": "true"
+          },
+          "light": 5,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "south",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "west",
+            "lit": "true"
+          },
+          "light": 5,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "west",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "east",
+            "lit": "true"
+          },
+          "light": 5,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "east",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"An esteamed guest in your workshop.\"\n---\n\n# Introduction\n\nThe {{\"template\":\"referral\",\"description\":\"an energy-generating block\",\"plural\":false,\"of\":\"self\"}} is an energy-generating block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_sky_and_stars:0.1.0\"}}. It converts the kinetic energy of {{\"of\":\"minecraft:block / to_sky_and_stars:rotor_blades\"}} into {{\"of\":\"to_base:concept / to_base:to_energy\"}}.\n\nThe blades cannot be powered with {{\"of\":\"to_base:concept / minecraft:redstone\"}}, only the steam generated from the {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} of an active {{\"of\":\"minecraft:block / to_sky_and_stars:boiler\"}} can be converted into {{\"of\":\"to_base:concept / to_base:to_energy\"}}.\n\n# Stats\n\nInformation about a {{\"of\":\"self\"}} can be viewed by hovering over the item in an inventory.\n\nThe {{\"of\":\"self\"}} will convert 1°C of {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} into 0.02 {{\"of\":\"to_base:concept / to_base:energy\",\"text\":\"TE\"}} every tick, meaning:\n\n- For the minimum 100°C of an active {{\"of\":\"minecraft:block / to_sky_and_stars:boiler\"}}, this {{\"of\":\"self\",\"text\":\"turbine\"}} generates 2 {{\"of\":\"to_base:concept / to_base:energy\",\"text\":\"TE\"}} every tick.\n- For the maximum 200°C of an active {{\"of\":\"minecraft:block / to_sky_and_stars:boiler\"}}, 4 {{\"of\":\"to_base:concept / to_base:energy\",\"text\":\"TE\"}} is generated every tick.\n\n{{\"of\":\"minecraft:block / to_sky_and_stars:boiler\",\"plural\":true}} that are supplied more than 200°C are overboiling and are capped at 4 {{\"of\":\"to_base:concept / to_base:energy\",\"text\":\"TE\"}}/t.\n\nUsing the turbine on a {{\"of\":\"minecraft:block / to_sky_and_stars:boiler\"}} that is only partially filled with {{\"of\":\"minecraft:fluid / minecraft:water\"}} will generate proportionally less {{\"of\":\"to_base:concept / to_base:to_energy\"}}.\n\n# Usage\n\n{{\"of\":\"minecraft:block / to_sky_and_stars:rotor_blades\"}} must be mounted to the front face of a {{\"of\":\"self\"}} to catch rising steam. The {{\"of\":\"minecraft:block / to_sky_and_stars:rotor_blades\"}} need an active {{\"of\":\"minecraft:block / to_sky_and_stars:boiler\"}} directly beneath it within 3 blocks unobstructed.\n\nOnce the {{\"of\":\"minecraft:block / to_sky_and_stars:rotor_blades\"}} are powered by steam, the {{\"of\":\"self\"}} lights up and starts producing energy, which is output from the opposite face. {{\"of\":\"minecraft:block / to_sky_and_stars:power_cable\",\"plural\":true}} can be attached to this output face, or a direct connection to an energy receiving {{\"of\":\"to_base:tag / to_sky_and_stars:machine\"}} can be made.\n\nSince a single {{\"of\":\"minecraft:block / to_sky_and_stars:boiler\",\"plural\":true}} can only supply between 100°C and 200°C of {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} before the excess is lost, multiple {{\"of\":\"self\",\"plural\":true}} are needed to extract the maximum {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} from a {{\"of\":\"to_base:tag / to_sky_and_stars:machine/generator\"}}.\n\n# Upgrading\n\n{{\"of\":\"self\",\"plural\":true}} can be directly upgraded into a {{\"of\":\"minecraft:block / to_sky_and_stars:gold_turbine\"}}, a {{\"of\":\"to_base:tag / to_sky_and_stars:machine/tier1.5\",\"text\":\"tier 1.5 machine\"}} with a higher conversion rate from {{\"of\":\"to_base:concept / to_sky_and_stars:heat\"}} to {{\"of\":\"to_base:concept / to_base:to_energy\"}}. This is not required to upgrade to {{\"of\":\"to_base:tag / to_sky_and_stars:machine/tier2\",\"text\":\"tier 2\"}}.\n\n{{\"of\":\"self\",\"plural\":true}} can also be upgraded directly into a {{\"of\":\"to_base:tag / to_sky_and_stars:machine/tier2\",\"text\":\"tier 2 machine\"}} with a further increased conversion rate. The crafting recipe for this involves {{\"of\":\"minecraft:item / to_sky_and_stars:steel_ingot\",\"plural\":true}}, requiring other machines of at least {{\"of\":\"to_base:tag / to_sky_and_stars:machine/tier1\",\"text\":\"tier 1\"}}.\n"
+    }
+  }
+}

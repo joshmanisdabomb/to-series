@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "to_sky_and_stars:block/machine_enclosure_1_bottom",
+    "east": "to_sky_and_stars:block/copper_turbine_alt",
+    "north": "to_sky_and_stars:block/copper_turbine_front",
+    "particle": "to_sky_and_stars:block/copper_machine_enclosure_side",
+    "south": "to_sky_and_stars:block/copper_power_bank_front",
+    "up": "to_sky_and_stars:block/copper_machine_enclosure_top",
+    "west": "to_sky_and_stars:block/copper_turbine_side"
+  }
+}

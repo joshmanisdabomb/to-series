@@ -2,6 +2,7 @@ package net.jidb.to.stars.info
 
 import net.jidb.to.base.api.info.TooltipEngine
 import net.jidb.to.base.pub.block.ToEnergyCableBlock
+import net.jidb.to.base.pub.info.ToBaseTooltipEngine
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine.createDurationComponent
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine.createPlusComponent
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine.getAdvancedPrompt
@@ -101,6 +102,10 @@ object ToStarsTooltipEngine : TooltipEngine(ToStarsMod.modid) {
             else -> TextColor.WHITE
         }.value, createPlusComponent(add, number2dp.format(add * 20))),
         if (remaining > 0) createPropertyComponent("generator", "remaining", TextColor.WHITE.value, createDurationComponent(remaining.toLong())) else null
+    )
+
+    fun getTurbineInfo(tier: MachineTier) = listOf(
+        createPropertyComponent("turbine", "rate", TextColor.GOLD.value, ToBaseTooltipEngine.createSIComponent((1000 * tier.turbineRate).toLong(), number1dp, "-m")),
     )
 
     fun getPowerCableInfo(cable: ToEnergyCableBlock): List<MutableComponent> {

@@ -5,12 +5,15 @@ import net.jidb.to.base.pub.library.EventHandlerLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.event.handler.AdvancementRaceEventHandler
 import net.jidb.to.stars.event.handler.EnergyItemStorageEventHandler
+import net.jidb.to.stars.event.handler.MagneticIronEventHandler
 
 object ToStarsEventHandlerLibrary : EventHandlerLibrary(ToStarsMod.modid) {
 
     val advancement_race by this(AdvancementRaceEventHandler(), ToBaseMod.events::advancement_grant_post)
         .deferBuild(ToBaseMod::onInitialised)
     val energy_item_storage by this(EnergyItemStorageEventHandler(), ToBaseMod.events::modify_default_components)
+        .deferBuild(ToBaseMod::onInitialised)
+    val magnetic_iron by this(MagneticIronEventHandler(), ToBaseMod.events::use_item_on_block)
         .deferBuild(ToBaseMod::onInitialised)
 
 }

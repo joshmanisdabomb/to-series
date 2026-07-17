@@ -13,17 +13,17 @@ abstract class Event<C, R>(val id: Identifier) {
         return this
     }
 
-    fun call(context: C): List<R>? {
+    fun call(context: C): EventResults<R> {
         val results = mutableListOf<R>()
-        val handlers = handlers[id] ?: return results
+        val handlers = handlers[id] ?: return EventResults()
         for (handler in handlers) {
             val result = (handler as EventHandler<C, R>)(context)
-            if ((result as? EventResult)?.cancelAfter() == true) {
-                return null
-            }
             results.add(result)
+            if ((result as? EventResult)?.cancelAfter() == true) {
+                return EventResults(results, true)
+            }
         }
-        return results
+        return EventResults(results, false)
     }
 
     companion object {

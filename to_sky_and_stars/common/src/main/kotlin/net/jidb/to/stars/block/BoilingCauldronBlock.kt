@@ -1,5 +1,6 @@
 package net.jidb.to.stars.block
 
+import net.jidb.to.base.ToBaseMod
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.entity.BoilingCauldronBlockEntity
 import net.minecraft.core.BlockPos
@@ -47,13 +48,22 @@ class BoilingCauldronBlock(properties: Properties) : LayeredCauldronBlock(Biome.
     override fun newBlockEntity(pos: BlockPos, state: BlockState) = BoilingCauldronBlockEntity(pos, state)
 
     fun setHeat(level: ServerLevel, state: BlockState, pos: BlockPos, heat: Float, direction: Direction) {
+        val networks = level.dataStorage.computeIfAbsent(ToBaseMod.savedData.block_networks)
         if (state.`is`(ToStarsMod.blocks.boiler)) {
-            level.getBlockEntity(pos, ToStarsMod.blockEntities.boiler).ifPresent {
-                it.heats[direction] = heat
+            val boiler = level.getBlockEntity(pos, ToStarsMod.blockEntities.boiler).getOrNull()
+            if (boiler != null) {
+                boiler.heats[direction] = heat
+                if (boiler.heats.values.sum() > 0f) {
+                    return
+                }
             }
+            val fill = state.getValue(LEVEL)
+            level.setBlock(pos, Blocks.WATER_CAULDRON.defaultBlockState().setValue(LEVEL, fill), 3)
+            networks.notify(ToStarsMod.blockNetworks.heat, pos)
         } else if (state.`is`(Blocks.WATER_CAULDRON) && heat > 0f) {
             val fill = state.getValue(LEVEL)
             level.setBlock(pos, ToStarsMod.blocks.boiler.defaultBlockState().setValue(LEVEL, fill).setValue(UNSTABLE, heat > 200f), 3)
+            networks.notify(ToStarsMod.blockNetworks.heat, pos)
             level.getBlockEntity(pos, ToStarsMod.blockEntities.boiler).ifPresent {
                 it.heats[direction] = heat
             }

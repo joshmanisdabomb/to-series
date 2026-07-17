@@ -15,6 +15,8 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("death.attack.$modid.heated.player", $$"%1$s couldn't stand the heat while trying to escape %2$s")
         add("death.attack.$modid.boiled", $$"%1$s was boiled alive")
         add("death.attack.$modid.boiled.player", $$"%1$s was boiled alive while trying to escape %2$s")
+        add("death.attack.$modid.rotor_blades", $$"%1$s had their head spun")
+        add("death.attack.$modid.rotor_blades.player", $$"%1$s had their head spun while trying to escape %2$s")
 
         add("gui.$modid.atomic_bomb.explosive", "Add 1 TNT")
         add("gui.$modid.atomic_bomb.bullet", "Add an Enriched Uranium Nugget")
@@ -94,6 +96,8 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("tooltip.$modid.generator.fuel.fill.value", "%s")
         add("tooltip.$modid.generator.fuel.fill.base", "Insert for Minimum to Maximum Temperature: %s")
         add("tooltip.$modid.generator.fuel.fill.base.value", "%s")
+        add("tooltip.$modid.turbine.rate", "Energy per 100°C Boiler: %s")
+        add("tooltip.$modid.turbine.rate.value", "%sTE/t")
     }
 
 }

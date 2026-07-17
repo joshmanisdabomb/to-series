@@ -1,19 +1,22 @@
 package net.jidb.to.base.pub.info
 
 import net.jidb.to.base.ToBaseMod
+import net.jidb.to.base.api.helper.KotlinHelper.orNull
 import net.jidb.to.base.api.info.TooltipEngine
 import net.jidb.to.base.pub.item.component.ToEnergyItemData
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
 import net.minecraft.network.chat.TextColor
+import java.text.DecimalFormat
 import kotlin.math.absoluteValue
 import kotlin.math.log10
 import kotlin.math.pow
 
 object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
 
-    val siUnits = arrayOf(Component.empty()) + arrayOf("k", "m", "g", "t", "p", "e").map { Component.translatable("tooltip.$modid.number.si.$it") }
+    val siPrefixes = arrayOf("n", "u", "-m", "", "k", "m", "g", "t", "p", "e")
+    val siComponents = siPrefixes.map { if (it != "") Component.translatable("tooltip.$modid.number.si.$it") else Component.empty() }
     val timeUnits = listOf(
         "year" to 20L * 60L * 60L * 24L * 365L,
         "month" to 20L * 60L * 60L * 24L * 30L,
@@ -25,22 +28,32 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
         "tick" to 1L
     )
 
-    fun createSIComponent(amount: Long, decimals: Int = 0, ignore: Boolean = false): MutableComponent {
-        if (ignore) return Component.translatable("tooltip.$modid.number.si", "", number0dp.format(amount), "")
-        if (amount == 0L) return Component.translatable("tooltip.$modid.number.si", "", 0, "")
+    fun createSIComponent(amount: Long, components: List<Component>, format: DecimalFormat = number0dp, forceTier: Int? = null): MutableComponent {
+        if (amount == 0L) return Component.translatable("tooltip.$modid.number.si", "", format.format(0f), "")
 
         val absolute = amount.absoluteValue
-        val tier = (log10(absolute.toDouble()) / 3).toInt()
-
-        if (tier == 0) return Component.translatable("tooltip.$modid.number.si", "", amount, "")
-
+        val tier = forceTier ?: (log10(absolute.toDouble()) / 3).toInt()
         val scaled = absolute / 1000.0.pow(tier.toDouble())
-        val suffix = siUnits.getOrNull(tier) ?: Component.empty()
+        val suffix = components.getOrNull(tier) ?: Component.empty()
 
-        val formatted = "%.${decimals}f".format(scaled)
+        val formatted = format.format(scaled)
         val sign = if (amount < 0) "-" else ""
 
         return Component.translatable("tooltip.$modid.number.si", sign, formatted, suffix)
+    }
+
+    fun createSIComponent(amount: Long, format: DecimalFormat = number0dp, initialUnit: String = "", maxUnit: String? = null, forceUnit: String? = null): MutableComponent {
+        var units = siComponents
+
+        val take = siPrefixes.indexOf(maxUnit).takeIf { it >= 0 }?.plus(1)
+        if (take != null) {
+            units = units.take(take)
+        }
+        val drop = siPrefixes.indexOf(initialUnit).takeIf { it >= 0 } ?: 3
+        units = units.drop(drop)
+
+        val forceTier = siPrefixes.indexOf(forceUnit).takeIf { it >= 0 }?.minus(drop)
+        return createSIComponent(amount, units, format, forceTier)
     }
 
     fun createPlusComponent(amount: Number, value: Any): Any {
@@ -67,29 +80,29 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
     fun getEnergyInfo(energy: Long, capacity: Long, maxInput: Long, maxOutput: Long, insertChange: Long? = null, insertAverage: Long? = null, extractChange: Long? = null, extractAverage: Long? = null, averageDuration: String = "s", advanced: Boolean? = null): List<MutableComponent> {
         val ret = mutableListOf(
             createPropertyComponent("energy", "stored", TextColor.YELLOW.value,
-                createSIComponent(energy, 1, advanced ?: false),
-                createSIComponent(capacity, 1, advanced ?: false)),
+                createSIComponent(energy, number1rdp, "-m", forceUnit = (advanced ?: false).orNull("")),
+                createSIComponent(capacity, number1rdp, "-m", forceUnit = (advanced ?: false).orNull(""))),
         )
 
         if (maxInput > 0 || maxOutput > 0) {
             if (maxInput == maxOutput && advanced != true) {
-                ret.add(createPropertyComponent("energy", "max.io", 0xFFBBAF76.toInt(), createSIComponent(maxInput, 1, advanced ?: false)))
+                ret.add(createPropertyComponent("energy", "max.io", 0xFFBBAF76.toInt(), createSIComponent(maxInput, number1rdp, "-m", forceUnit = (advanced ?: false).orNull(""))))
             } else {
                 if (maxInput > 0) {
-                    ret.add(createPropertyComponent("energy", "max.input", 0xFFDAFF76.toInt(), createSIComponent(maxInput, 1, advanced ?: false)))
+                    ret.add(createPropertyComponent("energy", "max.input", 0xFFDAFF76.toInt(), createSIComponent(maxInput, number1rdp, "-m", forceUnit = (advanced ?: false).orNull(""))))
                 }
                 if (maxOutput > 0) {
-                    ret.add(createPropertyComponent("energy", "max.output", 0xFFFFB27F.toInt(), createSIComponent(maxOutput, 1, advanced ?: false)))
+                    ret.add(createPropertyComponent("energy", "max.output", 0xFFFFB27F.toInt(), createSIComponent(maxOutput, number1rdp, "-m", forceUnit = (advanced ?: false).orNull(""))))
                 }
             }
         }
 
         if (advanced == true) {
             if (insertChange != null) {
-                ret.add(createPropertyComponent("energy", "insert", 0xFFDAFF7F.toInt(), createPlusComponent(insertChange, createSIComponent(insertChange, 1, true))))
+                ret.add(createPropertyComponent("energy", "insert", 0xFFDAFF7F.toInt(), createPlusComponent(insertChange, createSIComponent(insertChange, number1rdp, "-m", forceUnit = ""))))
             }
             if (extractChange != null) {
-                ret.add(createPropertyComponent("energy", "extract", 0xFFFFB27F.toInt(), createSIComponent(-extractChange, 1, true)))
+                ret.add(createPropertyComponent("energy", "extract", 0xFFFFB27F.toInt(), createSIComponent(-extractChange, number1rdp, "-m", forceUnit = "")))
             }
             if (insertAverage != null || extractAverage != null) {
                 val average = (insertAverage ?: 0L) - (extractAverage ?: 0L)
@@ -97,7 +110,7 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
                     average > 0L -> 0xFFDAFF7F.toInt()
                     average < 0L -> 0xFFFFB27F.toInt()
                     else -> 0xFFBBAF76.toInt()
-                }, createPlusComponent(average, createSIComponent(average, 1, true)), averageDuration))
+                }, createPlusComponent(average, createSIComponent(average, number1rdp, "-m", forceUnit = "")), averageDuration))
             }
         } else {
             if (insertChange != null || extractChange != null) {
@@ -106,7 +119,7 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
                     change > 0L -> 0xFFDAFF7F.toInt()
                     change < 0L -> 0xFFFFB27F.toInt()
                     else -> 0xFFBBAF76.toInt()
-                }, createPlusComponent(change, createSIComponent(change, 1, false))))
+                }, createPlusComponent(change, createSIComponent(change, number1rdp, "-m"))))
             }
         }
 

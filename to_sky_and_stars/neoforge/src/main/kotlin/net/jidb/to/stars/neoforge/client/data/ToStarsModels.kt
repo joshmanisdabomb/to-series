@@ -76,7 +76,6 @@ object ToStarsModels {
             .put(TextureSlot.END, Material(identifier.withSuffix("_bottom")))
             .copySlot(TextureSlot.INSIDE, TextureSlot.PARTICLE)
     }
-
     val TEMPLATE_POWER_BANK = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_power_bank")),
         Optional.empty(),
@@ -90,5 +89,30 @@ object ToStarsModels {
         TextureSlot.BOTTOM,
     )
     val POWER_BANK = TexturedModel.createDefault({ TEXTURES_POWER_BANK(it.identifier.withPrefix("block/")) }, TEMPLATE_POWER_BANK)
+
+    val TEXTURES_ROTOR_BLADES = { identifier: Identifier ->
+        TextureMapping()
+            .put(TextureSlot.STEM, Material(identifier.withSuffix("_stem")))
+            .put(TextureSlot.FAN, Material(identifier))
+            .copySlot(TextureSlot.FAN, TextureSlot.PARTICLE)
+    }
+
+    val TEMPLATE_ROTOR_BLADES = ModelTemplate(
+        Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_rotor_blades")),
+        Optional.empty(),
+        TextureSlot.PARTICLE,
+        TextureSlot.STEM,
+        TextureSlot.FAN,
+    )
+    val ROTOR_BLADES = TexturedModel.createDefault({ TEXTURES_ROTOR_BLADES(it.identifier.withPrefix("block/")) }, TEMPLATE_ROTOR_BLADES)
+
+    val TEMPLATE_ROTOR_BLADES_ALT = ModelTemplate(
+        Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_rotor_blades_alt")),
+        Optional.empty(),
+        TextureSlot.PARTICLE,
+        TextureSlot.STEM,
+        TextureSlot.FAN,
+    )
+    val ROTOR_BLADES_ALT = TexturedModel.createDefault({ TEXTURES_ROTOR_BLADES(it.identifier.withPrefix("block/")) }, TEMPLATE_ROTOR_BLADES_ALT)
 
 }

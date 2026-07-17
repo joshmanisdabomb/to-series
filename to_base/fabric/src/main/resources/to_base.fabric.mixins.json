@@ -3,9 +3,11 @@
   "package": "net.jidb.to.base.fabric.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "LevelMixin",
     "PlayerAdvancementsMixin"
   ],
   "client": [
+    "client.LevelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

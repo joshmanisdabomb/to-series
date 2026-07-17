@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_turbine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_sky_and_stars:copper_turbine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:gold_turbine_from_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_copper_turbine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:gold_turbine_from_upgrade"
+    ]
+  }
+}

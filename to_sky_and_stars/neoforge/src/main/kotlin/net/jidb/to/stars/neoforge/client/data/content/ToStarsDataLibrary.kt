@@ -1,5 +1,6 @@
 package net.jidb.to.stars.neoforge.client.data.content
 
+import net.jidb.to.base.api.helper.IdentifierHelper.identifier
 import net.jidb.to.base.client.data.pub.collection.module.lang.IdentifierLanguageClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.lang.StorageIdentifierLanguageClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FireBlockModelClientDataCollectionModule
@@ -22,6 +23,8 @@ import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.item.tint.BatteryItemTint
 import net.jidb.to.stars.neoforge.client.data.module.*
 import net.jidb.to.stars.neoforge.data.module.EnergySilkBlockLootDataCollectionModule
+import net.minecraft.client.data.models.model.ModelTemplates
+import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
 import net.minecraft.client.resources.model.sprite.Material
@@ -267,6 +270,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val generators by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_generator") }
         addModule { IdentifierLanguageClientDataCollectionModule { it.replace("solid", "solid-fired").replace("fluid", "liquid-fired") } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.heat_generators) }
     }
     val generator_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_generator") }
@@ -324,6 +328,86 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             define('g', Items.GOLD_INGOT)
             define('i', Items.IRON_INGOT)
             event.helper.createHas(this, ToStarsMod.blocks.copper_solid_generator)
+            this
+        } }
+    }
+
+    val rotor_blades by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
+        addModule(::RotorModelClientDataCollectionModule)
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern("b b")
+            pattern(" c ")
+            pattern("b b")
+            define('b', Items.IRON_INGOT)
+            define('c', Blocks.IRON_BLOCK)
+            event.helper.createHas(this, ToStarsMod.itemTags.heat_generators)
+            this
+        } }
+    }
+
+    val turbines by this {
+        addAffects(clear = true) { it.identifier().path.endsWith("_turbine") }
+    }
+    val turbine_tier_1 by this {
+        addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_turbine") }
+        addModule {
+            val unlit = TexturedModel.createDefault({
+                val texture = it.identifier.withPrefix("block/")
+                TextureMapping()
+                    .put(TextureSlot.DOWN, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
+                    .put(TextureSlot.EAST, Material(texture.withSuffix("_alt")))
+                    .put(TextureSlot.WEST, Material(texture.withSuffix("_side")))
+                    .put(TextureSlot.NORTH, Material(texture.withSuffix("_front")))
+                    .put(TextureSlot.SOUTH, Material(texture.withPath { it.replace("_turbine", "_power_bank_front") }))
+                    .put(TextureSlot.UP, Material(texture.withPath { it.replace("_turbine", "_machine_enclosure_top") }))
+                    .put(TextureSlot.PARTICLE, Material(texture.withPath { it.replace("_turbine", "_machine_enclosure_side") }))
+            }, ModelTemplates.CUBE)
+            LitMachineBlockModelClientDataCollectionModule(unlit, unlit.updateTexture {
+                val east = it.get(TextureSlot.EAST)
+                it.put(TextureSlot.EAST, Material(east.sprite.withSuffix("_lit"), east.forceTranslucent))
+                val west = it.get(TextureSlot.WEST)
+                it.put(TextureSlot.WEST, Material(west.sprite.withSuffix("_lit"), west.forceTranslucent))
+            })
+        }
+    }
+    val copper_turbine by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern("ccc")
+            pattern("sss")
+            pattern("rmr")
+            define('c', ToStarsMod.blocks.power_cable)
+            define('r', Items.REDSTONE)
+            define('s', ToStarsMod.items.magnetic_iron)
+            define('m', ToStarsMod.blocks.copper_machine_enclosure)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_machine_enclosure)
+            this
+        } }
+    }
+    val gold_turbine by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern("ccc")
+            pattern("sss")
+            pattern("rmr")
+            define('c', ToStarsMod.blocks.power_cable)
+            define('r', Items.REDSTONE)
+            define('s', ToStarsMod.items.magnetic_iron)
+            define('m', ToStarsMod.blocks.gold_machine_enclosure)
+            event.helper.createHas(this, ToStarsMod.blocks.gold_machine_enclosure)
+            this
+        } }
+        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().path + "_from_upgrade") { collection, event ->
+            pattern("ggg")
+            pattern("rMr")
+            pattern("iGi")
+            define('r', Items.REDSTONE)
+            define('M', ToStarsMod.blocks.copper_turbine)
+            define('G', Blocks.GOLD_BLOCK)
+            define('g', Items.GOLD_INGOT)
+            define('i', Items.IRON_INGOT)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_turbine)
             this
         } }
     }

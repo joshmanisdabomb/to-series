@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": "minecraft:iron_ingot",
+    "c": "minecraft:iron_block"
+  },
+  "pattern": [
+    "b b",
+    " c ",
+    "b b"
+  ],
+  "result": {
+    "id": "to_sky_and_stars:rotor_blades"
+  }
+}

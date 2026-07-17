@@ -1,0 +1,8 @@
+{
+  "title": { "of": "minecraft:item / to_sky_and_stars:magnetic_iron" },
+  "about": ["minecraft:item / to_sky_and_stars:magnetic_iron"],
+  "icon": ["minecraft:item / to_sky_and_stars:magnetic_iron"],
+  "tags": [
+    "to_base:material"
+  ]
+}
