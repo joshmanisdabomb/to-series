@@ -10,6 +10,7 @@ import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.minecraft.data.advancements.AdvancementSubProvider
 import net.minecraft.data.loot.BlockLootSubProvider
+import net.minecraft.data.loot.LootTableSubProvider
 import net.minecraft.data.tags.TagsProvider
 import net.minecraft.network.chat.Component
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
@@ -24,6 +25,7 @@ interface ToContentDataMod {
     val models: List<(output: PackOutput) -> ModelProvider> get() = emptyList()
     val tags: List<(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) -> TagsProvider<*>> get() = emptyList()
     val blockLoot: List<(provider: HolderLookup.Provider) -> BlockLootSubProvider> get() = emptyList()
+    val generalLoot: List<(provider: HolderLookup.Provider) -> LootTableSubProvider> get() = emptyList()
     val advancements: List<AdvancementSubProvider> get() = emptyList()
     val wiki: List<WikiDataEnforcer?>? get() = emptyList()
 

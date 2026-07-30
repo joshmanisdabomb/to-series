@@ -45,5 +45,13 @@
       "to_sky_and_stars:entity/generic/nuke_small"
     ],
     "subtitle": "subtitles.to_sky_and_stars.entity.generic.nuke_small"
+  },
+  "music_disc.gravitational_influence": {
+    "sounds": [
+      {
+        "name": "to_sky_and_stars:records/gravitational_influence",
+        "stream": true
+      }
+    ]
   }
 }

@@ -1,9 +1,8 @@
 package net.jidb.to.base.pub.transfer
 
-import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.api.transfer.TransferContextProvider
 import net.jidb.to.base.api.transfer.item.ItemTransferContext
-import net.jidb.to.base.pub.transfer.energy.StackToEnergyTransferContext
+import net.jidb.to.base.pub.transfer.energy.ToEnergyItemProvider
 import net.jidb.to.base.pub.transfer.energy.ToEnergyWorldlyProvider
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
@@ -17,10 +16,7 @@ object ToEnergyTransferContextProvider : TransferContextProvider<ToEnergyTransfe
     }
 
     override fun fromItemStack(stack: ItemStack, context: ItemTransferContext, slot: Int): ToEnergyTransferContext? {
-        if (stack.has(ToBaseMod.itemComponents.energy_data)) {
-            return StackToEnergyTransferContext(stack)
-        }
-        return null
+        return ToEnergyItemProvider.getTransferContext(stack)
     }
 
 }

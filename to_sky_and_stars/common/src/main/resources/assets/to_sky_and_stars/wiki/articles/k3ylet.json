@@ -1,0 +1,12 @@
+{
+  "title": "K3YLET",
+  "about": [
+    "to_base:author / to_sky_and_stars:k3ylet"
+  ],
+  "tags": [],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Move over Mike Dean\"\n---\n\n# Introduction\n\n{{\"of\":\"self\"}} is an online music producer. Starting in 2018, he has created more than 50 tracks comprising mostly electronic synth.\n\nHe has generously provided {{\"of\":\"to_base:mod / to_base:to_sky_and_stars\"}} permission to include his track *{{\"of\":\"minecraft:item / to_sky_and_stars:music_disc_gravitational_influence\",\"text\":\"Gravitational Influence\"}}* as a {{\"of\":\"to_base:concept / minecraft:music_disc\",\"text\":\"music disc\"}}.\n\nHis recent songs are available to listen to on [Soundcloud](https://soundcloud.com/k3ylet)."
+    }
+  }
+}

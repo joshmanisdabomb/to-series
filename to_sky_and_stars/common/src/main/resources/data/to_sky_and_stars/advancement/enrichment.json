@@ -1,11 +1,11 @@
 {
-  "parent": "to_sky_and_stars:uranium",
+  "parent": "to_sky_and_stars:centrifuge",
   "criteria": {
     "has_enriched_uranium": {
       "conditions": {
         "items": [
           {
-            "items": "to_sky_and_stars:enriched_uranium"
+            "items": "#to_sky_and_stars:enriched_uranium"
           }
         ]
       },

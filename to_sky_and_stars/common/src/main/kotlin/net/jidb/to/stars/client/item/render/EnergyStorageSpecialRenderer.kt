@@ -2,8 +2,8 @@ package net.jidb.to.stars.client.item.render
 
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.serialization.codecs.RecordCodecBuilder
-import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.mixin.client.BlockEntityRenderDispatcherAccessor
+import net.jidb.to.base.pub.transfer.energy.ToEnergyItemProvider
 import net.jidb.to.stars.client.render.EnergyStorageRenderer
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.SubmitNodeCollector
@@ -43,8 +43,8 @@ class EnergyStorageSpecialRenderer(val block: Block) : SpecialModelRenderer<Floa
     }
 
     override fun extractArgument(stack: ItemStack): Float {
-        val component = stack.get(ToBaseMod.itemComponents.energy_data) ?: return 0f
-        return component.energy / component.max.toFloat()
+        val energy = ToEnergyItemProvider.getTransferContext(stack) ?: return 0f
+        return energy.getTotalAmount(Unit) / energy.getTotalCapacity(Unit).toFloat()
     }
 
     data class Unbaked(val block: Block) : SpecialModelRenderer.Unbaked<Float> {

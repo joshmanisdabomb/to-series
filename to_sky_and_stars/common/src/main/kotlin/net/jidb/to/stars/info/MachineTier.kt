@@ -1,6 +1,8 @@
 package net.jidb.to.stars.info
 
 import net.minecraft.network.chat.TextColor
+import net.minecraft.network.codec.ByteBufCodecs
+import net.minecraft.util.ByIdMap
 import net.minecraft.util.StringRepresentable
 
 enum class MachineTier(val number: Float) : StringRepresentable {
@@ -14,6 +16,9 @@ enum class MachineTier(val number: Float) : StringRepresentable {
 
         override val machineBuffer = 4000000L
         override val machineSpeed = 0.5f
+        override val machineUsage = 1.25f
+        override val machineBonus = 1.015625f
+        override val machineBonusMax = 32
 
         override val generatorHeat = 0.01f
         override val generatorInitial = 100f
@@ -34,6 +39,9 @@ enum class MachineTier(val number: Float) : StringRepresentable {
 
         override val machineBuffer = 10000000L
         override val machineSpeed = 0.75f
+        override val machineUsage = 1.15f
+        override val machineBonus = 1.015625f
+        override val machineBonusMax = 64
 
         override val generatorHeat = 0.015f
         override val generatorInitial = 100f
@@ -54,6 +62,9 @@ enum class MachineTier(val number: Float) : StringRepresentable {
 
     abstract val machineBuffer: Long
     abstract val machineSpeed: Float
+    abstract val machineUsage: Float
+    abstract val machineBonus: Float
+    abstract val machineBonusMax: Int
 
     abstract val generatorHeat: Float
     abstract val generatorInitial: Float
@@ -69,6 +80,8 @@ enum class MachineTier(val number: Float) : StringRepresentable {
 
     companion object {
         val codec = StringRepresentable.fromEnum(::values)
+        val byId = ByIdMap.continuous(MachineTier::ordinal, MachineTier.entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)
+        val streamCodec = ByteBufCodecs.idMapper(byId, MachineTier::ordinal)
     }
 
 }

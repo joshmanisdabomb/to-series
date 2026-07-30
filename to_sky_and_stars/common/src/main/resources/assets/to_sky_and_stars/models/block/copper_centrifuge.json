@@ -1,0 +1,10 @@
+{
+  "parent": "to_sky_and_stars:block/template_centrifuge",
+  "textures": {
+    "bottom": "to_sky_and_stars:block/machine_enclosure_1_bottom",
+    "inside": "to_sky_and_stars:block/centrifuge",
+    "particle": "to_sky_and_stars:block/copper_machine_enclosure_side",
+    "side": "to_sky_and_stars:block/copper_machine_enclosure_side",
+    "top": "to_sky_and_stars:block/copper_machine_enclosure_top"
+  }
+}

@@ -12,11 +12,20 @@ class ContainerDataSchema<K : Any> {
         return this
     }
 
+    fun defineBool(name: K) = define(name, BooleanContainerDataSchemaType)
     fun defineShort(name: K) = define(name, ShortContainerDataSchemaType)
     fun defineInt(name: K) = define(name, IntegerContainerDataSchemaType)
     fun defineLong(name: K)  = define(name, LongContainerDataSchemaType)
     fun definePos(name: K) = define(name, BlockPosContainerDataSchemaType)
     fun defineDecimal(name: K, shorts: Int = 2, decimals: Int = 3) = define(name, DecimalContainerDataSchemaType(shorts, decimals))
+
+    fun <O : Any> defineInclude(schema: ContainerDataSchema<O>, convert: (O) -> K): ContainerDataSchema<K> {
+        for ((name, type) in schema.types) {
+            define(convert(name), type)
+        }
+        return this
+    }
+    fun defineInclude(schema: ContainerDataSchema<K>) = defineInclude(schema) { it }
 
     fun getShort(key: Int, getter: (index: K) -> Any?): Int? {
         var currentIndex = 0
@@ -46,6 +55,7 @@ class ContainerDataSchema<K : Any> {
         error("Container data key $key is not defined.")
     }
 
+    fun getBoolValue(data: ContainerData, key: K) = getShortValue(data, key)?.let { it > 0 }
     fun getShortValue(data: ContainerData, key: K) = getNumberValue(data, key)?.toShort()
     fun getIntValue(data: ContainerData, key: K) = getNumberValue(data, key)?.toInt()
     fun getLongValue(data: ContainerData, key: K) = getNumberValue(data, key)?.toLong()

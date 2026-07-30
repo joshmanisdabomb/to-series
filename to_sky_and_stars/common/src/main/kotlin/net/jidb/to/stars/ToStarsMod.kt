@@ -14,6 +14,7 @@ object ToStarsMod : ToMod() {
     override val items = ToStarsItemLibrary
     override val blockItems = ToStarsBlockItemLibrary
     override val tabs = ToStarsCreativeTabLibrary
+    override val itemComponents = ToStarsItemComponentLibrary
 
     override val blockEntities = ToStarsBlockEntityLibrary
     override val menus = ToStarsMenuLibrary
@@ -29,6 +30,11 @@ object ToStarsMod : ToMod() {
     override val particles = ToStarsParticleLibrary
     override val sounds = ToStarsSoundLibrary
 
+    override val recipeTypes = ToStarsRecipeLibrary
+    override val recipeSerializers = ToStarsRecipeSerializerLibrary
+    override val recipeCategories = ToStarsRecipeCategoryLibrary
+    override val recipeDisplays = ToStarsRecipeDisplayLibrary
+
     override val eventHandlers = ToStarsEventHandlerLibrary
     override val advancementTriggers = ToStarsAdvancementTriggerLibrary
     override val tickets = ToStarsTicketLibrary
@@ -39,4 +45,6 @@ object ToStarsMod : ToMod() {
     override val placedFeatures = ToStarsPlacedFeatureLibrary
     override val biomeMods = ToStarsBiomeModLibrary
     override val damageTypes = ToStarsDamageTypeLibrary
+    override val lootTables = ToStarsLootTableLibrary
+    override val music = ToStarsMusicLibrary
 }

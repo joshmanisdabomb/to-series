@@ -9,8 +9,8 @@ import net.jidb.to.stars.network.AtomicBombDetonatePayload
 object AtomicBombDetonatePayloadHandler {
     fun handle(data: AtomicBombDetonatePayload, context: ServerPayloadContext) {
         val bomb = context.player.containerMenu as? AtomicBombMenu ?: return
-        if (!context.player.containerMenu.stillValid(context.player)) {
-            ToStarsMod.logger.warn("Player {} interacted with invalid menu {}", context.player, context.player.containerMenu)
+        if (!bomb.stillValid(context.player)) {
+            ToStarsMod.logger.warn("Player {} interacted with invalid menu {}", context.player, bomb)
             return
         }
 

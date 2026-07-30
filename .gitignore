@@ -28,6 +28,14 @@ bin/
 
 *.DS_Store
 
+# windows
+
+Thumbs.db
+Thumbs.db:encryptable
+*.lnk
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
 # fabric
 
 run/

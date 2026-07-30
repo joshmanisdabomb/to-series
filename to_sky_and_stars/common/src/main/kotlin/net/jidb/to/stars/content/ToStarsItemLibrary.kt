@@ -10,6 +10,7 @@ import net.jidb.to.stars.item.TestItem
 import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.Rarity
 
 object ToStarsItemLibrary : SimpleRegistryLibrary<Item>(ToStarsMod.MOD_ID) {
 
@@ -39,6 +40,9 @@ object ToStarsItemLibrary : SimpleRegistryLibrary<Item>(ToStarsMod.MOD_ID) {
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }
 
     val magnetic_iron by this { entry -> Item(Item.Properties()
+        .setId(getEntryResourceKey(entry))) }
+
+    val music_disc_gravitational_influence by this { entry -> Item(Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ToStarsMod.music.gravitational_influence)
         .setId(getEntryResourceKey(entry))) }
 
 }

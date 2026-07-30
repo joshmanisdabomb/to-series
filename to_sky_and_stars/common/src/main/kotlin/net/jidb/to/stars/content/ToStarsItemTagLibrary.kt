@@ -17,5 +17,10 @@ object ToStarsItemTagLibrary : TagLibrary<Item>(ToStarsMod.modid) {
     val batteries by this()
     val heat_generators by this()
     val heat_generator_2x by this()
+    val turbines by this()
+    val power_banks by this()
+    val centrifuges by this()
+    val copper_machines by this()
+    val gold_machines by this()
 
 }

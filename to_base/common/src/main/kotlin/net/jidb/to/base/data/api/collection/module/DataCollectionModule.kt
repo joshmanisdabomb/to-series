@@ -3,6 +3,7 @@ package net.jidb.to.base.data.api.collection.module
 import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.base.data.api.collection.event.*
 import net.minecraft.core.registries.Registries
+import net.minecraft.resources.Identifier
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.ItemLike
@@ -37,6 +38,10 @@ abstract class DataCollectionModule : IDataCollectionModule {
                 if (!generateRecipes(collection as DataCollection<Item>, event)) return IDataCollectionModule.EventResult.PASS
                 return IDataCollectionModule.EventResult.SUCCESS
             }
+            is GeneralLootDataCollectionEvent -> {
+                event.addResult(collection, this, generateGeneralLoot(collection, event) ?: return IDataCollectionModule.EventResult.PASS)
+                return IDataCollectionModule.EventResult.SUCCESS
+            }
             is ConfiguredFeatureDataCollectionEvent -> {
                 if (!generateConfiguredFeatures(collection, event)) return IDataCollectionModule.EventResult.PASS
                 return IDataCollectionModule.EventResult.SUCCESS
@@ -54,6 +59,8 @@ abstract class DataCollectionModule : IDataCollectionModule {
 
     protected open fun generateBlockLoot(collection: DataCollection<Block>, event: BlockLootDataCollectionEvent): Map<Block, LootTable.Builder>? = null
     protected open fun generateRecipes(collection: DataCollection<Item>, event: RecipeDataCollectionEvent) = false
+
+    protected open fun generateGeneralLoot(collection: DataCollection<*>, event: GeneralLootDataCollectionEvent): Map<Identifier, LootTable.Builder>? = null
 
     protected open fun generateConfiguredFeatures(collection: DataCollection<*>, event: ConfiguredFeatureDataCollectionEvent) = false
     protected open fun generatePlacedFeatures(collection: DataCollection<*>, event: PlacedFeatureDataCollectionEvent) = false

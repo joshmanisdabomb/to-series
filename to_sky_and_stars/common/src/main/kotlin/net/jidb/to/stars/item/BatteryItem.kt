@@ -1,16 +1,16 @@
 package net.jidb.to.stars.item
 
-import net.jidb.to.base.pub.item.EnergyDisplayItem
+import net.jidb.to.base.pub.item.ToEnergyDisplayItem
 import net.jidb.to.stars.info.MachineTier
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 
-class BatteryItem(val machine: MachineTier, properties: Properties) : Item(properties), EnergyDisplayItem {
+class BatteryItem(val machine: MachineTier, properties: Properties) : Item(properties) {
 
     override fun isBarVisible(stack: ItemStack) = true
 
-    override fun getBarColor(stack: ItemStack) = getEnergyColor(stack)
+    override fun getBarColor(stack: ItemStack) = ToEnergyDisplayItem.getEnergyColor(stack)
 
-    override fun getBarWidth(stack: ItemStack) = getEnergyWidth(stack)
+    override fun getBarWidth(stack: ItemStack) = ToEnergyDisplayItem.getEnergyWidth(stack)
 
 }

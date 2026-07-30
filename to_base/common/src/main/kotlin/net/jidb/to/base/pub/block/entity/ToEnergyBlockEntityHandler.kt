@@ -3,7 +3,7 @@ package net.jidb.to.base.pub.block.entity
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.api.inventory.data.ContainerDataSchema
 import net.jidb.to.base.api.inventory.data.ContainerDataSchemaApplyFunction
-import net.jidb.to.base.pub.item.component.ToEnergyItemData
+import net.jidb.to.base.pub.item.component.ToEnergyItemComponentData
 import net.jidb.to.base.pub.transfer.energy.BlockEntityToEnergyTransferContext
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.component.DataComponentGetter
@@ -100,7 +100,7 @@ class ToEnergyBlockEntityHandler(defaultCapacity: Long, defaultMaxInput: Long, d
     }
 
     fun collectImplicitComponents(components: DataComponentMap.Builder) {
-        components.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(energy, capacity, maxInput, maxOutput))
+        components.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(energy, capacity, maxInput, maxOutput))
     }
 
     fun tickAverages() {

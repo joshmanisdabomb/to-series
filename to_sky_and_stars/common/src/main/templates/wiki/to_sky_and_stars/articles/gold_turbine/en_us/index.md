@@ -12,12 +12,12 @@ The blades cannot be powered with {{"of": "to_base:concept / minecraft:redstone"
 
 Information about a {{"of": "self"}} can be viewed by hovering over the item in an inventory.
 
-The {{"of": "self"}} will convert 1°C of {{"of": "to_base:concept / to_sky_and_stars:heat"}} into 0.025 {{"of": "to_base:concept / to_base:energy", "text": "TE"}} every tick, meaning:
+The {{"of": "self"}} will convert 1°C of {{"of": "to_base:concept / to_sky_and_stars:heat"}} into 0.025 {{"of": "to_base:concept / to_base:to_energy", "text": "TE"}} every tick, meaning:
 
-- For the minimum 100°C of an active {{"of": "minecraft:block / to_sky_and_stars:boiler"}}, this {{"of": "self", "text": "turbine"}} generates 2.5 {{"of": "to_base:concept / to_base:energy", "text": "TE"}} every tick.
-- For the maximum 200°C of an active {{"of": "minecraft:block / to_sky_and_stars:boiler"}}, 5 {{"of": "to_base:concept / to_base:energy", "text": "TE"}} is generated every tick.
+- For the minimum 100°C of an active {{"of": "minecraft:block / to_sky_and_stars:boiler"}}, this {{"of": "self", "text": "turbine"}} generates 2.5 {{"of": "to_base:concept / to_base:to_energy", "text": "TE"}} every tick.
+- For the maximum 200°C of an active {{"of": "minecraft:block / to_sky_and_stars:boiler"}}, 5 {{"of": "to_base:concept / to_base:to_energy", "text": "TE"}} is generated every tick.
 
-{{"of": "minecraft:block / to_sky_and_stars:boiler", "plural": true}} that are supplied more than 200°C are overboiling and are capped at 5 {{"of": "to_base:concept / to_base:energy", "text": "TE"}}/t.
+{{"of": "minecraft:block / to_sky_and_stars:boiler", "plural": true}} that are supplied more than 200°C are overboiling and are capped at 5 {{"of": "to_base:concept / to_base:to_energy", "text": "TE"}}/t.
 
 Using the turbine on a {{"of": "minecraft:block / to_sky_and_stars:boiler"}} that is only partially filled with {{"of": "minecraft:fluid / minecraft:water"}} will generate proportionally less {{"of": "to_base:concept / to_base:to_energy"}}.
 
@@ -31,4 +31,4 @@ Since a single {{"of": "minecraft:block / to_sky_and_stars:boiler", "plural": tr
 
 # Upgrading
 
-{{"of": "self", "plural": true}} can be upgraded into a {{"of": "to_base:tag / to_sky_and_stars:machine/tier2", "text": "tier 2 machine"}} with a higher conversion rate from {{"of": "to_base:concept / to_sky_and_stars:heat"}} to {{"of": "to_base:concept / to_base:to_energy"}}. The crafting recipe for this involves {{"of": "minecraft:item / to_sky_and_stars:steel_ingot", "plural": true}}, requiring other machines of at least {{"of": "to_base:tag / to_sky_and_stars:machine/tier1", "text": "tier 1"}}.
+{{"of": "self", "plural": true}} can be directly upgraded into a {{"of": "minecraft:block / to_sky_and_stars:steel_solid_generator"}}, a {{"of": "to_base:tag / to_sky_and_stars:machine/tier2", "text": "tier 2 machine"}} with a a higher conversion rate from {{"of": "to_base:concept / to_sky_and_stars:heat"}} to {{"of": "to_base:concept / to_base:to_energy"}}. The crafting recipe for this involves {{"of": "minecraft:item / to_sky_and_stars:steel_ingot", "plural": true}}, requiring other machines of at least {{"of": "to_base:tag / to_sky_and_stars:machine/tier1", "text": "tier 1"}}.

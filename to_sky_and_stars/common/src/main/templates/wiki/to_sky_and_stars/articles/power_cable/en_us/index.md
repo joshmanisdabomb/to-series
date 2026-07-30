@@ -3,7 +3,7 @@ flavor: "Electrifying!"
 ---
 
 # Introduction
-The {{"template": "introduction", "description": "a cable block"}}. It can be used to transfer {{"of": "to_base:concept / to_base:energy"}} between {{"of": "to_base:tag / to_sky_and_stars:machine", "plural": true}} and {{"of": "to_base:tag / to_sky_and_stars:machine/battery", "plural": true}}.
+The {{"template": "introduction", "description": "a cable block"}}. It can be used to transfer {{"of": "to_base:concept / to_base:to_energy"}} between {{"of": "to_base:tag / to_sky_and_stars:machine", "plural": true}}.
 
 # Drawbacks
 

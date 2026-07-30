@@ -9,18 +9,6 @@ object KotlinHelper {
     @JvmName("orNullExt")
     fun <T> Boolean.orNull(`true`: T) = orNull(this, `true`)
 
-    inline fun <reified T> repeat(array: Array<T>, times: Int) = Array(array.size * times) { array[it % array.size] }
-    inline operator fun <reified T> Array<T>.times(times: Int) = repeat(this, times)
-    inline fun <reified T> repeat(list: Iterable<T>, times: Int): List<T> {
-        val list = list.toList()
-        return List(list.size * times) { list[it % list.toList().size] }
-    }
-    inline operator fun <reified T> Iterable<T>.times(times: Int) = repeat(this, times)
-
-    inline fun <reified T> filterNotNull(array: Array<T?>): Array<T> = array.mapNotNull { it }.toTypedArray()
-    @JvmName("filterNotNullExt")
-    inline fun <reified T> Array<T?>.filterNotNull(): Array<T> = filterNotNull(this)
-
     fun squared(number: Byte) = number * number
     @JvmName("squaredByte")
     fun Byte.squared() = squared(this)
@@ -39,5 +27,27 @@ object KotlinHelper {
     fun squared(number: Float) = number * number
     @JvmName("squaredFloat")
     fun Float.squared() = squared(this)
+
+    inline fun <reified T> repeat(array: Array<T>, times: Int) = Array(array.size * times) { array[it % array.size] }
+    inline operator fun <reified T> Array<T>.times(times: Int) = repeat(this, times)
+    inline fun <reified T> repeat(list: Iterable<T>, times: Int): List<T> {
+        val list = list.toList()
+        return List(list.size * times) { list[it % list.toList().size] }
+    }
+    inline operator fun <reified T> Iterable<T>.times(times: Int) = repeat(this, times)
+
+    inline fun <reified T> filterNotNull(array: Array<T?>): Array<T> = array.mapNotNull { it }.toTypedArray()
+    @JvmName("filterNotNullExt")
+    inline fun <reified T> Array<T?>.filterNotNull(): Array<T> = filterNotNull(this)
+
+    fun <T> transpose(list: List<List<T>>): List<List<T>> {
+        if (list.isEmpty()) return emptyList()
+        val size = list.first().size
+        require(list.all { it.size == size }) { "All rows must have the same length." }
+
+        return List(size) { col -> List(list.size) { row -> list[row][col] } }
+    }
+    @JvmName("transposeExt")
+    fun <T> List<List<T>>.transpose(): List<List<T>> = transpose(this)
 
 }

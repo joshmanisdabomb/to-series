@@ -1,0 +1,49 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "chance": 0.5,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "functions": [
+                {
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 5.0,
+                    "min": 2.0
+                  },
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "to_sky_and_stars:enriched_uranium_nugget"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 5.0,
+                    "min": 2.0
+                  },
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "to_sky_and_stars:heavy_uranium_nugget"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "to_sky_and_stars:processor/enriched_uranium_nugget_from_centrifuge"
+}

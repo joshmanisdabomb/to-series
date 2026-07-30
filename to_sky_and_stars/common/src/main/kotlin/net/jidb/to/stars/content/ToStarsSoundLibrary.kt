@@ -16,4 +16,6 @@ object ToStarsSoundLibrary : SoundEventLibrary(ToStarsMod.MOD_ID) {
     val generator_crackle by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("block.").withPath { it.replace("generator_", "generator.")}) }
     val generator_empty by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("block.").withPath { it.replace("generator_", "generator.")}) }
 
+    val gravitational_influence by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("music_disc.")) }
+
 }

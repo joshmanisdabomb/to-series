@@ -11,10 +11,7 @@ import net.jidb.to.base.data.api.collection.event.PlacedFeatureDataCollectionEve
 import net.jidb.to.base.data.pub.provider.CopyDataProvider
 import net.jidb.to.base.data.pub.provider.DeleteDataProvider
 import net.jidb.to.base.neoforge.client.data.collection.provider.CollectionModelDataProvider
-import net.jidb.to.base.neoforge.data.collection.provider.CollectionBlockLootDataProvider
-import net.jidb.to.base.neoforge.data.collection.provider.CollectionBlockTagDataProvider
-import net.jidb.to.base.neoforge.data.collection.provider.CollectionItemTagDataProvider
-import net.jidb.to.base.neoforge.data.collection.provider.CollectionRecipeDataProvider
+import net.jidb.to.base.neoforge.data.collection.provider.*
 import net.minecraft.core.HolderSet
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.core.registries.Registries
@@ -75,7 +72,8 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
         val collectionBlockTagProvider = event.createProvider { output, provider -> CollectionBlockTagDataProvider(colls, output, provider, modid) }
         event.createProvider { output, provider -> CollectionItemTagDataProvider(colls, output, provider, modid) }
         event.createProvider { output, lookup -> LootTableProvider(output, mutableSetOf(), listOf(
-            SubProviderEntry({ CollectionBlockLootDataProvider(colls, it) }, LootContextParamSets.BLOCK)
+            SubProviderEntry({ CollectionBlockLootDataProvider(colls, it) }, LootContextParamSets.BLOCK),
+            SubProviderEntry({ CollectionGeneralLootDataProvider(colls, it) }, LootContextParamSets.ALL_PARAMS)
         ), lookup) }
         event.createProvider { output, lookup -> CollectionRecipeDataProvider.Runner(colls, output, lookup, modid) }
 
@@ -83,6 +81,9 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
         models.forEach { event.createProvider(it) }
         blockLoot.map { provider -> GatherDataEvent.DataProviderFromOutputLookup { output, lookup -> LootTableProvider(output, mutableSetOf(), listOf(
             SubProviderEntry(provider, LootContextParamSets.BLOCK)
+        ), lookup) } }.forEach { event.createProvider(it) }
+        generalLoot.map { provider -> GatherDataEvent.DataProviderFromOutputLookup { output, lookup -> LootTableProvider(output, mutableSetOf(), listOf(
+            SubProviderEntry(provider, LootContextParamSets.ALL_PARAMS)
         ), lookup) } }.forEach { event.createProvider(it) }
         recipes.forEach { event.createProvider(it) }
         if (advancements.isNotEmpty()) {
@@ -125,6 +126,11 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
             }
             .add(Registries.DAMAGE_TYPE) {
                 val library = damageTypes ?: return@add
+                library.context = it
+                library.build()
+            }
+            .add(Registries.JUKEBOX_SONG) {
+                val library = music ?: return@add
                 library.context = it
                 library.build()
             }

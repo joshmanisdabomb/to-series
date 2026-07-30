@@ -23,6 +23,8 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
         configuredFeatures?.build()
         placedFeatures?.build()
         damageTypes?.build()
+        lootTables?.build()
+        music?.build()
 
         blockNetworks?.build()
         itemComponents?.build()
@@ -43,6 +45,11 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
 
         blockTags?.build()
         itemTags?.build()
+
+        recipeCategories?.build()
+        recipeDisplays?.build()
+        recipeTypes?.build()
+        recipeSerializers?.build()
 
         sounds?.build()
 

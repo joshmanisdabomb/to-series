@@ -67,14 +67,6 @@ jobs:
         with:
           arguments: ${{ steps.gradle_args.outputs.gradle_datagen }}
 
-      - name: Verify Same Content for Data Generators
-        shell: bash
-        run: "git diff --exit-code"
-
-      - name: Verify CI Enforcement of Data Generators
-        shell: bash
-        run: '! find -name "enforcer_report.txt" | grep -q .'
-
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -142,3 +134,11 @@ jobs:
             echo "Request failed"
             exit 1
           fi
+
+      - name: Verify Same Content for Data Generators
+        shell: bash
+        run: "git diff --exit-code"
+
+      - name: Verify CI Enforcement of Data Generators
+        shell: bash
+        run: '! find -name "enforcer_report.txt" | grep -q .'

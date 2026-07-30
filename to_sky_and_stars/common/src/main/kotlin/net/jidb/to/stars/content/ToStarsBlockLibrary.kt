@@ -170,6 +170,21 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
         .sound(SoundType.METAL)) }
 
+    val copper_centrifuge by this { entry -> CentrifugeBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_ORANGE)
+        .requiresCorrectToolForDrops()
+        .strength(4.0F, 5.0F)
+        .instrument(NoteBlockInstrument.TRUMPET)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+    val gold_centrifuge by this { entry -> CentrifugeBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.GOLD)
+        .requiresCorrectToolForDrops()
+        .strength(5.0F, 9.0F)
+        .instrument(NoteBlockInstrument.BELL)
+        .sound(SoundType.NETHERITE_BLOCK)) }
+
     val power_cable by this { entry -> LossyToEnergyCableBlock(0.02f, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.COLOR_ORANGE)

@@ -83,6 +83,7 @@
   "tooltip.to_base.energy.stored.forge.value": "%sFE / %sFE",
   "tooltip.to_base.energy.stored.value": "%sTE / %sTE",
   "tooltip.to_base.more": "Hold down %s for more info...",
+  "tooltip.to_base.none": "None",
   "tooltip.to_base.number.plus": "+%s",
   "tooltip.to_base.number.si": "%s%s %s",
   "tooltip.to_base.number.si.-m": "m",

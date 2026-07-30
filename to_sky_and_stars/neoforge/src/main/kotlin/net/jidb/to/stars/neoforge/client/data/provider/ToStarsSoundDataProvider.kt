@@ -54,6 +54,12 @@ class ToStarsSoundDataProvider(output: PackOutput, provider: CompletableFuture<H
             )
             .subtitle("subtitles." + ToStarsMod.sounds.generator_empty.location.toString().replace(":", "."))
         )
+
+        add(ToStarsMod.sounds.gravitational_influence, SoundDefinition.definition()
+            .with(
+                sound(ToStarsMod.sounds.gravitational_influence.location.withPath { it.replace("music_disc.", "records/") }, SoundDefinition.SoundType.SOUND).stream()
+            )
+        )
     }
 
 }

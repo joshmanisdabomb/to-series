@@ -115,4 +115,35 @@ object ToStarsModels {
     )
     val ROTOR_BLADES_ALT = TexturedModel.createDefault({ TEXTURES_ROTOR_BLADES(it.identifier.withPrefix("block/")) }, TEMPLATE_ROTOR_BLADES_ALT)
 
+    val TEXTURES_CENTRIFUGE = { identifier: Identifier ->
+        TextureMapping()
+            .put(TextureSlot.SIDE, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_side" }))
+            .put(TextureSlot.BOTTOM, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_bottom" }))
+            .put(TextureSlot.TOP, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_top" }))
+            .put(TextureSlot.INSIDE, Material(identifier.withPath { "block/" + it.split("_").last() }))
+            .copySlot(TextureSlot.SIDE, TextureSlot.PARTICLE)
+    }
+
+    val TEMPLATE_CENTRIFUGE = ModelTemplate(
+        Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_centrifuge")),
+        Optional.empty(),
+        TextureSlot.PARTICLE,
+        TextureSlot.SIDE,
+        TextureSlot.BOTTOM,
+        TextureSlot.TOP,
+        TextureSlot.INSIDE,
+    )
+    val CENTRIFUGE = TexturedModel.createDefault({ TEXTURES_CENTRIFUGE(it.identifier.withPrefix("block/")) }, TEMPLATE_CENTRIFUGE)
+
+    val TEMPLATE_CENTRIFUGE_LIT = ModelTemplate(
+        Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_centrifuge_lit")),
+        Optional.empty(),
+        TextureSlot.PARTICLE,
+        TextureSlot.SIDE,
+        TextureSlot.BOTTOM,
+        TextureSlot.TOP,
+        TextureSlot.INSIDE,
+    )
+    val CENTRIFUGE_LIT = TexturedModel.createDefault({ TEXTURES_CENTRIFUGE(it.identifier.withPrefix("block/")) }, TEMPLATE_CENTRIFUGE_LIT)
+
 }

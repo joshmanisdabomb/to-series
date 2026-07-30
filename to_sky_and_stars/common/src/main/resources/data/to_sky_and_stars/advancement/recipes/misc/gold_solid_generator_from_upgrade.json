@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_solid_generator": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_sky_and_stars:copper_solid_generator"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_sky_and_stars:gold_solid_generator_from_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_copper_solid_generator"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_sky_and_stars:gold_solid_generator_from_upgrade"
+    ]
+  }
+}

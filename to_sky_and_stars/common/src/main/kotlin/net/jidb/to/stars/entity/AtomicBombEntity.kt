@@ -151,12 +151,12 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
 
     private fun explode(level: ServerLevel) {
         val owner = getOwner()
-        val explosion = NuclearExplosion(level, owner, Explosion.getDefaultDamageSource(level, getOwner()), position().add(0.0, 0.5, 0.0), getExplosionStrength(getUraniumCount(stacks[2])).toFloat())
-        explosion.run()
-
         if (owner is ServerPlayer) {
             ToStarsMod.advancementTriggers.atomic_bomb.trigger(owner, this)
         }
+
+        val explosion = NuclearExplosion(level, owner, Explosion.getDefaultDamageSource(level, getOwner()), position().add(0.0, 0.5, 0.0), getExplosionStrength(getUraniumCount(stacks[2])).toFloat())
+        explosion.run()
     }
 
     private fun drop(level: ServerLevel) {

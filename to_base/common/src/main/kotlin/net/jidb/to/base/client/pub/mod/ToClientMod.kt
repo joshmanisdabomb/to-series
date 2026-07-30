@@ -17,10 +17,10 @@ abstract class ToClientMod : IToClientMod, ToContentClientMod, ToModListener<ToC
     protected val setupHooks = mutableListOf<(mod: ToClientMod) -> Unit>()
 
     override fun clientInit() {
+        modelLayers?.build()
         blockEntityRenderers?.build()
         entityRenderers?.build()
         payloadHandlers?.build()
-        modelLayers?.build()
         specialModels?.build()
         blockTints?.build()
         itemTints?.build()

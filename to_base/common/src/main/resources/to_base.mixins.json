@@ -12,8 +12,10 @@
   "client": [
     "client.BlockEntityRenderDispatcherAccessor",
     "client.BlockModelGeneratorsAccessor",
+    "client.GhostSlotsAccessor",
     "client.GuiGraphicsAccessor",
-    "client.ItemModelGeneratorsAccessor"
+    "client.ItemModelGeneratorsAccessor",
+    "client.RecipeBookComponentAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

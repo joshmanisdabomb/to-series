@@ -2,7 +2,8 @@ package net.jidb.to.stars.inventory.menu
 
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.pub.block.entity.ToEnergyBlockEntityHandler
-import net.jidb.to.base.pub.inventory.slot.EnergyItemSlot
+import net.jidb.to.base.pub.inventory.slot.ToEnergyItemSlot
+import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.world.Container
 import net.minecraft.world.SimpleContainer
@@ -22,8 +23,8 @@ class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val contai
 
         container.startOpen(playerInventory.player)
 
-        addSlot(EnergyItemSlot(container, 0, 69, 36, ::slotsChanged))
-        addSlot(EnergyItemSlot(container, 1, 91, 36, ::slotsChanged))
+        addSlot(ToEnergyItemSlot(container, 0, 69, 36, ::slotsChanged))
+        addSlot(ToEnergyItemSlot(container, 1, 91, 36, ::slotsChanged))
 
         addStandardInventorySlots(playerInventory, 8, 83)
 
@@ -38,18 +39,19 @@ class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val contai
 
         if (slot.hasItem()) {
             val stackInSlot = slot.item
-            val energy = stackInSlot.get(ToBaseMod.itemComponents.energy_data)
+            val itemTransfer = Services.platform.transfer.itemProvider.fromContainer(slot.container, null)
+            val energy = if (itemTransfer != null) ToBaseMod.transferProviders.to_energy.fromItemStack(stackInSlot, itemTransfer, index) else null
             result = stackInSlot.copy()
 
             if (index in allSlots) {
                 if (!this.moveItemStackTo(stackInSlot, allSlots.size, slots.size, true)) {
                     return ItemStack.EMPTY
                 }
-            } else if (energy != null && energy.energy <= 0L) {
+            } else if (energy != null && energy.getTotalAmount(Unit) <= 0L) {
                 if (!this.moveItemStackTo(stackInSlot, transferToSlots.min(), transferToSlots.max() + 1, false)) {
                     return ItemStack.EMPTY
                 }
-            } else if (energy != null && energy.energy >= energy.max) {
+            } else if (energy != null && energy.getTotalAmount(Unit) >= energy.getTotalCapacity(Unit)) {
                 if (!this.moveItemStackTo(stackInSlot, transferFromSlots.min(), transferFromSlots.max() + 1, false)) {
                     return ItemStack.EMPTY
                 }

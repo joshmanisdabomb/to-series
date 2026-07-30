@@ -1,10 +1,12 @@
 package net.jidb.to.stars.info
 
+import net.jidb.to.base.api.helper.KotlinHelper.orNull
 import net.jidb.to.base.api.info.TooltipEngine
 import net.jidb.to.base.pub.block.ToEnergyCableBlock
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine.createDurationComponent
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine.createPlusComponent
+import net.jidb.to.base.pub.info.ToBaseTooltipEngine.createSIComponent
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine.getAdvancedPrompt
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.LossyToEnergyCableBlock
@@ -13,6 +15,7 @@ import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
 import net.minecraft.network.chat.TextColor
+import net.minecraft.util.Mth
 import net.minecraft.world.item.ItemStack
 
 object ToStarsTooltipEngine : TooltipEngine(ToStarsMod.modid) {
@@ -105,8 +108,58 @@ object ToStarsTooltipEngine : TooltipEngine(ToStarsMod.modid) {
     )
 
     fun getTurbineInfo(tier: MachineTier) = listOf(
-        createPropertyComponent("turbine", "rate", TextColor.GOLD.value, ToBaseTooltipEngine.createSIComponent((1000 * tier.turbineRate).toLong(), number1dp, "-m")),
+        createPropertyComponent("turbine", "rate", TextColor.GOLD.value, createSIComponent((1000 * tier.turbineRate).toLong(), number1dp, "-m")),
     )
+
+    fun getProcessorInfo(tier: MachineTier) = listOf(
+        createPropertyComponent("processor", "speed", when {
+            tier.machineSpeed > 1f -> TextColor.GREEN
+            tier.machineSpeed < 1f -> TextColor.RED
+            else -> TextColor.WHITE
+        }.value, number3dp.format(tier.machineSpeed * 100)),
+        createPropertyComponent("processor", "usage", when {
+            tier.machineUsage < 1f -> TextColor.GREEN
+            tier.machineUsage > 1f -> TextColor.RED
+            else -> TextColor.WHITE
+        }.value, number3dp.format(tier.machineUsage * 100)),
+        createPropertyComponent("processor", "bonus", TextColor.BLUE.value, number3dp.format(tier.machineBonus.minus(1) * 100)),
+        createPropertyComponent("processor", "bonus.completions", TextColor.WHITE.value, tier.machineBonusMax),
+        createPropertyComponent("processor", "bonus.max", 0xFF00FFFF.toInt(), number3dp.format(tier.machineBonus.minus(1).times(tier.machineBonusMax).plus(1) * 100)),
+    )
+
+    fun getEfficiencyInfo(currentRecipe: Component?, incorrect: Boolean, completions: Int, bonus: Float, max: Int) = listOfNotNull(
+        if (currentRecipe != null) {
+            createPropertyComponent("efficiency", "recipe", TextColor.GREEN.value, currentRecipe)
+        } else {
+            createPropertyComponent("efficiency", "recipe", TextColor.DARK_GRAY.value, ToBaseTooltipEngine.none)
+        },
+        if (incorrect) Component.translatable("tooltip.$modid.efficiency.incorrect").withStyle(Style.EMPTY.withColor(TextColor.RED.value)) else null,
+        createPropertyComponent("efficiency", "current", 0xFF00CCFF.toInt(), number3dp.format(bonus.minus(1).times(completions).plus(1) * 100)),
+        createPropertyComponent("efficiency", "bonus", TextColor.BLUE.value, number3dp.format(bonus.minus(1) * 100)),
+        createPropertyComponent("efficiency", "completions", TextColor.WHITE.value, completions, max),
+        createPropertyComponent("efficiency", "max", 0xFF00FFFF.toInt(), number3dp.format(bonus.minus(1).times(max).plus(1) * 100)),
+    )
+
+    fun getProcessorProgressInfo(progress: Short, max: Short, time: Int, energy: Long, usage: Float, speed: Float, advanced: Boolean? = null): List<MutableComponent> {
+        val remaining = max - progress
+        val total = Mth.ceil(energy * usage)
+        val cost = Mth.ceil(total * speed / time)
+        val totalForMax = cost * max
+        val base = Mth.ceil(energy / time.toFloat())
+        val initial = listOfNotNull(
+            if (remaining > 0) createPropertyComponent("processor", "remaining", TextColor.WHITE.value, createDurationComponent(remaining.toLong())) else null,
+            if (max > 0) createPropertyComponent("processor", "max", 0xFFDDEEFF.toInt(), createDurationComponent(max.toLong())) else null,
+            if (energy > 0) createPropertyComponent("processor", "energy", 0xFFFFB27F.toInt(), createSIComponent(cost.toLong(), number1rdp, "-m", forceUnit = (advanced ?: false).orNull(""))) else null,
+            if (energy > 0) createPropertyComponent("processor", "energy.total", TextColor.YELLOW.value, createSIComponent(totalForMax.toLong(), number1rdp, "-m", forceUnit = (advanced ?: false).orNull(""))) else null,
+            if (advanced == true && time > 0) createPropertyComponent("processor", "max.base", 0xFFDDEEFF.toInt(), createDurationComponent(time.toLong())) else null,
+            if (advanced == true && energy > 0) createPropertyComponent("processor", "energy.base", 0xFFFFB27F.toInt(), createSIComponent(base.toLong(), number1rdp, "-m", forceUnit = "")) else null,
+            if (advanced == true && energy > 0) createPropertyComponent("processor", "energy.total.base", TextColor.YELLOW.value, createSIComponent(energy, number1rdp, "-m", forceUnit = "")) else null,
+        )
+        if (initial.isEmpty()) {
+            return listOf(Component.translatable("tooltip.$modid.processor.invalid").withStyle(Style.EMPTY.withItalic(true).withColor(0xFFFFAAAA.toInt())))
+        }
+        return initial + listOfNotNull(if (advanced == false) getAdvancedPrompt() else null)
+    }
 
     fun getPowerCableInfo(cable: ToEnergyCableBlock): List<MutableComponent> {
         val loss = (cable as? LossyToEnergyCableBlock)?.loss ?: 0f

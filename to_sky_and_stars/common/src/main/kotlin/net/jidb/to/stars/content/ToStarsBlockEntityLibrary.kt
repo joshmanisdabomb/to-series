@@ -16,5 +16,6 @@ object ToStarsBlockEntityLibrary : SimpleRegistryLibrary<BlockEntityType<*>>(ToS
     val solid_generator by this { Services.platform.blocks.createBlockEntityType(::SolidGeneratorBlockEntity, ToStarsMod.blocks.copper_solid_generator, ToStarsMod.blocks.gold_solid_generator) }
     val boiler by this { Services.platform.blocks.createBlockEntityType(::BoilingCauldronBlockEntity, ToStarsMod.blocks.boiler) }
     val rotor_blades by this { Services.platform.blocks.createBlockEntityType(::RotorBlockEntity, ToStarsMod.blocks.rotor_blades) }
+    val centrifuge by this { Services.platform.blocks.createBlockEntityType(::CentrifugeBlockEntity, ToStarsMod.blocks.copper_centrifuge, ToStarsMod.blocks.gold_centrifuge) }
 
 }

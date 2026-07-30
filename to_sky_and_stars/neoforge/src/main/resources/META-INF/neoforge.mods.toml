@@ -10,6 +10,7 @@ displayName = "${mod_name}"
 authors = "${mod_author}"
 description = '''${description}'''
 logoFile = "assets/${mod_id}/icon.png"
+credits = "annielams, K3YLET"
 
 [[dependencies."${mod_id}"]]
 modId = "neoforge"

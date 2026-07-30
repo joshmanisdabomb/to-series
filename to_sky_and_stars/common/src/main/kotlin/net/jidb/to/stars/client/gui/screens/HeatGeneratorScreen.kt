@@ -1,7 +1,7 @@
 package net.jidb.to.stars.client.gui.screens
 
 import net.jidb.to.base.api.info.TooltipEngine
-import net.jidb.to.base.client.pub.gui.components.ProcessBarWidget
+import net.jidb.to.base.client.pub.gui.components.BurnBarWidget
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.client.gui.components.HeatBarWidget
 import net.jidb.to.stars.info.ToStarsTooltipEngine
@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack
 class HeatGeneratorScreen<M : HeatGeneratorMenu>(menu: M, playerInventory: Inventory, title: Component) : AbstractContainerScreen<M>(menu, playerInventory, title, 176, 154) {
 
     private var thermometer: HeatBarWidget? = null
-    private var progress: ProcessBarWidget? = null
+    private var progress: BurnBarWidget? = null
 
     init {
         inventoryLabelY = imageHeight - 94
@@ -30,7 +30,7 @@ class HeatGeneratorScreen<M : HeatGeneratorMenu>(menu: M, playerInventory: Inven
             HeatBarWidget(menu.data, leftPos + 28, topPos + 19)
         )
         progress = this.addRenderableWidget(
-            ProcessBarWidget({
+            BurnBarWidget({
                 val current = HeatGeneratorMenu.dataSchema.getShortValue(menu.data, HeatGeneratorMenu.HeatGeneratorDataKey.DURATION) ?: 0
                 val max = HeatGeneratorMenu.dataSchema.getShortValue(menu.data, HeatGeneratorMenu.HeatGeneratorDataKey.MAX_DURATION) ?: 0
                 current.div(max.toFloat())

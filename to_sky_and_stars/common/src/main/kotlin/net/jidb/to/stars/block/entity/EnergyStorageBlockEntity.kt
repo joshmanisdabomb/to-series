@@ -6,6 +6,7 @@ import net.jidb.to.base.pub.block.entity.ToEnergyBlockEntityHandler
 import net.jidb.to.base.pub.transfer.ToEnergyTransferContext
 import net.jidb.to.base.pub.transfer.energy.InputToEnergyTransferContext
 import net.jidb.to.base.pub.transfer.energy.OutputToEnergyTransferContext
+import net.jidb.to.base.pub.transfer.energy.ToEnergyItemProvider
 import net.jidb.to.base.pub.transfer.energy.ToEnergyWorldlyProvider
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
@@ -73,17 +74,19 @@ class EnergyStorageBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
             return false
         }
 
-        return stack.has(ToBaseMod.itemComponents.energy_data)
+        val itemTransfer = ToBaseMod.transferProviders.items.fromContainer(this, null) ?: return false
+        val energy = ToBaseMod.transferProviders.to_energy.fromItemStack(stack, itemTransfer, slot)
+        return energy != null
     }
 
     override fun canPlaceItemThroughFace(slot: Int, stack: ItemStack, side: Direction?) = canPlaceItem(slot, stack)
 
     override fun canTakeItemThroughFace(slot: Int, stack: ItemStack, side: Direction): Boolean {
-        val energy = stack.get(ToBaseMod.itemComponents.energy_data) ?: return true
+        val energy = ToEnergyItemProvider.getTransferContext(stack) ?: return false
         if (slot in EnergyStorageMenu.transferFromSlots) {
-            return energy.energy == 0L
+            return energy.getTotalAmount(Unit) == 0L
         } else if (slot in EnergyStorageMenu.transferToSlots) {
-            return energy.energy == energy.max
+            return energy.getTotalAmount(Unit) == energy.getTotalCapacity(Unit)
         }
         return true
     }

@@ -104,6 +104,7 @@ class ToBaseLanguageDataProvider(tokens: Map<String, Map<String, Component>>, ou
         add("tooltip.$modid.energy.max.io", "Maximum Input/Output: %s")
         add("tooltip.$modid.energy.max.io.value", "%sTE/t")
 
+        add("tooltip.$modid.none", "None")
         add("tooltip.$modid.more", "Hold down %s for more info...")
 
         add("key.$modid.keyboard.shift", "Shift")

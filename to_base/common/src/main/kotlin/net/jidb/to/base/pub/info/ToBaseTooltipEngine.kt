@@ -3,7 +3,7 @@ package net.jidb.to.base.pub.info
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.api.helper.KotlinHelper.orNull
 import net.jidb.to.base.api.info.TooltipEngine
-import net.jidb.to.base.pub.item.component.ToEnergyItemData
+import net.jidb.to.base.pub.item.component.ToEnergyItemComponentData
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.Style
@@ -27,6 +27,8 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
         "second" to 20L,
         "tick" to 1L
     )
+
+    val none = Component.translatable("tooltip.$modid.none")
 
     fun createSIComponent(amount: Long, components: List<Component>, format: DecimalFormat = number0dp, forceTier: Int? = null): MutableComponent {
         if (amount == 0L) return Component.translatable("tooltip.$modid.number.si", "", format.format(0f), "")
@@ -141,7 +143,7 @@ object ToBaseTooltipEngine : TooltipEngine(ToBaseMod.modid) {
         return ret
     }
 
-    fun getEnergyItemInfo(data: ToEnergyItemData, advanced: Boolean? = null) = getEnergyInfo(data.energy, data.max, data.maxInput, data.maxOutput, advanced = advanced)
+    fun getEnergyItemInfo(data: ToEnergyItemComponentData, advanced: Boolean? = null) = getEnergyInfo(data.energy, data.max, data.maxInput, data.maxOutput, advanced = advanced)
 
     fun getAdvancedPrompt() = Component.translatable("tooltip.$modid.more", Component.keybind("key.$modid.keyboard.shift").withStyle(Style.EMPTY.withBold(true)))
         .withStyle(Style.EMPTY.withColor(0xFF562CCB.toInt()))

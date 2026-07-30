@@ -13,6 +13,6 @@ object ToDataHelper {
     }
 
     val replaceableAssets = listOf("blockstates", "items", "models", "particles", "lang", "wiki", "sounds.json")
-    val replaceableData = listOf("advancements", "loot_table", "recipe", "tags")
+    val replaceableData = listOf("advancement", "loot_table", "recipe", "tags")
 
 }

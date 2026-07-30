@@ -13,8 +13,8 @@ class CollectionBlockLootDataProvider(private val collections: Iterable<DataColl
 
     override fun generate() {
         val event = BlockLootDataCollectionEvent(registries)
-        val tags = event.process(collections)
-        tags?.forEach { (block, loot) ->
+        val tables = event.process(collections)
+        tables?.forEach { (block, loot) ->
             add(block, loot)
         }
     }

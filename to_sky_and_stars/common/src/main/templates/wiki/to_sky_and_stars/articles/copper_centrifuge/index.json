@@ -1,0 +1,13 @@
+{
+  "title": { "of": "minecraft:block / to_sky_and_stars:copper_centrifuge" },
+  "about": ["minecraft:block / to_sky_and_stars:copper_centrifuge"],
+  "redirect": ["minecraft:item / to_sky_and_stars:copper_centrifuge", "minecraft:block_entity_type / to_sky_and_stars:centrifuge", "minecraft:menu / to_sky_and_stars:centrifuge"],
+  "icon": ["minecraft:block / to_sky_and_stars:copper_centrifuge"],
+  "tags": [
+    "to_base:energy",
+    "to_sky_and_stars:machine",
+    "to_sky_and_stars:machine/tier1",
+    "to_sky_and_stars:machine/processor",
+    "to_sky_and_stars:centrifuge"
+  ]
+}

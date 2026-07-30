@@ -19,11 +19,17 @@ import net.minecraft.world.entity.EntityType
 import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.JukeboxSong
+import net.minecraft.world.item.crafting.RecipeBookCategory
+import net.minecraft.world.item.crafting.RecipeSerializer
+import net.minecraft.world.item.crafting.RecipeType
+import net.minecraft.world.item.crafting.display.RecipeDisplay
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import net.minecraft.world.level.saveddata.SavedDataType
+import net.minecraft.world.level.storage.loot.LootTable
 
 interface ToContentMod {
     val blocks: BlockLibrary? get() = null
@@ -40,6 +46,10 @@ interface ToContentMod {
     val blockTags: TagLibrary<Block>? get() = null
     val itemTags: TagLibrary<Item>? get() = null
     val itemComponents: SimpleRegistryLibrary<DataComponentType<*>>? get() = null
+    val recipeCategories: SimpleRegistryLibrary<RecipeBookCategory>? get() = null
+    val recipeDisplays: SimpleRegistryLibrary<RecipeDisplay.Type<*>>? get() = null
+    val recipeTypes: SimpleRegistryLibrary<RecipeType<*>>? get() = null
+    val recipeSerializers: SimpleRegistryLibrary<RecipeSerializer<*>>? get() = null
     val sounds: SoundEventLibrary? get() = null
     val biomeMods: BiomeModLibrary? get() = null
     val reloadListeners: ReloadListenerLibrary<ReloadListenerPlatformModule>? get() = null
@@ -53,4 +63,6 @@ interface ToContentMod {
     val configuredFeatures: Library<*, ResourceKey<ConfiguredFeature<*, *>>>? get() = null
     val placedFeatures: Library<*, ResourceKey<PlacedFeature>>? get() = null
     val damageTypes: DamageTypeLibrary? get() = null
+    val lootTables: Library<*, ResourceKey<LootTable>>? get() = null
+    val music: Library<*, ResourceKey<JukeboxSong>>? get() = null
 }

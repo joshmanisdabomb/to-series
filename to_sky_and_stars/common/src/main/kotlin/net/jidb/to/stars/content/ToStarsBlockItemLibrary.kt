@@ -8,6 +8,7 @@ import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.info.MachineTier
 import net.jidb.to.stars.info.ToStarsTooltipEngine
 import net.jidb.to.stars.item.BatteryBlockItem
+import net.jidb.to.stars.item.component.InfiniteEnergyItemComponent
 import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
@@ -55,9 +56,22 @@ object ToStarsBlockItemLibrary : BlockItemLibrary(ToStarsMod.MOD_ID, ToStarsMod.
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getTurbineInfo(MachineTier.ONE_5)))) }
 
+    val copper_centrifuge by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE)))) }
+    val gold_centrifuge by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE_5)))) }
+
     val power_cable by this { block, initial -> BlockItem(block!!(), Item.Properties()
         .setId(ResourceKey.create(Registries.ITEM, block().identifier))
         .useBlockDescriptionPrefix()
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getPowerCableInfo(block() as ToEnergyCableBlock)))) }
+    val creative_power_source by this { block, initial -> BlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(ToStarsMod.itemComponents.infinite_energy, InfiniteEnergyItemComponent)) }
 
 }

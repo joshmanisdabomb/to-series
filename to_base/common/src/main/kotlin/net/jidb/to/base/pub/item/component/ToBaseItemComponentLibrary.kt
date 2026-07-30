@@ -10,7 +10,7 @@ object ToBaseItemComponentLibrary : SimpleRegistryLibrary<DataComponentType<*>>(
 
     override val registry = BuiltInRegistries.DATA_COMPONENT_TYPE
 
-    val energy_data by this { DataComponentType.Builder<ToEnergyItemData>().persistent(ToEnergyItemData.codec)
+    val energy_data by this { DataComponentType.Builder<ToEnergyItemComponentData>().persistent(ToEnergyItemComponentData.codec)
         .build().also { TooltipProviderRegistry.register(it) } }
 
 }

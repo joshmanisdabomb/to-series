@@ -2,7 +2,7 @@ package net.jidb.to.stars.content
 
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.api.library.SimpleRegistryLibrary
-import net.jidb.to.base.pub.item.component.ToEnergyItemData
+import net.jidb.to.base.pub.item.component.ToEnergyItemComponentData
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.core.registries.BuiltInRegistries
@@ -38,25 +38,28 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             output(ItemStack(ToStarsMod.blocks.gold_turbine))
             output(ItemStack(ToStarsMod.blocks.copper_power_bank))
             output(ItemStack(ToStarsMod.blocks.copper_power_bank).also {
-                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.maxInput, ToStarsMod.blocks.copper_power_bank.machine.maxOutput))
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.maxInput, ToStarsMod.blocks.copper_power_bank.machine.maxOutput))
             })
             output(ItemStack(ToStarsMod.blocks.gold_power_bank))
             output(ItemStack(ToStarsMod.blocks.gold_power_bank).also {
-                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.maxInput, ToStarsMod.blocks.gold_power_bank.machine.maxOutput))
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.maxInput, ToStarsMod.blocks.gold_power_bank.machine.maxOutput))
             })
             output(ItemStack(ToStarsMod.items.copper_battery))
             output(ItemStack(ToStarsMod.items.copper_battery).also {
-                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(ToStarsMod.items.copper_battery.machine.batteryStorage, ToStarsMod.items.copper_battery.machine.batteryStorage, ToStarsMod.items.copper_battery.machine.maxInput, ToStarsMod.items.copper_battery.machine.maxOutput))
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.items.copper_battery.machine.batteryStorage, ToStarsMod.items.copper_battery.machine.batteryStorage, ToStarsMod.items.copper_battery.machine.maxInput, ToStarsMod.items.copper_battery.machine.maxOutput))
             })
             output(ItemStack(ToStarsMod.items.gold_battery))
             output(ItemStack(ToStarsMod.items.gold_battery).also {
-                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemData(ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.maxInput, ToStarsMod.items.gold_battery.machine.maxOutput))
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.maxInput, ToStarsMod.items.gold_battery.machine.maxOutput))
             })
+            output(ItemStack(ToStarsMod.blocks.copper_centrifuge))
+            output(ItemStack(ToStarsMod.blocks.gold_centrifuge))
             output(ItemStack(ToStarsMod.blocks.power_cable))
             output(ItemStack(ToStarsMod.blocks.heat_pipe))
             output(ItemStack(ToStarsMod.blocks.creative_power_source))
             output(ItemStack(ToStarsMod.blocks.atomic_bomb))
             output(ItemStack(ToStarsMod.blocks.nuclear_waste))
+            output(ItemStack(ToStarsMod.items.music_disc_gravitational_influence))
             output(ItemStack(ToStarsMod.items.test_item))
         }
             .title(Component.translatable("itemgroup.${modid}.${entry.name}"))

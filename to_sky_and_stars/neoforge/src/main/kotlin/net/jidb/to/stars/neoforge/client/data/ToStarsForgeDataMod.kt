@@ -14,6 +14,7 @@ import net.jidb.to.stars.neoforge.client.data.provider.ToStarsParticleDataProvid
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSoundDataProvider
 import net.jidb.to.stars.neoforge.data.content.ToStarsConfiguredFeatureDataLibrary
 import net.jidb.to.stars.neoforge.data.content.ToStarsDamageTypeDataLibrary
+import net.jidb.to.stars.neoforge.data.content.ToStarsMusicDataLibrary
 import net.jidb.to.stars.neoforge.data.content.ToStarsPlacedFeatureDataLibrary
 import net.jidb.to.stars.neoforge.data.provider.ToStarsDamageTypeTagDataProvider
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemCopyTagDataProvider
@@ -42,13 +43,14 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
     override val tags = listOf(::ToStarsItemTagDataProvider, ::ToStarsDamageTypeTagDataProvider)
 
     override val damageTypes = ToStarsDamageTypeDataLibrary
+    override val music = ToStarsMusicDataLibrary
 
     override val configuredFeatures = ToStarsConfiguredFeatureDataLibrary
     override val placedFeatures = ToStarsPlacedFeatureDataLibrary
     override val biomeMods = listOf(ToStarsBiomeModLibrary)
 
     override val wiki = listOf(CompositeWikiDataEnforcer(RegistryWikiDataEnforcer(ToStarsMod.modid, {
-        it.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier() || (it.registry() == Registries.TRIGGER_TYPE.identifier() && it.identifier().path == "race")
+        it.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier() || it.registry().path.contains("recipe") || (it.registry() == Registries.TRIGGER_TYPE.identifier() && it.identifier().path == "race")
     }), ModWikiDataEnforcer(ToStarsMod.modid)))
 
 }

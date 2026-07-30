@@ -2,6 +2,7 @@ package net.jidb.to.stars.neoforge.client.data.content
 
 import net.jidb.to.base.api.helper.IdentifierHelper.identifier
 import net.jidb.to.base.client.data.pub.collection.module.lang.IdentifierLanguageClientDataCollectionModule
+import net.jidb.to.base.client.data.pub.collection.module.lang.SimpleLanguageClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.lang.StorageIdentifierLanguageClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FireBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FullRotatingBlockModelClientDataCollectionModule
@@ -21,8 +22,11 @@ import net.jidb.to.base.neoforge.client.content.data.module.Cable4BlockModelClie
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.item.tint.BatteryItemTint
+import net.jidb.to.stars.info.ProcessorType
+import net.jidb.to.stars.neoforge.client.data.ToStarsModels
 import net.jidb.to.stars.neoforge.client.data.module.*
 import net.jidb.to.stars.neoforge.data.module.EnergySilkBlockLootDataCollectionModule
+import net.jidb.to.stars.neoforge.data.module.ProcessorRecipeDataCollectionModule
 import net.minecraft.client.data.models.model.ModelTemplates
 import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TextureSlot
@@ -32,8 +36,12 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.resources.Identifier
 import net.minecraft.tags.BlockTags
 import net.minecraft.tags.TagKey
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.storage.loot.LootPool
+import net.minecraft.world.level.storage.loot.LootTable
+import net.minecraft.world.level.storage.loot.entries.LootItem
 import net.neoforged.neoforge.common.Tags
 
 object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
@@ -88,6 +96,17 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val enriched_uranium by this {
         addAffects(clear = true) { it.identifier().path.contains("enriched_uranium") }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.enriched_uranium) }
+    }
+    val enriched_uranium_nugget by this {
+        addModule { ProcessorRecipeDataCollectionModule(id = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "enriched_uranium_nugget_from_centrifuge").toString()) { collection, event ->
+            requires(ToStarsMod.items.uranium)
+            requiresType(ProcessorType.CENTRIFUGE)
+            outputChance(collection.`object`.asItem(), 2, 5, 0.5f, ToStarsMod.items.heavy_uranium_nugget, 2, 5)
+            time(600)
+            energy(12000000)
+            event.helper.createHas(this, ToStarsMod.items.uranium)
+            this
+        } }
     }
 
     val atomic_bomb by this {
@@ -180,6 +199,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val power_banks by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_power_bank") }
         addModule(::EnergySilkBlockLootDataCollectionModule)
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.power_banks) }
     }
     val power_bank_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_power_bank") }
@@ -198,6 +218,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.itemTags.copper_power_bank_unlock)
             this
         } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
     }
     val gold_power_bank by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
@@ -212,7 +233,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.blocks.gold_machine_enclosure)
             this
         } }
-        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().path + "_from_upgrade") { collection, event ->
+        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().toString() + "_from_upgrade") { collection, event ->
             pattern("ggg")
             pattern("rMr")
             pattern("iGi")
@@ -225,6 +246,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             this
         } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_battery_unlock) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
     }
 
     val batteries by this {
@@ -305,6 +327,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.blocks.copper_machine_enclosure)
             this
         } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
     }
     val gold_solid_generator by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
@@ -318,7 +341,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.blocks.gold_machine_enclosure)
             this
         } }
-        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().path + "_from_upgrade") { collection, event ->
+        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().toString() + "_from_upgrade") { collection, event ->
             pattern("ggg")
             pattern("rMr")
             pattern("iGi")
@@ -330,6 +353,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.blocks.copper_solid_generator)
             this
         } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
     }
 
     val rotor_blades by this {
@@ -348,6 +372,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
 
     val turbines by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_turbine") }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.turbines) }
     }
     val turbine_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_turbine") }
@@ -384,6 +409,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.blocks.copper_machine_enclosure)
             this
         } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
     }
     val gold_turbine by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
@@ -398,7 +424,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.blocks.gold_machine_enclosure)
             this
         } }
-        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().path + "_from_upgrade") { collection, event ->
+        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().toString() + "_from_upgrade") { collection, event ->
             pattern("ggg")
             pattern("rMr")
             pattern("iGi")
@@ -410,6 +436,69 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.blocks.copper_turbine)
             this
         } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
+    }
+
+    val centrifuges by this {
+        addAffects(clear = true) { it.identifier().path.endsWith("_centrifuge") }
+        addModule(::EnergySilkBlockLootDataCollectionModule)
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.centrifuges) }
+    }
+    val centrifuge_tier_1 by this {
+        addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_centrifuge") }
+        addModule {
+            val unlit = ToStarsModels.CENTRIFUGE.updateTexture {
+                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
+            }
+            LitMachineBlockModelClientDataCollectionModule(unlit, ToStarsModels.CENTRIFUGE_LIT.updateTexture {
+                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
+            })
+        }
+    }
+    val copper_centrifuge by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern("brb")
+            pattern("bmb")
+            define('b', Items.GLASS_BOTTLE)
+            define('r', ToStarsMod.blocks.rotor_blades)
+            define('m', ToStarsMod.blocks.copper_machine_enclosure)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_machine_enclosure)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
+    }
+    val gold_centrifuge by this {
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern("brb")
+            pattern("bmb")
+            define('b', Items.GLASS_BOTTLE)
+            define('r', ToStarsMod.blocks.rotor_blades)
+            define('m', ToStarsMod.blocks.gold_machine_enclosure)
+            event.helper.createHas(this, ToStarsMod.blocks.gold_machine_enclosure)
+            this
+        } }
+        addModule { ShapedRecipeDataCollectionModule(id = it.entry.identifier().toString() + "_from_upgrade") { collection, event ->
+            pattern("ggg")
+            pattern("rMr")
+            pattern("iGi")
+            define('r', Items.REDSTONE)
+            define('M', ToStarsMod.blocks.copper_centrifuge)
+            define('G', Blocks.GOLD_BLOCK)
+            define('g', Items.GOLD_INGOT)
+            define('i', Items.IRON_INGOT)
+            event.helper.createHas(this, ToStarsMod.blocks.copper_centrifuge)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
+    }
+
+    val music_disc_gravitational_influence by this {
+        addModule { SimpleLanguageClientDataCollectionModule("Music Disc") }
+        addModule { GeneralLootDataCollectionModule(ToStarsMod.lootTables.advancement_nuke_race.identifier(), LootTable.Builder()
+            .withPool(LootPool.Builder()
+                .add(LootItem.lootTableItem(it.`object` as Item)))) }
     }
 
 }
