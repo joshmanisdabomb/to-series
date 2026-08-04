@@ -34,6 +34,11 @@ import kotlin.jvm.optionals.getOrNull
 import kotlin.math.ceil
 import kotlin.math.sqrt
 
+/**
+ * The boiler, i.e. a cauldron that can be heated from the side by a heat pipe until the water it holds boils away.
+ *
+ * @param properties The block's own properties.
+ */
 class BoilingCauldronBlock(properties: Properties) : LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteractions.WATER, properties), EntityBlock {
 
     init {
@@ -47,6 +52,17 @@ class BoilingCauldronBlock(properties: Properties) : LayeredCauldronBlock(Biome.
 
     override fun newBlockEntity(pos: BlockPos, state: BlockState) = BoilingCauldronBlockEntity(pos, state)
 
+    /**
+     * Sets how much heat is reaching this cauldron from one side, which is what decides whether it boils and how fast.
+     *
+     * A cauldron that ends up with no heat at all from any side stops boiling, whatever it was doing before.
+     *
+     * @param level The level the cauldron is in.
+     * @param state The state of the cauldron.
+     * @param pos The position of the cauldron.
+     * @param heat How much heat is reaching it from that side.
+     * @param direction The side the heat is coming from.
+     */
     fun setHeat(level: ServerLevel, state: BlockState, pos: BlockPos, heat: Float, direction: Direction) {
         val networks = level.dataStorage.computeIfAbsent(ToBaseMod.savedData.block_networks)
         if (state.`is`(ToStarsMod.blocks.boiler)) {
@@ -104,7 +120,7 @@ class BoilingCauldronBlock(properties: Properties) : LayeredCauldronBlock(Biome.
     }
 
     override fun <T : BlockEntity> getTicker(level: Level, blockState: BlockState, type: BlockEntityType<T>) = if (type == ToStarsMod.blockEntities.boiler) BlockEntityTicker<T> { level, pos, state, entity ->
-        BoilingCauldronBlockEntity.tick(level,pos, state, entity as BoilingCauldronBlockEntity)
+        BoilingCauldronBlockEntity.tick(level, pos, state, entity as BoilingCauldronBlockEntity)
     } else null
 
 }

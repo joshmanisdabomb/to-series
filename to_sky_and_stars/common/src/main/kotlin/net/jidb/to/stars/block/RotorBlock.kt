@@ -13,7 +13,11 @@ import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.ScheduledTickAccess
-import net.minecraft.world.level.block.*
+import net.minecraft.world.level.block.BaseEntityBlock
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.Mirror
+import net.minecraft.world.level.block.Rotation
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
@@ -25,6 +29,14 @@ import net.minecraft.world.level.redstone.Orientation
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.Shapes
 
+/**
+ * The rotor blades, which turn against the face of the block behind them and drive a turbine placed there.
+ *
+ * They cannot be placed against a face that will not hold them or beside another set, since two sets side by side would foul each other; where there is no turbine behind them they can be turned by a redstone signal instead.
+ * Each set is drawn a half turn out from the one below it, which is what the `alternate` property records.
+ *
+ * @param properties The block's own properties.
+ */
 class RotorBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     init {
@@ -65,6 +77,14 @@ class RotorBlock(properties: Properties) : BaseEntityBlock(properties) {
         }
     }
 
+    /**
+     * Whether the blades can sit at a position, i.e. whether the face behind them is solid and no other set is beside them.
+     *
+     * @param back The direction the blades face away from, i.e. towards what they turn against.
+     * @param pos The position being asked about.
+     * @param level The level the blades are in.
+     * @return Returns `true` if the blades can sit there, otherwise `false`.
+     */
     fun isValid(back: Direction, pos: BlockPos, level: LevelReader): Boolean {
         val base = pos.relative(back)
         if (!level.getBlockState(base).isFaceSturdy(level, base, back.opposite)) {
@@ -80,12 +100,28 @@ class RotorBlock(properties: Properties) : BaseEntityBlock(properties) {
         return true
     }
 
+    /**
+     * The tier of the turbine driving these blades, if there is one behind them at all.
+     *
+     * @param state The state of the blades.
+     * @param pos The position of the blades.
+     * @param level The level they are in.
+     * @return The tier of the turbine, or `null` where there is no turbine behind them.
+     */
     fun getTurbine(state: BlockState, pos: BlockPos, level: Level): MachineTier? {
         val facing = state.getValue(HORIZONTAL_FACING)
         val base = pos.relative(facing.opposite)
         return (level.getBlockState(base).block as? TurbineBlock)?.machine
     }
 
+    /**
+     * Whether the blades are being turned by redstone, which only applies where no turbine is driving them.
+     *
+     * @param state The state of the blades.
+     * @param pos The position of the blades.
+     * @param level The level they are in.
+     * @return Returns `true` if redstone is turning them, otherwise `false`.
+     */
     fun isRedstonePowered(state: BlockState, pos: BlockPos, level: Level): Boolean {
         if (getTurbine(state, pos, level) != null) return false
         return level.hasNeighborSignal(pos)
@@ -100,13 +136,25 @@ class RotorBlock(properties: Properties) : BaseEntityBlock(properties) {
     override fun codec() = codec
 
     companion object {
+
+        /**
+         * The codec the block is read from a data pack through.
+         */
         val codec = simpleCodec(::RotorBlock)
+
+        /**
+         * Whether this set of blades is drawn a half turn out from the one below it, so that a stack of them does not all line up.
+         */
         val alternate = BooleanProperty.create("alternate")
 
+        /**
+         * The collision shape of the blades, for each of the four directions they can face.
+         */
         val shapes = Shapes.rotateHorizontal(Shapes.or(
             box(1.0, 1.0, 5.0, 15.0, 15.0, 11.0),
             box(7.0, 7.0, 11.0, 9.0, 9.0, 16.0)
         ))
+
     }
 
 }

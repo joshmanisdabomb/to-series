@@ -7,6 +7,7 @@ import net.jidb.to.base.neoforge.client.data.mod.ToForgeDataMod
 import net.jidb.to.base.neoforge.data.provider.AutoCopyTagDataProvider
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.content.ToStarsBiomeModLibrary
+import net.jidb.to.stars.content.ToStarsGameTestLibrary
 import net.jidb.to.stars.neoforge.client.data.content.ToStarsDataLibrary
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsAdvancementDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsLanguageDataProvider
@@ -28,6 +29,13 @@ import net.minecraft.world.level.block.Block
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import java.util.concurrent.CompletableFuture
 
+/**
+ * [ToForgeDataMod] implementation for the content mod, i.e. what its data generation run goes through.
+ *
+ * Every registry entry it adds is expected to have a wiki article, other than a creative tab, a recipe or the race criterion, none of which is something a player would look up.
+ *
+ * @param event The event the providers are registered against.
+ */
 class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event) {
 
     override val collections = ToStarsDataLibrary
@@ -38,6 +46,7 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
         ::ToStarsItemCopyTagDataProvider
     )
     override val advancements = listOf(ToStarsAdvancementDataProvider())
+    override val gameTests = ToStarsGameTestLibrary
     override val particles = listOf(::ToStarsParticleDataProvider)
     override val sounds = listOf(::ToStarsSoundDataProvider)
     override val tags = listOf(::ToStarsItemTagDataProvider, ::ToStarsDamageTypeTagDataProvider)
@@ -50,7 +59,7 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
     override val biomeMods = listOf(ToStarsBiomeModLibrary)
 
     override val wiki = listOf(CompositeWikiDataEnforcer(RegistryWikiDataEnforcer(ToStarsMod.modid, {
-        it.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier() || it.registry().path.contains("recipe") || (it.registry() == Registries.TRIGGER_TYPE.identifier() && it.identifier().path == "race")
+        it.registry() == BuiltInRegistries.CREATIVE_MODE_TAB.key().identifier() || it.registry() == BuiltInRegistries.TEST_FUNCTION.key().identifier() || it.registry().path.contains("recipe") || (it.registry() == Registries.TRIGGER_TYPE.identifier() && it.identifier().path == "race")
     }), ModWikiDataEnforcer(ToStarsMod.modid)))
 
 }

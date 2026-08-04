@@ -3,6 +3,11 @@ package net.jidb.to.base.neoforge.platform
 import net.jidb.to.base.api.platform.CreativeTabsPlatformModule
 import net.minecraft.world.item.CreativeModeTab
 
+/**
+ * [CreativeTabsPlatformModule] implementation for Neoforge.
+ *
+ * @since 0.0.3
+ */
 object CreativeTabsForgePlatformModule : CreativeTabsPlatformModule() {
 
     override fun builder(display: ((params: CreativeModeTab.ItemDisplayParameters, output: DisplayItemsConsumer) -> Unit)?): CreativeModeTab.Builder {

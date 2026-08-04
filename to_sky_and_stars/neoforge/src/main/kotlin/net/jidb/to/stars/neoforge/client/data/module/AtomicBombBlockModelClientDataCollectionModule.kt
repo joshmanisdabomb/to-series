@@ -17,34 +17,38 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 
+/**
+ * A [ClientDataCollectionModule] generating the models of the atomic bomb, which is three blocks long and so is drawn from a different model for each of its segments.
+ */
 class AtomicBombBlockModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {
-        val atomic_bomb_head = ToStarsModels.ATOMIC_BOMB_HEAD.create(collection.`object`, event.block.modelOutput)
-        val atomic_bomb_middle = ToStarsModels.ATOMIC_BOMB_MIDDLE.create(collection.`object`, event.block.modelOutput)
-        val atomic_bomb_tail = ToStarsModels.ATOMIC_BOMB_TAIL.create(collection.`object`, event.block.modelOutput)
+        val atomicBombHead = ToStarsModels.atomicBombHead.create(collection.`object`, event.block.modelOutput)
+        val atomicBombMiddle = ToStarsModels.atomicBombMiddle.create(collection.`object`, event.block.modelOutput)
+        val atomicBombTail = ToStarsModels.atomicBombTail.create(collection.`object`, event.block.modelOutput)
         event.block.blockStateOutput.accept(
-            MultiVariantGenerator.dispatch(collection.`object`, BlockModelGenerators.variants(Variant(atomic_bomb_head)))
+            MultiVariantGenerator.dispatch(collection.`object`, BlockModelGenerators.variants(Variant(atomicBombHead)))
                 .with(PropertyDispatch.modify(BlockStateProperties.HORIZONTAL_FACING)
                     .select(Direction.EAST, BlockModelGenerators.NOP)
                     .select(Direction.SOUTH, BlockModelGenerators.Y_ROT_90)
                     .select(Direction.WEST, BlockModelGenerators.Y_ROT_180)
                     .select(Direction.NORTH, BlockModelGenerators.Y_ROT_270))
-                .with(PropertyDispatch.modify(AtomicBombBlock.SEGMENT)
-                    .select(AtomicBombBlock.AtomicBombSegment.HEAD, VariantMutator.MODEL.withValue(atomic_bomb_head))
-                    .select(AtomicBombBlock.AtomicBombSegment.MIDDLE, VariantMutator.MODEL.withValue(atomic_bomb_middle))
-                    .select(AtomicBombBlock.AtomicBombSegment.TAIL, VariantMutator.MODEL.withValue(atomic_bomb_tail))
-                ))
+                .with(PropertyDispatch.modify(AtomicBombBlock.segment)
+                    .select(AtomicBombBlock.AtomicBombSegment.HEAD, VariantMutator.MODEL.withValue(atomicBombHead))
+                    .select(AtomicBombBlock.AtomicBombSegment.MIDDLE, VariantMutator.MODEL.withValue(atomicBombMiddle))
+                    .select(AtomicBombBlock.AtomicBombSegment.TAIL, VariantMutator.MODEL.withValue(atomicBombTail))
+                )
+        )
         return true
     }
 
     override fun generateItemModels(collection: DataCollection<Item>, event: ModelClientDataCollectionEvent): Boolean {
-        val atomic_bomb_item = ToStarsModels.TEMPLATE_ATOMIC_BOMB_ITEM.create(
+        val atomicBombItem = ToStarsModels.atomicBombItemTemplate.create(
             collection.`object`,
-            ToStarsModels.TEXTURES_ATOMIC_BOMB(collection.`object`.identifier.withPrefix("block/")),
+            ToStarsModels.atomicBombTexture(collection.`object`.identifier.withPrefix("block/")),
             event.item.modelOutput
         )
-        event.item.itemModelOutput.accept(collection.`object`, ItemModelUtils.plainModel(atomic_bomb_item))
+        event.item.itemModelOutput.accept(collection.`object`, ItemModelUtils.plainModel(atomicBombItem))
         return true
     }
 

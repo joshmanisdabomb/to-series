@@ -1,0 +1,402 @@
+# Kotlin style rules and code smells, derived from the conventions the existing sources already follow.
+#
+# The build sets buildUponDefaultConfig, so this file lists only the deviations from Detekt's own
+# defaults - every rule not named here keeps its default state. That keeps the file readable in the
+# same way config/checkstyle/checkstyle.xml is: what is written down is what was decided.
+#
+# Line length and magic numbers are deliberately not checked, for exactly the reason given in the
+# header of checkstyle.xml: Minecraft's signatures are long and its constants are numerous by nature,
+# and wrapping or naming all of them buys nothing.
+#
+# The 'ktlint' rule set below is ktlint, wrapped as Detekt rules so that layout and smells share one
+# config file. Note that the wrapper does not read .editorconfig - the root .editorconfig mirrors
+# these settings for the IDE's benefit, but this file is what the build enforces.
+
+comments:
+  # KDoc is required on everything, matching the Javadoc block in checkstyle.xml. These three rules
+  # only ever look at public and, optionally, protected declarations, whereas checkstyle requires
+  # documentation regardless of visibility and exempts overrides, so they are superseded by
+  # UndocumentedType, UndocumentedFunction and UndocumentedProperty in the to-style section below.
+  UndocumentedPublicClass:
+    active: false
+  UndocumentedPublicFunction:
+    active: false
+  UndocumentedPublicProperty:
+    active: false
+
+  # The other direction: a @param for a parameter that no longer exists, or tags in an order that
+  # no longer matches the signature. It stays silent on KDoc with no tags at all, which is what
+  # to-style>MissingKDocTags reports, so the two are complementary rather than overlapping.
+  OutdatedDocumentation:
+    active: true
+    matchTypeParameters: true
+    matchDeclarationsOrder: true
+    # A constructor property may be documented with either @param or @property.
+    allowParamOnConstructorProperties: true
+
+complexity:
+  # Thresholds sit above the largest construct the sources currently contain, so they catch genuine
+  # growth rather than the block entity tick methods and vanilla overrides that already exist.
+  ComplexCondition:
+    allowedConditions: 5
+  CyclomaticComplexMethod:
+    allowedComplexity: 30
+  LargeClass:
+    allowedLines: 800
+  LongMethod:
+    allowedLines: 150
+  # The longest signatures in the sources are ParticleProvider#createParticle at nine and
+  # BlockBehaviour#updateShape at eight - both vanilla shapes that an override has to repeat in full -
+  # and NuclearExplosion#traceRay at eleven, which is the project's own.
+  LongParameterList:
+    allowedFunctionParameters: 12
+    allowedConstructorParameters: 12
+    ignoreDefaultParameters: true
+  NestedBlockDepth:
+    allowedDepth: 8
+  # Helper files such as JsonHelper.kt are deliberately flat bags of functions, and the content
+  # libraries are one property per registered object.
+  TooManyFunctions:
+    allowedFunctionsPerFile: 120
+    allowedFunctionsPerClass: 60
+    allowedFunctionsPerInterface: 40
+    allowedFunctionsPerObject: 120
+    allowedFunctionsPerEnum: 30
+    ignoreOverridden: true
+
+empty-blocks:
+  # Empty overrides are written as '= Unit' rather than '{}', so the ones left are inherited
+  # signatures that genuinely have nothing to do.
+  EmptyFunctionBlock:
+    ignoreOverridden: true
+
+naming:
+  # Functions, parameters, classes, packages and enum entries keep Detekt's default patterns, which
+  # are already camelCase (or PascalCase) and which the sources already satisfy.
+  #
+  # Properties are the exception, and all three property rules are off in favour of
+  # to-style>PropertyNaming below. Two reasons. Their default patterns allow underscores anywhere
+  # ('[A-Za-z][_A-Za-z0-9]*'), so none of them would reject a snake_case field as it stands; and
+  # once tightened, none of them can spare the library types, whose properties deliberately mirror
+  # the snake_case resource name they register. VariableNaming has an excludeClassPattern but never
+  # sees an object's properties, and ObjectPropertyNaming, which does, has no equivalent option.
+  VariableNaming:
+    active: false
+  ObjectPropertyNaming:
+    active: false
+  TopLevelPropertyNaming:
+    active: false
+  # The file name matches the single top-level type it declares. This is checkstyle's
+  # OuterTypeFilename, and it matters more here than in Java: javac at least rejects a mismatched
+  # public type, whereas kotlinc accepts any file name at all.
+  MatchingDeclarationName:
+    active: true
+  InvalidPackageDeclaration:
+    active: true
+
+performance:
+  # Vararg forwarding into vanilla and platform APIs is unavoidable in places.
+  SpreadOperator:
+    active: false
+
+potential-bugs:
+  # Every .kt file declares a package; catching a stray one is cheap.
+  MissingPackageDeclaration:
+    active: true
+
+style:
+  # See the header - both are deliberate, and both are skipped on the Java side too.
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    active: false
+
+  # Every import names what it imports. The default exclusion list lets java.util.* through, which
+  # is the wildcard the sources use most, so it is emptied rather than inherited. ktlint's
+  # NoWildcardImports would report the same thing, and is left off to avoid two findings per import.
+  WildcardImport:
+    active: true
+    excludeImports: []
+
+  # TODOs are used as real markers in the source, not as a build failure.
+  ForbiddenComment:
+    active: false
+
+  # Guard clauses and early returns are the prevailing style; these count them as smells.
+  ReturnCount:
+    active: false
+  LoopWithTooManyJumpStatements:
+    maxJumpCount: 3
+  ThrowsCount:
+    max: 4
+
+  # Layout rules that mirror their checkstyle counterparts. The missing-final-newline case is covered
+  # by ktlint's FinalNewline below, which reports the same thing and can fix it, so this stays off to
+  # avoid two findings per file.
+  NewLineAtEndOfFile:
+    active: false
+  NoTabs:
+    active: true
+  TrailingWhitespace:
+    active: true
+  SpacingAfterPackageAndImports:
+    active: true
+
+ktlint:
+  active: true
+  # Matches the sources, and is the looser of ktlint's two styles - ktlint_official adds a large
+  # number of wrapping opinions that this codebase does not follow.
+  code_style: 'intellij_idea'
+  # Detekt reports rather than rewrites; see the Detekt block in multiloader-common.gradle.
+  autoCorrect: false
+
+  # Type bodies are padded with a blank line inside the braces, the same convention the Java sources
+  # follow. These two rules forbid exactly that, so they are off; the to-style rule set at the bottom
+  # of this file requires it instead.
+  NoBlankLineBeforeRbrace:
+    active: false
+  NoEmptyFirstLineInClassBody:
+    active: false
+  # Method bodies, by contrast, start immediately.
+  NoEmptyFirstLineInMethodBlock:
+    active: true
+
+  # This requires a space after the '//', which is the opposite of the convention here; the to-style
+  # rule set at the bottom of this file requires the text to start immediately instead, and also
+  # carries over this rule's other half, the space before a comment that trails code.
+  CommentSpacing:
+    active: false
+
+  # Owned by style>WildcardImport above; this one reads its allowed packages from .editorconfig,
+  # which the wrapper does not load, so it could not be configured here anyway.
+  NoWildcardImports:
+    active: false
+
+  # Line length is not checked, so neither is wrapping to fit it. Every ktlint rule that wraps to a
+  # limit takes maxLineLength, and -1 is ktlint's "no limit", which leaves the rule enforcing only its
+  # structural half. Without this they default to 120 and produce thousands of findings on signatures
+  # that are long because Minecraft's are.
+  MaximumLineLength:
+    active: false
+  BinaryExpressionWrapping:
+    maxLineLength: -1
+  ChainMethodContinuation:
+    maxLineLength: -1
+  ContextReceiverListWrapping:
+    maxLineLength: -1
+  ContextReceiverMapping:
+    maxLineLength: -1
+  FunctionExpressionBody:
+    maxLineLength: -1
+  FunctionReturnTypeSpacing:
+    maxLineLength: -1
+  FunctionSignature:
+    maxLineLength: -1
+  ParameterListSpacing:
+    maxLineLength: -1
+  ParameterWrapping:
+    maxLineLength: -1
+  PropertyWrapping:
+    maxLineLength: -1
+
+  # The rules below all demand a line break where the sources deliberately do not have one, so they
+  # are off rather than tuned:
+  #
+  #  - a call that spans lines keeps its closing paren on the last argument's line, and does not give
+  #    every argument a line of its own
+  #  - lambdas are written compactly, brace and arrow on the same line as the body they open
+  #  - a class writes its supertypes on the same line as its constructor
+  #  - short enums put their entries on one line, e.g. 'FABRIC, NEOFORGE'
+  #  - an if used as an expression is not braced, which is what MultiLineIfElse would require
+  #  - when-branches are not separated by blank lines
+  ArgumentListWrapping:
+    active: false
+  ParameterListWrapping:
+    active: false
+  Wrapping:
+    active: false
+  StatementWrapping:
+    active: false
+  FunctionLiteral:
+    active: false
+  ClassSignature:
+    active: false
+  EnumWrapping:
+    active: false
+  MultiLineIfElse:
+    active: false
+  BlankLineBetweenWhenConditions:
+    active: false
+
+  # Property naming is owned by the naming rule set above, which is tuned for the snake_case
+  # registry names; this rule would contradict it.
+  PropertyName:
+    active: false
+  # Backing properties are exposed to the rest of the library as 'internal', not 'private', which
+  # this rule does not allow for.
+  BackingPropertyNaming:
+    active: false
+
+  # Trailing commas are present in some declarations and absent in others; the codebase has no
+  # settled convention, so neither direction is enforced.
+  TrailingCommaOnCallSite:
+    active: false
+  TrailingCommaOnDeclarationSite:
+    active: false
+
+  # IntelliJ's default Kotlin layout: everything else alphabetically, then java, javax, kotlin, then
+  # aliases, which is what code_style above selects. The sources already follow it.
+  ImportOrdering:
+    active: true
+
+  # Four spaces per level, never tabs.
+  Indentation:
+    active: true
+    indentSize: 4
+
+  FinalNewline:
+    active: true
+    insertFinalNewLine: true
+  NoTrailingSpaces:
+    active: true
+  # Never two blank lines in a row, matching EmptyLineSeparator's allowMultipleEmptyLines = false.
+  NoConsecutiveBlankLines:
+    active: true
+  NoSemicolons:
+    active: true
+  NoMultipleSpaces:
+    active: true
+  NoUnusedImports:
+    active: true
+
+  ModifierOrdering:
+    active: true
+  # Annotations sit on their own line above the member, as in checkstyle's AnnotationLocation.
+  AnnotationOnSeparateLine:
+    active: true
+  AnnotationSpacing:
+    active: true
+
+  # The file name matches the type it declares; overlaps MatchingDeclarationName above but also
+  # catches files whose only top-level declaration is a function or property.
+  Filename:
+    active: true
+  PackageName:
+    active: true
+  EnumEntryNameCase:
+    active: true
+# The project's own rules, from :meta. These cover conventions Detekt has no built-in check
+# for, in the same way checkstyle.xml needed RegexpMultiline for the Java side.
+to-style:
+  active: true
+  # A type body is padded with a blank line inside each brace, matching TypeOpenBraceBlankLine and
+  # TypeCloseBraceBlankLine in checkstyle.xml. The three exclusions are not exceptions to the
+  # convention so much as a different one: companion objects (0 of 81 padded), enum classes (3 of 20)
+  # and anonymous object expressions (3 of 14) are consistently written without it.
+  TypeOpenBraceBlankLine:
+    active: true
+    ignoreCompanionObjects: false
+    ignoreEnumClasses: false
+    ignoreObjectLiterals: false
+  TypeCloseBraceBlankLine:
+    active: true
+    ignoreCompanionObjects: false
+    ignoreEnumClasses: false
+    ignoreObjectLiterals: false
+
+  # An end-of-line comment is written '//like this', with the text hard against the slashes, which is
+  # why ktlint's CommentSpacing above is off - it requires the space this rule forbids. Only the
+  # end-of-line form is checked: block and KDoc comments keep the space after the asterisk, as does a
+  # '#' comment in a config file, and neither is a Kotlin construct this rule set sees anyway. Matches
+  # LineCommentSpacing in checkstyle.xml. requireSpaceBeforeComment is the half of ktlint's rule that
+  # still applies, keeping 'val x = 1 //note' from being written as 'val x = 1//note'.
+  LineCommentSpacing:
+    active: true
+    requireSpaceBeforeComment: true
+
+  # Every property is camelCase, wherever it is declared - class member, object member, top level or
+  # local variable - which is why the three naming>*PropertyNaming rules above are off.
+  #
+  # excludeTypePattern is the one exception, and it is what none of the built-in rules could express.
+  # A library type registers game objects under their resource name and names each property after
+  # it, so ToBaseBlockLibrary.research_desk is the registry name rather than a Kotlin identifier that
+  # got it wrong. The pattern is matched against the type's own name and against each of its
+  # supertype names, so both 'object ToStarsItemLibrary' and a subclass of SimpleRegistryLibrary that
+  # is named something else are covered.
+  #
+  # constantPattern accepts SCREAMING_SNAKE_CASE as well, but only for a 'const val' - Kotlin's own
+  # definition of a constant. A val that could not carry the keyword because it holds an object
+  # rather than a compile-time value, such as 'val CODEC = simpleCodec(::ResearchDeskBlock)', is an
+  # ordinary property and is camelCase like any other, even at the top level or in an object.
+  # Setting treatObjectValsAsConstants restores the looser reading that Kotlin's style guide permits
+  # and that vanilla's own fields follow; it is off because consistency was preferred to mirroring
+  # vanilla. privatePropertyPattern keeps Detekt's own allowance of a leading underscore on a private
+  # backing property; a backing property that is internal or protected is not covered and is reported.
+  PropertyNaming:
+    active: true
+    propertyPattern: '[a-z][A-Za-z0-9]*'
+    privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
+    constantPattern: '[a-z][A-Za-z0-9]*|[A-Z][_A-Z0-9]*'
+    excludeTypePattern: '.*Library.*'
+    ignoreOverridden: true
+    treatObjectValsAsConstants: false
+
+  # KDoc on everything, at every visibility, which is what the Javadoc block in checkstyle.xml
+  # requires of the Java sources. The comments>UndocumentedPublic* rules only reach the public and
+  # protected surface, so these three replace them rather than supplement them. An override inherits
+  # the documentation of what it overrides, matching checkstyle's exemption for @Override.
+  UndocumentedType:
+    active: true
+    ignoreObjectLiterals: true
+    ignoreDefaultCompanionObject: true
+  UndocumentedFunction:
+    active: true
+    ignoreOverridden: true
+    ignoreLocalFunctions: true
+  UndocumentedProperty:
+    active: true
+    ignoreOverridden: true
+    # A local variable is not a field, and checkstyle's JavadocVariable does not check one either.
+    ignoreLocalProperties: true
+    # An enum constant does need documenting, exactly as JavadocVariable requires on the Java side.
+    ignoreEnumEntries: false
+
+  # @param for every parameter, including type parameters, and @return wherever there is a value to
+  # return. Only declarations that already carry KDoc are checked, so a wholly undocumented
+  # declaration is reported once by the rules above instead of once per missing tag.
+  #
+  # checkInferredReturn is the one judgement call. Detekt runs without type resolution here, so an
+  # expression-bodied function with no declared return type has a type only the compiler knows. It
+  # is assumed to return something unless its body is literally Unit, which is how the sources write
+  # a no-op override. Turn it off to check only functions that declare their return type.
+  MissingKDocTags:
+    active: true
+    checkParameters: true
+    checkTypeParameters: true
+    checkReturn: true
+    checkInferredReturn: true
+    ignoreOverridden: true
+
+  # @since naming the version a declaration first appeared in. This is the one rule in the file that
+  # does not apply to every source set: to_base is a library that other mods compile against, so the
+  # version a declaration arrived in is worth recording, whereas the content mods are consumed only
+  # by the game. Every other namespace falls outside the filter and is never visited.
+  #
+  # includes is Detekt's own per-rule filter, and is the one place in this file where a rule is
+  # scoped by path rather than by option. It is a java.nio glob matched against the whole path of
+  # each file, so it needs the leading '**/' - a bare 'to_base/**' matches nothing, as the path does
+  # not begin at the namespace directory.
+  #
+  # As with MissingKDocTags above, only a declaration that already carries KDoc is checked, so a
+  # wholly undocumented one is reported by the three rules above rather than twice more here.
+  # versionPattern is matched against the whole tag text; set it to '.*' to accept any text at all
+  # and check only that the tag is present.
+  MissingSinceTag:
+    active: true
+    includes: ['**/to_base/**']
+    versionPattern: '\d+\.\d+\.\d+'
+    ignoreOverridden: true
+    ignoreObjectLiterals: true
+    ignoreDefaultCompanionObject: true
+    ignoreLocalDeclarations: true
+    ignoreEnumEntries: false

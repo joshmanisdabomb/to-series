@@ -23,35 +23,36 @@ import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition
 import net.minecraft.world.level.storage.loot.predicates.MatchTool
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 
+/**
+ * A [DataCollectionModule] generating the loot table of a block that stores To Energy, which keeps whatever it was holding when it is broken with silk touch and loses it otherwise.
+ */
 class EnergySilkBlockLootDataCollectionModule : DataCollectionModule() {
 
-    override fun generateBlockLoot(collection: DataCollection<Block>, event: BlockLootDataCollectionEvent): Map<Block, LootTable.Builder> {
-        return mapOf(collection.`object` to LootTable.lootTable()
-            .withPool(
-                LootPool.lootPool()
-                    .setRolls(ConstantValue.exactly(1.0f))
-                    .add(
-                        AlternativesEntry.alternatives(
-                            LootItem.lootTableItem(collection.`object`).`when`(
-                                MatchTool.toolMatches(
-                                    ItemPredicate.Builder.item().withComponents(
-                                        DataComponentMatchers.Builder.components()
-                                            .partial(
-                                                DataComponentPredicates.ENCHANTMENTS, EnchantmentsPredicate.enchantments(listOf(
-                                                    EnchantmentPredicate(
-                                                        event.helper.provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH),
-                                                        MinMaxBounds.Ints.atLeast(1)
-                                                    )
-                                                ))
-                                            )
-                                            .build()
-                                    )
+    override fun generateBlockLoot(collection: DataCollection<Block>, event: BlockLootDataCollectionEvent) = mapOf(collection.`object` to LootTable.lootTable()
+        .withPool(
+            LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1.0f))
+                .add(
+                    AlternativesEntry.alternatives(
+                        LootItem.lootTableItem(collection.`object`).`when`(
+                            MatchTool.toolMatches(
+                                ItemPredicate.Builder.item().withComponents(
+                                    DataComponentMatchers.Builder.components()
+                                        .partial(
+                                            DataComponentPredicates.ENCHANTMENTS, EnchantmentsPredicate.enchantments(listOf(
+                                                EnchantmentPredicate(
+                                                    event.helper.provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH),
+                                                    MinMaxBounds.Ints.atLeast(1)
+                                                )
+                                            ))
+                                        )
+                                        .build()
                                 )
-                            ).apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(ToBaseMod.itemComponents.energy_data)),
-                            LootItem.lootTableItem(collection.`object`).`when`(ExplosionCondition.survivesExplosion())
-                        )
+                            )
+                        ).apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(ToBaseMod.itemComponents.energy_data)),
+                        LootItem.lootTableItem(collection.`object`).`when`(ExplosionCondition.survivesExplosion())
                     )
-            ))
-    }
+                )
+        ))
 
 }

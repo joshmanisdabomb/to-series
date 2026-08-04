@@ -3,6 +3,8 @@ import org.jetbrains.dokka.gradle.DokkaTaskPartial
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'checkstyle'
+    id 'dev.detekt'
     id "org.jetbrains.kotlin.jvm"
     id "org.jetbrains.dokka"
 }
@@ -19,6 +21,139 @@ java {
 
 kotlin {
     jvmToolchain(Integer.parseInt(libs.versions.java.get()))
+}
+
+// Java style rules (Kotlin is unaffected). The loader projects pull the common java
+// sources into compileJava, but checkstyle only sees the source set, so each file is
+// only ever checked once, by the project that owns it.
+checkstyle {
+    toolVersion = libs.versions.checkstyle.get()
+    configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+    maxWarnings = 0
+}
+
+tasks.withType(Checkstyle).configureEach {
+    reports {
+        xml.required = false
+        html.required = true
+    }
+}
+
+// Kotlin style rules and code smells (Java is unaffected). Detekt only ever sees this project's own
+// source directories - the common sources that the loader projects pull into compileKotlin are not
+// among them, so each file is only checked once, by the project that owns it, exactly as with checkstyle.
+detekt {
+    toolVersion = libs.versions.detekt.get()
+    config.setFrom(rootProject.file('config/detekt/detekt.yml'))
+    // The config file lists only the deviations from Detekt's defaults, in the same spirit as the
+    // checkstyle config listing only the rules we care about.
+    buildUponDefaultConfig = true
+    // Rules that are off by default stay off unless the config turns them on.
+    allRules = false
+    autoCorrect = false
+    basePath = rootProject.layout.projectDirectory
+    // Any finding at all fails the build, matching checkstyle's maxWarnings = 0.
+    failOnSeverity = dev.detekt.gradle.extensions.FailOnSeverity.Info
+}
+
+dependencies {
+    // ktlint's formatting rules, exposed as Detekt rules so that layout and smells share one config.
+    detektPlugins "dev.detekt:detekt-rules-ktlint-wrapper:${libs.versions.detekt.get()}"
+    // The project's own rules, for conventions Detekt has no built-in check for.
+    detektPlugins project(':meta')
+
+    // Plain-JVM unit tests under src/test/kotlin. These run without the game or a modloader, so they
+    // only reach code that does not need either - see MinecraftBootstrap for what is available.
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
+    testImplementation libs.mockk
+    testImplementation "org.jetbrains.kotlin:kotlin-test:${libs.versions.kotlin.get()}"
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+    // Bootstrapping the game starts its logger, which writes a logs/ directory next to wherever it
+    // was run from, so run from the build directory rather than the project one.
+    workingDir = layout.buildDirectory.dir('test-run').get().asFile
+    doFirst {
+        workingDir.mkdirs()
+    }
+    // Bootstrapping Minecraft leaves a lot of registries around, and mockk holds the classes it
+    // subclasses, so give the test JVM more room than Gradle's 512m default.
+    maxHeapSize = '2g'
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        exceptionFormat = 'full'
+    }
+}
+
+tasks.withType(dev.detekt.gradle.Detekt).configureEach {
+    reports {
+        html.required = true
+        checkstyle.required = false
+        sarif.required = false
+        markdown.required = false
+    }
+}
+
+// Java and Kotlin sources each stay in their own directory. Neither mistake fails the build on
+// its own: compileJava only ever globs '**/*.java', so a .kt file under src/*/java is silently
+// dropped, and compileKotlin parses .java files for resolution without emitting class files for
+// them, so a .java file under src/*/kotlin resolves at compile time and then goes missing at
+// runtime. The common projects also publish these two directories as separate artifacts
+// (commonJava / commonKotlin) that the loader projects compile individually, so a file in the
+// wrong one reaches a compiler that will not emit it.
+def strayKotlin = objects.fileCollection()
+def strayJava = objects.fileCollection()
+
+sourceSets.all { sourceSet ->
+    def javaDirs = sourceSet.java.srcDirs
+    javaDirs.each { dir ->
+        strayKotlin.from(fileTree(dir) { include '**/*.kt' })
+    }
+    // Kotlin claims src/*/java as well as src/*/kotlin, so subtract to get the Kotlin-only dirs.
+    (sourceSet.kotlin.srcDirs - javaDirs).each { dir ->
+        strayJava.from(fileTree(dir) { include '**/*.java' })
+    }
+}
+
+def checkSourceLayout = tasks.register('checkSourceLayout') {
+    group = 'verification'
+    description = 'Verifies that .java and .kt files each live in their own source directory.'
+
+    inputs.files(strayKotlin).withPropertyName('strayKotlin')
+    inputs.files(strayJava).withPropertyName('strayJava')
+
+    def stamp = layout.buildDirectory.file('reports/source-layout/checked.txt')
+    outputs.file(stamp)
+
+    def rootPath = rootProject.projectDir.absolutePath + File.separator
+
+    doLast {
+        def problems = []
+        strayKotlin.files.toSorted().each {
+            problems << "  ${it.absolutePath - rootPath} (Kotlin file in a Java source directory)"
+        }
+        strayJava.files.toSorted().each {
+            problems << "  ${it.absolutePath - rootPath} (Java file in a Kotlin source directory)"
+        }
+        if (!problems.isEmpty()) {
+            throw new GradleException(
+                    "Source files are in the wrong source directory:\n"
+                            + problems.join('\n')
+                            + "\nMove each file to the sibling src/<set>/java or src/<set>/kotlin directory."
+            )
+        }
+        stamp.get().asFile.tap {
+            parentFile.mkdirs()
+            text = 'ok\n'
+        }
+    }
+}
+
+tasks.named('check') {
+    dependsOn(checkSourceLayout)
 }
 
 repositories {
@@ -135,13 +270,13 @@ processResources {
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
-            artifactId base.archivesName.get()
+            artifactId = base.archivesName.get()
             from components.java
         }
     }
     repositories {
         maven {
-            url System.getenv('local_maven_url')
+            url = System.getenv('local_maven_url')
         }
     }
 }

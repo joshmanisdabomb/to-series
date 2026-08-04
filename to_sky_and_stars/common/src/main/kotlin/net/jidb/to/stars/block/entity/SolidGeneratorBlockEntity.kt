@@ -7,6 +7,12 @@ import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.state.BlockState
 
+/**
+ * The block entity of a solid generator, which burns the same items a furnace does.
+ *
+ * @param pos The position of the block.
+ * @param state The state of the block.
+ */
 class SolidGeneratorBlockEntity(pos: BlockPos, state: BlockState) : HeatGeneratorBlockEntity(ToStarsMod.blockEntities.solid_generator, pos, state) {
 
     override fun createMenu(id: Int, player: Inventory) = SolidGeneratorMenu(id, player, this, dataAccess)

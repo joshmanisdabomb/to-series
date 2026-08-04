@@ -14,9 +14,26 @@ import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.item.ItemStack
 
+/**
+ * The screen a machine that makes heat is opened into, which shows how hot it is and how much of its fuel is left.
+ *
+ * The tooltip of a fuel in the player's inventory says what it would be worth to this particular generator, rather than only what a furnace would make of it.
+ *
+ * @param M The type of the interface being drawn.
+ * @param menu The interface being drawn.
+ * @param playerInventory The inventory of the player who opened it.
+ * @param title The title of the interface.
+ */
 class HeatGeneratorScreen<M : HeatGeneratorMenu>(menu: M, playerInventory: Inventory, title: Component) : AbstractContainerScreen<M>(menu, playerInventory, title, 176, 154) {
 
+    /**
+     * The thermometer showing how hot the generator is, or `null` before the screen has been laid out.
+     */
     private var thermometer: HeatBarWidget? = null
+
+    /**
+     * The flame showing how much of the current fuel is left, or `null` before the screen has been laid out.
+     */
     private var progress: BurnBarWidget? = null
 
     init {
@@ -38,9 +55,7 @@ class HeatGeneratorScreen<M : HeatGeneratorMenu>(menu: M, playerInventory: Inven
         )
     }
 
-    override fun containerTick() {
-
-    }
+    override fun containerTick() = Unit
 
     override fun extractBackground(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, partialTick: Float) {
         super.extractBackground(graphics, mouseX, mouseY, partialTick)
@@ -106,7 +121,12 @@ class HeatGeneratorScreen<M : HeatGeneratorMenu>(menu: M, playerInventory: Inven
     }
 
     companion object {
+
+        /**
+         * The background of the screen.
+         */
         val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/heat_generator.png")
+
     }
 
 }

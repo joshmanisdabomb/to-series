@@ -6,6 +6,12 @@ import net.minecraft.data.PackOutput
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.contents.TranslatableContents
 
+/**
+ * [MultiLanguageDataProvider] implementation adding the content mod's own translations that no collection produces, i.e. its death messages, interfaces, subtitles and advancements.
+ *
+ * @param tokens The translations gathered from the collections.
+ * @param output Where the generated files are written.
+ */
 class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, output: PackOutput) : MultiLanguageDataProvider(tokens, output, ToStarsMod.modid) {
 
     override fun addTranslations() {

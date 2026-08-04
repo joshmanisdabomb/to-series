@@ -7,7 +7,15 @@ import net.jidb.to.base.neoforge.transfer.ForgeTransferTransaction
 import net.neoforged.neoforge.transfer.ResourceHandler
 import net.neoforged.neoforge.transfer.item.ItemResource as ForgeItemResource
 
-class ForgeItemTransferContext(val handler: ResourceHandler<ForgeItemResource>): ItemTransferContext {
+/**
+ * [ItemTransferContext] implementation for Neoforge, which wraps one of its resource handlers.
+ *
+ * Neoforge counts items in an `Int` rather than a `Long`, so an amount asked for is clamped to what one can hold before it is passed on.
+ *
+ * @property handler The resource handler the items are moved through.
+ * @since 0.6.0
+ */
+class ForgeItemTransferContext(val handler: ResourceHandler<ForgeItemResource>) : ItemTransferContext {
 
     override fun getSlotCount() = handler.size()
 
@@ -16,16 +24,12 @@ class ForgeItemTransferContext(val handler: ResourceHandler<ForgeItemResource>):
         return ItemResource(resource.item, resource.componentsPatch)
     }
 
-    override fun getAmountAt(resource: ItemResource, index: Int) = handler.getAmountAsLong(index)
+    override fun getAmountAt(index: Int) = handler.getAmountAsLong(index)
 
     override fun getCapacityAt(resource: ItemResource, index: Int) = handler.getCapacityAsLong(index, ForgeItemResource.of(resource.item, resource.components))
 
-    override fun insert(resource: ItemResource, amount: Long, transaction: TransferTransaction): Long {
-        return handler.insert(ForgeItemResource.of(resource.item, resource.components), Math.clamp(amount, Int.MIN_VALUE, Int.MAX_VALUE), (transaction as ForgeTransferTransaction).transaction).toLong()
-    }
+    override fun insert(resource: ItemResource, amount: Long, transaction: TransferTransaction) = handler.insert(ForgeItemResource.of(resource.item, resource.components), Math.clamp(amount, Int.MIN_VALUE, Int.MAX_VALUE), (transaction as ForgeTransferTransaction).transaction).toLong()
 
-    override fun extract(resource: ItemResource, amount: Long, transaction: TransferTransaction): Long {
-        return handler.extract(ForgeItemResource.of(resource.item, resource.components), Math.clamp(amount, Int.MIN_VALUE, Int.MAX_VALUE), (transaction as ForgeTransferTransaction).transaction).toLong()
-    }
+    override fun extract(resource: ItemResource, amount: Long, transaction: TransferTransaction) = handler.extract(ForgeItemResource.of(resource.item, resource.components), Math.clamp(amount, Int.MIN_VALUE, Int.MAX_VALUE), (transaction as ForgeTransferTransaction).transaction).toLong()
 
 }

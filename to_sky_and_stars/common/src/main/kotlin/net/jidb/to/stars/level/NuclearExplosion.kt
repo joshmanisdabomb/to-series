@@ -17,15 +17,29 @@ import net.minecraft.world.level.Explosion
 import net.minecraft.world.level.ServerExplosion
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.LiquidBlock
+import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.AABB
 import net.minecraft.world.phys.Vec3
 import org.joml.Vector3f
-import java.util.*
+import java.util.UUID
+import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
+/**
+ * A nuclear explosion, which is far larger than a vanilla one and worked out quite differently.
+ *
+ * Rather than casting a fixed number of rays, it walks one ray out to every point on the shell of a sphere, so that the blast covers the whole of its radius however large that is.
+ * Blocks are cleared, turned to nuclear waste or set alight depending on how far the ray got and what it met; entities are hurt and thrown by how much of the blast they were exposed to.
+ *
+ * @property level The level the blast goes off in.
+ * @property entity What set it off, or `null` where nothing did.
+ * @param source What the damage is blamed on, or `null` to blame the blast itself.
+ * @property origin Where the blast goes off.
+ * @property strength How strong the blast is, which is also its radius in blocks.
+ */
 class NuclearExplosion(
     val level: ServerLevel,
     val entity: Entity?,
@@ -34,16 +48,28 @@ class NuclearExplosion(
     val strength: Float
 ) {
 
+    /**
+     * What the damage from the blast is blamed on.
+     */
     val source = source ?: Explosion.getDefaultDamageSource(level, entity)
 
+    /**
+     * How hard each player was thrown, kept so that it can be sent to them along with the blast itself.
+     */
     val knockback = mutableMapOf<UUID, Vec3>()
 
+    /**
+     * Sets the blast off, i.e. damages the blocks, hurts the entities and tells the clients about it.
+     */
     fun run() {
         doBlockDamage()
         doEntityDamage()
         updateClients()
     }
 
+    /**
+     * Clears, wastes or sets alight every block the blast reaches, by walking a ray out to each point on the shell of its sphere.
+     */
     fun doBlockDamage() {
         val radius = strength.roundToInt().coerceAtLeast(1)
         val endpoints = generateSphereShell(radius)
@@ -102,6 +128,21 @@ class NuclearExplosion(
         }
     }
 
+    /**
+     * Walks one ray out from the origin, weakening it by what each block it passes through resists, and records what should happen to every block it reached.
+     *
+     * @param dxEnd Where the ray ends, along x.
+     * @param dyEnd Where it ends, along y.
+     * @param dzEnd Where it ends, along z.
+     * @param maxDistance How far the ray can reach.
+     * @param minY The lowest the ray may go, i.e. the bottom of the world.
+     * @param maxY The highest it may go, i.e. the top of the world.
+     * @param processed The positions already walked over, which is shared between rays so that none is dealt with twice.
+     * @param toRemove The positions to clear, which the ray adds to.
+     * @param toWaste The positions to turn to nuclear waste, which the ray adds to.
+     * @param toFire The positions to set alight, which the ray adds to.
+     * @param pos A position the ray reuses as it walks, rather than allocating a fresh one per step.
+     */
     private fun traceRay(
         dxEnd: Double,
         dyEnd: Double,
@@ -127,29 +168,17 @@ class NuclearExplosion(
         var y = floor(origin.y).toInt()
         var z = floor(origin.z).toInt()
 
-        val stepX = when {
-            dx > 0.0 -> 1
-            dx < 0.0 -> -1
-            else -> 0
-        }
-        val stepY = when {
-            dy > 0.0 -> 1
-            dy < 0.0 -> -1
-            else -> 0
-        }
-        val stepZ = when {
-            dz > 0.0 -> 1
-            dz < 0.0 -> -1
-            else -> 0
-        }
+        val stepX = rayStep(dx)
+        val stepY = rayStep(dy)
+        val stepZ = rayStep(dz)
 
-        val tDeltaX = if (stepX == 0) Double.POSITIVE_INFINITY else kotlin.math.abs(1.0 / dx)
-        val tDeltaY = if (stepY == 0) Double.POSITIVE_INFINITY else kotlin.math.abs(1.0 / dy)
-        val tDeltaZ = if (stepZ == 0) Double.POSITIVE_INFINITY else kotlin.math.abs(1.0 / dz)
+        val tDeltaX = rayDelta(stepX, dx)
+        val tDeltaY = rayDelta(stepY, dy)
+        val tDeltaZ = rayDelta(stepZ, dz)
 
-        var tMaxX = if (stepX > 0) ((x + 1.0) - origin.x) / dx else if (stepX < 0) (origin.x - x) / -dx else Double.POSITIVE_INFINITY
-        var tMaxY = if (stepY > 0) ((y + 1.0) - origin.y) / dy else if (stepY < 0) (origin.y - y) / -dy else Double.POSITIVE_INFINITY
-        var tMaxZ = if (stepZ > 0) ((z + 1.0) - origin.z) / dz else if (stepZ < 0) (origin.z - z) / -dz else Double.POSITIVE_INFINITY
+        var tMaxX = rayBound(stepX, dx, origin.x, x)
+        var tMaxY = rayBound(stepY, dy, origin.y, y)
+        var tMaxZ = rayBound(stepZ, dz, origin.z, z)
 
         var t = 0.0
         var tMax = maxDistance - level.random.nextDouble().times(maxDistance * 0.4)
@@ -160,44 +189,8 @@ class NuclearExplosion(
             pos.set(x, y, z)
             val state = level.getBlockState(pos)
             if (!state.isAir) {
-                val remaining = t / maxDistance
-                if (state.`is`(ToStarsMod.blockTags.nuke_immune)) {
-                    break
-                }
-
-                var blockResistance = state.block.explosionResistance
-                if (blockResistance > 100000) {
-                    break
-                }
-
-                if (!state.`is`(ToStarsMod.blockTags.nuke_passthrough) && !state.isAir) {
-                    if (state.`is`(ToStarsMod.blockTags.nuke_shielding)) {
-                        blockResistance = 1000000f
-                    } else if (state.block is LiquidBlock) {
-                        blockResistance = 0f
-                    }
-                    val fluidResistance = level.getFluidState(pos).amount.div(8f)
-                    val resistance = maxOf(blockResistance, fluidResistance)
-                    tMax -= resistance.times(0.2 - (remaining * remaining).times(0.175)).coerceAtLeast(0.01) * level.random.nextDouble()
-                }
-
+                tMax = markBlock(state, pos, t, tMax, maxDistance, processed, toRemove, toWaste, toFire)
                 if (tMax <= 0.0) break
-
-                val packed = BlockPos.asLong(x, y, z)
-
-                val wasteProgress = remaining * (t / tMax)
-                val wasteChance = wasteProgress.squared().squared()
-                val fireChance = wasteChance.times(0.5) + 0.005
-
-                if (!processed.contains(packed)) {
-                    if (level.random.nextDouble() < fireChance) {
-                        toFire.add(packed)
-                    } else if (level.random.nextDouble() < wasteChance) {
-                        toWaste.add(packed)
-                    } else {
-                        toRemove.add(packed)
-                    }
-                }
             }
 
             if (tMaxX < tMaxY) {
@@ -224,6 +217,115 @@ class NuclearExplosion(
         }
     }
 
+    /**
+     * Which way a ray steps along one axis, i.e. the sign of its direction along it.
+     *
+     * @param direction How far the ray travels along the axis, per unit of its length.
+     * @return `1` or `-1` where it moves along the axis at all, `0` where it does not.
+     */
+    private fun rayStep(direction: Double) = when {
+        direction > 0.0 -> 1
+        direction < 0.0 -> -1
+        else -> 0
+    }
+
+    /**
+     * How far a ray travels between one crossing of an axis' block boundaries and the next.
+     *
+     * @param step Which way it steps along the axis.
+     * @param direction How far it travels along the axis, per unit of its length.
+     * @return The distance between crossings, or infinity where the ray never crosses one.
+     */
+    private fun rayDelta(step: Int, direction: Double) = if (step == 0) Double.POSITIVE_INFINITY else abs(1.0 / direction)
+
+    /**
+     * How far a ray travels before it first crosses an axis' block boundary, which is what the walk starts from.
+     *
+     * @param step Which way it steps along the axis.
+     * @param direction How far it travels along the axis, per unit of its length.
+     * @param start Where it starts along the axis.
+     * @param block The block it starts in along the axis.
+     * @return The distance to the first crossing, or infinity where the ray never reaches one.
+     */
+    private fun rayBound(step: Int, direction: Double, start: Double, block: Int) = when {
+        step > 0 -> ((block + 1.0) - start) / direction
+        step < 0 -> (start - block) / -direction
+        else -> Double.POSITIVE_INFINITY
+    }
+
+    /**
+     * Weakens a ray by what one block it passed through resists, and records what should become of that block.
+     *
+     * A block the blast cannot get through stops the ray outright; anything else takes its resistance out of what the ray has left, which is what makes the blast reach further through open air than through stone.
+     * What the block becomes is decided by how far out and how near the end of the ray it is: mostly cleared near the origin, and increasingly left as nuclear waste or set alight towards the edge.
+     *
+     * @param state The block the ray is passing through.
+     * @param pos Where that block is.
+     * @param t How far the ray has come.
+     * @param tMax How far it can still reach.
+     * @param maxDistance How far it could reach to begin with.
+     * @param processed The positions already dealt with by an earlier ray, which are left alone.
+     * @param toRemove The positions to clear, which this may add to.
+     * @param toWaste The positions to turn to nuclear waste, which this may add to.
+     * @param toFire The positions to set alight, which this may add to.
+     * @return How far the ray can reach now, which is `0.0` or less where it is stopped here.
+     */
+    private fun markBlock(
+        state: BlockState,
+        pos: BlockPos,
+        t: Double,
+        tMax: Double,
+        maxDistance: Double,
+        processed: LongOpenHashSet,
+        toRemove: LongOpenHashSet,
+        toWaste: LongOpenHashSet,
+        toFire: LongOpenHashSet
+    ): Double {
+        val remaining = t / maxDistance
+        if (state.`is`(ToStarsMod.blockTags.nuke_immune)) return -1.0
+
+        var blockResistance = state.block.explosionResistance
+        if (blockResistance > 100000) return -1.0
+
+        var reach = tMax
+        if (!state.`is`(ToStarsMod.blockTags.nuke_passthrough)) {
+            if (state.`is`(ToStarsMod.blockTags.nuke_shielding)) {
+                blockResistance = 1000000f
+            } else if (state.block is LiquidBlock) {
+                blockResistance = 0f
+            }
+            val fluidResistance = level.getFluidState(pos).amount.div(8f)
+            val resistance = maxOf(blockResistance, fluidResistance)
+            reach -= resistance.times(0.2 - (remaining * remaining).times(0.175)).coerceAtLeast(0.01) * level.random.nextDouble()
+        }
+
+        if (reach <= 0.0) return reach
+
+        val packed = BlockPos.asLong(pos.x, pos.y, pos.z)
+
+        val wasteProgress = remaining * (t / reach)
+        val wasteChance = wasteProgress.squared().squared()
+        val fireChance = wasteChance.times(0.5) + 0.005
+
+        if (!processed.contains(packed)) {
+            if (level.random.nextDouble() < fireChance) {
+                toFire.add(packed)
+            } else if (level.random.nextDouble() < wasteChance) {
+                toWaste.add(packed)
+            } else {
+                toRemove.add(packed)
+            }
+        }
+
+        return reach
+    }
+
+    /**
+     * Every position on the shell of a sphere, which is where the rays are walked out to.
+     *
+     * @param radius The radius of the sphere.
+     * @return The positions on its shell, relative to the origin.
+     */
     private fun generateSphereShell(radius: Int): LongOpenHashSet {
         val shell = LongOpenHashSet(radius * radius * 12)
         val r2 = radius * radius
@@ -265,6 +367,11 @@ class NuclearExplosion(
         return shell
     }
 
+    /**
+     * Hurts and throws every entity within reach of the blast, by how much of it they were exposed to and how far away they were.
+     *
+     * A creative player who is flying is left alone entirely, and one who is not is thrown only gently, so that the blast does not fling them across the world.
+     */
     fun doEntityDamage() {
         knockback.clear()
 
@@ -303,10 +410,14 @@ class NuclearExplosion(
         }
     }
 
+    /**
+     * Tells every player near enough to notice that the blast has gone off, along with how hard they themselves were thrown.
+     */
     fun updateClients() {
         val players = level.getPlayers { it.distanceToSqr(origin) <= 1000000.0 }
         for (player in players) {
             Services.platform.networking.sendToPlayer(player, NuclearExplosionPayload(strength, origin.toVector3f(), knockback[player.uuid]?.toVector3f() ?: Vector3f(0f, 0f, 0f)))
         }
     }
+
 }

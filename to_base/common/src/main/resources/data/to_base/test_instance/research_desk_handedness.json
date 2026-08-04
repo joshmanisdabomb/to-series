@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "environment": "minecraft:default",
+  "function": "to_base:research_desk_handedness",
+  "max_ticks": 100,
+  "structure": "to_base:research_desk_handedness"
+}

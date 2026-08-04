@@ -5,7 +5,12 @@ import net.jidb.to.base.client.data.api.collection.module.ClientDataCollectionMo
 import net.jidb.to.base.data.api.collection.DataCollection
 import net.minecraft.world.level.block.Block
 
-class FireBlockModelClientDataCollectionModule() : ClientDataCollectionModule() {
+/**
+ * A [ClientDataCollectionModule] generating the model of a fire-like block, i.e. the floor and wall quads that vanilla's own fire is drawn from.
+ *
+ * @since 0.3.0
+ */
+class FireBlockModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {
         event.blockEx.createFire(collection.`object`)

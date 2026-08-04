@@ -12,6 +12,9 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.LayeredCauldronBlock
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 
+/**
+ * A [ClientDataCollectionModule] generating the models of the boiler, i.e. one per water level and again for each of those with the water boiling.
+ */
 class BoilingCauldronBlockModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {

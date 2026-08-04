@@ -11,7 +11,11 @@ import net.jidb.to.base.content.inventory.menu.ResearchMenu
 import net.jidb.to.base.service.Services
 import net.minecraft.client.gui.ActiveTextCollector
 import net.minecraft.client.gui.GuiGraphicsExtractor
-import net.minecraft.client.gui.components.*
+import net.minecraft.client.gui.components.Button
+import net.minecraft.client.gui.components.EditBox
+import net.minecraft.client.gui.components.MultiLineTextWidget
+import net.minecraft.client.gui.components.PlainTextButton
+import net.minecraft.client.gui.components.SpriteIconButton
 import net.minecraft.client.gui.components.events.GuiEventListener
 import net.minecraft.client.gui.navigation.ScreenRectangle
 import net.minecraft.client.gui.screens.ConfirmLinkScreen
@@ -33,72 +37,394 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.ItemLike
 import net.minecraft.world.level.block.Block
-import java.util.*
+import java.util.Optional
 import kotlin.jvm.optionals.getOrNull
 
+/**
+ * The screen opened by a research desk, through which the in-game wiki is read.
+ *
+ * It is one screen rather than three, switching between a home page, an article page and a list of articles through [mode]; each mode has its own background texture, its own content height, and its own set of visible widgets, which [changeMode] applies.
+ * Opening the desk while holding an item that has an article of its own jumps straight to that article rather than to the home page.
+ *
+ * Scrolling is done by hand rather than by a vanilla scrolling widget, because the two scrollable modes scroll different things: the list moves its buttons, and the article moves its text widget.
+ *
+ * @param menu The menu this screen displays.
+ * @param playerInventory The inventory of the player who opened the screen.
+ * @property originalTitle The title the menu was opened with, kept because the screen passes an empty one to its superclass so that vanilla does not draw it.
+ * @since 0.1.0
+ */
 class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected val originalTitle: Component) : AbstractContainerScreen<ResearchMenu>(menu, playerInventory, Component.empty(), 230, 219) {
 
-    protected var mode = ResearchScreenMode.HOME
+    /**
+     * Which of the three pages the screen is currently showing.
+     *
+     * @since 0.1.0
+     */
+    private var mode = ResearchScreenMode.HOME
 
+    /**
+     * The button returning to the home page, shown on every page but the home page itself.
+     *
+     * @since 0.1.0
+     */
     private var home: SpriteIconButton? = null
+
+    /**
+     * The box a search term is typed into, shown only on the home page.
+     *
+     * @since 0.1.0
+     */
     private var searchText: EditBox? = null
+
+    /**
+     * The button running the typed search, shown only on the home page.
+     *
+     * @since 0.1.0
+     */
     private var search: SpriteIconButton? = null
+
+    /**
+     * The button opening the online wiki in a browser.
+     *
+     * @since 0.1.0
+     */
     private var openInBrowser: SpriteIconButton? = null
 
+    /**
+     * The home page button listing every article.
+     *
+     * @since 0.1.0
+     */
     private var listAll: Button? = null
+
+    /**
+     * The home page button listing the articles about blocks.
+     *
+     * @since 0.1.0
+     */
     private var listBlocks: Button? = null
+
+    /**
+     * The home page button listing the articles about items.
+     *
+     * @since 0.1.0
+     */
     private var listItems: Button? = null
+
+    /**
+     * The home page button listing the articles about entities.
+     *
+     * @since 0.1.0
+     */
     private var listEntities: Button? = null
+
+    /**
+     * The home page button listing the articles of To Sky and Stars.
+     *
+     * @since 0.1.0
+     */
     private var listToStars: Button? = null
 
+    /**
+     * The buttons currently making up the list page, one per article in [currentList], rebuilt each time the list changes.
+     *
+     * @since 0.1.0
+     */
     private var listButtons: List<Button> = emptyList()
+
+    /**
+     * The widget the body of an article is drawn in, shown only on the article page.
+     *
+     * @since 0.1.0
+     */
     private var articleText: MultiLineTextWidget? = null
 
+    /**
+     * The article the article page is showing, or `null` where none has been opened yet.
+     *
+     * @since 0.1.0
+     */
     private var currentArticle: WikiArticle? = null
+
+    /**
+     * The articles the list page is showing, which starts as every article there is.
+     *
+     * @since 0.1.0
+     */
     private var currentList = WikiArticleManager.index.all
+
+    /**
+     * The heading shown above the list page, naming what was listed or searched for.
+     *
+     * @since 0.1.0
+     */
     private var listTitle: Component? = null
 
+    /**
+     * The icons of the article currently open, which are cycled between where an article has more than one.
+     *
+     * @since 0.1.0
+     */
     private var icons: List<Any> = emptyList()
+
+    /**
+     * How long the current icon has been shown for, which is what advances the cycle through [icons].
+     *
+     * @since 0.1.0
+     */
     private var iconTicks = 0f
 
+    /**
+     * How far the current page has been scrolled down, in pixels.
+     *
+     * @since 0.1.0
+     */
     private var scrollY = 0
+
+    /**
+     * The full height of the current page's content, against which [scrollY] decides how much is left to scroll.
+     *
+     * @since 0.1.0
+     */
     private var scrollHeight = 0
+
+    /**
+     * Where within the scrollbar thumb it was grabbed, or `null` where it is not being dragged.
+     *
+     * @since 0.1.0
+     */
     private var scrollDragPoint: Int? = null
 
+    /**
+     * The y position of the toolbar buttons along the top of the screen.
+     *
+     * @since 0.1.0
+     */
     private val toolbarY = 8
+
+    /**
+     * The width of a toolbar button.
+     *
+     * @since 0.1.0
+     */
     private val toolbarWidth = 20
+
+    /**
+     * The height of a toolbar button.
+     *
+     * @since 0.1.0
+     */
     private val toolbarHeight = 20
+
+    /**
+     * The x position of the toolbar buttons on the left of the screen.
+     *
+     * @since 0.1.0
+     */
     private val leftToolbarX = 8
+
+    /**
+     * The x position of the toolbar buttons on the right of the screen.
+     *
+     * @since 0.1.0
+     */
     private val rightToolbarX = imageWidth - 8 - toolbarWidth
+
+    /**
+     * The x position of the scrollable content area.
+     *
+     * @since 0.1.0
+     */
     private val contentX = 9
+
+    /**
+     * The width of the scrollable content area.
+     *
+     * @since 0.1.0
+     */
     private val contentWidth = 195
+
+    /**
+     * The x position of the right edge of the scrollable content area.
+     *
+     * @since 0.1.0
+     */
     private val contentRight = contentX + contentWidth
+
+    /**
+     * The x position of the scrollbar.
+     *
+     * @since 0.1.0
+     */
     private val scrollbarX = 209
+
+    /**
+     * The width of the scrollbar.
+     *
+     * @since 0.1.0
+     */
     private val scrollbarWidth = 12
+
+    /**
+     * The x position of the right edge of the scrollbar.
+     *
+     * @since 0.1.0
+     */
     private val scrollbarRight = scrollbarX + scrollbarWidth - 1
+
+    /**
+     * The height of the content area on the article page, which is shorter than the list page to leave room for the article's heading.
+     *
+     * @since 0.1.0
+     */
     private val contentPageHeight = 141
+
+    /**
+     * The height of the content area on the list page.
+     *
+     * @since 0.1.0
+     */
     private val contentListHeight = 165
+
+    /**
+     * The gap between the edge of the content area and the content inside it.
+     *
+     * @since 0.1.0
+     */
     private val contentPadding = 3
+
+    /**
+     * The height of one line of article text, which a scroll of one step moves by.
+     *
+     * @since 0.1.0
+     */
     private val contentLineHeight = 9
+
+    /**
+     * The y position of the bottom of the content area, which both modes share.
+     *
+     * @since 0.1.0
+     */
     private val contentBottom = imageHeight - 8
+
+    /**
+     * The width of a button on the list page.
+     *
+     * @since 0.1.0
+     */
     private val listsButtonWidth = 192
+
+    /**
+     * The height of a button on the list page.
+     *
+     * @since 0.1.0
+     */
     private val listButtonHeight = 26
+
+    /**
+     * The y position of the content area on the list page.
+     *
+     * @since 0.1.0
+     */
     private val contentListY = contentBottom - contentListHeight
+
+    /**
+     * The y position of the content area on the article page.
+     *
+     * @since 0.1.0
+     */
     private val contentPageY = contentBottom - contentPageHeight
+
+    /**
+     * The height of the scrollbar thumb, which is fixed rather than sized by how much there is to scroll.
+     *
+     * @since 0.1.0
+     */
     private val scrollbarThumbHeight = 15
+
+    /**
+     * The x position of the icon shown beside an article's title.
+     *
+     * @since 0.1.0
+     */
     private val iconOffsetX = 6
+
+    /**
+     * The y position of the icon shown beside an article's title.
+     *
+     * @since 0.1.0
+     */
     private val iconOffsetY = 33
+
+    /**
+     * The size the icon beside an article's title is drawn at, which is larger than an item's usual sixteen pixels.
+     *
+     * @since 0.1.0
+     */
     private val iconOffsetSize = 30
+
+    /**
+     * The x position of an article's title.
+     *
+     * @since 0.1.0
+     */
     private val titleX = 42
+
+    /**
+     * The y position of an article's title.
+     *
+     * @since 0.1.0
+     */
     private val titleY = 31
+
+    /**
+     * The width an article's title is fitted into.
+     *
+     * @since 0.1.0
+     */
     private val titleWidth = 89
+
+    /**
+     * The height an article's title is fitted into.
+     *
+     * @since 0.1.0
+     */
     private val titleHeight = 13
+
+    /**
+     * The y position of an article's subtitle.
+     *
+     * @since 0.1.0
+     */
     private val subtitleY = 55
+
+    /**
+     * The x position of the screen's own label, such as the heading of a list.
+     *
+     * @since 0.1.0
+     */
     private val labelX = 8
+
+    /**
+     * The y position of the screen's own label, such as the heading of a list.
+     *
+     * @since 0.1.0
+     */
     private val labelY = 33
 
+    /**
+     * The y position of the content area for the mode currently showing.
+     *
+     * @since 0.1.0
+     */
     private val contentY
         get() = if (mode == ResearchScreenMode.LIST) contentListY else contentPageY
+
+    /**
+     * The height of the content area for the mode currently showing.
+     *
+     * @since 0.1.0
+     */
     private val contentHeight
         get() = if (mode == ResearchScreenMode.LIST) contentListHeight else contentPageHeight
 
@@ -133,7 +459,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             setPosition(leftPos + leftToolbarX, topPos + toolbarY)
         }
         searchText = this.addRenderableWidget(
-            EditBox(this.font, imageWidth - 62, toolbarHeight,  Component.translatable("gui.${ToBaseMod.modid}.research.search"))
+            EditBox(this.font, imageWidth - 62, toolbarHeight, Component.translatable("gui.${ToBaseMod.modid}.research.search"))
         ).apply {
             setHint(Component.translatable("gui.${ToBaseMod.modid}.research.search.hint"))
             setPosition(leftPos + leftToolbarX, topPos + toolbarY)
@@ -153,7 +479,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         openInBrowser = this.addRenderableWidget(
             SpriteIconButton.builder(
                 Component.translatable("gui.${ToBaseMod.modid}.research.browser"),
-                { ConfirmLinkScreen.confirmLink(this, "${URL}/${(if (mode == ResearchScreenMode.PAGE) currentArticle?.id else null) ?: ""}").onPress(it) },
+                { ConfirmLinkScreen.confirmLink(this, "$URL/${(if (mode == ResearchScreenMode.PAGE) currentArticle?.id else null) ?: ""}").onPress(it) },
                 false
             )
                 .width(toolbarWidth)
@@ -229,7 +555,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
                     changeMode(ResearchScreenMode.LIST)
                 }
             )
-                .width(listsButtonWidth.minus(4*3) / 4)
+                .width(listsButtonWidth.minus(4 * 3) / 4)
                 .build()
         ).apply {
             active = Services.environment.isModLoaded("to_sky_and_stars")
@@ -252,6 +578,13 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         changeMode(mode)
     }
 
+    /**
+     * Switches the screen to the given page, showing the widgets that belong to it and hiding the rest.
+     * The player's own inventory slots are only shown on the home page, as the other two cover them.
+     *
+     * @param mode The page to switch to.
+     * @since 0.1.0
+     */
     private fun changeMode(mode: ResearchScreenMode) {
         menu.active = mode == ResearchScreenMode.HOME
 
@@ -308,7 +641,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
         if (mode != ResearchScreenMode.HOME) {
             val scrollPosition = getScrollPosition()
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, if (scrollHeight - contentHeight <= 0) scrollbar_thumb_disabled else scrollbar_thumb, leftPos + scrollbarX, topPos + contentY + scrollPosition, scrollbarWidth, scrollbarThumbHeight)
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, if (scrollHeight - contentHeight <= 0) scrollbarThumbDisabled else scrollbarThumb, leftPos + scrollbarX, topPos + contentY + scrollPosition, scrollbarWidth, scrollbarThumbHeight)
         }
     }
 
@@ -327,7 +660,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
     override fun extractTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int) {
         super.extractTooltip(graphics, mouseX, mouseY)
         if (mode == ResearchScreenMode.PAGE) {
-            if (mouseX-leftPos-iconOffsetX in 0 .. iconOffsetSize && mouseY-topPos-iconOffsetY in 0 .. iconOffsetSize) {
+            if (mouseX - leftPos - iconOffsetX in 0..iconOffsetSize && mouseY - topPos - iconOffsetY in 0..iconOffsetSize) {
                 val icon = getArticleIcon(icons, iconTicks)
                 if (icon is ItemLike) {
                     graphics.setTooltipForNextFrame(this.font, ItemStack(icon), mouseX, mouseY)
@@ -366,12 +699,18 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
                 graphics.requestCursor(CursorTypes.POINTING_HAND)
             }
         } else {
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, slot_locked, slot.x - 4, slot.y - 4, 24, 24)
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, slotLocked, slot.x - 4, slot.y - 4, 24, 24)
         }
     }
 
     override fun getTitle() = originalTitle
 
+    /**
+     * Searches every article for the term currently typed and shows the matches as a list.
+     * Only an article's title is searched, and matching is a case-insensitive substring rather than anything cleverer.
+     *
+     * @since 0.1.0
+     */
     private fun startSearch() {
         currentList = WikiArticleManager.index.all.filter {
             StringDecomposer.getPlainText(it.title).lowercase().contains(searchText!!.value.lowercase())
@@ -380,12 +719,25 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         changeMode(ResearchScreenMode.LIST)
     }
 
+    /**
+     * Where the scrollbar thumb sits, worked out from how far the content has been scrolled.
+     *
+     * @return The offset of the thumb from the top of the scrollbar, in pixels, or `0` where there is nothing to scroll.
+     * @since 0.1.0
+     */
     private fun getScrollPosition(): Int {
         val height = scrollHeight - contentHeight
         if (height <= 0) return 0
         return (scrollY.toDouble() / height).times(contentHeight - scrollbarThumbHeight).toInt()
     }
 
+    /**
+     * Scrolls the current page to the given offset, clamped to what there is left to scroll.
+     * The widgets themselves are moved rather than the drawing being offset, as each mode scrolls a different set of them.
+     *
+     * @param pos The offset to scroll to, in pixels from the top of the content.
+     * @since 0.1.0
+     */
     private fun setScrollPosition(pos: Int) {
         val new = pos.coerceAtMost(scrollHeight - contentHeight).coerceAtLeast(0)
         val delta = new - scrollY
@@ -467,7 +819,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         if (mode != ResearchScreenMode.HOME) {
             if (event.x.toInt() - leftPos in scrollbarX until scrollbarRight && event.y.toInt() - topPos in contentY until contentBottom) {
                 val scrollPosition = getScrollPosition()
-                if (event.y.toInt() - topPos in contentY + scrollPosition until  contentY + scrollPosition + scrollbarThumbHeight) {
+                if (event.y.toInt() - topPos in contentY + scrollPosition until contentY + scrollPosition + scrollbarThumbHeight) {
                     scrollDragPoint = event.y.toInt() - topPos - contentY - scrollPosition
                 } else {
                     val y = Mth.ceil(scrollbarThumbHeight.div(2f))
@@ -494,17 +846,70 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
     }
 
     companion object {
+
+        /**
+         * The address of the online wiki, which the browser button opens.
+         *
+         * @since 0.1.0
+         */
         private const val URL = "https://to.jidb.net"
 
-        val scrollbar_thumb = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb")
-        val scrollbar_thumb_disabled = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb_disabled")
-        val slot_locked = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research/slot")
+        /**
+         * The sprite of the scrollbar thumb when there is something to scroll.
+         *
+         * @since 0.1.0
+         */
+        val scrollbarThumb = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb")
 
+        /**
+         * The sprite of the scrollbar thumb when the content already fits.
+         *
+         * @since 0.1.0
+         */
+        val scrollbarThumbDisabled = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb_disabled")
+
+        /**
+         * The sprite drawn over an inventory slot whose item has no article to open.
+         *
+         * @since 0.1.0
+         */
+        val slotLocked = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research/slot")
+
+        /**
+         * The x position of the icon within a list button.
+         *
+         * @since 0.1.0
+         */
         private const val listButtonIconX = 5
+
+        /**
+         * The y position of the icon within a list button.
+         *
+         * @since 0.1.0
+         */
         private const val listButtonIconY = 5
+
+        /**
+         * How far a list button's label is indented to leave room for its icon.
+         *
+         * @since 0.1.0
+         */
         private const val listButtonIconPadding = 24
+
+        /**
+         * The gap between one list button and the next.
+         *
+         * @since 0.1.0
+         */
         private const val listButtonPadding = 2
 
+        /**
+         * The icons an article declares, keeping only those that name something with a model to draw.
+         *
+         * @param article The article to read the icons of.
+         * @return The registry objects the article's icons point at.
+         * @since 0.1.0
+         */
         private fun getArticleIcons(article: WikiArticle): List<Any> = article.icon.mapNotNull {
             when (val resource = RegistryHelper.getResource(it)) {
                 is Block, is Item, is EntityType<*> -> resource
@@ -512,11 +917,31 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             }
         }
 
+        /**
+         * Picks which of an article's icons to show, cycling through them every two seconds where there is more than one.
+         *
+         * @param icons The icons of the article.
+         * @param iconTicks How long the article has been shown for.
+         * @return The icon to draw, or `null` where the article has none.
+         * @since 0.1.0
+         */
         private fun getArticleIcon(icons: List<Any>, iconTicks: Float): Any? {
             if (icons.isEmpty()) return null
             return icons[iconTicks.toInt().div(40) % icons.size]
         }
 
+        /**
+         * Draws an article's icon at the given position and scale.
+         * Only an icon that can be held as an item is drawn; an entity icon has no way to be drawn in a GUI yet.
+         *
+         * @param icon The icon to draw.
+         * @param graphics The graphics to draw into.
+         * @param x The x position to draw the icon at.
+         * @param y The y position to draw the icon at.
+         * @param scale The factor to draw the icon at, where `1` is an item's usual size. Defaults to `1`.
+         * @param scissors The rectangle to clip the icon to, or `null` for no clipping. Defaults to `null`.
+         * @since 0.6.0
+         */
         private fun extractArticleIcon(icon: Any, graphics: GuiGraphicsExtractor, x: Int, y: Int, scale: Float = 1f, scissors: ScreenRectangle? = null) {
             when (icon) {
                 is ItemLike -> {
@@ -525,6 +950,14 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             }
         }
 
+        /**
+         * The subtitle shown under an article's title.
+         * An article that declares one uses it; otherwise the subtitle names what kind of thing the article is about, or the mod it belongs to where the article is a version's changelog.
+         *
+         * @param article The article to build a subtitle for.
+         * @return The subtitle to display.
+         * @since 0.1.0
+         */
         private fun getArticleSubtitle(article: WikiArticle): Component {
             if (article.subtitle != null) {
                 return article.subtitle
@@ -533,29 +966,92 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             if (article.about.size == 1 && first.first.toString() == "to_base:mod_version") {
                 return WikiArticleManager.index.byResource[article.parent]!!.first().title
             }
-            val token = with (article.about.map { it.first }.toSet()) {
+            val token = with(article.about.map { it.first }.toSet()) {
                 if (this.size > 1) "mixed" else first.first.toString()
             }
             return Component.translatable("gui.${ToBaseMod.modid}.research.type.$token")
         }
 
+        /**
+         * The article about the item in an inventory slot, which is what clicking that slot on the home page opens.
+         *
+         * @param slot The slot to read the item of.
+         * @return The article about that item, or `null` where the slot is empty or its item has no article.
+         * @since 0.1.0
+         */
         private fun getSlotArticle(slot: Slot): WikiArticle? {
             val item = slot.item.item
             val key = BuiltInRegistries.ITEM.getResourceKey(item).getOrNull() ?: return null
             return WikiArticleManager.index.byResource[key.registry() to key.identifier()]?.firstOrNull()
         }
+
     }
 
+    /**
+     * Enum that defines the three pages the research screen can show, each carrying the background it is drawn on.
+     *
+     * @see ResearchScreen.mode
+     * @since 0.1.0
+     */
     enum class ResearchScreenMode {
+
+        /**
+         * The home page, which offers the search box, the category buttons and the player's own inventory.
+         *
+         * @since 0.1.0
+         */
         HOME,
+
+        /**
+         * An article, showing its title, icon and body text.
+         *
+         * @since 0.1.0
+         */
         PAGE,
+
+        /**
+         * A list of articles, whether a whole category or the results of a search.
+         *
+         * @since 0.1.0
+         */
         LIST;
 
+        /**
+         * The background texture this page is drawn on, named after the page itself.
+         *
+         * @since 0.1.0
+         */
         val texture = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "textures/gui/research/${name.lowercase()}.png")
+
     }
 
+    /**
+     * One row of the list page, a button labelled with an article's title and drawn with its icon.
+     * The icon cycles like the one on an article page does, but only while the button is not hovered, so that the icon under the cursor holds still.
+     *
+     * @property article The article this button opens.
+     * @param x The x position of the button.
+     * @param y The y position of the button.
+     * @param width The width of the button.
+     * @param height The height of the button.
+     * @param onPress The action run when the button is pressed.
+     * @param scissors The rectangle the icon is clipped to, so that a button scrolled past the edge of the list does not draw its icon outside it.
+     * @since 0.1.0
+     */
     private class ListButton(val article: WikiArticle, x: Int, y: Int, width: Int, height: Int, onPress: OnPress, private val scissors: ScreenRectangle) : Button(x, y, width, height, article.title, onPress, DEFAULT_NARRATION) {
+
+        /**
+         * The icons of this button's article, which are cycled between where there is more than one.
+         *
+         * @since 0.1.0
+         */
         val icons = getArticleIcons(article)
+
+        /**
+         * How long the current icon has been shown for, which is what advances the cycle through [icons].
+         *
+         * @since 0.1.0
+         */
         var iconTicks = 0f
 
         override fun extractContents(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, partialTick: Float) {
@@ -578,6 +1074,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
             val l = this.getY() + this.getHeight()
             output.acceptScrolling(message, 0, i, j, k, l)
         }
+
     }
 
 }

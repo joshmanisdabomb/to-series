@@ -9,7 +9,12 @@ import net.jidb.to.base.client.data.pub.collection.module.model.block.FullRotati
 import net.jidb.to.base.client.data.pub.collection.module.model.block.SimpleBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.item.TintedItemModelClientDataCollectionModule
 import net.jidb.to.base.data.api.library.DataCollectionLibrary
-import net.jidb.to.base.data.pub.collection.module.loot.*
+import net.jidb.to.base.data.pub.collection.module.loot.CustomBlockLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.loot.GeneralLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.loot.NoopBlockLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.loot.OreBlockLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.loot.SilkBlockLootDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.loot.SimpleBlockLootDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.CompactRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.OreRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.ShapedRecipeDataCollectionModule
@@ -24,7 +29,12 @@ import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.item.tint.BatteryItemTint
 import net.jidb.to.stars.info.ProcessorType
 import net.jidb.to.stars.neoforge.client.data.ToStarsModels
-import net.jidb.to.stars.neoforge.client.data.module.*
+import net.jidb.to.stars.neoforge.client.data.module.AtomicBombBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.BoilingCauldronBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.HeatCableBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.LitMachineBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.PowerBankModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.RotorModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.data.module.EnergySilkBlockLootDataCollectionModule
 import net.jidb.to.stars.neoforge.data.module.ProcessorRecipeDataCollectionModule
 import net.minecraft.client.data.models.model.ModelTemplates
@@ -44,19 +54,35 @@ import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.entries.LootItem
 import net.neoforged.neoforge.common.Tags
 
+/**
+ * [DataCollectionLibrary] implementation describing how each piece of this mod's content is generated, i.e. its models, translations, tags, drops and recipes.
+ *
+ * A few entries are not content at all but a tag or a recipe shared by several things, declared here so that they are only written once.
+ */
 object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
 
+    /**
+     * The generation of the nuclear waste block.
+     */
     val nuclear_waste by this {
         addModule(::FullRotatingBlockModelClientDataCollectionModule)
         addModule { SimpleBlockTagDataCollectionModule(ToStarsMod.blockTags.nuke_passthrough) }
         addModule { MiningBlockTagDataCollectionModule(ToolType.SHOVEL, 3) }
         addModule(::SilkBlockLootDataCollectionModule)
     }
+
+    /**
+     * The generation of the nuclear fire block.
+     */
     val nuclear_fire by this {
         addModule(::FireBlockModelClientDataCollectionModule)
         addModule { SimpleBlockTagDataCollectionModule(BlockTags.FIRE, BlockTags.REPLACEABLE) }
         addModule(::NoopBlockLootDataCollectionModule)
     }
+
+    /**
+     * The generation of heavy uranium shielding.
+     */
     val heavy_uranium_shielding by this {
         addModule { SimpleBlockTagDataCollectionModule(ToStarsMod.blockTags.nuke_shielding) }
         addModule { ShapedRecipeDataCollectionModule(count = 24) { collection, event ->
@@ -71,6 +97,9 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
     }
 
+    /**
+     * The generation of uranium, i.e. the ore, the ingot, the nugget and the block it compacts into.
+     */
     val uranium by this {
         addAffects(clear = true) { it.identifier().path.contains("uranium") }
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 3) }
@@ -83,20 +112,36 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule(::CompactRecipeDataCollectionModule)
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.root_advancement_unlock) }
     }
+
+    /**
+     * The tags and drops shared by both kinds of uranium ore.
+     */
     val uranium_ores by this {
         addAffects(clear = true) { it.identifier().path.contains("uranium_ore") }
         addModule { SimpleBlockTagDataCollectionModule(Tags.Blocks.ORE_RATES_SINGULAR) }
         addModule { OreBlockLootDataCollectionModule(ToStarsMod.items.uranium) }
         addModule(::OreRecipeDataCollectionModule)
     }
+
+    /**
+     * The tags shared by every block a uranium is compacted into.
+     */
     val storage_blocks by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_block") }
         addModule(::StorageIdentifierLanguageClientDataCollectionModule)
     }
+
+    /**
+     * The generation of enriched uranium.
+     */
     val enriched_uranium by this {
         addAffects(clear = true) { it.identifier().path.contains("enriched_uranium") }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.enriched_uranium) }
     }
+
+    /**
+     * The generation of the enriched uranium nugget.
+     */
     val enriched_uranium_nugget by this {
         addModule { ProcessorRecipeDataCollectionModule(id = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "enriched_uranium_nugget_from_centrifuge").toString()) { collection, event ->
             requires(ToStarsMod.items.uranium)
@@ -109,12 +154,15 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
     }
 
+    /**
+     * The generation of the atomic bomb.
+     */
     val atomic_bomb by this {
         addModule(::AtomicBombBlockModelClientDataCollectionModule)
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule { CustomBlockLootDataCollectionModule { collection, event -> event.helper.propertyBlockLoot(
             ToStarsMod.blocks.atomic_bomb,
-            AtomicBombBlock.SEGMENT,
+            AtomicBombBlock.segment,
             AtomicBombBlock.AtomicBombSegment.MIDDLE)
         } }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -129,6 +177,9 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
     }
 
+    /**
+     * The recipe shared by the tier one machine enclosures.
+     */
     val machine_enclosure_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_machine_enclosure") }
         addModule { SimpleBlockModelClientDataCollectionModule(TexturedModel.CUBE_TOP_BOTTOM.updateTexture {
@@ -136,6 +187,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom"), material.forceTranslucent))
         }) }
     }
+
+    /**
+     * The generation of the tier one machine enclosure.
+     */
     val copper_machine_enclosure by this {
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
             pattern("ccc")
@@ -152,6 +207,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_power_bank_unlock) }
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
     }
+
+    /**
+     * The generation of the tier one and a half machine enclosure.
+     */
     val gold_machine_enclosure by this {
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
             pattern("ggg")
@@ -169,6 +228,9 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
     }
 
+    /**
+     * The generation of the power cable.
+     */
     val power_cable by this {
         addModule { Cable4BlockModelClientDataCollectionModule(true) }
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
@@ -179,6 +241,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             this
         } }
     }
+
+    /**
+     * The generation of the heat pipe.
+     */
     val heat_pipe by this {
         addModule(::HeatCableBlockModelClientDataCollectionModule)
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
@@ -192,19 +258,34 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             this
         } }
     }
+
+    /**
+     * The generation of the creative power source.
+     */
     val creative_power_source by this {
         addModule(::NoopBlockLootDataCollectionModule)
     }
 
+    /**
+     * The tags shared by every power bank.
+     */
     val power_banks by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_power_bank") }
         addModule(::EnergySilkBlockLootDataCollectionModule)
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.power_banks) }
     }
+
+    /**
+     * The recipe shared by the tier one power banks.
+     */
     val power_bank_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_power_bank") }
         addModule { PowerBankModelClientDataCollectionModule(1) }
     }
+
+    /**
+     * The generation of the tier one power bank.
+     */
     val copper_power_bank by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -220,6 +301,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
     }
+
+    /**
+     * The generation of the tier one and a half power bank.
+     */
     val gold_power_bank by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -249,11 +334,18 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
     }
 
+    /**
+     * The tags shared by every battery.
+     */
     val batteries by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_battery") }
         addModule { TintedItemModelClientDataCollectionModule(BatteryItemTint()) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.batteries) }
     }
+
+    /**
+     * The generation of the tier one battery.
+     */
     val copper_battery by this {
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
             pattern(" n ")
@@ -268,6 +360,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_power_bank_unlock) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_battery_unlock) }
     }
+
+    /**
+     * The generation of the tier one and a half battery.
+     */
     val gold_battery by this {
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
             pattern(" i ")
@@ -282,6 +378,9 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
     }
 
+    /**
+     * The generation of the boiler.
+     */
     val boiler by this {
         addModule(::BoilingCauldronBlockModelClientDataCollectionModule)
         addModule { SimpleBlockTagDataCollectionModule(BlockTags.CAULDRONS) }
@@ -289,11 +388,18 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE) }
     }
 
+    /**
+     * The tags shared by every generator.
+     */
     val generators by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_generator") }
         addModule { IdentifierLanguageClientDataCollectionModule { it.replace("solid", "solid-fired").replace("fluid", "liquid-fired") } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.heat_generators) }
     }
+
+    /**
+     * The recipe shared by the tier one generators.
+     */
     val generator_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_generator") }
         addModule {
@@ -315,6 +421,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             })
         }
     }
+
+    /**
+     * The generation of the tier one solid generator.
+     */
     val copper_solid_generator by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -329,6 +439,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
     }
+
+    /**
+     * The generation of the tier one and a half solid generator.
+     */
     val gold_solid_generator by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -356,6 +470,9 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
     }
 
+    /**
+     * The generation of the rotor blades.
+     */
     val rotor_blades by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule(::RotorModelClientDataCollectionModule)
@@ -370,10 +487,17 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
     }
 
+    /**
+     * The tags shared by every turbine.
+     */
     val turbines by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_turbine") }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.turbines) }
     }
+
+    /**
+     * The recipe shared by the tier one turbines.
+     */
     val turbine_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_turbine") }
         addModule {
@@ -396,6 +520,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             })
         }
     }
+
+    /**
+     * The generation of the tier one turbine.
+     */
     val copper_turbine by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -411,6 +539,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
     }
+
+    /**
+     * The generation of the tier one and a half turbine.
+     */
     val gold_turbine by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -439,22 +571,33 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
     }
 
+    /**
+     * The tags shared by every centrifuge.
+     */
     val centrifuges by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_centrifuge") }
         addModule(::EnergySilkBlockLootDataCollectionModule)
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.centrifuges) }
     }
+
+    /**
+     * The recipe shared by the tier one centrifuges.
+     */
     val centrifuge_tier_1 by this {
         addAffects(clear = true) { (it.identifier().path.startsWith("copper_") || it.identifier().path.startsWith("gold_")) && it.identifier().path.endsWith("_centrifuge") }
         addModule {
-            val unlit = ToStarsModels.CENTRIFUGE.updateTexture {
+            val unlit = ToStarsModels.centrifuge.updateTexture {
                 it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
             }
-            LitMachineBlockModelClientDataCollectionModule(unlit, ToStarsModels.CENTRIFUGE_LIT.updateTexture {
+            LitMachineBlockModelClientDataCollectionModule(unlit, ToStarsModels.centrifugeLit.updateTexture {
                 it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
             })
         }
     }
+
+    /**
+     * The generation of the tier one centrifuge.
+     */
     val copper_centrifuge by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -468,6 +611,10 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         } }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
     }
+
+    /**
+     * The generation of the tier one and a half centrifuge.
+     */
     val gold_centrifuge by this {
         addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
         addModule { ShapedRecipeDataCollectionModule { collection, event ->
@@ -494,6 +641,9 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
     }
 
+    /**
+     * The generation of the Gravitational Influence music disc.
+     */
     val music_disc_gravitational_influence by this {
         addModule { SimpleLanguageClientDataCollectionModule("Music Disc") }
         addModule { GeneralLootDataCollectionModule(ToStarsMod.lootTables.advancement_nuke_race.identifier(), LootTable.Builder()

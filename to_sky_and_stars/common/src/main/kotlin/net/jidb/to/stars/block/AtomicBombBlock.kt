@@ -19,8 +19,13 @@ import net.minecraft.world.level.BlockGetter
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.ScheduledTickAccess
-import net.minecraft.world.level.block.*
+import net.minecraft.world.level.block.BaseEntityBlock
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
+import net.minecraft.world.level.block.FallingBlock
 import net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING
+import net.minecraft.world.level.block.Mirror
+import net.minecraft.world.level.block.Rotation
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
@@ -32,19 +37,26 @@ import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
 import kotlin.jvm.optionals.getOrNull
 
+/**
+ * The atomic bomb, which is three blocks long and lies flat, and is armed through the interface its middle segment opens.
+ *
+ * Only the middle segment carries a block entity, so every other segment works out where its middle is from which way it is facing and how far along it sits; a redstone signal on any of them sets the whole thing off.
+ *
+ * @param properties The block's own properties.
+ */
 class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     init {
         registerDefaultState(stateDefinition.any()
             .setValue(FACING, Direction.NORTH)
-            .setValue(SEGMENT, AtomicBombSegment.MIDDLE)
+            .setValue(segment, AtomicBombSegment.MIDDLE)
         )
     }
 
-    override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) = builder.add(FACING).add(SEGMENT).let {}
+    override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) = builder.add(FACING).add(segment).let {}
 
     override fun newBlockEntity(pos: BlockPos, state: BlockState): BlockEntity? {
-        if (state.getValue(SEGMENT) == AtomicBombSegment.MIDDLE) {
+        if (state.getValue(segment) == AtomicBombSegment.MIDDLE) {
             return AtomicBombBlockEntity(pos, state)
         }
         return null
@@ -74,8 +86,8 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
         super.setPlacedBy(level, pos, state, placer, stack)
         if (!level.isClientSide) {
             val direction = state.getValue(FACING)
-            level.setBlock(pos.relative(direction.counterClockWise), state.setValue(SEGMENT, AtomicBombSegment.HEAD), 3)
-            level.setBlock(pos.relative(direction.clockWise), state.setValue(SEGMENT, AtomicBombSegment.TAIL), 3)
+            level.setBlock(pos.relative(direction.counterClockWise), state.setValue(segment, AtomicBombSegment.HEAD), 3)
+            level.setBlock(pos.relative(direction.clockWise), state.setValue(segment, AtomicBombSegment.TAIL), 3)
             level.updateNeighborsAt(pos, Blocks.AIR)
             state.updateNeighbourShapes(level, pos, 3)
         }
@@ -93,7 +105,7 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
     override fun updateShape(state: BlockState, level: LevelReader, scheduledTickAccess: ScheduledTickAccess, pos: BlockPos, direction: Direction, neighborPos: BlockPos, neighborState: BlockState, random: RandomSource): BlockState {
         if (direction.axis.isHorizontal) {
             val current = state.getValue(FACING)
-            when (state.getValue(SEGMENT)) {
+            when (state.getValue(segment)) {
                 AtomicBombSegment.HEAD -> if (current == direction.counterClockWise && !isSegment(neighborState, current, AtomicBombSegment.MIDDLE)) return Blocks.AIR.defaultBlockState()
                 AtomicBombSegment.TAIL -> if (current == direction.clockWise && !isSegment(neighborState, current, AtomicBombSegment.MIDDLE)) return Blocks.AIR.defaultBlockState()
                 else -> {
@@ -123,17 +135,48 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
         }
     }
 
+    /**
+     * Whether the bomb would fall from a position, i.e. whether there is nothing under it to hold it up.
+     *
+     * @param level The level the bomb is in.
+     * @param pos The position being asked about.
+     * @return Returns `true` if there is nothing holding the bomb up, otherwise `false`.
+     */
     private fun canFall(level: Level, pos: BlockPos): Boolean {
         val below = pos.below()
         return level.isEmptyBlock(below) || FallingBlock.isFree(level.getBlockState(below))
     }
 
-    private fun isSegment(state: BlockState, facing: Direction, segment: AtomicBombSegment) = state.block === this && state.getValue(FACING) == facing && state.getValue(SEGMENT) == segment
+    /**
+     * Whether a state is a particular segment of this same bomb, i.e. the same block facing the same way.
+     *
+     * @param state The state being checked.
+     * @param facing The direction the bomb faces.
+     * @param segment The segment being looked for.
+     * @return Returns `true` if the state is that segment, otherwise `false`.
+     */
+    private fun isSegment(state: BlockState, facing: Direction, segment: AtomicBombSegment) = state.block === this && state.getValue(FACING) == facing && state.getValue(Companion.segment) == segment
 
-    private fun getMiddle(pos: BlockPos, state: BlockState) = pos.relative(state.getValue(FACING).clockWise, state.getValue(SEGMENT).offset)
+    /**
+     * Where the middle segment of the bomb a position belongs to sits.
+     *
+     * @param pos The position of one of its segments.
+     * @param state The state at that position.
+     * @return The position of the middle segment.
+     */
+    private fun getMiddle(pos: BlockPos, state: BlockState) = pos.relative(state.getValue(FACING).clockWise, state.getValue(segment).offset)
+
+    /**
+     * The block entity of the bomb a position belongs to, which only its middle segment carries.
+     *
+     * @param level The level the bomb is in.
+     * @param pos The position of one of its segments.
+     * @param state The state at that position.
+     * @return The block entity, or empty where the middle segment is missing.
+     */
     private fun getMiddleEntity(level: Level, pos: BlockPos, state: BlockState) = level.getBlockEntity(getMiddle(pos, state), ToStarsMod.blockEntities.atomic_bomb)
 
-    override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext) = state.getValue(SEGMENT).shapes[state.getValue(FACING).counterClockWise]!!
+    override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext) = state.getValue(segment).shapes[state.getValue(FACING).counterClockWise]!!
 
     override fun neighborChanged(state: BlockState, level: Level, pos: BlockPos, block: Block, from: Orientation?, notify: Boolean) {
         if (level.hasNeighborSignal(pos)) {
@@ -145,20 +188,34 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     override fun hasAnalogOutputSignal(state: BlockState) = true
 
-    override fun getAnalogOutputSignal(state: BlockState, level: Level, pos: BlockPos, direction: Direction): Int {
-        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(getMiddle(pos, state)))
-    }
+    override fun getAnalogOutputSignal(state: BlockState, level: Level, pos: BlockPos, direction: Direction) = AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(getMiddle(pos, state)))
 
     override fun rotate(state: BlockState, rotation: Rotation) = state.setValue(FACING, rotation.rotate(state.getValue(FACING)))
 
     override fun mirror(state: BlockState, mirror: Mirror) = state.rotate(mirror.getRotation(state.getValue(FACING)))
 
-    override fun codec() = CODEC
+    override fun codec() = codec
 
     companion object {
-        val SEGMENT = EnumProperty.create("segment", AtomicBombSegment::class.java)
-        val CODEC = simpleCodec(::AtomicBombBlock)
 
+        /**
+         * Which of the three segments of the bomb a block is.
+         */
+        val segment = EnumProperty.create("segment", AtomicBombSegment::class.java)
+
+        /**
+         * The codec the block is read from a data pack through.
+         */
+        val codec = simpleCodec(::AtomicBombBlock)
+
+        /**
+         * Builds one tapered length of the bomb's collision shape, as a stack of boxes narrowing from one width to another, since a shape cannot itself be curved.
+         *
+         * @param minH How far in the shape starts at the near end.
+         * @param minV How far in it ends at the far end.
+         * @param depth How long the length is.
+         * @return The shape.
+         */
         private fun createBodyShape(minH: Double, minV: Double, depth: Double): VoxelShape {
             val bodyWidth = 16.0 - minH.times(2.0)
             val points = Mth.floor(bodyWidth)
@@ -170,9 +227,19 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
             }
             return ret
         }
+
     }
 
+    /**
+     * Enum that defines which part of an atomic bomb a block is, from its nose to its tail.
+     *
+     * @param shape The collision shape of the segment, facing north.
+     */
     enum class AtomicBombSegment(shape: VoxelShape) : StringRepresentable {
+
+        /**
+         * The nose of the bomb, which tapers to a point.
+         */
         HEAD(Shapes.or(
             createBodyShape(4.6863, 0.0, 12.0).move(0.0, 0.0, 0.25),
             createBodyShape(5.1005, 1.0, 1.0).move(0.0, 0.0, 0.1875),
@@ -180,16 +247,32 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
             createBodyShape(5.9289, 3.0, 1.0).move(0.0, 0.0, 0.0625),
             createBodyShape(6.3431, 4.0, 1.0)
         )),
+
+        /**
+         * The body of the bomb, which is the only segment carrying a block entity.
+         */
         MIDDLE(createBodyShape(4.6863, 0.0, 16.0)),
+
+        /**
+         * The tail of the bomb, which carries its fins.
+         */
         TAIL(Shapes.or(
             box(0.0, 0.0, 8.0, 16.0, 16.0, 16.0),
             box(3.0, 3.0, 0.0, 13.0, 13.0, 8.0),
         ));
 
-        val offset = 1-ordinal
+        /**
+         * How far this segment sits from the middle one, measured along the bomb.
+         */
+        val offset = 1 - ordinal
+
+        /**
+         * The collision shape of this segment, for each of the four directions it can face.
+         */
         val shapes = Shapes.rotateHorizontal(shape)
 
         override fun getSerializedName() = name.lowercase()
+
     }
 
 }

@@ -24,10 +24,24 @@ import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.world.phys.Vec3
 
+/**
+ * The block entity of the atomic bomb, which holds the uranium it has been loaded with and turns the whole three-block structure into a falling entity when it is set off.
+ *
+ * @param pos The position of the block.
+ * @param state The state of the block.
+ */
 class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlockEntity(ToStarsMod.blockEntities.atomic_bomb, pos, state), WorldlyContainer {
 
-    protected var inventory = NonNullList.withSize(AtomicBombMenu.allSlots.size, ItemStack.EMPTY)
+    /**
+     * What the bomb has been loaded with, i.e. the uranium deciding how strong the blast will be.
+     */
+    private var inventory = NonNullList.withSize(AtomicBombMenu.allSlots.size, ItemStack.EMPTY)
 
+    /**
+     * Arms the bomb, replacing it with a falling entity whose fuse is already burning and playing the arming sound to everyone nearby.
+     *
+     * @param owner The entity to blame the explosion on, or `null` where nothing set it off. Defaults to `null`.
+     */
     fun detonate(owner: LivingEntity? = null) {
         val level = this.level as? ServerLevel ?: return
 
@@ -40,6 +54,9 @@ class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlo
         Services.platform.networking.sendToPlayersTrackingPos(level, blockPos, DistantSoundPayload(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(ToStarsMod.sounds.atomic_bomb_activate), SoundSource.BLOCKS, Vec3.atCenterOf(blockPos).toVector3f(), 120f, 0.8f + level.random.nextFloat().times(0.4f), 0))
     }
 
+    /**
+     * Turns the bomb into a falling entity without arming it, which is what happens when the ground is taken out from under it.
+     */
     fun fall() {
         val level = this.level as? ServerLevel ?: return
 
@@ -51,7 +68,12 @@ class AtomicBombBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlo
         level.addFreshEntity(entity)
     }
 
-    protected fun removeAll(facing: Direction) {
+    /**
+     * Takes all three segments of the bomb out of the world, which is done before the falling entity replaces them.
+     *
+     * @param facing The direction the bomb faces, from which its other two segments are found.
+     */
+    private fun removeAll(facing: Direction) {
         setRemoved()
         level?.setBlock(blockPos.relative(facing.clockWise), Blocks.AIR.defaultBlockState(), 18)
         level?.setBlock(blockPos.relative(facing.counterClockWise), Blocks.AIR.defaultBlockState(), 18)

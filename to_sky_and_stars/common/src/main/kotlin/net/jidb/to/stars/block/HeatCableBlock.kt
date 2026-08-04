@@ -4,6 +4,11 @@ import net.jidb.to.base.pub.block.NetworkCableBlock
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.network.HeatBlockNetworkType
 
+/**
+ * The heat pipe, which carries heat from a generator to whatever needs it.
+ *
+ * @param properties The block's own properties.
+ */
 class HeatCableBlock(properties: Properties) : NetworkCableBlock<HeatBlockNetworkType>(properties) {
 
     override val network by lazy { ToStarsMod.blockNetworks.heat }

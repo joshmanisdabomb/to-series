@@ -3,6 +3,11 @@ package net.jidb.to.base.neoforge.platform
 import net.jidb.to.base.api.platform.Platform
 import net.jidb.to.base.api.platform.PlatformType
 
+/**
+ * [Platform] implementation for Neoforge, naming the module that answers each part of the platform on this loader.
+ *
+ * @since 0.0.3
+ */
 object ForgePlatform : Platform {
 
     override val type = PlatformType.NEOFORGE

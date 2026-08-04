@@ -42,19 +42,22 @@ jobs:
           
             GRADLE_TASKS=":${MOD_ID}:common:build :${MOD_ID}:fabric:build :${MOD_ID}:neoforge:build"
             GRADLE_DATAGEN_TASKS=":${MOD_ID}:neoforge:runData"
-          
+            GRADLE_GAMETEST_TASKS=":${MOD_ID}:neoforge:runTest"
+
             GLOB_PATTERN="${MOD_ID}"
           else
             echo "No tag detected — running full build."
           
             GRADLE_TASKS="build"
             GRADLE_DATAGEN_TASKS="runData"
-          
+            GRADLE_GAMETEST_TASKS="runTest"
+
             GLOB_PATTERN="to_*"
           fi
           
           echo "gradle=$GRADLE_TASKS" >> "$GITHUB_OUTPUT"
           echo "gradle_datagen=$GRADLE_DATAGEN_TASKS" >> "$GITHUB_OUTPUT"
+          echo "gradle_gametest=$GRADLE_GAMETEST_TASKS" >> "$GITHUB_OUTPUT"
           echo "glob=$GLOB_PATTERN" >> "$GITHUB_OUTPUT"
 
       - name: Build with Gradle
@@ -134,6 +137,11 @@ jobs:
             echo "Request failed"
             exit 1
           fi
+
+      - name: Run Game Tests
+        uses: gradle/gradle-build-action@v2.3.0
+        with:
+          arguments: ${{ steps.gradle_args.outputs.gradle_gametest }}
 
       - name: Verify Same Content for Data Generators
         shell: bash

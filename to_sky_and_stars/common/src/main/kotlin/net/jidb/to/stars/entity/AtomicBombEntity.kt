@@ -21,7 +21,12 @@ import net.minecraft.world.ContainerHelper
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.*
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.EntityReference
+import net.minecraft.world.entity.EntityType
+import net.minecraft.world.entity.LivingEntity
+import net.minecraft.world.entity.MoverType
+import net.minecraft.world.entity.TraceableEntity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
@@ -36,20 +41,59 @@ import net.minecraft.world.level.portal.TeleportTransition
 import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.world.phys.Vec3
-import kotlin.math.*
+import kotlin.math.absoluteValue
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.sin
+import kotlin.math.sqrt
 
+/**
+ * An atomic bomb as it falls, which is what the block turns into once it is armed or has the ground taken out from under it.
+ *
+ * Its fuse and the strength of its blast both follow from how much enriched uranium it was loaded with; the fuse can still be cut with shears while it falls.
+ * It keeps the chunks around it loaded, so that a bomb dropped from a height still goes off where no player is watching.
+ *
+ * @param type The entity type being built.
+ * @param level The level the bomb is in.
+ */
 class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : Entity(type, level), TraceableEntity {
 
+    /**
+     * What the bomb was loaded with, which is dropped again if it lands without going off.
+     */
     private var stacks = NonNullList.withSize(AtomicBombMenu.allSlots.size, ItemStack.EMPTY)
+
+    /**
+     * Who is to blame for the blast, or `null` where nobody is.
+     */
     private var owner: EntityReference<LivingEntity>? = null
 
+    /**
+     * How long the chunks around the bomb have been kept loaded for.
+     */
     var ticketTimer: Long = 0
+
+    /**
+     * Whether the bomb should be ticked again immediately after moving between dimensions.
+     */
     var forceTickAfterTeleportToDuplicate: Boolean = false
 
     init {
         blocksBuilding = true
     }
 
+    /**
+     * Creates a falling bomb at a position, either already armed or simply falling.
+     *
+     * @param level The level the bomb is in.
+     * @param x Where it starts, along x.
+     * @param y Where it starts, along y.
+     * @param z Where it starts, along z.
+     * @param facing Which way the bomb faces.
+     * @param stacks What it was loaded with.
+     * @param active Whether its fuse is already burning.
+     * @param owner Who is to blame for the blast, or `null` where nobody is. Defaults to `null`.
+     */
     constructor(level: Level, x: Double, y: Double, z: Double, facing: Direction, stacks: NonNullList<ItemStack>, active: Boolean, owner: LivingEntity? = null) : this(ToStarsMod.entities.atomic_bomb, level) {
         setPos(x, y, z)
         xo = x
@@ -57,7 +101,7 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         zo = z
         this.stacks = stacks
         this.owner = EntityReference.of(owner)
-        entityData[data_timer] = if (active) getFuseTime(getUraniumCount(stacks[2])) else -1
+        entityData[dataTimer] = if (active) getFuseTime(getUraniumCount(stacks[2])) else -1
         yRot = facing.toYRot()
         if (active) {
             val r = level.random.nextDouble() * (Math.PI * 2).toFloat()
@@ -78,30 +122,30 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         }
 
         val level = level()
-        if (entityData[data_timer] != 0) {
-            entityData[data_timer] -= 1
+        if (entityData[dataTimer] != 0) {
+            entityData[dataTimer] -= 1
         }
 
         if (level is ServerLevel) {
             if (--ticketTimer <= 0 || SectionPos.blockToSectionCoord(position().x) != SectionPos.blockToSectionCoord(prevPos.x) || SectionPos.blockToSectionCoord(position().z) != SectionPos.blockToSectionCoord(prevPos.z)) {
-                level.chunkSource.addTicketWithRadius(ToStarsMod.tickets.atomic_bomb, chunkPosition(), 2);
+                level.chunkSource.addTicketWithRadius(ToStarsMod.tickets.atomic_bomb, chunkPosition(), 2)
                 ticketTimer = ToStarsMod.tickets.atomic_bomb.timeout() - 1
             }
 
             if (isAlive || forceTickAfterTeleportToDuplicate) {
-                if (entityData[data_timer] == 0) {
+                if (entityData[dataTimer] == 0) {
                     explode(level)
                     discard()
-                } else if (entityData[data_timer] >= 0) {
+                } else if (entityData[dataTimer] >= 0) {
                     updateFluidInteraction()
 
-                    if (entityData[data_timer] % 20 == 0) {
-                        Services.platform.networking.sendToPlayersTrackingEntity(this, DistantSoundPayload(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(ToStarsMod.sounds.atomic_bomb_timer), SoundSource.BLOCKS, position().toVector3f(), 96f, 1.6f - (entityData[data_timer] / 1400f).coerceIn(0.0f, 1.0f).pow(0.25f).times(0.8f), 0))
+                    if (entityData[dataTimer] % 20 == 0) {
+                        Services.platform.networking.sendToPlayersTrackingEntity(this, DistantSoundPayload(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(ToStarsMod.sounds.atomic_bomb_timer), SoundSource.BLOCKS, position().toVector3f(), 96f, 1.6f - (entityData[dataTimer] / 1400f).coerceIn(0.0f, 1.0f).pow(0.25f).times(0.8f), 0))
                     }
                 } else {
                     if (!onGround()) {
                         val pos = blockPosition()
-                        if (entityData[data_timer] < -600 || (entityData[data_timer] < -100 && (pos.y <= level.minY || pos.y > level.maxY))) {
+                        if (entityData[dataTimer] < -600 || (entityData[dataTimer] < -100 && (pos.y <= level.minY || pos.y > level.maxY))) {
                             drop(level)
                             discard()
                         }
@@ -126,7 +170,7 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
                                     val pos = blockPosition().relative(direction.clockWise, i)
                                     level.setBlock(pos, ToStarsMod.blocks.atomic_bomb.defaultBlockState()
                                         .setValue(HorizontalDirectionalBlock.FACING, direction)
-                                        .setValue(AtomicBombBlock.SEGMENT, when (i) {
+                                        .setValue(AtomicBombBlock.segment, when (i) {
                                             -1 -> AtomicBombBlock.AtomicBombSegment.HEAD
                                             1 -> AtomicBombBlock.AtomicBombSegment.TAIL
                                             else -> AtomicBombBlock.AtomicBombSegment.MIDDLE
@@ -149,6 +193,11 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         deltaMovement = deltaMovement.scale(0.98)
     }
 
+    /**
+     * Sets the blast off, and grants the advancement for it to whoever is to blame.
+     *
+     * @param level The level the bomb is in.
+     */
     private fun explode(level: ServerLevel) {
         val owner = getOwner()
         if (owner is ServerPlayer) {
@@ -159,6 +208,11 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         explosion.run()
     }
 
+    /**
+     * Drops the bomb and everything it was loaded with, which is what happens where it lands without going off.
+     *
+     * @param level The level the bomb is in.
+     */
     private fun drop(level: ServerLevel) {
         if (!level.gameRules.get(GameRules.ENTITY_DROPS)) return
 
@@ -170,7 +224,7 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
 
     override fun interact(player: Player, hand: InteractionHand, location: Vec3): InteractionResult {
         val level = this.level() as? ServerLevel
-        if (level != null && entityData[data_timer] >= 0) {
+        if (level != null && entityData[dataTimer] >= 0) {
             val stack = player.getItemInHand(hand)
             if (stack.`is`(Services.platform.tags.getCommonItem("tools/shear")!!)) {
                 stack.hurtAndBreak(1, player, hand.asEquipmentSlot())
@@ -188,20 +242,20 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
     }
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        builder.define(data_timer, -1)
+        builder.define(dataTimer, -1)
     }
 
     override fun hurtServer(level: ServerLevel, source: DamageSource, amount: Float) = false
 
     override fun readAdditionalSaveData(input: ValueInput) {
-        entityData[data_timer] = input.getShortOr("Fuse", -1)
+        entityData[dataTimer] = input.getShortOr("Fuse", -1)
         owner = EntityReference.read(input, "Owner")
         stacks.clear()
         ContainerHelper.loadAllItems(input, stacks)
     }
 
     override fun addAdditionalSaveData(output: ValueOutput) {
-        output.putShort("Fuse", entityData[data_timer].toShort())
+        output.putShort("Fuse", entityData[dataTimer].toShort())
         EntityReference.store(owner, output, "Owner")
         ContainerHelper.saveAllItems(output, stacks)
     }
@@ -237,24 +291,48 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         .inflate(direction.stepZ.absoluteValue.toDouble().times(0.98), 0.0, direction.stepX.absoluteValue.toDouble().times(0.98))
 
     companion object {
-        val data_timer = SynchedEntityData.defineId(AtomicBombEntity::class.java, EntityDataSerializers.INT)
 
+        /**
+         * How long the fuse has left, in ticks, or `-1` where it is not burning at all. Synced so that the client can draw the countdown.
+         */
+        val dataTimer = SynchedEntityData.defineId(AtomicBombEntity::class.java, EntityDataSerializers.INT)
+
+        /**
+         * How much enriched uranium a stack is worth, counting a block of it as nine.
+         *
+         * @param uranium The stack the bomb was loaded with.
+         * @return How much uranium it comes to, or `0` where the stack is not uranium at all.
+         */
         fun getUraniumCount(uranium: ItemStack) = when (uranium.item) {
             ToStarsMod.blocks.enriched_uranium_block.asItem() -> uranium.count * 9
             ToStarsMod.items.enriched_uranium.asItem() -> uranium.count
             else -> 0
         }
 
+        /**
+         * How strong a bomb loaded with a given amount of uranium goes off, which climbs quickly at first and then flattens out.
+         *
+         * @param uranium How much uranium the bomb holds.
+         * @return The strength of the blast, or `0` where the bomb holds no uranium.
+         */
         fun getExplosionStrength(uranium: Int): Int {
             if (uranium <= 0) return 0
             val percent = (uranium - 1) / 44.0
             return 20 + Mth.floor(sqrt(percent) * 120)
         }
+
+        /**
+         * How long the fuse of a bomb loaded with a given amount of uranium burns for, which climbs with the load so that a larger bomb gives more warning.
+         *
+         * @param uranium How much uranium the bomb holds.
+         * @return How long the fuse burns, in ticks, or `0` where the bomb holds no uranium.
+         */
         fun getFuseTime(uranium: Int): Int {
             if (uranium <= 0) return 0
             val percent = (uranium - 1) / 44.0
             return 160 + Mth.floor(percent.pow(1.15) * 124) * 10
         }
+
     }
 
 }

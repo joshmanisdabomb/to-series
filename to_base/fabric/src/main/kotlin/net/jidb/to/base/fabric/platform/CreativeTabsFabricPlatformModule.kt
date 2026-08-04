@@ -4,6 +4,11 @@ import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab
 import net.jidb.to.base.api.platform.CreativeTabsPlatformModule
 import net.minecraft.world.item.CreativeModeTab
 
+/**
+ * [CreativeTabsPlatformModule] implementation for Fabric.
+ *
+ * @since 0.0.3
+ */
 object CreativeTabsFabricPlatformModule : CreativeTabsPlatformModule() {
 
     override fun builder(display: ((params: CreativeModeTab.ItemDisplayParameters, output: DisplayItemsConsumer) -> Unit)?): CreativeModeTab.Builder {

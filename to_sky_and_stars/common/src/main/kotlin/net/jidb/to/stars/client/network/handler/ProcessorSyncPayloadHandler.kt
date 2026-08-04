@@ -5,8 +5,17 @@ import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.inventory.menu.ProcessorMenu
 import net.jidb.to.stars.network.ProcessorSyncPayload
 
+/**
+ * Takes on which recipe a processor last ran, as the server reports it.
+ */
 object ProcessorSyncPayloadHandler {
 
+    /**
+     * Sets the last recipe of the processor whose interface the player has open, having first checked they are still standing at it and that it is the one the payload names.
+     *
+     * @param data What the server sent.
+     * @param context Where it arrived.
+     */
     fun handle(data: ProcessorSyncPayload, context: ClientPayloadContext) {
         if (!context.level.isLoaded(data.pos)) return
         val processor = context.player.containerMenu as? ProcessorMenu ?: return

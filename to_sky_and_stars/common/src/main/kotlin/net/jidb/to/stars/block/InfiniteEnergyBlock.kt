@@ -13,6 +13,13 @@ import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
 
+/**
+ * The creative power source, which gives out endless To Energy to everything joined to it.
+ *
+ * It pushes energy into each of its six neighbours every tick rather than waiting to be asked, so that it fills anything placed against it whether or not that thing pulls.
+ *
+ * @param properties The block's own properties.
+ */
 class InfiniteEnergyBlock(properties: Properties) : Block(properties), ToEnergyWorldlyProvider {
 
     override fun getTransferContext(level: LevelReader, pos: BlockPos, side: Direction?) = InfiniteToEnergyTransferContext

@@ -19,6 +19,15 @@ import net.minecraft.world.inventory.RecipeBookType
 import net.minecraft.world.inventory.Slot
 import net.minecraft.world.item.crafting.display.RecipeDisplay
 
+/**
+ * The recipe book shown beside a processor's interface, which lists the processor recipes rather than the crafting ones.
+ *
+ * Vanilla keeps whether the book is open and filtered on the player, against its own fixed set of book types; there is no room there for a modded one, so a stand-in book is put in its place and those settings are kept on this component instead.
+ *
+ * @param menu The interface the book belongs to.
+ * @property filterName What the filter button says it filters by.
+ * @param tabInfos The tabs the book is divided into.
+ */
 class ProcessorRecipeBookComponent(menu: ProcessorMenu, val filterName: Component, tabInfos: List<TabInfo>) : RecipeBookComponent<ProcessorMenu>(menu, tabInfos) {
 
     init {
@@ -53,18 +62,37 @@ class ProcessorRecipeBookComponent(menu: ProcessorMenu, val filterName: Componen
     override fun getRecipeFilterName() = filterName
 
     companion object {
+
+        /**
+         * The textures of the filter button, in each of its four states.
+         */
         private val filterSprites = WidgetSprites(
             Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_enabled"),
             Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_disabled"),
             Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_enabled_highlighted"),
             Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_disabled_highlighted")
         )
+
     }
 
+    /**
+     * A stand-in for the player's own recipe book, which keeps whether this book is open and filtered without touching what vanilla keeps for its own.
+     */
     class FakeRecipeBook : ClientRecipeBook() {
 
+        /**
+         * Whether the book is open.
+         */
         var open = false
+
+        /**
+         * Whether the book is only showing what can currently be made.
+         */
         var filtering = false
+
+        /**
+         * The settings vanilla reads off a recipe book, kept here so that nothing is written to the player's own.
+         */
         var settings = RecipeBookSettings()
 
         override fun isOpen(recipeBookType: RecipeBookType) = open

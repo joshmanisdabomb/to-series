@@ -13,6 +13,11 @@ import net.minecraft.world.Container
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 
+/**
+ * [ItemTransferContextProvider] implementation for Fabric, finding the items a block, a container or an item holds through the Transfer API's own lookups.
+ *
+ * @since 0.6.0
+ */
 object FabricItemTransferContextProvider : ItemTransferContextProvider() {
 
     override fun fromBlock(level: Level, pos: BlockPos, side: Direction?): ItemTransferContext? {

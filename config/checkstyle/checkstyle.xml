@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!-- Indentation is spaces only, never tabs. -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+        <message key="containsTab" value="Line contains a tab character, indent with 4 spaces instead."/>
+        <message key="file.containsTab" value="File contains tab characters, indent with 4 spaces instead."/>
+    </module>
+
+    <!-- Sources are LF-terminated (see .gitattributes) and end with a newline. -->
+    <module name="NewlineAtEndOfFile">
+        <property name="lineSeparator" value="lf"/>
+    </module>
+
+    <module name="RegexpSingleline">
+        <property name="id" value="TrailingWhitespace"/>
+        <property name="format" value="[ \t]+$"/>
+        <property name="message" value="Line has trailing whitespace."/>
+    </module>
+
+    <!-- Type bodies in braces are padded with a blank line. Checkstyle has no built-in check for this, so it is matched textually. -->
+    <module name="RegexpMultiline">
+        <property name="id" value="TypeOpenBraceBlankLine"/>
+        <property name="format" value="^[^\n]*\b(?:class|interface|enum|record)\s+[^\n{;]*\{[ \t]*\r?\n[ \t]*\S"/>
+        <property name="message" value="Opening brace of a type must be followed by a blank line."/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="id" value="TypeCloseBraceBlankLine"/>
+        <property name="format" value="^([ \t]*)[^\n]*\b(?:class|interface|enum|record)\s+[^\n{;]*\{[ \t]*\r?\n(?:(?!\1\}[ \t]*$)[^\n]*\n)*?[ \t]*\S[^\n]*\r?\n\1\}"/>
+        <property name="message" value="Closing brace of a type must be preceded by a blank line."/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- Bodies are indented by 4 spaces per level. -->
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="throwsIndent" value="8"/>
+            <property name="arrayInitIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="8"/>
+            <property name="forceStrictCondition" value="false"/>
+        </module>
+
+        <!-- The existing layout is IntelliJ's default. -->
+        <module name="CustomImportOrder">
+            <property name="customImportOrderRules" value="THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE###STATIC"/>
+            <property name="thirdPartyPackageRegExp" value="^(?!javax?\.).*"/>
+            <property name="standardPackageRegExp" value="^javax?\."/>
+            <property name="separateLineBetweenGroups" value="true"/>
+            <property name="sortImportsInGroupAlphabetically" value="true"/>
+        </module>
+        <module name="AvoidStarImport"/>
+        <module name="RedundantImport"/>
+        <module name="UnusedImports"/>
+        <module name="IllegalImport"/>
+
+        <module name="OuterTypeFilename"/>
+        <module name="OneTopLevelClass"/>
+        <module name="PackageDeclaration"/>
+
+        <!-- Exactly one blank line between members - never two in a row. -->
+        <module name="EmptyLineSeparator">
+            <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF, VARIABLE_DEF, STATIC_INIT, INSTANCE_INIT"/>
+            <property name="allowNoEmptyLineBetweenFields" value="true"/>
+            <property name="allowMultipleEmptyLines" value="false"/>
+            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+        </module>
+
+        <module name="LeftCurly"/>
+        <module name="RightCurly">
+            <property name="option" value="same"/>
+            <property name="tokens" value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE"/>
+        </module>
+        <module name="RightCurly">
+            <property name="option" value="alone"/>
+            <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, ANNOTATION_DEF, METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT"/>
+        </module>
+        <module name="NeedBraces"/>
+        <module name="OneStatementPerLine"/>
+        <module name="EmptyStatement"/>
+        <module name="ArrayTypeStyle"/>
+        <module name="UpperEll"/>
+
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLoops" value="true"/>
+            <property name="allowEmptyLambdas" value="true"/>
+            <property name="allowEmptyCatches" value="true"/>
+        </module>
+        <!-- Casts are written tight: (Type)(Object)this -->
+        <module name="WhitespaceAfter">
+            <property name="tokens" value="COMMA, SEMI, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_RETURN, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_SYNCHRONIZED, LITERAL_SWITCH"/>
+        </module>
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="TYPECAST, ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, ARRAY_DECLARATOR, INDEX_OP"/>
+        </module>
+        <module name="NoWhitespaceBefore"/>
+        <module name="MethodParamPad"/>
+        <module name="ParenPad"/>
+        <module name="TypecastParenPad"/>
+        <module name="GenericWhitespace"/>
+        <module name="SingleSpaceSeparator"/>
+
+        <!--
+            An end-of-line comment is written //like this, with the text hard against the slashes. Checkstyle has no built-in check for this,
+            so the comment node is matched by XPath; a textual regex could not tell a comment from "http://..." in a string literal.
+            Only // comments are covered - Javadoc keeps the space after its asterisk, which JavadocMissingWhitespaceAfterAsterisk requires below.
+            The leading slash run may be longer than two, as in a //// divider, and the text must start straight after all of them. An empty //
+            is left alone. The Kotlin counterpart is LineCommentSpacing in detekt.yml.
+        -->
+        <module name="MatchXpath">
+            <property name="id" value="LineCommentSpacing"/>
+            <property name="query" value="//SINGLE_LINE_COMMENT/COMMENT_CONTENT[matches(@text, '^/*[ \t]+\S')]"/>
+            <message key="matchxpath.match" value="Comment text must follow // immediately, with no space between them."/>
+        </module>
+
+        <module name="ModifierOrder"/>
+        <!-- Interface members already omit the implicit public/abstract. -->
+        <module name="RedundantModifier"/>
+
+        <!-- Prefer @Accessor("foo") over @Accessor(value = "foo"); "value =" stays where the annotation has more than one element e.g. @At(value = "INVOKE", target = "..."). -->
+        <module name="AnnotationUseStyle">
+            <property name="elementStyle" value="COMPACT"/>
+            <property name="closingParens" value="NEVER"/>
+            <property name="trailingArrayComma" value="NEVER"/>
+        </module>
+
+        <!-- Annotations go on their own line above the member. Only member annotations are checked, so inline parameter annotations such as @Nullable are unaffected. -->
+        <module name="AnnotationLocation">
+            <property name="allowSamelineMultipleAnnotations" value="false"/>
+            <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+            <property name="allowSamelineParameterizedAnnotation" value="false"/>
+        </module>
+
+        <module name="PackageName"/>
+        <module name="TypeName"/>
+        <!-- Standard camelCase, optionally prefixed with a mod id and '$' so that mixin members can be namespaced in the target class. -->
+        <module name="MethodName">
+            <property name="format" value="^(?:[a-z][a-z0-9_]*\$)?[a-z][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="MemberName"/>
+        <module name="ConstantName"/>
+        <module name="ParameterName"/>
+        <module name="LocalVariableName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="CatchParameterName"/>
+
+        <!-- All types, methods, fields and enums have Javadoc, regardless of visibility. -->
+        <module name="MissingJavadocType">
+            <property name="scope" value="private"/>
+            <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, ANNOTATION_DEF"/>
+        </module>
+        <module name="MissingJavadocMethod">
+            <property name="scope" value="private"/>
+            <property name="minLineCount" value="-1"/>
+            <property name="allowMissingPropertyJavadoc" value="false"/>
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF"/>
+        </module>
+        <module name="JavadocVariable">
+            <property name="accessModifiers" value="public, protected, package, private"/>
+        </module>
+        <module name="JavadocType">
+            <property name="scope" value="private"/>
+            <property name="allowMissingParamTags" value="false"/>
+        </module>
+        <module name="JavadocMethod">
+            <property name="accessModifiers" value="public, protected, package, private"/>
+            <property name="allowMissingParamTags" value="false"/>
+            <property name="allowMissingReturnTag" value="false"/>
+            <property name="validateThrows" value="true"/>
+        </module>
+        <!-- Formatting of the comment itself. -->
+        <module name="SummaryJavadoc"/>
+        <module name="NonEmptyAtclauseDescription"/>
+        <module name="AtclauseOrder"/>
+        <module name="InvalidJavadocPosition"/>
+        <module name="JavadocContentLocation"/>
+        <module name="JavadocBlockTagLocation"/>
+        <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+        <module name="JavadocMissingLeadingAsterisk"/>
+        <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+
+        <!-- @see and @link to use fully qualified names for references. Checkstyle has no built-in check for this, so it is matched textually. -->
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="JavadocSeeFullyQualified"/>
+            <property name="format"
+                      value="@see\s+(?![#&quot;&lt;])[A-Za-z_$][A-Za-z0-9_$]*(?:#|\s|$)"/>
+            <property name="message"
+                      value="@see target must be a fully qualified name."/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="JavadocLinkFullyQualified"/>
+            <property name="format" value="\{@link(?:plain)?\s+(?![#&quot;&lt;])[A-Za-z_$][A-Za-z0-9_$]*(?:#|\s|\})"/>
+            <property name="message" value="Inline link tag target must be a fully qualified name."/>
+        </module>
+
+        <module name="EqualsHashCode"/>
+        <module name="CovariantEquals"/>
+        <module name="StringLiteralEquality"/>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+        <module name="DefaultComesLast"/>
+        <module name="FallThrough"/>
+        <module name="NoFinalizer"/>
+    </module>
+</module>

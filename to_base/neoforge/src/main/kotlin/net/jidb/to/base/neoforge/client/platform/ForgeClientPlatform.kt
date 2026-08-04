@@ -2,6 +2,11 @@ package net.jidb.to.base.neoforge.client.platform
 
 import net.jidb.to.base.client.api.platform.ClientPlatform
 
+/**
+ * [ClientPlatform] implementation for Neoforge, naming the module that answers each part of the client-side platform on this loader.
+ *
+ * @since 0.2.0
+ */
 object ForgeClientPlatform : ClientPlatform {
 
     override val blocks = BlocksForgeClientPlatformModule

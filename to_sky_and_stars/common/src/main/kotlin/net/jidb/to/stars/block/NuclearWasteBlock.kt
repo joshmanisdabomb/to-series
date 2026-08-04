@@ -14,6 +14,14 @@ import net.minecraft.world.level.ScheduledTickAccess
 import net.minecraft.world.level.block.ColoredFallingBlock
 import net.minecraft.world.level.block.state.BlockState
 
+/**
+ * What a nuclear explosion leaves behind, which piles up where it lands and settles over time rather than falling the moment it is unsupported.
+ *
+ * Unlike ordinary falling sand it does not fall on being placed by the world or on a neighbour changing, only when it is randomly ticked or when a player places it, so that a blast leaves a mound rather than a column.
+ *
+ * @param color The colour of the falling block's dust.
+ * @param properties The block's own properties.
+ */
 class NuclearWasteBlock(color: ColorRGBA, properties: Properties) : ColoredFallingBlock(color, properties) {
 
     override fun onPlace(state: BlockState, level: Level, pos: BlockPos, oldState: BlockState, isMoving: Boolean) = Unit
@@ -30,6 +38,14 @@ class NuclearWasteBlock(color: ColorRGBA, properties: Properties) : ColoredFalli
         fall(state, level, pos, random)
     }
 
+    /**
+     * Lets the waste fall if there is nothing under it, which is what the ordinary falling block tick would have done.
+     *
+     * @param state The state of the block.
+     * @param level The level it is in.
+     * @param pos The position of the block.
+     * @param random The randomness the fall is decided by.
+     */
     fun fall(state: BlockState, level: ServerLevel, pos: BlockPos, random: RandomSource) {
         super.tick(state, level, pos, random)
     }

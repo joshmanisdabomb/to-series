@@ -7,6 +7,11 @@ import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState
 import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 
+/**
+ * [BlocksClientPlatformModule] implementation for Fabric.
+ *
+ * @since 0.4.0
+ */
 object BlocksFabricClientPlatformModule : BlocksClientPlatformModule() {
 
     override fun <B : BlockEntity, S : BlockEntityRenderState> registerBlockEntityRenderer(modid: String, type: () -> BlockEntityType<B>, renderer: BlockEntityRendererProvider<B, S>) {

@@ -26,15 +26,49 @@ import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.item.ItemStack
 import kotlin.jvm.optionals.getOrNull
 
+/**
+ * The screen a machine that runs processor recipes is opened into, alongside the recipe book of that machine's recipes.
+ *
+ * It shows how much energy the machine has by it, how far through its recipe it is and how efficient it has become; opening or closing the recipe book shifts each of those across, since the whole interface slides over to make room.
+ *
+ * @param M The type of the interface being drawn.
+ * @param menu The interface being drawn.
+ * @param filterName What the recipe book's filter button says it filters by.
+ * @param tabInfos The tabs the recipe book is divided into.
+ * @param playerInventory The inventory of the player who opened it.
+ * @param title The title of the interface.
+ * @property customHeight How tall the background is, which is larger than the height vanilla assumes.
+ */
 abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component, tabInfos: List<RecipeBookComponent.TabInfo>, playerInventory: Inventory, title: Component, val customHeight: Int) : AbstractRecipeBookScreen<M>(menu, ProcessorRecipeBookComponent(menu, filterName, tabInfos), playerInventory, title) {
 
+    /**
+     * The background of the screen.
+     */
     protected abstract val texture: Identifier
 
+    /**
+     * The recipe book beside the interface, or `null` before the screen has been laid out.
+     */
     protected var recipeBook: ProcessorRecipeBookComponent? = null
+
+    /**
+     * The bar showing how much energy the machine has by it, or `null` before the screen has been laid out.
+     */
     protected var energy: AbstractEnergyBarWidget? = null
+
+    /**
+     * The bar showing how efficient the machine has become, or `null` before the screen has been laid out.
+     */
     protected var efficiency: EfficiencyBarWidget? = null
+
+    /**
+     * The bar showing how far through its recipe the machine is, or `null` before the screen has been laid out.
+     */
     protected var progress: AbstractBarWidget? = null
 
+    /**
+     * Watches the battery slots so that a battery's own charge can be shown in its tooltip.
+     */
     protected val energyItemListener = ToEnergyItemContainerListener(menu.batterySlots, minecraft::level)
 
     init {
@@ -54,6 +88,13 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
         menu.addSlotListener(energyItemListener)
     }
 
+    /**
+     * Adds the bar showing how much energy the machine has by it.
+     *
+     * @param x The x position of the bar. Defaults to where it sits on the standard layout.
+     * @param y The y position of the bar. Defaults to where it sits on the standard layout.
+     * @return The bar that was added.
+     */
     protected open fun addEnergyBarWidget(x: Int = leftPos + 41, y: Int = topPos + 24): AbstractEnergyBarWidget = this.addRenderableWidget(
         MiniEnergyBarWidget(
             { ProcessorMenu.dataSchema.getLongValue(menu.data, ProcessorMenu.ProcessorDataKey.ENERGY_TOTAL) ?: 0L },
@@ -62,6 +103,14 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
             y
         )
     )
+
+    /**
+     * Adds the bar showing how efficient the machine has become at the recipe it is running.
+     *
+     * @param x The x position of the bar. Defaults to where it sits on the standard layout.
+     * @param y The y position of the bar. Defaults to where it sits on the standard layout.
+     * @return The bar that was added.
+     */
     protected open fun addEfficiencyBarWidget(x: Int = leftPos + 135, y: Int = topPos + customHeight - 104) = this.addRenderableWidget(
         EfficiencyBarWidget(
             { (ProcessorMenu.dataSchema.getShortValue(menu.data, ProcessorMenu.ProcessorDataKey.COMPLETIONS) ?: 0) / (menu.clientData?.machineBonusMax?.toFloat() ?: 1f) },
@@ -98,12 +147,24 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
         extractProcessorIcons(graphics)
     }
 
+    /**
+     * Draws the small icons beside the bars, i.e. whether the machine can afford its recipe, whether it is building efficiency and what it last made.
+     *
+     * @param graphics What the icons are drawn into.
+     */
     protected open fun extractProcessorIcons(graphics: GuiGraphicsExtractor) {
         extractEnergyIcon(graphics)
         extractEfficiencyIcon(graphics)
         extractLastRecipeIcon(graphics)
     }
 
+    /**
+     * Draws the icon beside the energy bar, which is only shown where the machine has enough by it to carry on.
+     *
+     * @param graphics What the icon is drawn into.
+     * @param x The x position of the icon, or `null` to place it beside the bar. Defaults to `null`.
+     * @param y The y position of the icon, or `null` to place it beside the bar. Defaults to `null`.
+     */
     protected open fun extractEnergyIcon(graphics: GuiGraphicsExtractor, x: Int? = null, y: Int? = null) {
         val energy = energy?.energy()
         val recipeEnergy = ProcessorMenu.dataSchema.getIntValue(menu.data, ProcessorMenu.ProcessorDataKey.RECIPE_ENERGY) ?: 0
@@ -113,18 +174,32 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
         val total = Mth.ceil(recipeEnergy * usage)
         val cost = Mth.ceil(total * speed / recipeTime)
         if ((energy ?: 0L) > cost) {
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, energy_indicator, x ?: this.energy?.x?.minus(12) ?: 0, y ?: this.energy?.y?.minus(3) ?: 0, 9, 10)
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, energyIndicator, x ?: this.energy?.x?.minus(12) ?: 0, y ?: this.energy?.y?.minus(3) ?: 0, 9, 10)
         }
     }
 
+    /**
+     * Draws the icon beside the efficiency bar, which is only shown where the machine has actually built some up on the recipe it is still running.
+     *
+     * @param graphics What the icon is drawn into.
+     * @param x The x position of the icon, or `null` to place it beside the bar. Defaults to `null`.
+     * @param y The y position of the icon, or `null` to place it beside the bar. Defaults to `null`.
+     */
     protected open fun extractEfficiencyIcon(graphics: GuiGraphicsExtractor, x: Int? = null, y: Int? = null) {
         val completions = ProcessorMenu.dataSchema.getIntValue(menu.data, ProcessorMenu.ProcessorDataKey.COMPLETIONS) ?: 0
         val sameRecipe = ProcessorMenu.dataSchema.getBoolValue(menu.data, ProcessorMenu.ProcessorDataKey.RECIPE_SAME) ?: false
         if (completions > 0 && sameRecipe) {
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, efficiency_indicator, x ?: this.efficiency?.x?.minus(14) ?: 0, y ?: this.efficiency?.y?.minus(3) ?: 0, 11, 10)
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, efficiencyIndicator, x ?: this.efficiency?.x?.minus(14) ?: 0, y ?: this.efficiency?.y?.minus(3) ?: 0, 11, 10)
         }
     }
 
+    /**
+     * Draws the item the machine last made, which is what its efficiency was built up on.
+     *
+     * @param graphics What the icon is drawn into.
+     * @param x The x position of the icon, or `null` to place it beside the efficiency bar. Defaults to `null`.
+     * @param y The y position of the icon, or `null` to place it beside the efficiency bar. Defaults to `null`.
+     */
     protected open fun extractLastRecipeIcon(graphics: GuiGraphicsExtractor, x: Int? = null, y: Int? = null) {
         menu.clientData?.lastRecipeIcon?.ifPresent {
             val item = minecraft.level?.holderLookup(Registries.ITEM)?.get(it)?.getOrNull() ?: return@ifPresent
@@ -140,6 +215,16 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
         if (extractEfficiencyTooltip(graphics, mouseX, mouseY)) return
     }
 
+    /**
+     * Shows the tooltip describing the machine's energy, where the mouse is over it.
+     *
+     * @param graphics What the tooltip is drawn into.
+     * @param mouseX Where the mouse is, along x.
+     * @param mouseY Where the mouse is, along y.
+     * @param areaX The area the tooltip shows over, along x, or `null` to work it out from the widget itself. Defaults to `null`.
+     * @param areaY The area it shows over, along y, or `null` to work it out from the widget itself. Defaults to `null`.
+     * @return Returns `true` if a tooltip was shown, otherwise `false`.
+     */
     protected open fun extractEnergyTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, areaX: IntRange? = null, areaY: IntRange? = null): Boolean {
         val energy = energy ?: return false
         if (mouseX in (areaX ?: energy.x.minus(12)..energy.right) && mouseY in (areaY ?: (energy.y.minus(3) until energy.y.plus(7)))) {
@@ -160,6 +245,16 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
         return false
     }
 
+    /**
+     * Shows the tooltip describing where the machine is with its recipe, where the mouse is over it.
+     *
+     * @param graphics What the tooltip is drawn into.
+     * @param mouseX Where the mouse is, along x.
+     * @param mouseY Where the mouse is, along y.
+     * @param areaX The area the tooltip shows over, along x, or `null` to work it out from the widget itself. Defaults to `null`.
+     * @param areaY The area it shows over, along y, or `null` to work it out from the widget itself. Defaults to `null`.
+     * @return Returns `true` if a tooltip was shown, otherwise `false`.
+     */
     protected open fun extractProgressTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, areaX: IntRange? = null, areaY: IntRange? = null): Boolean {
         val progress = progress ?: return false
         if (mouseX in (areaX ?: progress.x..progress.right) && mouseY in (areaY ?: progress.y..progress.bottom)) {
@@ -178,6 +273,16 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
         return false
     }
 
+    /**
+     * Shows the tooltip describing how efficient the machine has become, where the mouse is over it.
+     *
+     * @param graphics What the tooltip is drawn into.
+     * @param mouseX Where the mouse is, along x.
+     * @param mouseY Where the mouse is, along y.
+     * @param areaX The area the tooltip shows over, along x, or `null` to work it out from the widget itself. Defaults to `null`.
+     * @param areaY The area it shows over, along y, or `null` to work it out from the widget itself. Defaults to `null`.
+     * @return Returns `true` if a tooltip was shown, otherwise `false`.
+     */
     protected open fun extractEfficiencyTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, areaX: IntRange? = null, areaY: IntRange? = null): Boolean {
         val efficiency = efficiency ?: return false
         if (mouseX in (areaX ?: efficiency.x.minus(32)..efficiency.right) && mouseY in (areaY ?: (efficiency.y.minus(7) until efficiency.y.plus(9)))) {
@@ -207,8 +312,17 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
     }
 
     companion object {
-        val energy_indicator = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "energy/indicator_full")
-        val efficiency_indicator = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "efficiency")
+
+        /**
+         * The icon shown beside the energy bar where the machine can afford to carry on.
+         */
+        val energyIndicator = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "energy/indicator_full")
+
+        /**
+         * The icon shown beside the efficiency bar where the machine is building efficiency.
+         */
+        val efficiencyIndicator = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "efficiency")
+
     }
 
 }

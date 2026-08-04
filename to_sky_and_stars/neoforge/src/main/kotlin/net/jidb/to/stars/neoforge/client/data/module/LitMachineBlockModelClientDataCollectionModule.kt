@@ -15,6 +15,14 @@ import net.minecraft.core.Direction
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 
+/**
+ * A [ClientDataCollectionModule] generating the models of a horizontally facing machine that lights up while it is working.
+ *
+ * Where no lit model is named, the unlit one is reused with a `_lit` texture on its front face, which is how most of the machines are drawn.
+ *
+ * @property unlit The model the machine is drawn from while it is idle.
+ * @property lit The model it is drawn from while it is working, or `null` to reuse the unlit one with a lit front face. Defaults to `null`.
+ */
 class LitMachineBlockModelClientDataCollectionModule(val unlit: TexturedModel.Provider, val lit: TexturedModel.Provider? = null) : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {
@@ -38,4 +46,5 @@ class LitMachineBlockModelClientDataCollectionModule(val unlit: TexturedModel.Pr
 
         return true
     }
+
 }

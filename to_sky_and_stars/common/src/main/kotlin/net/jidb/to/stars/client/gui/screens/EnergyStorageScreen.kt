@@ -17,10 +17,23 @@ import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.item.ItemStack
 
+/**
+ * The screen a power bank is opened into, which shows its charge and which way energy is moving through each of its two slots.
+ *
+ * @param menu The interface being drawn.
+ * @param playerInventory The inventory of the player who opened it.
+ * @param title The title of the interface.
+ */
 class EnergyStorageScreen(menu: EnergyStorageMenu, playerInventory: Inventory, title: Component) : AbstractContainerScreen<EnergyStorageMenu>(menu, playerInventory, title, 176, 165) {
 
+    /**
+     * The charge bar, or `null` before the screen has been laid out.
+     */
     private var bar: EnergyBarWidget? = null
 
+    /**
+     * Watches the slots so that an item's own charge can be shown in its tooltip.
+     */
     private val energyItemListener = ToEnergyItemContainerListener(EnergyStorageMenu.allSlots, minecraft::level)
 
     init {
@@ -101,7 +114,12 @@ class EnergyStorageScreen(menu: EnergyStorageMenu, playerInventory: Inventory, t
     }
 
     companion object {
+
+        /**
+         * The background of the screen.
+         */
         val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/energy_storage.png")
+
     }
 
 }

@@ -7,11 +7,16 @@ import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 
+/**
+ * [ToForgeMod] implementation for the content mod, i.e. the entry point Neoforge loads it through.
+ */
 @Mod(ToStarsMod.MOD_ID)
 @EventBusSubscriber
 object ToStarsForgeMod : ToForgeMod() {
+
     override val common get() = ToStarsMod
 
     @SubscribeEvent
     override fun subscribeStub(event: FMLConstructModEvent) = Unit
+
 }

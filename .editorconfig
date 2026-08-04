@@ -1,0 +1,28 @@
+# Editor settings for Kotlin sources, mirroring the rules the build enforces, plus the one Java setting
+# that the editor would otherwise fight (see the [*.java] section at the bottom).
+#
+# This file is for the IDE only. Detekt's ktlint wrapper does NOT read it - config/detekt/detekt.yml is the source of truth for the build.
+# These values are kept in step with it by hand so that what the editor produces is what Detekt accepts.
+
+[*.{kt,kts}]
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+# Line length is deliberately not checked; see the header of config/detekt/detekt.yml.
+max_line_length = off
+# IntelliJ's default: everything else alphabetically, then java, javax, kotlin, then aliases.
+ij_kotlin_imports_layout = *,java.**,javax.**,kotlin.**,^
+# Never collapse imports into a wildcard, matching style>WildcardImport. IntelliJ otherwise does it
+# silently once a file reaches the counts below, and java.util.* is on its on-demand list by default.
+ij_kotlin_name_count_to_use_star_import = 2147483647
+ij_kotlin_name_count_to_use_star_import_for_members = 2147483647
+ij_kotlin_packages_to_use_import_on_demand = unset
+# Comment/uncomment writes '//like this', matching to-style>LineCommentSpacing. IntelliJ inserts the
+# space by default, so every commented-out line would come back as a finding.
+ij_kotlin_line_comment_add_space = false
+
+# Java formatting is Checkstyle's, not this file's; this is the one setting the editor gets wrong on its
+# own, and it is the Java half of the same convention (LineCommentSpacing in config/checkstyle/checkstyle.xml).
+[*.java]
+ij_java_line_comment_add_space = false

@@ -10,6 +10,11 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 
+/**
+ * [ToForgeClientMod] implementation for the base mod itself, i.e. the client-side entry point Neoforge loads it through.
+ *
+ * @since 0.1.0
+ */
 @EventBusSubscriber(value = [Dist.CLIENT], modid = ToBaseMod.MOD_ID)
 object ToBaseForgeClientMod : ToForgeClientMod() {
 

@@ -18,11 +18,27 @@ import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.Items
 
+/**
+ * [DataCollectionLibrary] implementation describing how each piece of the base mod's own content is generated.
+ *
+ * @since 0.3.0
+ */
 object ToBaseDataLibrary : DataCollectionLibrary(ToBaseMod.modid) {
 
+    /**
+     * The generation of [net.jidb.to.base.content.ToBaseBlockLibrary.test_block], which drops a test item unless it is broken with silk touch.
+     *
+     * @since 0.3.0
+     */
     val test_block by this {
         addModule { SilkBlockLootDataCollectionModule(ToBaseMod.content.items.test_item) }
     }
+
+    /**
+     * The generation of [net.jidb.to.base.content.ToBaseBlockLibrary.test_block_2], a horizontally facing block whose bottom texture is the top one over again.
+     *
+     * @since 0.3.0
+     */
     val test_block_2 by this {
         addModule { HorizontalBlockModelClientDataCollectionModule(TexturedModel.ORIENTABLE.updateTexture {
             val material = it.get(TextureSlot.BOTTOM)
@@ -30,11 +46,16 @@ object ToBaseDataLibrary : DataCollectionLibrary(ToBaseMod.modid) {
         }) }
     }
 
+    /**
+     * The generation of [net.jidb.to.base.content.ToBaseBlockLibrary.research_desk], which is two blocks wide and so drops only from its left half.
+     *
+     * @since 0.3.0
+     */
     val research_desk by this {
         addModule { SimpleLanguageClientDataCollectionModule("Researcher's Desk") }
         addModule { CustomBlockLootDataCollectionModule { collection, event -> event.helper.propertyBlockLoot(
             ToBaseMod.content.blocks.research_desk,
-            ResearchDeskBlock.SEGMENT,
+            ResearchDeskBlock.segment,
             ResearchDeskBlock.ResearchDeskSegment.LEFT)
         } }
         addModule { MiningBlockTagDataCollectionModule(MiningBlockTagDataCollectionModule.ToolType.AXE) }

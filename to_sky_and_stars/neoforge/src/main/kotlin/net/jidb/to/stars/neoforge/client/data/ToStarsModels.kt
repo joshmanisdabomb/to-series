@@ -10,54 +10,87 @@ import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
 import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.resources.Identifier
-import java.util.*
+import java.util.Optional
 
+/**
+ * Holds the model templates and texture mappings the content mod's blocks are generated from, which are named here rather than inline so that a shape used by several blocks is written once.
+ */
 object ToStarsModels {
 
-    val TEXTURES_ATOMIC_BOMB = { identifier: Identifier ->
+    /**
+     * The textures of the atomic bomb, given the name of its block texture.
+     */
+    val atomicBombTexture = { identifier: Identifier ->
         TextureMapping()
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[0], Material(identifier.withSuffix("_tail_side")))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[1], Material(identifier.withSuffix("_tail")))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[2], Material(identifier.withSuffix("_fin")))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[3], Material(identifier.withSuffix("_core")))
-            .put(ToDataClientHelper.NUMERIC_TEXTURES[4], Material(identifier.withSuffix("_head")))
-            .copySlot(ToDataClientHelper.NUMERIC_TEXTURES[2], TextureSlot.PARTICLE)
+            .put(ToDataClientHelper.numericTextures[0], Material(identifier.withSuffix("_tail_side")))
+            .put(ToDataClientHelper.numericTextures[1], Material(identifier.withSuffix("_tail")))
+            .put(ToDataClientHelper.numericTextures[2], Material(identifier.withSuffix("_fin")))
+            .put(ToDataClientHelper.numericTextures[3], Material(identifier.withSuffix("_core")))
+            .put(ToDataClientHelper.numericTextures[4], Material(identifier.withSuffix("_head")))
+            .copySlot(ToDataClientHelper.numericTextures[2], TextureSlot.PARTICLE)
     }
 
-    val TEMPLATE_ATOMIC_BOMB_HEAD = ModelTemplate(
+    /**
+     * The model template of the bomb's nose.
+     */
+    val atomicBombHeadTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_atomic_bomb_head")),
         Optional.of("_head"),
         TextureSlot.PARTICLE,
-        ToDataClientHelper.NUMERIC_TEXTURES[1],
-        ToDataClientHelper.NUMERIC_TEXTURES[4],
+        ToDataClientHelper.numericTextures[1],
+        ToDataClientHelper.numericTextures[4],
     )
-    val ATOMIC_BOMB_HEAD = TexturedModel.createDefault({ TEXTURES_ATOMIC_BOMB(it.identifier.withPrefix("block/")) }, TEMPLATE_ATOMIC_BOMB_HEAD)
 
-    val TEMPLATE_ATOMIC_BOMB_MIDDLE = ModelTemplate(
+    /**
+     * The bomb's nose, textured from its own name.
+     */
+    val atomicBombHead = TexturedModel.createDefault({ atomicBombTexture(it.identifier.withPrefix("block/")) }, atomicBombHeadTemplate)
+
+    /**
+     * The model template of the bomb's body.
+     */
+    val atomicBombMiddleTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_atomic_bomb_middle")),
         Optional.of("_middle"),
         TextureSlot.PARTICLE,
-        ToDataClientHelper.NUMERIC_TEXTURES[1],
-        ToDataClientHelper.NUMERIC_TEXTURES[4],
+        ToDataClientHelper.numericTextures[1],
+        ToDataClientHelper.numericTextures[4],
     )
-    val ATOMIC_BOMB_MIDDLE = TexturedModel.createDefault({ TEXTURES_ATOMIC_BOMB(it.identifier.withPrefix("block/")) }, TEMPLATE_ATOMIC_BOMB_MIDDLE)
 
-    val TEMPLATE_ATOMIC_BOMB_TAIL = ModelTemplate(
+    /**
+     * The bomb's body, textured from its own name.
+     */
+    val atomicBombMiddle = TexturedModel.createDefault({ atomicBombTexture(it.identifier.withPrefix("block/")) }, atomicBombMiddleTemplate)
+
+    /**
+     * The model template of the bomb's tail.
+     */
+    val atomicBombTailTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_atomic_bomb_tail")),
         Optional.of("_tail"),
         TextureSlot.PARTICLE,
-        *ToDataClientHelper.NUMERIC_TEXTURES.take(4).toTypedArray()
+        *ToDataClientHelper.numericTextures.take(4).toTypedArray()
     )
-    val ATOMIC_BOMB_TAIL = TexturedModel.createDefault({ TEXTURES_ATOMIC_BOMB(it.identifier.withPrefix("block/")) }, TEMPLATE_ATOMIC_BOMB_TAIL)
 
-    val TEMPLATE_ATOMIC_BOMB_ITEM = ModelTemplate(
+    /**
+     * The bomb's tail, textured from its own name.
+     */
+    val atomicBombTail = TexturedModel.createDefault({ atomicBombTexture(it.identifier.withPrefix("block/")) }, atomicBombTailTemplate)
+
+    /**
+     * The model template of the bomb's own item, which shows all three segments at once.
+     */
+    val atomicBombItemTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.itemPrefix(ToStarsMod.modid, "template_atomic_bomb")),
         Optional.empty(),
         TextureSlot.PARTICLE,
-        *ToDataClientHelper.NUMERIC_TEXTURES.take(5).toTypedArray()
+        *ToDataClientHelper.numericTextures.take(5).toTypedArray()
     )
 
-    val TEMPLATE_HEAT_PIPE = ModelTemplate(
+    /**
+     * The model template of the heat pipe's own item.
+     */
+    val heatPipeTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.itemPrefix(ToStarsMod.modid, "template_heat_pipe")),
         Optional.empty(),
         TextureSlot.PARTICLE,
@@ -66,7 +99,10 @@ object ToStarsModels {
         TextureSlot.END,
     )
 
-    val TEXTURES_POWER_BANK = { identifier: Identifier ->
+    /**
+     * The textures of a power bank, given the name of its block texture.
+     */
+    val powerBankTexture = { identifier: Identifier ->
         TextureMapping()
             .put(TextureSlot.TOP, Material(identifier.withSuffix("_top")))
             .put(TextureSlot.INNER_TOP, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_top" }))
@@ -76,7 +112,11 @@ object ToStarsModels {
             .put(TextureSlot.END, Material(identifier.withSuffix("_bottom")))
             .copySlot(TextureSlot.INSIDE, TextureSlot.PARTICLE)
     }
-    val TEMPLATE_POWER_BANK = ModelTemplate(
+
+    /**
+     * The model template of a power bank, whose charge is drawn on every side but the one it faces.
+     */
+    val powerBankTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_power_bank")),
         Optional.empty(),
         TextureSlot.PARTICLE,
@@ -88,34 +128,58 @@ object ToStarsModels {
         TextureSlot.END,
         TextureSlot.BOTTOM,
     )
-    val POWER_BANK = TexturedModel.createDefault({ TEXTURES_POWER_BANK(it.identifier.withPrefix("block/")) }, TEMPLATE_POWER_BANK)
 
-    val TEXTURES_ROTOR_BLADES = { identifier: Identifier ->
+    /**
+     * A power bank, textured from its own name.
+     */
+    val powerBank = TexturedModel.createDefault({ powerBankTexture(it.identifier.withPrefix("block/")) }, powerBankTemplate)
+
+    /**
+     * The textures of the rotor blades, given the name of their block texture.
+     */
+    val rotorBladesTexture = { identifier: Identifier ->
         TextureMapping()
             .put(TextureSlot.STEM, Material(identifier.withSuffix("_stem")))
             .put(TextureSlot.FAN, Material(identifier))
             .copySlot(TextureSlot.FAN, TextureSlot.PARTICLE)
     }
 
-    val TEMPLATE_ROTOR_BLADES = ModelTemplate(
+    /**
+     * The model template of the still rotor blades.
+     */
+    val rotorBladesTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_rotor_blades")),
         Optional.empty(),
         TextureSlot.PARTICLE,
         TextureSlot.STEM,
         TextureSlot.FAN,
     )
-    val ROTOR_BLADES = TexturedModel.createDefault({ TEXTURES_ROTOR_BLADES(it.identifier.withPrefix("block/")) }, TEMPLATE_ROTOR_BLADES)
 
-    val TEMPLATE_ROTOR_BLADES_ALT = ModelTemplate(
+    /**
+     * The still rotor blades, textured from their own name.
+     */
+    val rotorBlades = TexturedModel.createDefault({ rotorBladesTexture(it.identifier.withPrefix("block/")) }, rotorBladesTemplate)
+
+    /**
+     * The model template of the still rotor blades a half turn out, so that a stack of them does not all line up.
+     */
+    val rotorBladesAltTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_rotor_blades_alt")),
         Optional.empty(),
         TextureSlot.PARTICLE,
         TextureSlot.STEM,
         TextureSlot.FAN,
     )
-    val ROTOR_BLADES_ALT = TexturedModel.createDefault({ TEXTURES_ROTOR_BLADES(it.identifier.withPrefix("block/")) }, TEMPLATE_ROTOR_BLADES_ALT)
 
-    val TEXTURES_CENTRIFUGE = { identifier: Identifier ->
+    /**
+     * The alternate still rotor blades, textured from their own name.
+     */
+    val rotorBladesAlt = TexturedModel.createDefault({ rotorBladesTexture(it.identifier.withPrefix("block/")) }, rotorBladesAltTemplate)
+
+    /**
+     * The textures of a centrifuge, given the name of its block texture.
+     */
+    val centrifugeTexture = { identifier: Identifier ->
         TextureMapping()
             .put(TextureSlot.SIDE, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_side" }))
             .put(TextureSlot.BOTTOM, Material(identifier.withPath { it.split("_").first() + "_machine_enclosure_bottom" }))
@@ -124,7 +188,10 @@ object ToStarsModels {
             .copySlot(TextureSlot.SIDE, TextureSlot.PARTICLE)
     }
 
-    val TEMPLATE_CENTRIFUGE = ModelTemplate(
+    /**
+     * The model template of an idle centrifuge.
+     */
+    val centrifugeTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_centrifuge")),
         Optional.empty(),
         TextureSlot.PARTICLE,
@@ -133,9 +200,16 @@ object ToStarsModels {
         TextureSlot.TOP,
         TextureSlot.INSIDE,
     )
-    val CENTRIFUGE = TexturedModel.createDefault({ TEXTURES_CENTRIFUGE(it.identifier.withPrefix("block/")) }, TEMPLATE_CENTRIFUGE)
 
-    val TEMPLATE_CENTRIFUGE_LIT = ModelTemplate(
+    /**
+     * An idle centrifuge, textured from its own name.
+     */
+    val centrifuge = TexturedModel.createDefault({ centrifugeTexture(it.identifier.withPrefix("block/")) }, centrifugeTemplate)
+
+    /**
+     * The model template of a working centrifuge.
+     */
+    val centrifugeLitTemplate = ModelTemplate(
         Optional.of(IdentifierHelper.blockPrefix(ToStarsMod.modid, "template_centrifuge_lit")),
         Optional.empty(),
         TextureSlot.PARTICLE,
@@ -144,6 +218,10 @@ object ToStarsModels {
         TextureSlot.TOP,
         TextureSlot.INSIDE,
     )
-    val CENTRIFUGE_LIT = TexturedModel.createDefault({ TEXTURES_CENTRIFUGE(it.identifier.withPrefix("block/")) }, TEMPLATE_CENTRIFUGE_LIT)
+
+    /**
+     * A working centrifuge, textured from its own name.
+     */
+    val centrifugeLit = TexturedModel.createDefault({ centrifugeTexture(it.identifier.withPrefix("block/")) }, centrifugeLitTemplate)
 
 }

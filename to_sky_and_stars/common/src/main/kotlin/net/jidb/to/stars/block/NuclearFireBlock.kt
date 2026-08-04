@@ -13,6 +13,11 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.FireBlock
 import net.minecraft.world.level.block.state.BlockState
 
+/**
+ * The fire a nuclear explosion burns with, which spreads much further than an ordinary fire and leaves nuclear waste behind it.
+ *
+ * @param properties The block's own properties.
+ */
 class NuclearFireBlock(properties: Properties) : FireBlock(properties) {
 
     override fun canSurvive(state: BlockState, level: LevelReader, pos: BlockPos): Boolean {
@@ -43,6 +48,14 @@ class NuclearFireBlock(properties: Properties) : FireBlock(properties) {
         }
     }
 
+    /**
+     * Spreads the fire through the blocks around it, leaving nuclear waste where it burns, and removes it once it has nothing left to burn or has aged out.
+     *
+     * @param level The level the fire is in.
+     * @param pos The position of the fire.
+     * @param state The state of the fire.
+     * @param random The randomness the spread is decided by.
+     */
     private fun spread(level: ServerLevel, pos: BlockPos, state: BlockState, random: RandomSource) {
         if (!canSurvive(state, level, pos) || state.getValue(AGE) >= MAX_AGE) {
             level.removeBlock(pos, false)
@@ -97,6 +110,15 @@ class NuclearFireBlock(properties: Properties) : FireBlock(properties) {
         return fire
     }
 
+    /**
+     * Whether a block's face can hold this fire up, which either a solid face or anything ordinary fire would catch on does.
+     *
+     * @param state The state of the block.
+     * @param level The level the block is in.
+     * @param pos The position of the block.
+     * @param direction The side the fire would sit against.
+     * @return Returns `true` if the face can hold the fire up, otherwise `false`.
+     */
     private fun faceSupports(state: BlockState, level: BlockGetter, pos: BlockPos, direction: Direction): Boolean {
         if (state.isFaceSturdy(level, pos, direction.opposite)) {
             return true

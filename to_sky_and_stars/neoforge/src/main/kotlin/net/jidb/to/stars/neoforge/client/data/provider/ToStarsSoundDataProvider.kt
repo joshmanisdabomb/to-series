@@ -7,6 +7,12 @@ import net.neoforged.neoforge.common.data.SoundDefinition
 import net.neoforged.neoforge.common.data.SoundDefinitionsProvider
 import java.util.concurrent.CompletableFuture
 
+/**
+ * Generates the sound definitions of this mod, i.e. which files each of its sounds plays and what its subtitle says.
+ *
+ * @param output Where the generated files are written.
+ * @param provider The registries the definitions are built against.
+ */
 class ToStarsSoundDataProvider(output: PackOutput, provider: CompletableFuture<HolderLookup.Provider>) : SoundDefinitionsProvider(output, ToStarsMod.MOD_ID) {
 
     override fun registerSounds() {
@@ -37,14 +43,14 @@ class ToStarsSoundDataProvider(output: PackOutput, provider: CompletableFuture<H
         )
         add(ToStarsMod.sounds.atomic_bomb_cut, SoundDefinition.definition()
             .with(*Array(3, { k ->
-                sound(ToStarsMod.sounds.atomic_bomb_cut.location.withPath { it.replace('.', '/') }.withSuffix("${k+1}"), SoundDefinition.SoundType.SOUND)
+                sound(ToStarsMod.sounds.atomic_bomb_cut.location.withPath { it.replace('.', '/') }.withSuffix("${k + 1}"), SoundDefinition.SoundType.SOUND)
             }))
             .subtitle("subtitles." + ToStarsMod.sounds.atomic_bomb_cut.location.toString().replace(":", "."))
         )
 
         add(ToStarsMod.sounds.generator_crackle, SoundDefinition.definition()
             .with(*Array(4, { k ->
-                sound(ToStarsMod.sounds.generator_crackle.location.withPath { it.replace('.', '/') }.withSuffix("${k+1}"), SoundDefinition.SoundType.SOUND)
+                sound(ToStarsMod.sounds.generator_crackle.location.withPath { it.replace('.', '/') }.withSuffix("${k + 1}"), SoundDefinition.SoundType.SOUND)
             }))
             .subtitle("subtitles." + ToStarsMod.sounds.generator_crackle.location.toString().replace(":", "."))
         )

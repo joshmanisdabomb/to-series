@@ -9,6 +9,11 @@ import net.neoforged.fml.loading.FMLEnvironment
 import kotlin.jvm.optionals.getOrNull
 import net.jidb.to.base.service.EnvironmentService as BaseEnvironmentService
 
+/**
+ * [net.jidb.to.base.service.EnvironmentService] implementation for Neoforge, loaded through Java's service loader from the entry this loader project registers.
+ *
+ * @since 0.0.3
+ */
 class ForgeEnvironmentService : BaseEnvironmentService() {
 
     override val platform get() = ForgePlatform

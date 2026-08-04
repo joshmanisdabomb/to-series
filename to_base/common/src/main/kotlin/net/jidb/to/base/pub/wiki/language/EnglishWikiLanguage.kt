@@ -4,11 +4,16 @@ import net.jidb.to.base.api.helper.RegistryHelper
 import net.jidb.to.base.api.wiki.language.WikiLanguage
 import org.modeshape.common.text.Inflector
 
+/**
+ * The [WikiLanguage] for English, which builds the sentences a wiki article generates rather than writes out by hand.
+ * Pluralisation is handed to an inflector rather than guessed at, so an irregular noun in a registry name reads correctly.
+ *
+ * @property locale The locale code this language is used for.
+ * @since 0.1.0
+ */
 class EnglishWikiLanguage(override val locale: String) : WikiLanguage {
 
-    override fun pluralise(phrase: String): String {
-        return inflector.pluralize(phrase)
-    }
+    override fun pluralise(phrase: String) = inflector.pluralize(phrase)
 
     override fun getResourceNoun(registry: String, plural: Boolean, article: Boolean): String {
         val noun = registry.replace('_', ' ')
@@ -88,14 +93,19 @@ class EnglishWikiLanguage(override val locale: String) : WikiLanguage {
         return builder.toString()
     }
 
-    override fun generateModRecentVersion(version: String): String {
-        return StringBuilder()
-            .append(version)
-            .toString()
-    }
+    override fun generateModRecentVersion(version: String) = StringBuilder()
+        .append(version)
+        .toString()
 
     companion object {
+
+        /**
+         * The inflector that pluralises a noun, which knows the irregular forms a naive rule would get wrong.
+         *
+         * @since 0.1.0
+         */
         private val inflector = Inflector.getInstance()
+
     }
 
 }

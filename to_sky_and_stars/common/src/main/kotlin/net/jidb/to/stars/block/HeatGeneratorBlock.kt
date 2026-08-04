@@ -15,7 +15,11 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.*
+import net.minecraft.world.level.block.AbstractFurnaceBlock
+import net.minecraft.world.level.block.BaseEntityBlock
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Mirror
+import net.minecraft.world.level.block.Rotation
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING
@@ -24,6 +28,12 @@ import net.minecraft.world.phys.BlockHitResult
 import kotlin.math.ceil
 import kotlin.math.sqrt
 
+/**
+ * A machine that makes heat, which is what a boiler above it and the network around it draw on.
+ *
+ * @property machine The tier the generator is built at.
+ * @param properties The block's own properties.
+ */
 abstract class HeatGeneratorBlock(val machine: MachineTier, properties: Properties) : BaseEntityBlock(properties) {
 
     init {
@@ -77,4 +87,5 @@ abstract class HeatGeneratorBlock(val machine: MachineTier, properties: Properti
         val damage = ceil(sqrt(heat.div(100f)).times(10f)).div(10f)
         entity.hurtServer(level, source, damage)
     }
+
 }

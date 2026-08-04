@@ -8,6 +8,14 @@ import net.jidb.to.base.api.transfer.item.ItemResource
 import net.jidb.to.base.api.transfer.item.ItemTransferContext
 import net.jidb.to.base.fabric.transfer.FabricTransferTransaction
 
+/**
+ * [ItemTransferContext] implementation for Fabric, which wraps one of the Transfer API's own item storages.
+ *
+ * A storage need not be divided into slots at all, in which case its contents are read as a list and indexed by position instead.
+ *
+ * @property storage The item storage the items are moved through.
+ * @since 0.6.0
+ */
 class FabricItemTransferContext(val storage: Storage<ItemVariant>) : ItemTransferContext {
 
     override fun getSlotCount(): Int {
@@ -24,7 +32,7 @@ class FabricItemTransferContext(val storage: Storage<ItemVariant>) : ItemTransfe
         return ItemResource(resource.item, resource.componentsPatch)
     }
 
-    override fun getAmountAt(resource: ItemResource, index: Int): Long {
+    override fun getAmountAt(index: Int): Long {
         if (storage is SlottedStorage) return storage.getSlot(index).amount
         return storage.toList().getOrNull(index)?.amount ?: 0L
     }
@@ -34,12 +42,8 @@ class FabricItemTransferContext(val storage: Storage<ItemVariant>) : ItemTransfe
         return storage.toList().getOrNull(index)?.capacity ?: 0L
     }
 
-    override fun insert(resource: ItemResource, amount: Long, transaction: TransferTransaction): Long {
-        return storage.insert(ItemVariant.of(resource.item, resource.components), amount, (transaction as FabricTransferTransaction).transaction)
-    }
+    override fun insert(resource: ItemResource, amount: Long, transaction: TransferTransaction) = storage.insert(ItemVariant.of(resource.item, resource.components), amount, (transaction as FabricTransferTransaction).transaction)
 
-    override fun extract(resource: ItemResource, amount: Long, transaction: TransferTransaction): Long {
-        return storage.extract(ItemVariant.of(resource.item, resource.components), amount, (transaction as FabricTransferTransaction).transaction)
-    }
+    override fun extract(resource: ItemResource, amount: Long, transaction: TransferTransaction) = storage.extract(ItemVariant.of(resource.item, resource.components), amount, (transaction as FabricTransferTransaction).transaction)
 
 }

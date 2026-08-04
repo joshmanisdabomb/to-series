@@ -24,10 +24,14 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.data.advancements.AdvancementSubProvider
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStackTemplate
-import java.util.*
+import java.util.Optional
 import java.util.function.Consumer
 
+/**
+ * Generates the advancements of this mod, which follow the player from their first uranium through each tier of machine to setting off an atomic bomb.
+ */
 class ToStarsAdvancementDataProvider : AdvancementSubProvider {
 
     override fun generate(registries: HolderLookup.Provider, output: Consumer<AdvancementHolder>) {
@@ -45,11 +49,23 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
                 false
             )
             .addCriterion("has_relevant", InventoryChangeTrigger.TriggerInstance.hasItems(
-                ItemPredicate.Builder.item().of(getter, ToStarsItemTagLibrary.root_advancement_unlock))
-            )
+                ItemPredicate.Builder.item().of(getter, ToStarsItemTagLibrary.root_advancement_unlock)
+            ))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "root"))
 
-        val copper_machine = Advancement.Builder.advancement()
+        generateNuclear(getter, output, generateMachines(getter, output, root))
+    }
+
+    /**
+     * Generates the advancements the player earns building up their machines, i.e. the copper tier and the gold tier that follows it.
+     *
+     * @param getter The item registry the criteria are resolved against.
+     * @param output Where the generated advancements are written.
+     * @param root The advancement this branch hangs off.
+     * @return The copper machine advancement, which the nuclear branch hangs off in turn.
+     */
+    private fun generateMachines(getter: HolderLookup.RegistryLookup<Item>, output: Consumer<AdvancementHolder>, root: AdvancementHolder): AdvancementHolder {
+        val copperMachine = Advancement.Builder.advancement()
             .parent(root)
             .display(
                 ItemStackTemplate(ToStarsMod.blocks.copper_machine_enclosure.asItem()),
@@ -65,7 +81,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "copper_machine"))
 
         val generator = Advancement.Builder.advancement()
-            .parent(copper_machine)
+            .parent(copperMachine)
             .display(
                 ItemStackTemplate(ToStarsMod.blocks.copper_solid_generator.asItem()),
                 Component.translatable("advancements.${ToStarsMod.modid}.generator.title"),
@@ -94,7 +110,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
             .addCriterion("has_turbine", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(getter, ToStarsMod.itemTags.turbines)))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "turbine"))
 
-        val power_bank = Advancement.Builder.advancement()
+        val powerBank = Advancement.Builder.advancement()
             .parent(turbine)
             .display(
                 ItemStackTemplate(ToStarsMod.blocks.copper_power_bank.asItem(), DataComponentPatch.builder().set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(1L, 2L, 0L, 0L)).build()),
@@ -109,8 +125,8 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
             .addCriterion("has_power_bank", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(getter, ToStarsMod.itemTags.power_banks)))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "power_bank"))
 
-        val gold_machine = Advancement.Builder.advancement()
-            .parent(copper_machine)
+        val goldMachine = Advancement.Builder.advancement()
+            .parent(copperMachine)
             .display(
                 ItemStackTemplate(ToStarsMod.blocks.gold_solid_generator.asItem()),
                 Component.translatable("advancements.${ToStarsMod.modid}.gold_machine.title"),
@@ -124,8 +140,8 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
             .addCriterion("has_gold_machine", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(getter, ToStarsMod.itemTags.gold_machines)))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "gold_machine"))
 
-        val gold_machine_all = Advancement.Builder.advancement()
-            .parent(gold_machine)
+        val goldMachineAll = Advancement.Builder.advancement()
+            .parent(goldMachine)
             .display(
                 ItemStackTemplate(ToStarsMod.blocks.gold_power_bank.asItem(), DataComponentPatch.builder().set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(1L, 1L, 0L, 0L)).build()),
                 Component.translatable("advancements.${ToStarsMod.modid}.gold_machine_all.title"),
@@ -141,8 +157,19 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
             } }
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "gold_machine_all"))
 
+        return copperMachine
+    }
+
+    /**
+     * Generates the advancements the player earns working towards a bomb, i.e. enriching uranium and setting one off.
+     *
+     * @param getter The item registry the criteria are resolved against.
+     * @param output Where the generated advancements are written.
+     * @param copperMachine The advancement this branch hangs off.
+     */
+    private fun generateNuclear(getter: HolderLookup.RegistryLookup<Item>, output: Consumer<AdvancementHolder>, copperMachine: AdvancementHolder) {
         val centrifuge = Advancement.Builder.advancement()
-            .parent(copper_machine)
+            .parent(copperMachine)
             .display(
                 ItemStackTemplate(ToStarsMod.blocks.copper_centrifuge.asItem()),
                 Component.translatable("advancements.${ToStarsMod.modid}.centrifuge.title"),
@@ -188,7 +215,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
             ))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "nuke"))
 
-        val nuke_race = Advancement.Builder.advancement()
+        val nukeRace = Advancement.Builder.advancement()
             .parent(nuke)
             .display(
                 ItemStackTemplate(ToStarsMod.blocks.atomic_bomb.asItem()),
@@ -201,8 +228,8 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
                 true
             )
             .addCriterion("race", ToStarsMod.advancementTriggers.race.createCriterion(
-                RaceAdvancementTrigger.TriggerInstance(Optional.empty(), Optional.of(nuke.id())))
-            )
+                RaceAdvancementTrigger.TriggerInstance(Optional.empty(), Optional.of(nuke.id()))
+            ))
             .rewards(AdvancementRewards.Builder().addExperience(500).addLootTable(ToStarsMod.lootTables.advancement_nuke_race))
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "nuke_race"))
     }

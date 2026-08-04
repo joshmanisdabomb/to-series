@@ -14,8 +14,22 @@ import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.inventory.SimpleContainerData
 import net.minecraft.world.item.ItemStack
 
+/**
+ * The interface a power bank is opened into, which has one slot for charging something and one for draining it.
+ *
+ * @param id The id of the menu.
+ * @param playerInventory The inventory of the player who opened it.
+ * @property container The power bank the menu is opened on.
+ * @property data The power bank's figures, as the interface reads them.
+ */
 class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val container: Container, internal val data: ContainerData) : AbstractContainerMenu(ToStarsMod.menus.energy_storage, id) {
 
+    /**
+     * Creates the menu on the client, where the power bank itself is not available and an empty container stands in for it.
+     *
+     * @param id The id of the menu.
+     * @param playerInventory The inventory of the player who opened it.
+     */
     constructor(id: Int, playerInventory: Inventory) : this(id, playerInventory, SimpleContainer(allSlots.size), SimpleContainerData(ToEnergyBlockEntityHandler.dataSchema.getDataSize()))
 
     init {
@@ -78,9 +92,22 @@ class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val contai
     override fun stillValid(player: Player) = container.stillValid(player)
 
     companion object {
+
+        /**
+         * The slot the power bank draws energy out of.
+         */
         val transferFromSlots = intArrayOf(0)
+
+        /**
+         * The slot the power bank puts energy into.
+         */
         val transferToSlots = intArrayOf(1)
+
+        /**
+         * Every slot of the power bank, in the order they are drawn.
+         */
         val allSlots = intArrayOf(*transferFromSlots, *transferToSlots)
+
     }
 
 }

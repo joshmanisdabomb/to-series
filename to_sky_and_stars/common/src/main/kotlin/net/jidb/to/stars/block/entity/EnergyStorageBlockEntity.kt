@@ -34,16 +34,36 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
 
+/**
+ * The block entity of a power bank, which stores To Energy and charges or drains whatever is put in its slots.
+ *
+ * @param pos The position of the block.
+ * @param state The state of the block.
+ */
 class EnergyStorageBlockEntity(pos: BlockPos, state: BlockState) : BaseContainerBlockEntity(ToStarsMod.blockEntities.power_bank, pos, state), WorldlyContainer, ToEnergyWorldlyProvider {
 
-    protected var inventory = NonNullList.withSize(EnergyStorageMenu.allSlots.size, ItemStack.EMPTY)
+    /**
+     * The items in the power bank, i.e. what it is charging and what it is drawing from.
+     */
+    private var inventory = NonNullList.withSize(EnergyStorageMenu.allSlots.size, ItemStack.EMPTY)
 
+    /**
+     * The energy the power bank is holding, along with how much can move in and out of it per tick.
+     */
     val energy = ToEnergyBlockEntityHandler(
         (state.block as? EnergyStorageBlock)?.machine?.bankStorage ?: 0L,
         (state.block as? EnergyStorageBlock)?.machine?.maxInput ?: 0L,
         (state.block as? EnergyStorageBlock)?.machine?.maxOutput ?: 0L,
     )
+
+    /**
+     * What the sides of the block offer to something inserting energy, which can only insert.
+     */
     val transferInput = InputToEnergyTransferContext(energy.transfer)
+
+    /**
+     * What the sides of the block offer to something extracting energy, which can only extract.
+     */
     val transferOutput = OutputToEnergyTransferContext(energy.transfer)
 
     override fun getDefaultName() = blockState.block.name
@@ -106,7 +126,7 @@ class EnergyStorageBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
 
     override fun getUpdateTag(registries: HolderLookup.Provider): CompoundTag {
         val tag = CompoundTag()
-        energy.getUpdateTag(tag, registries)
+        energy.getUpdateTag(tag)
         return tag
     }
 
@@ -128,6 +148,15 @@ class EnergyStorageBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
     }
 
     companion object {
+
+        /**
+         * Ticks the block entity.
+         *
+         * @param level The level it is in.
+         * @param pos Its position.
+         * @param state Its state.
+         * @param entity The block entity being ticked.
+         */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: EnergyStorageBlockEntity) {
             if (level.isClientSide) return
 
@@ -165,6 +194,7 @@ class EnergyStorageBlockEntity(pos: BlockPos, state: BlockState) : BaseContainer
                 }
             }
         }
+
     }
 
 }

@@ -19,8 +19,17 @@ import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
 import kotlin.jvm.optionals.getOrNull
 
+/**
+ * The block entity of the boiler, which keeps how much heat is reaching it from each side so that it can be worked out whether the water boils.
+ *
+ * @param pos The position of the block.
+ * @param state The state of the block.
+ */
 class BoilingCauldronBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMod.blockEntities.boiler, pos, state) {
 
+    /**
+     * How much heat is reaching the cauldron from each side.
+     */
     var heats = mutableMapOf<Direction, Float>()
 
     override fun loadAdditional(input: ValueInput) {
@@ -34,8 +43,20 @@ class BoilingCauldronBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity
     }
 
     companion object {
+
+        /**
+         * The codec the per-side heat is saved and loaded through.
+         */
         val heatCodec = Codec.unboundedMap(Direction.CODEC, Codec.FLOAT)
 
+        /**
+         * Ticks the block entity.
+         *
+         * @param level The level it is in.
+         * @param pos Its position.
+         * @param state Its state.
+         * @param entity The block entity being ticked.
+         */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: BoilingCauldronBlockEntity) {
             val fill = state.getValue(LEVEL)
             if (level.isClientSide) {
@@ -43,11 +64,11 @@ class BoilingCauldronBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity
                     if (level.random.nextInt(3) == 0) {
                         level.addParticle(ToStarsMod.particles.steam, pos.x.plus(0.3).plus(level.random.nextDouble().times(0.4)), pos.y.plus(0.25 * fill), pos.z.plus(0.3).plus(level.random.nextDouble().times(0.4)), 0.0, level.random.nextDouble().times(0.1), 0.0)
                     }
-                    for (i in 0 .. 2) {
+                    for (i in 0..2) {
                         level.addParticle(ToStarsMod.particles.foam, pos.x.plus(0.3).plus(level.random.nextDouble().times(0.4)), pos.y.plus(0.25 * fill), pos.z.plus(0.3).plus(level.random.nextDouble().times(0.4)), level.random.nextDouble().minus(0.5).times(2.0), level.random.nextDouble().squared().times(2.0).plus(1.0), level.random.nextDouble().minus(0.5).times(2.0))
                     }
                 } else {
-                    for (i in 0 .. fill.minus(1)) {
+                    for (i in 0..fill.minus(1)) {
                         level.addParticle(ToStarsMod.particles.steam, pos.x.plus(0.3).plus(level.random.nextDouble().times(0.4)), pos.y.plus(0.25 * fill), pos.z.plus(0.3).plus(level.random.nextDouble().times(0.4)), 0.0, level.random.nextDouble().times(0.1), 0.0)
                     }
                     level.addParticle(ParticleTypes.SPLASH, pos.x.plus(0.2).plus(level.random.nextDouble().times(0.6)), pos.y.plus(0.3 * fill), pos.z.plus(0.2).plus(level.random.nextDouble().times(0.6)), level.random.nextDouble().times(0.5).minus(0.25), level.random.nextDouble().times(0.5), level.random.nextDouble().times(0.5).minus(0.25))
@@ -84,6 +105,7 @@ class BoilingCauldronBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity
                 }
             }
         }
+
     }
 
 }

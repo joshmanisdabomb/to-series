@@ -15,9 +15,27 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent
 import net.neoforged.neoforge.network.handling.IPayloadContext
 import net.neoforged.neoforge.network.registration.PayloadRegistrar
 
+/**
+ * [NetworkingPlatformModule] implementation for Neoforge.
+ *
+ * A payload cannot be registered whenever a mod asks, only while Neoforge is raising its own registration event, so every declaration is queued in a [DeferredForgeEventRegistry] and played back once that arrives.
+ *
+ * @since 0.2.0
+ */
 object NetworkingForgePlatformModule : NetworkingPlatformModule() {
 
+    /**
+     * The queued payload registrations, played back when Neoforge raises its registration event.
+     *
+     * @since 0.2.0
+     */
     val registry = DeferredForgeEventRegistry(RegisterPayloadHandlersEvent::class.java)
+
+    /**
+     * The registrar each mod's payloads are registered through, keyed by mod ID and then by the name the registrar was declared under, so that payloads sharing one are registered together.
+     *
+     * @since 0.2.0
+     */
     val registrars = mutableMapOf<String, MutableMap<String, PayloadRegistrar>>()
 
     override fun <P : CustomPacketPayload> register(entry: PayloadEntry<P>, serverHandler: ((P, ServerPayloadContext) -> Unit)?) {
@@ -49,6 +67,15 @@ object NetworkingForgePlatformModule : NetworkingPlatformModule() {
         }
     }
 
+    /**
+     * Wraps a handler of the common shape as one of Neoforge's own, resolving the player out of its context.
+     *
+     * @param P The type of the payload being handled.
+     * @param handler The handler to wrap, which a payload the client can send must have. Defaults to `null`.
+     * @return The wrapped handler.
+     * @throws IllegalStateException Where there is no handler to wrap.
+     * @since 0.2.0
+     */
     private fun <P : CustomPacketPayload> createForgeServerHandler(handler: ((data: P, context: ServerPayloadContext) -> Unit)? = null): ((data: P, context: IPayloadContext) -> Unit) {
         val ret = handler ?: error("C2S payloads must have a server handler.")
         return { data, context -> ret(data, ServerPayloadContext(context.player() as ServerPlayer)) }

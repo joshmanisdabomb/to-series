@@ -34,6 +34,7 @@ dependencyResolutionManagement {
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
+include(":meta")
 include(":to_base:common")
 include(":to_base:fabric")
 include(":to_base:neoforge")

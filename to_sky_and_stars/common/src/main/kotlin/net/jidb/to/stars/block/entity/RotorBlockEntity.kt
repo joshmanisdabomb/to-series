@@ -38,16 +38,44 @@ import kotlin.math.absoluteValue
 import kotlin.math.ceil
 import kotlin.math.min
 
+/**
+ * The block entity of the rotor blades, which keeps how fast they are turning and what that is worth to the turbine behind them.
+ *
+ * The speed is what the server works with; the angle is only kept on the client, where it is carried on between the syncs the server sends so that the blades turn smoothly rather than jumping.
+ *
+ * @param pos The position of the block.
+ * @param state The state of the block.
+ */
 class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMod.blockEntities.rotor_blades, pos, state) {
 
+    /**
+     * How fast the blades are turning.
+     */
     var speed: Float = 0f
 
+    /**
+     * How far round the blades have turned, kept on the client so that they can be drawn between ticks.
+     */
     var clientAngle: Float = 0f
+
+    /**
+     * Where the blades were on the previous tick, which the drawn angle is worked out between.
+     */
     var clientPrevAngle: Float = 0f
 
+    /**
+     * How long it has been since the speed was last sent to the client.
+     */
     var syncTime = 0
+
+    /**
+     * The speed that was last sent to the client, which is what a change is measured against.
+     */
     var syncLast = 0f
 
+    /**
+     * What the blades are worth to a turbine of each tier, since the same blades drive every tier differently.
+     */
     val energy = MachineTier.entries.associateWith(::RotorToEnergyTransferContext)
 
     override fun loadAdditional(input: ValueInput) {
@@ -65,14 +93,139 @@ class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMo
         return tag
     }
 
+    /**
+     * Updates the turbine's state, speed, and energy production based on the surrounding environment and machine tier.
+     *
+     * The method evaluates the heat and liquid level of boiling cauldrons below the turbine, adjusts the turbine's speed, monitors its powered state, and handles energy transfer to nearby systems.
+     *
+     * @param level The world level where the turbine is located.
+     * @param state The current block state of the turbine block.
+     * @param pos The position of the turbine block being ticked.
+     * @param facing The direction the turbine is facing.
+     * @param turbine The tier of the turbine, which determines energy production parameters.
+     * @param powered The current powered state of the turbine block.
+     */
+    private fun tickTurbine(level: ServerLevel, state: BlockState, pos: BlockPos, facing: Direction, turbine: MachineTier, powered: Boolean) {
+        speed = 0f
+        for (i in 1..3) {
+            val pos2 = pos.below(i)
+            val boiler = level.getBlockState(pos2)
+            if (boiler.block is BoilingCauldronBlock) {
+                val fill = boiler.getValue(LEVEL)
+                val heat = level.getBlockEntity(pos2, ToStarsMod.blockEntities.boiler).getOrNull()?.heats?.values?.sum() ?: break
+                speed = heat.coerceIn(0f, 200f).div(100f).times(fill.div(3f)).times(turbineSpeed)
+                break
+            } else if (!boiler.getCollisionShape(level, pos2).isEmpty) {
+                break
+            }
+        }
+
+        if (Mth.equal(speed, 0f) && powered) {
+            level.setBlock(pos, state.setValue(POWERED, false), 3)
+        } else if (!Mth.equal(speed, 0f) && !powered) {
+            level.setBlock(pos, state.setValue(POWERED, true), 3)
+        }
+
+        val other = ToBaseMod.transferProviders.to_energy.fromBlock(level, pos.relative(facing.opposite, 2), facing)
+        if (other != null) {
+            val context = energy[turbine]!!
+            context.energy = speed.div(turbineSpeed).times(baseEnergyRate * turbine.turbineRate).toLong()
+
+            TransferContext.moveAny(Unit, context.getTotalAmount(Unit), context, other)
+        }
+    }
+
+    /**
+     * Applies damage to entities within a specified collision area, pushing them based on their position
+     * relative to the center and the direction of the rotor blades.
+     *
+     * @param level The world level where the rotor blades are located.
+     * @param facing The direction the rotor blades are facing, influencing the force vector applied to entities.
+     * @param center The central position of the rotor blades used for calculating force and damage.
+     * @param collision The axis-aligned bounding box defining the collision area to check for entities.
+     */
+    private fun tickDamage(level: ServerLevel, facing: Direction, center: Vec3, collision: AABB) {
+        val entities = level.getEntitiesOfClass(LivingEntity::class.java, collision)
+        if (entities.isNotEmpty()) {
+            val source = DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(ToStarsMod.damageTypes.rotor_blades), center)
+            val damage = 0.5f + ceil(speed.times(30f.div(fanSpeed))).div(10f)
+            for (affected in entities) {
+                if (affected.hurtServer(level, source, damage)) {
+                    val vector = affected.position().subtract(center).normalize()
+                        .scale(speed.times(0.8).div(fanSpeed))
+                        .with(facing.axis, facing.unitVec3.get(facing.axis).times(1.0))
+                        .with(Direction.Axis.Y, 0.5)
+                    affected.addDeltaMovement(vector)
+                }
+            }
+        }
+    }
+
+    /**
+     * Applies a pushing force to entities within a specified collision area based on their position relative to
+     * the center and the direction of a facing vector. Entities are pushed away from the rotor blades with a force
+     * proportional to their distance from the center, while taking into account environmental and movement factors.
+     *
+     * @param level The world level where the rotor blades are operating.
+     * @param pos The position of the rotor blades in the world.
+     * @param facing The direction of the rotor blades, determining the direction of the applied force.
+     * @param center The central position of the rotor blades used for calculating the force applied to entities.
+     * @param collision The axis-aligned bounding box defining the area to check for entities affected by the pushing force.
+     */
+    private fun tickPush(level: ServerLevel, pos: BlockPos, facing: Direction, center: Vec3, collision: AABB) {
+        val range = 1.0 + (speed * fanRange / fanSpeed)
+        val area = collision.expandTowards(facing.stepX.times(range), 0.0, facing.stepZ.times(range))
+        val entities = level.getEntities(null, area)
+        for (affected in entities) {
+            if ((affected as? Player)?.abilities?.flying == true) continue
+            if (level.clip(ClipContext(affected.position(), affected.position().with(facing.axis, pos.get(facing.axis).plus(0.5 + facing.unitVec3.get(facing.axis).times(0.5))), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, affected)).type != HitResult.Type.MISS) continue
+            val power = 1.2 - (affected.position().distanceTo(center) / range)
+            var motion = facing.unitVec3.scale(speed.times(fanMotion.times(fanSpeed)).times(power.coerceAtLeast(0.0)))
+            if (affected.isSteppingCarefully) {
+                if ((affected as? Player)?.isCreative == true) {
+                    continue
+                }
+                motion = motion.normalize().scale(0.005)
+            }
+            affected.addDeltaMovement(motion)
+        }
+    }
+
     companion object {
+
+        /**
+         * How fast the blades turn while a turbine is driving them.
+         */
         const val turbineSpeed = 0.04f
+
+        /**
+         * How much energy a turbine of rate one makes from the blades turning at full speed.
+         */
         const val baseEnergyRate = 1000L
 
+        /**
+         * How fast the blades turn while redstone rather than a turbine is driving them.
+         */
         const val fanSpeed = 0.14f
+
+        /**
+         * How hard the blades push an entity in front of them while they are being used as a fan.
+         */
         const val fanMotion = 7.5f
+
+        /**
+         * How far in front of the blades that push reaches.
+         */
         const val fanRange = 7.0f
 
+        /**
+         * Ticks the block entity.
+         *
+         * @param level The level it is in.
+         * @param pos Its position.
+         * @param state Its state.
+         * @param entity The block entity being ticked.
+         */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: RotorBlockEntity) {
             val turbine = ToStarsMod.blocks.rotor_blades.getTurbine(state, pos, level)
             val facing = state.getValue(HORIZONTAL_FACING)
@@ -88,32 +241,8 @@ class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMo
                 }
             } else {
                 if (turbine != null) {
-                    entity.speed = 0f
-                    for (i in 1..3) {
-                        val pos2 = pos.below(i)
-                        val boiler = level.getBlockState(pos2)
-                        if (boiler.block is BoilingCauldronBlock) {
-                            val fill = boiler.getValue(LEVEL)
-                            val heat = level.getBlockEntity(pos2, ToStarsMod.blockEntities.boiler).getOrNull()?.heats?.values?.sum() ?: break
-                            entity.speed = heat.coerceIn(0f, 200f).div(100f).times(fill.div(3f)).times(turbineSpeed)
-                            break
-                        } else if (!boiler.getCollisionShape(level, pos2).isEmpty) {
-                            break
-                        }
-                    }
-
-                    if (Mth.equal(entity.speed, 0f) && powered) {
-                        level.setBlock(pos, state.setValue(POWERED, false), 3)
-                    } else if (!Mth.equal(entity.speed, 0f) && !powered) {
-                        level.setBlock(pos, state.setValue(POWERED, true), 3)
-                    }
-
-                    val other = ToBaseMod.transferProviders.to_energy.fromBlock(level, pos.relative(facing.opposite, 2), facing)
-                    if (other != null) {
-                        val context = entity.energy[turbine]!!
-                        context.energy = entity.speed.div(turbineSpeed).times(baseEnergyRate * turbine.turbineRate).toLong()
-
-                        TransferContext.moveAny(Unit, context.getTotalAmount(Unit), context, other)
+                    if (slevel != null) {
+                        entity.tickTurbine(slevel, state, pos, facing, turbine, powered)
                     }
                 } else {
                     entity.speed = level.getBestNeighborSignal(pos) * fanSpeed / 15f
@@ -136,57 +265,45 @@ class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMo
             val collision = AABB(pos)
                 .inflate(facing.stepZ.absoluteValue.times(0.4), 0.0, facing.stepX.absoluteValue.times(0.4))
                 .contract(facing.stepX.absoluteValue.times(0.3), 0.0, facing.stepZ.absoluteValue.times(0.3))
-            if (turbine == null) {
-                val range = 1.0 + (entity.speed * fanRange / fanSpeed)
-                val area = collision.expandTowards(facing.stepX.times(range), 0.0, facing.stepZ.times(range))
-                val entities = level.getEntities(null, area)
-                for (affected in entities) {
-                    if ((affected as? Player)?.abilities?.flying == true) continue
-                    if (level.clip(ClipContext(affected.position(), affected.position().with(facing.axis, pos.get(facing.axis).plus(0.5 + facing.unitVec3.get(facing.axis).times(0.5))), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, affected)).type != HitResult.Type.MISS) continue
-                    val power = 1.2 - (affected.position().distanceTo(center) / range)
-                    var motion = facing.unitVec3.scale(entity.speed.times(fanMotion.times(fanSpeed)).times(power.coerceAtLeast(0.0)))
-                    if (affected.isSteppingCarefully) {
-                        if ((affected as? Player)?.isCreative == true) {
-                            continue
-                        }
-                        motion = motion.normalize().scale(0.005)
-                    }
-                    affected.addDeltaMovement(motion)
-                }
+            if (turbine == null && slevel != null) {
+                entity.tickPush(level, pos, facing, center, collision)
             }
 
             if (slevel != null && entity.speed > 0.25f.times(fanSpeed)) {
-                val entities = level.getEntitiesOfClass(LivingEntity::class.java, collision)
-                if (entities.isNotEmpty()) {
-                    val source = DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(ToStarsMod.damageTypes.rotor_blades), center)
-                    val damage = 0.5f + ceil(entity.speed.times(30f.div(fanSpeed))).div(10f)
-                    for (affected in entities) {
-                        if (affected.hurtServer(level, source, damage)) {
-                            val vector = affected.position().subtract(center).normalize()
-                                .scale(entity.speed.times(0.8).div(fanSpeed))
-                                .with(facing.axis, facing.unitVec3.get(facing.axis).times(1.0))
-                                .with(Direction.Axis.Y, 0.5)
-                            affected.addDeltaMovement(vector)
-                        }
-                    }
-                }
+                entity.tickDamage(level, facing, center, collision)
             }
         }
+
     }
 
+    /**
+     * What the blades offer a turbine of one tier, which can only be extracted from: the blades hold whatever they have made this tick and nothing can be put into them.
+     *
+     * @property tier The tier of turbine this is offered to, which decides how much the blades are worth.
+     */
     class RotorToEnergyTransferContext(val tier: MachineTier) : ToEnergyTransferContext {
+
+        /**
+         * How much energy the blades are currently holding for this tier.
+         */
         var energy = 0L
 
+        /**
+         * How the energy is rolled back where a transaction is abandoned.
+         */
         val journal = object : TransferTransactionJournal<Long>() {
+
             override fun create() = energy
+
             override fun rewind(snapshot: Long) {
                 energy = snapshot
             }
+
         }
 
         override fun getSlotCount() = 1
 
-        override fun getAmountAt(resource: Unit, index: Int) = energy
+        override fun getAmountAt(index: Int) = energy
 
         override fun getCapacityAt(resource: Unit, index: Int) = baseEnergyRate.times(tier.turbineRate).toLong()
 
@@ -202,6 +319,7 @@ class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMo
                 return 0
             }
         }
+
     }
 
 }

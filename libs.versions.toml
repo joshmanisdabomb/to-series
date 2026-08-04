@@ -1,9 +1,14 @@
 [versions]
 java = "25"
 kotlin = "2.4.0"
+
+dokka = "2.2.0"
+
+checkstyle = "13.9.0"
+detekt = "2.0.0-alpha.5"
+
 moddev = "2.0.141"
 loom = "1.17-SNAPSHOT"
-dokka = "2.2.0"
 
 minecraft = "26.2"
 minecraftRange = "[26.2, 26.3)"
@@ -19,6 +24,7 @@ kffRange = "[6.3, )"
 fabricLoader = "0.19.3"
 fabricApi = "0.154.2+26.2"
 fabricVersion = "0.154.2"
+
 flk = "1.13.12+kotlin.2.4.0"
 
 mixin = "0.8.5"
@@ -28,6 +34,9 @@ techReborn = "5.0.0"
 
 commonmark = "0.27.1"
 modeshape = "5.4.1.Final"
+
+junit = "6.1.2"
+mockk = "1.14.11"
 
 [libraries]
 minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
@@ -41,6 +50,10 @@ techReborn = { group = "teamreborn", name = "energy", version.ref = "techReborn"
 commonmark = { group = "org.commonmark", name = "commonmark", version.ref = "commonmark" }
 commonmark-yaml = { group = "org.commonmark", name = "commonmark-ext-yaml-front-matter", version.ref = "commonmark" }
 modeshape-common = { group = "org.modeshape", name = "modeshape-common", version.ref = "modeshape" }
+junit-bom = { group = "org.junit", name = "junit-bom", version.ref = "junit" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter" }
+junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

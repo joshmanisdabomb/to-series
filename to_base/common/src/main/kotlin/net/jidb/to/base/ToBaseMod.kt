@@ -12,11 +12,28 @@ import net.jidb.to.base.pub.network.ToBasePayloadLibrary
 import net.jidb.to.base.pub.tags.ToBaseBlockTagLibrary
 import net.jidb.to.base.pub.transfer.ToBaseTransferProviderLibrary
 
+/**
+ * The mod object for To Lay the Foundations. Extends [ToMod].
+ *
+ * @since 0.0.1
+ */
 object ToBaseMod : ToMod() {
+
+    /**
+     * The mod ID for To Lay the Foundations, defined as a constant for Forge @Mod and @EventBusSubscriber annotations.
+     *
+     * @since 0.0.3
+     */
     const val MOD_ID = "to_base"
 
     override val modid = MOD_ID
 
+    /**
+     * A sub mod object that holds the "content" of To Lay the Foundations, such as the research desk.
+     * This is here to keep the content of the mod separate from the API available to modders.
+     *
+     * @since 0.5.0
+     */
     val content by lazy { ToBaseContentMod(modid, logger) }
 
     override val itemComponents = ToBaseItemComponentLibrary
@@ -38,4 +55,5 @@ object ToBaseMod : ToMod() {
         super.setup()
         content.setup()
     }
+
 }

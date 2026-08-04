@@ -5,6 +5,11 @@ import net.jidb.to.base.neoforge.transfer.ForgeTransferTransaction
 import net.jidb.to.base.neoforge.transfer.energy.ForgeEnergyTransferContextProvider
 import net.jidb.to.base.neoforge.transfer.item.ForgeItemTransferContextProvider
 
+/**
+ * [TransferPlatformModule] implementation for Neoforge, which is backed by its own transfer API and capabilities.
+ *
+ * @since 0.6.0
+ */
 object TransferForgePlatformModule : TransferPlatformModule() {
 
     override fun startRootTransaction() = ForgeTransferTransaction()

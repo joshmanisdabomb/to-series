@@ -1,0 +1,17 @@
+{
+  "title": "To Lay the Foundations 1.0.0",
+  "short": "1.0.0",
+  "about": [
+    "to_base:mod_version / to_base:1.0.0"
+  ],
+  "parent": "to_base:mod / to_base:to_base",
+  "previous": "to_base:mod_version / to_base:0.8.0",
+  "tags": [
+    "to_base:major_release"
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Feels like Notch pulling the lever.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"thirteenth\",\"extra\":\", and the first stable release\",\"of\":\"self\"}} is the thirteenth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_base\"}}, and the first stable release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_base:0.8.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release adds documentation to the code, and adds support for running unit tests and gameplay tests.\n\n# In this Release\n\n## Additions\n- Added ToGameTest and associated library, so mods can declare a single test to set the test function, the test instance, and the structure it runs in.\n- Added GameTestStructureDataProvider, which writes the structure of every declared test on a generation run.\n- Added ToGameTestHelper, a set of extensions for acting on a scene as a player would - placing, breaking, finding the positions a block went to, and asserting on where its drops landed.\n- Added PlaceBreakDropGameTest, a ready-made test for the multi-position blocks used across the {{\"of\":\"to_base:tag / to_base:to_series\"}}, covering placement, breaking any one position and the single drop coming from the middle.\n- Added a unit test suite for the code that does not need a level, backed by JUnit and MockK, with test service providers and a bootstrap that starts just enough of the game for the built-in registries to be readable.\n- Added game tests for the {{\"of\":\"minecraft:block / to_base:research_desk\"}}, covering placement, handedness and breaking either half.\n- Every type, function, property and enum constant now carries documentation, at every visibility.\n- Java is now linted with Checkstyle and Kotlin is now linted with Detekt.\n- Added a package for custom Detekt rules, such as brace padding, end-of-line comment spacing, property naming, documentation coverage, and `@since` tags.\n- A *.kt file in the Java source set and a *.java file in the Kotlin source set now fail the build.\n"
+    }
+  }
+}

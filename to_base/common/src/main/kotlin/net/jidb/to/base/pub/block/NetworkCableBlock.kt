@@ -13,16 +13,27 @@ import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.ScheduledTickAccess
 import net.minecraft.world.level.block.state.BlockState
 
+/**
+ * A [CableBlock] that belongs to a block network, which is what decides both how it connects and what it carries.
+ * Connections are read straight off the network type, and any change to the cable tells the saved data holding the networks to rebuild around it.
+ *
+ * @param N The type of block network this cable belongs to.
+ * @param properties The vanilla block properties.
+ * @since 0.6.0
+ */
 abstract class NetworkCableBlock<N : BlockNetworkType>(properties: Properties) : CableBlock(properties) {
 
+    /**
+     * The network type this cable belongs to.
+     *
+     * @since 0.6.0
+     */
     abstract val network: N
 
-    override fun shouldConnect(level: LevelReader, state: BlockState, pos: BlockPos, direction: Direction, state2: BlockState, pos2: BlockPos): CableAttachType {
-        return when (network.getPositionType(level, pos2, state2, direction.opposite)) {
-            BlockNetworkPositionType.NODE -> CableAttachType.NODE
-            BlockNetworkPositionType.PATH -> CableAttachType.CABLE
-            else -> CableAttachType.NONE
-        }
+    override fun shouldConnect(level: LevelReader, state: BlockState, pos: BlockPos, direction: Direction, state2: BlockState, pos2: BlockPos) = when (network.getPositionType(level, pos2, state2, direction.opposite)) {
+        BlockNetworkPositionType.NODE -> CableAttachType.NODE
+        BlockNetworkPositionType.PATH -> CableAttachType.CABLE
+        else -> CableAttachType.NONE
     }
 
     override fun onPlace(state: BlockState, level: Level, pos: BlockPos, oldState: BlockState, movedByPiston: Boolean) {

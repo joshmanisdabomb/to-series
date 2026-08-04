@@ -7,6 +7,11 @@ import net.minecraft.client.particle.SpriteSet
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.core.particles.ParticleType
 
+/**
+ * [ParticleClientPlatformModule] implementation for Fabric.
+ *
+ * @since 0.2.0
+ */
 object ParticleFabricClientPlatformModule : ParticleClientPlatformModule() {
 
     override fun <O : ParticleOptions> registerProvider(modid: String, type: () -> ParticleType<O>, provider: (sprites: SpriteSet) -> ParticleProvider<O>) {

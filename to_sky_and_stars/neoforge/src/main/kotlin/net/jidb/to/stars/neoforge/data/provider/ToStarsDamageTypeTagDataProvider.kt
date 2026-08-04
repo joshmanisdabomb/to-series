@@ -10,6 +10,12 @@ import net.minecraft.tags.DamageTypeTags
 import net.minecraft.world.damagesource.DamageType
 import java.util.concurrent.CompletableFuture
 
+/**
+ * Generates the damage type tags of this mod, i.e. how the game should treat each of the ways its machines can kill a player.
+ *
+ * @param output Where the generated files are written.
+ * @param provider The registries the tags are built against.
+ */
 class ToStarsDamageTypeTagDataProvider(output: PackOutput, provider: CompletableFuture<HolderLookup.Provider>) : TagsProvider<DamageType>(output, Registries.DAMAGE_TYPE, provider, ToBaseMod.modid) {
 
     override fun addTags(provider: HolderLookup.Provider) {

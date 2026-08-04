@@ -8,6 +8,12 @@ import net.minecraft.resources.Identifier
 import net.neoforged.neoforge.client.data.ParticleDescriptionProvider
 import java.util.concurrent.CompletableFuture
 
+/**
+ * Generates the particle descriptions of this mod, i.e. which sprites each of its particles is drawn from.
+ *
+ * @param output Where the generated files are written.
+ * @param provider The registries the descriptions are built against.
+ */
 class ToStarsParticleDataProvider(output: PackOutput, provider: CompletableFuture<HolderLookup.Provider>) : ParticleDescriptionProvider(output) {
 
     override fun addDescriptions() {

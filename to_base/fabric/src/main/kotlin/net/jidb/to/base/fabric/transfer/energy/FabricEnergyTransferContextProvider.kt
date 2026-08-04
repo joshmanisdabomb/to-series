@@ -13,6 +13,11 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import team.reborn.energy.api.EnergyStorage
 
+/**
+ * [TransferContextProvider] implementation for Fabric, finding the energy a block or an item holds through Team Reborn's own lookups.
+ *
+ * @since 0.6.0
+ */
 object FabricEnergyTransferContextProvider : TransferContextProvider<PlatformEnergyTransferContext> {
 
     override fun fromBlock(level: Level, pos: BlockPos, side: Direction?): PlatformEnergyTransferContext? {

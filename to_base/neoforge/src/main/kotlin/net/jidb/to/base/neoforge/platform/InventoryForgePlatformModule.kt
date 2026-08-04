@@ -12,8 +12,20 @@ import net.minecraft.world.inventory.MenuType
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension
 import net.neoforged.neoforge.common.extensions.IPlayerExtension
 
+/**
+ * [InventoryPlatformModule] implementation for Neoforge.
+ *
+ * Neoforge writes the data a menu opens with straight to a buffer rather than taking a codec with the menu type, so the codec each extended menu was declared with is kept here to be looked up again when the menu is opened.
+ *
+ * @since 0.1.0
+ */
 object InventoryForgePlatformModule : InventoryPlatformModule() {
 
+    /**
+     * The codec each extended menu type sends its opening data through, kept because Neoforge's menu type does not carry it.
+     *
+     * @since 0.1.0
+     */
     private val extendedCodecs = mutableMapOf<MenuType<*>, StreamCodec<in RegistryFriendlyByteBuf, *>>()
 
     override fun <T : AbstractContainerMenu> createBasicMenu(constructor: (id: Int, playerInventory: Inventory) -> T, features: FeatureFlagSet) = MenuType(constructor, features)

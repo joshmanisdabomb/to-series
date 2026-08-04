@@ -16,6 +16,20 @@ import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
 import kotlin.jvm.optionals.getOrNull
 
+/**
+ * A [DataCollectionModule] generating the smelting and blasting recipes of an ore.
+ *
+ * What the ore smelts into is found from the name rather than named: the `_ore` suffix and any `deepslate_` or `nether_` prefix are stripped, and the item left over is looked for as it is, then with a `raw_` prefix, then with a `_dust` or `_ingot` suffix.
+ * Nothing is generated where no such item exists.
+ *
+ * @property result The item the ore smelts into, or `null` to find it from the name. Defaults to `null`.
+ * @property experience How much experience smelting the ore awards. Defaults to none.
+ * @property group A function producing the recipe book group from the result's name, or `null` for no group. Defaults to the name itself.
+ * @property category The recipe book category the recipes appear under. Defaults to miscellaneous.
+ * @property cookingCategory The cooking book category the recipes appear under. Defaults to miscellaneous.
+ * @property modify A function adjusting each recipe, given the collection and event being generated for. Defaults to leaving it as it is.
+ * @since 0.3.0
+ */
 open class OreRecipeDataCollectionModule(protected val result: ItemLike? = null, protected val experience: Float = 0f, protected val group: ((name: String) -> String)? = { it }, protected val category: RecipeCategory = RecipeCategory.MISC, protected val cookingCategory: CookingBookCategory = CookingBookCategory.MISC, protected val modify: SimpleCookingRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> SimpleCookingRecipeBuilder = { _, _ -> this }) : DataCollectionModule() {
 
     override fun generateRecipes(collection: DataCollection<Item>, event: RecipeDataCollectionEvent): Boolean {
@@ -25,11 +39,11 @@ open class OreRecipeDataCollectionModule(protected val result: ItemLike? = null,
             .replace("deepslate_", "")
             .replace("nether_", "")
 
-        val raw = result ?:
-            BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, name)).getOrNull()?.value() ?:
-            BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, "raw_$name")).getOrNull()?.value() ?:
-            BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, "${name}_dust")).getOrNull()?.value() ?:
-            BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, "${name}_ingot")).getOrNull()?.value()
+        val raw = result
+            ?: BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, name)).getOrNull()?.value()
+            ?: BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, "raw_$name")).getOrNull()?.value()
+            ?: BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, "${name}_dust")).getOrNull()?.value()
+            ?: BuiltInRegistries.ITEM.get(Identifier.fromNamespaceAndPath(modid, "${name}_ingot")).getOrNull()?.value()
         if (raw == null) return false
 
         val group = group?.invoke(raw.asItem().identifier.toString())

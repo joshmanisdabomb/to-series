@@ -17,11 +17,28 @@ import org.joml.Vector3fc
 import java.util.function.Consumer
 import kotlin.math.abs
 
+/**
+ * Draws the item form of the rotor blades, turning at whatever speed they have been given.
+ *
+ * In the world the speed comes from how fast whoever is holding them is moving; in an inventory it comes from how fast the player is dragging them about, and either way it winds down of its own accord.
+ *
+ * @property gui Whether this is drawing the item in an interface rather than in the world.
+ */
 class RotorSpecialRenderer(val gui: Boolean) : SpecialModelRenderer<Float> {
 
+    /**
+     * When the last frame was drawn, which the turn since then is worked out against.
+     */
     var frameTime: Long = 0L
 
+    /**
+     * The blockstate the item is drawn from.
+     */
     val default by lazy { ToStarsMod.blocks.rotor_blades.defaultBlockState() }
+
+    /**
+     * The baked model of the blades.
+     */
     val model by lazy { BlockModelRenderState()
         .also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update(
             it,
@@ -77,6 +94,11 @@ class RotorSpecialRenderer(val gui: Boolean) : SpecialModelRenderer<Float> {
         return 0f
     }
 
+    /**
+     * The declaration of this renderer as it is written in an item's model, before the models it needs have been baked.
+     *
+     * @property gui Whether this is drawing the item in an interface rather than in the world.
+     */
     data class Unbaked(val gui: Boolean) : SpecialModelRenderer.Unbaked<Float> {
 
         override fun type() = codec
@@ -86,11 +108,30 @@ class RotorSpecialRenderer(val gui: Boolean) : SpecialModelRenderer<Float> {
     }
 
     companion object {
+
+        /**
+         * How fast each stack of blades is currently turning.
+         */
         val rotationSpeeds = mutableMapOf<ItemStack, Float>()
+
+        /**
+         * How far round each stack of blades has turned.
+         */
         val rotationAngles = mutableMapOf<ItemStack, Float>()
+
+        /**
+         * Where the mouse was, along x, when each stack was last drawn, which the drag is measured against.
+         */
         val rotationMouseX = mutableMapOf<ItemStack, Double>()
+
+        /**
+         * Where the mouse was, along y, when each stack was last drawn.
+         */
         val rotationMouseY = mutableMapOf<ItemStack, Double>()
 
+        /**
+         * The codec the declaration is read from an item's model through.
+         */
         val codec = RecordCodecBuilder.mapCodec {
             it.group(
                 Codec.BOOL.fieldOf("gui").forGetter(Unbaked::gui)
@@ -98,6 +139,9 @@ class RotorSpecialRenderer(val gui: Boolean) : SpecialModelRenderer<Float> {
                 .apply(it, ::Unbaked)
         }
 
+        /**
+         * The corners of the space the item is drawn within, which is the whole of one block.
+         */
         private val extents = arrayOf(
             Vector3f(0.0f, 0.0f, 0.0f),
             Vector3f(0.0f, 0.0f, 1.0f),
@@ -108,6 +152,7 @@ class RotorSpecialRenderer(val gui: Boolean) : SpecialModelRenderer<Float> {
             Vector3f(1.0f, 1.0f, 0.0f),
             Vector3f(1.0f, 1.0f, 1.0f),
         )
+
     }
 
 }

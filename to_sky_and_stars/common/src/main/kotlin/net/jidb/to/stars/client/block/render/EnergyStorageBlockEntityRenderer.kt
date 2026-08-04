@@ -12,9 +12,16 @@ import net.minecraft.client.renderer.state.level.CameraRenderState
 import net.minecraft.world.level.block.DirectionalBlock
 import net.minecraft.world.phys.Vec3
 
-
+/**
+ * Draws the charge showing on the sides of a power bank, on every side but the one it faces.
+ *
+ * @param context What the renderer is built from.
+ */
 class EnergyStorageBlockEntityRenderer(context: BlockEntityRendererProvider.Context) : BlockEntityRenderer<EnergyStorageBlockEntity, EnergyStorageBlockEntityState> {
 
+    /**
+     * The shared drawing of the charge, which the item form of the block uses too.
+     */
     val renderer = EnergyStorageRenderer()
 
     override fun submit(state: EnergyStorageBlockEntityState, stack: PoseStack, nodes: SubmitNodeCollector, camera: CameraRenderState) {

@@ -14,6 +14,14 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT
 import kotlin.jvm.optionals.getOrNull
 
+/**
+ * The block entity of a centrifuge, which separates uranium into its enriched and heavy forms.
+ *
+ * A centrifuge's outputs are not interchangeable: each output slot only accepts what the recipe's preview says belongs there, so the heavy and enriched results always land in the same places.
+ *
+ * @param pos The position of the block.
+ * @param state The state of the block.
+ */
 class CentrifugeBlockEntity(pos: BlockPos, state: BlockState) : ProcessorBlockEntity(ToStarsMod.blockEntities.centrifuge, pos, state) {
 
     override var inventory = NonNullList.withSize(CentrifugeMenu.allSlots.size, ItemStack.EMPTY)
@@ -64,6 +72,15 @@ class CentrifugeBlockEntity(pos: BlockPos, state: BlockState) : ProcessorBlockEn
     }
 
     companion object {
+
+        /**
+         * Ticks the block entity.
+         *
+         * @param level The level it is in.
+         * @param pos Its position.
+         * @param state Its state.
+         * @param entity The block entity being ticked.
+         */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: CentrifugeBlockEntity) {
             ProcessorBlockEntity.tick(level, pos, state, entity)
 
@@ -75,6 +92,7 @@ class CentrifugeBlockEntity(pos: BlockPos, state: BlockState) : ProcessorBlockEn
                 }
             }
         }
+
     }
 
 }

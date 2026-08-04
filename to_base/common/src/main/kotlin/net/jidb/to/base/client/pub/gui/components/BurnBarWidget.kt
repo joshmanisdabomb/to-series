@@ -1,17 +1,19 @@
 package net.jidb.to.base.client.pub.gui.components
 
-import net.jidb.to.base.client.pub.gui.components.AbstractBarWidget.AnimationDirection
-import net.minecraft.client.gui.GuiGraphicsExtractor
-import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.client.gui.narration.NarratedElementType
 import net.minecraft.client.gui.narration.NarrationElementOutput
-import net.minecraft.client.renderer.RenderPipelines
 import net.minecraft.network.chat.Component
-import net.minecraft.network.chat.Style
 import net.minecraft.resources.Identifier
-import net.minecraft.util.ARGB
-import net.minecraft.util.Mth
 
+/**
+ * An [AbstractBarWidget] that draws the flame showing how much burn time a fuel has left, using vanilla's own furnace sprite.
+ * There is no background texture, so the flame burns down over whatever the screen already drew behind it.
+ *
+ * @property fill A function supplying how much burn time is left, as a fraction between `0` and `1`.
+ * @param x The x position of the widget.
+ * @param y The y position of the widget.
+ * @since 0.8.0
+ */
 class BurnBarWidget(val fill: () -> Float, x: Int, y: Int) : AbstractBarWidget(x, y, 14, 14) {
 
     override val animation: AnimationDirection = AnimationDirection.BOTTOM_TOP
@@ -28,7 +30,14 @@ class BurnBarWidget(val fill: () -> Float, x: Int, y: Int) : AbstractBarWidget(x
     }
 
     companion object {
+
+        /**
+         * The vanilla furnace flame sprite the bar is drawn from.
+         *
+         * @since 0.8.0
+         */
         val front: Identifier = Identifier.withDefaultNamespace("container/furnace/lit_progress")
+
     }
 
 }

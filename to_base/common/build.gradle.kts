@@ -10,6 +10,10 @@ neoForge {
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
+    // Puts the deobfuscated Minecraft jar and its libraries on the test classpath as well as the main
+    // one, so that a plain JUnit test can use the game's own types. This is not neoForge.unitTest,
+    // which boots FML and is only available to a project that names a full Neoforge version.
+    addModdingDependenciesTo(sourceSets.test.get())
 }
 
 dependencies {

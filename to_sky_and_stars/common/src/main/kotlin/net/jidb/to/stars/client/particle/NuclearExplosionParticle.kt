@@ -10,6 +10,19 @@ import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
+/**
+ * One puff of the cloud a nuclear explosion throws up, which lives longer the stronger the blast was and is drawn through its sprites at a rate that slows as it ages.
+ *
+ * @param level The level the particle is in.
+ * @param x Where it starts, along x.
+ * @param y Where it starts, along y.
+ * @param z Where it starts, along z.
+ * @param xSpeed How fast it moves, along x.
+ * @param ySpeed How fast it moves, along y.
+ * @param zSpeed How fast it moves, along z.
+ * @param power How strong the blast was, which decides how long the puff lasts.
+ * @property sprites The sprites the particle is drawn from as it ages.
+ */
 class NuclearExplosionParticle(level: ClientLevel, x: Double, y: Double, z: Double, xSpeed: Double, ySpeed: Double, zSpeed: Double, power: Float, val sprites: SpriteSet) : SingleQuadParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, sprites.first()) {
 
     init {
@@ -34,11 +47,14 @@ class NuclearExplosionParticle(level: ClientLevel, x: Double, y: Double, z: Doub
 
     override fun getLayer() = Layer.TRANSLUCENT
 
+    /**
+     * Builds a [NuclearExplosionParticle] wherever one is asked for, taking the strength of the blast off the particle's own options.
+     *
+     * @property sprites The sprites the particle is drawn from as it ages.
+     */
     class NuclearExplosionParticleProvider(val sprites: SpriteSet) : ParticleProvider<PowerParticleOption> {
 
-        override fun createParticle(options: PowerParticleOption, level: ClientLevel, x: Double, y: Double, z: Double, xSpeed: Double, ySpeed: Double, zSpeed: Double, random: RandomSource): NuclearExplosionParticle {
-            return NuclearExplosionParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.power, sprites)
-        }
+        override fun createParticle(options: PowerParticleOption, level: ClientLevel, x: Double, y: Double, z: Double, xSpeed: Double, ySpeed: Double, zSpeed: Double, random: RandomSource) = NuclearExplosionParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, options.power, sprites)
 
     }
 

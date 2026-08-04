@@ -14,6 +14,13 @@ import net.minecraft.world.level.block.BaseEntityBlock
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.BlockHitResult
 
+/**
+ * A machine that runs processor recipes, which is opened into an interface telling the client which recipes it can run.
+ *
+ * @property processor The kind of processor this is, which decides the recipes it will accept.
+ * @property machine The tier the processor is built at.
+ * @param properties The block's own properties.
+ */
 abstract class ProcessorBlock(val processor: ProcessorType, val machine: MachineTier, properties: Properties) : BaseEntityBlock(properties) {
 
     override fun useWithoutItem(state: BlockState, level: Level, pos: BlockPos, player: Player, hitResult: BlockHitResult): InteractionResult {
