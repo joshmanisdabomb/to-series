@@ -1,0 +1,68 @@
+{
+  "title": {
+    "of": "minecraft:block / to_stars:copper_machine_enclosure"
+  },
+  "about": [
+    "minecraft:block / to_stars:copper_machine_enclosure"
+  ],
+  "redirect": [
+    "minecraft:item / to_stars:copper_machine_enclosure"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:copper_machine_enclosure"
+  ],
+  "tags": [
+    "to_stars:machine",
+    "to_stars:machine/tier1",
+    "to_stars:machine/enclosure"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.4.3",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_stars:copper_machine_enclosure": {
+      "renewable": true,
+      "hardness": 4.0,
+      "resistance": 5.0,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "states": [
+        {
+          "default": true,
+          "properties": {},
+          "light": 0,
+          "map_color": 14188339
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"An extra recipe step to make your machines more expensive!\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is a block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.4.3\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\"}}. It can be placed in the world, but doesn\u0027t do anything on its own.\n\nAll {{\"of\":\"to_base:tag / to_stars:machine/enclosure\",\"plural\":true}} are an intermediary recipe step that crafts other {{\"of\":\"to_base:tag / to_stars:machine\",\"plural\":true}} of its tier.\n\nThe {{\"of\":\"self\"}} can be used to craft {{\"of\":\"to_base:tag / to_stars:machine/tier1\",\"text\":\"tier 1 machines\"}}.\n\n# Upgrading\n\n{{\"of\":\"self\",\"plural\":true}} can be directly upgraded into a {{\"of\":\"minecraft:block / to_stars:steel_machine_enclosure\"}}, giving access to {{\"of\":\"to_base:tag / to_stars:machine/tier2\",\"text\":\"tier 2 machines\"}}. The crafting recipe for this involves {{\"of\":\"minecraft:item / to_stars:steel_ingot\",\"plural\":true}}, requiring other machines of at least {{\"of\":\"to_base:tag / to_stars:machine/tier1\",\"text\":\"tier 1\"}}.\n\n{{\"of\":\"self\",\"plural\":true}} can also be upgraded into a {{\"of\":\"minecraft:block / to_stars:gold_machine_enclosure\"}}, giving access to {{\"of\":\"to_base:tag / to_stars:machine/tier1.5\",\"text\":\"tier 1.5 machines\"}}. These machines have better stats than tier 1 but are not required in the upgrade path to tier 2.\n"
+    }
+  }
+}

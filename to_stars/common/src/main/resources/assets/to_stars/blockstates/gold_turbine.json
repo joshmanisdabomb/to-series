@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,lit=false": {
+      "model": "to_stars:block/gold_turbine",
+      "y": 90
+    },
+    "facing=east,lit=true": {
+      "model": "to_stars:block/gold_turbine_lit",
+      "y": 90
+    },
+    "facing=north,lit=false": {
+      "model": "to_stars:block/gold_turbine"
+    },
+    "facing=north,lit=true": {
+      "model": "to_stars:block/gold_turbine_lit"
+    },
+    "facing=south,lit=false": {
+      "model": "to_stars:block/gold_turbine",
+      "y": 180
+    },
+    "facing=south,lit=true": {
+      "model": "to_stars:block/gold_turbine_lit",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "to_stars:block/gold_turbine",
+      "y": 270
+    },
+    "facing=west,lit=true": {
+      "model": "to_stars:block/gold_turbine_lit",
+      "y": 270
+    }
+  }
+}

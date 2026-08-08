@@ -1,0 +1,32 @@
+{
+  "parent": "to_stars:centrifuge",
+  "criteria": {
+    "has_enriched_uranium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:enriched_uranium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.enrichment.description"
+    },
+    "icon": {
+      "id": "to_stars:enriched_uranium"
+    },
+    "title": {
+      "translate": "advancements.to_stars.enrichment.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_enriched_uranium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

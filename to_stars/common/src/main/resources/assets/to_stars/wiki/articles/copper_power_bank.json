@@ -1,0 +1,114 @@
+{
+  "title": {
+    "of": "minecraft:block / to_stars:copper_power_bank"
+  },
+  "about": [
+    "minecraft:block / to_stars:copper_power_bank"
+  ],
+  "redirect": [
+    "minecraft:item / to_stars:copper_power_bank",
+    "minecraft:block_entity_type / to_stars:power_bank",
+    "minecraft:menu / to_stars:energy_storage"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:copper_power_bank"
+  ],
+  "tags": [
+    "to_base:energy",
+    "to_stars:machine",
+    "to_stars:machine/tier1",
+    "to_stars:machine/battery",
+    "to_stars:power_bank"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.3.2",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_stars:copper_power_bank": {
+      "renewable": true,
+      "hardness": 4.0,
+      "resistance": 5.0,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "states": [
+        {
+          "default": true,
+          "properties": {
+            "facing": "north"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "east"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "south"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "west"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "up"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "down"
+          },
+          "light": 0,
+          "map_color": 14188339
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Savings for a rainy day.\"\n---\n\n# Introduction\n\nThe {{\"template\":\"referral\",\"description\":\"an energy storing block\",\"plural\":false,\"of\":\"self\"}} is an energy storing block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.2\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\"}}. It can output and receive {{\"of\":\"to_base:concept / to_base:to_energy\"}} to any connected {{\"of\":\"to_base:tag / to_stars:machine\",\"plural\":true}}.\n\n# Stats\n\nInformation about a {{\"of\":\"self\"}} can be viewed by hovering over the item in an inventory, or by right clicking the placed block to open the GUI.\n\nThe {{\"of\":\"self\"}} can hold up to 40,000 {{\"of\":\"to_base:concept / to_base:to_energy\",\"text\":\"TE\"}}.\n\nThe maximum amount of {{\"of\":\"to_base:concept / to_base:to_energy\"}} that can be inserted or extracted in a single game tick is 256 {{\"of\":\"to_base:concept / to_base:to_energy\",\"text\":\"TE\"}}.\n\n# Usage\n\n{{\"of\":\"self\",\"plural\":true}} are placed directionally with an output side. All other sides receive energy.\n\nThe power bank\u0027s energy can be sent and received through {{\"of\":\"minecraft:block / to_stars:power_cable\",\"plural\":true}} or direct connections to blocks.\n\n# Charging\n\n{{\"of\":\"self\",\"plural\":true}} can insert or extract energy from any {{\"of\":\"to_base:tag / to_stars:machine/battery\"}} placed into its GUI as an item.\n\n# Preserving Energy\n\nWhen this block is broken, the stored energy is lost. To prevent this, you can mine the block with a {{\"of\":\"minecraft:item / minecraft:pickaxe\"}} enchanted with {{\"of\":\"minecraft:enchantment / minecraft:silk_touch\"}}.\n\n# Upgrading\n\n{{\"of\":\"self\",\"plural\":true}} can be directly upgraded into a {{\"of\":\"minecraft:block / to_stars:steel_power_bank\"}}, a {{\"of\":\"to_base:tag / to_stars:machine/tier2\",\"text\":\"tier 2 machine\"}} with an increased storage capacity of TBD {{\"of\":\"to_base:concept / to_base:to_energy\",\"text\":\"TE\"}}. The crafting recipe for this involves {{\"of\":\"minecraft:item / to_stars:steel_ingot\",\"plural\":true}}, requiring other machines of at least {{\"of\":\"to_base:tag / to_stars:machine/tier1\",\"text\":\"tier 1\"}}.\n\n{{\"of\":\"self\",\"plural\":true}} can also be upgraded into a {{\"of\":\"minecraft:block / to_stars:gold_power_bank\"}}, a {{\"of\":\"to_base:tag / to_stars:machine/tier1.5\",\"text\":\"tier 1.5 machine\"}} with an increased storage capacity of 100,000 {{\"of\":\"to_base:concept / to_base:to_energy\",\"text\":\"TE\"}}. This is not required to upgrade to {{\"of\":\"to_base:tag / to_stars:machine/tier2\",\"text\":\"tier 2\"}}.\n"
+    }
+  }
+}

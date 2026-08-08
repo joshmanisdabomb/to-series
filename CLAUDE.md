@@ -7,11 +7,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Multi-loader Kotlin Minecraft mod (MC 1.21.x, Java 21+, Kotlin 2.x). Two namespaces, each split into `common`/`fabric`/`neoforge`:
 
 - `to_base/` -- "To Lay the Foundations" base mod (library mod providing shared hooks, event system, registry registration, data-driven wiki, Kotlin helpers)
-- `to_sky_and_stars/` -- "To Sky and Stars" content mod (space race era nuclear theme; depends on `:to_base:common`)
+- `to_stars/` -- "To Sky and Stars" content mod (space race era nuclear theme; depends on `:to_base:common`)
 
 Each namespace has a `properties.toml` (`group`, `version`, `modId`, `modName`, optional `description`). The root `build.gradle.kts` parses these to set `group`, `version`, and project extras. Versions catalog is `libs.versions.toml`.
 
-Subprojects follow `<namespace>/<loader>` convention: `to_base/common`, `to_base/fabric`, `to_base/neoforge`, `to_sky_and_stars/common`, etc.
+Subprojects follow `<namespace>/<loader>` convention: `to_base/common`, `to_base/fabric`, `to_base/neoforge`, `to_stars/common`, etc.
 
 ## Build & Run Commands
 
@@ -23,13 +23,13 @@ Subprojects follow `<namespace>/<loader>` convention: `to_base/common`, `to_base
 **Single mod + single loader:**
 ```
 ./gradlew :to_base:neoforge:build
-./gradlew :to_sky_and_stars:fabric:build
+./gradlew :to_stars:fabric:build
 ```
 
 **Tagged builds (equivalent of CI tagged release):**
 ```
-./gradlew :to_sky_and_stars:common:build :to_sky_and_stars:fabric:build :to_sky_and_stars:neoforge:build
-./gradlew :to_sky_and_stars:neoforge:runData && git diff --exit-code
+./gradlew :to_stars:common:build :to_stars:fabric:build :to_stars:neoforge:build
+./gradlew :to_stars:neoforge:runData && git diff --exit-code
 ```
 
 **Run data generators (neoforge):**
@@ -68,7 +68,7 @@ Providers write into `<mod>/neoforge/src/main/generated` (set by `--output` in `
 - **Two kinds of test, and they reach different code.** Unit tests are plain JUnit 6 + MockK under `src/test/kotlin` in the `common` projects, run by `./gradlew test` as part of `check`/`build`. They have no modloader, level or save — `to_base/common/src/test/kotlin/net/jidb/to/base/test/MinecraftBootstrap.kt` starts just enough of the game (once per test JVM) for `BuiltInRegistries` and real `BlockState`s to be readable, which is also why anything mockk subclasses needs it to have run first; `TestEnvironmentService`/`TestRegisterService` stand in for the loader services via `META-INF/services` under `src/test/resources`. `to_base/common/build.gradle.kts` calls `addModdingDependenciesTo(sourceSets.test.get())` to put the deobfuscated Minecraft jar on the test classpath — that is *not* `neoForge.unitTest`, which boots FML. The `test` task runs from `build/test-run` (the game's logger writes a `logs/` next to the working directory) with `maxHeapSize = 2g`. Anything needing a level wants a game test instead.
 - **Game tests are declared as content, not as test sources.** A `GameTestLibrary` (see `api/gametest/`) turns one `ToGameTest` declaration into all three things the game holds a test as: the test function goes into `BuiltInRegistries.TEST_FUNCTION` when the library is built, and the `test_instance` entry plus the structure `.nbt` are written on a **data generation run** by `GameTestStructureDataProvider`. A newly declared test therefore does nothing until `runData` has been run and the output committed. A mod names its library on `ToContentMod.gameTests` and on `ToContentDataMod.gameTests`. Only Neoforge has a run for them (`register("test") { type = "gameTestServer" }` in `neoforge/build.gradle.kts`); Loom has no equivalent registered, so `runTest` is Neoforge-only. `ToGameTestHelper` holds the player-facing place/break/drop helpers, and `PlaceBreakDropGameTest` is a ready-made test for multi-position blocks.
 - **CI runs builds, data gen diffs, and game tests.** `.gitea/workflows/build.yaml` runs `build` (which includes `test`, `checkstyleMain`, `detekt` and `checkSourceLayout`), then `runData`, then `runTest`, then asserts `git diff --exit-code` and that no `enforcer_report.txt` exists. There is no typecheck beyond Gradle's Kotlin compile.
-- **Common code is consumed via capability artifacts, not project references.** `to_sky_and_stars` depends on `:to_base:common` through a declared capability (`net.jidb.to.base:to_base`). You cannot simply `compileOnly(project(":to_base:common"))`.
+- **Common code is consumed via capability artifacts, not project references.** `to_stars` depends on `:to_base:common` through a declared capability (`net.jidb.to.base:to_base`). You cannot simply `compileOnly(project(":to_base:common"))`.
 - **Fabric access wideners** are auto-detected if `[modId].accesswidener` exists under `common/src/main/resources/`. Mixin refmaps use `${modId}.refmap.json`.
 - **Neoforge AccessTransformers** are auto-detected from `META-INF/accesstransformer.cfg` if present.
 - **Wiki content** lives in `common/src/main/templates/wiki/<modId>/articles/`. Each article is a directory with `index.json`, `en_us/index.md`, optional `factsheet.json` and `changelog.json`. See `.claude/rules/wiki.md` for the complete writing convention guide.
@@ -83,7 +83,7 @@ Provides:
 - Data provider utilities for copying/deleting data and resource assets
 - Kotlin helper functions
 
-### to_sky_and_stars (content mod)
+### to_stars (content mod)
 Depends on `to_base:common` as a library. Adds uranium ore generation, nuclear items/mechanics, power cables, power banks, machine enclosures, and atomic bombs.
 
 ## Adding a New Namespace

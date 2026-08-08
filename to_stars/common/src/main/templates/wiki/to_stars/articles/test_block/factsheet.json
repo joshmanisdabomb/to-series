@@ -1,0 +1,5 @@
+{
+  "minecraft:block / to_stars:test_block": {
+    "renewable": false
+  }
+}

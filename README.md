@@ -115,10 +115,10 @@ The build script is a tweaked version of https://github.com/jaredlll08/MultiLoad
 
 # Build a single mod for a specific platform.
 ./gradlew :to_base:neoforge:build
-./gradlew :to_sky_and_stars:fabric:build
+./gradlew :to_stars:fabric:build
 ```
 
-Each mod namespace (`to_base`, `to_sky_and_stars`) has its own `common`, `fabric`, and `neoforge` subdirectories.
+Each mod namespace (`to_base`, `to_stars`) has its own `common`, `fabric`, and `neoforge` subdirectories.
 
 ### AI Policy
 

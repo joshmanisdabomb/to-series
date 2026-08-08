@@ -39,13 +39,13 @@ articles/<slug>/
 ### About field patterns
 
 Use resource identifiers with `type / modId:name` format:
-- Blocks: `"minecraft:block / to_sky_and_stars:copper_power_bank"`
-- Items: `"minecraft:item / to_sky_and_stars:uranium"`
-- Concepts: `"to_base:concept / to_sky_and_stars:nuclear_explosion"`
-- Mods: `"to_base:mod / to_base:to_sky_and_stars"`
+- Blocks: `"minecraft:block / to_stars:copper_power_bank"`
+- Items: `"minecraft:item / to_stars:uranium"`
+- Concepts: `"to_base:concept / to_stars:nuclear_explosion"`
+- Mods: `"to_base:mod / to_base:to_stars"`
 - Authors: `"to_base:author / to_base:joshmanisdabomb"`
-- Tags: `"to_base:tag / to_sky_and_stars:machine"`
-- Mod versions: `"to_base:mod_version / minecraft:20w14infinity"` (for external mods) or `"to_base:mod_version / to_sky_and_stars:0.1.0"` (for To mods)
+- Tags: `"to_base:tag / to_stars:machine"`
+- Mod versions: `"to_base:mod_version / minecraft:20w14infinity"` (for external mods) or `"to_base:mod_version / to_stars:0.1.0"` (for To mods)
 
 ### Icon patterns
 
@@ -54,10 +54,10 @@ Always an array with a single item. Must match the type in `about` — if about 
 ### Tag conventions
 
 Tags are hierarchical and mod-specific. Use patterns found in existing articles:
-- Top-level categories: `"to_sky_and_stars:machine"`, `"to_sky_and_stars:nuclear"`, `"to_base:resource"`
-- Subcategories: `"to_sky_and_stars:machine/tier1"`, `"to_sky_and_stars:machine/battery/tier1"`, `"to_base:test/items"`
+- Top-level categories: `"to_stars:machine"`, `"to_stars:nuclear"`, `"to_base:resource"`
+- Subcategories: `"to_stars:machine/tier1"`, `"to_stars:machine/battery/tier1"`, `"to_base:test/items"`
 
-Include all applicable tags — a copper_power_bank gets both `"to_sky_and_stars:machine"` and `"to_sky_and_stars:machine/battery"` for broad + narrow categorization. For concepts, tag by topic: `"to_sky_and_stars:nuclear"`.
+Include all applicable tags — a copper_power_bank gets both `"to_stars:machine"` and `"to_stars:machine/battery"` for broad + narrow categorization. For concepts, tag by topic: `"to_stars:nuclear"`.
 
 ### Redirect patterns
 
@@ -130,7 +130,7 @@ Every article must have:
 ### Cross-referencing other articles
 
 ```markdown
-{ {"of": "minecraft:block / to_sky_and_stars:copper_power_bank"} }
+{ {"of": "minecraft:block / to_stars:copper_power_bank"} }
 ```
 
 Options:
@@ -272,22 +272,22 @@ flavor: "Catchy one-liner."
 
 ### Important: Cross-mod reference rules
 
-**Articles in `to_base` must NEVER reference objects from other To mods** (like items, blocks, concepts, or tags from `to_sky_and_stars`). The to_base mod is a library mod that serves as the foundation — its wiki articles should only reference:
+**Articles in `to_base` must NEVER reference objects from other To mods** (like items, blocks, concepts, or tags from `to_stars`). The to_base mod is a library mod that serves as the foundation — its wiki articles should only reference:
 - Vanilla Minecraft objects (`minecraft:item`, `minecraft:block`, etc.)
 - Objects registered in to_base itself (`to_base:research_desk`, `to_base:test_block`, etc.)
 - Mod references (`to_base:mod / to_base:lcc`)
 - Author references (`to_base:author / to_base:joshmanisdabomb`)
 - Concepts and tags that are part of to_base's own API
 
-**Articles in `to_sky_and_stars` CAN reference to_base objects**, because to_sky_and_stars depends on to_base. This includes:
-- `{ {"of": "to_base:tag / to_sky_and_stars:machine"}}` — referencing to_base's tag system
+**Articles in `to_stars` CAN reference to_base objects**, because to_stars depends on to_base. This includes:
+- `{ {"of": "to_base:tag / to_stars:machine"}}` — referencing to_base's tag system
 - `{ {"of": "minecraft:block / to_base:research_desk"}}` — referencing base mod content
 
 ## Slug Conventions
 
 - All slugs use underscores (snake_case), matching Minecraft registry naming conventions
-- For items/blocks, use the exact Minecraft registry name (e.g., `copper_power_bank` matches `"minecraft:block / to_sky_and_stars:copper_power_bank"`)
-- For mods, use the display name slug: `to_sky_and_stars`, `to_base`
+- For items/blocks, use the exact Minecraft registry name (e.g., `copper_power_bank` matches `"minecraft:block / to_stars:copper_power_bank"`)
+- For mods, use the display name slug: `to_stars`, `to_base`
 - For versions, use semver format without prefix: `0.6.0`
 - For concepts that don't have registry names, use a descriptive snake_case slug: `nuclear_explosion`
 

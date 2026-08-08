@@ -1,0 +1,21 @@
+{
+  "title": "To Sky and Stars 0.1.0",
+  "short": "0.1.0",
+  "about": [
+    "to_base:mod_version / to_stars:0.1.0"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:atomic_bomb"
+  ],
+  "parent": "to_base:mod / to_base:to_stars",
+  "previous": "to_base:mod_version / to_stars:0.0.3",
+  "tags": [
+    "to_stars:nuclear",
+    "to_base:major_release"
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Starting off with a bang.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"fourth\",\"extra\":\", and the first major 0.x release\",\"of\":\"self\"}} is the fourth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_stars\"}}, and the first major 0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.0.3\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release focuses on reintroducing the {{\"of\":\"minecraft:block / to_stars:atomic_bomb\"}} and {{\"of\":\"to_base:concept / to_stars:nuclear_explosion\"}} previously found in {{\"of\":\"to_base:mod / to_base:lcc\"}}.\n\n# In this Release\n\n## Additions\n- The {{\"of\":\"minecraft:block / to_stars:atomic_bomb\"}}, which can be set off to detonate a devastating {{\"of\":\"to_base:concept / to_stars:nuclear_explosion\"}}.\n- {{\"of\":\"minecraft:block / to_stars:nuclear_waste\"}} and {{\"of\":\"minecraft:block / to_stars:nuclear_fire\"}} which is left after a nuke.\n\n## Removals\n- Removed the {{\"of\":\"minecraft:block / to_stars:test_block\"}}.\n"
+    }
+  }
+}

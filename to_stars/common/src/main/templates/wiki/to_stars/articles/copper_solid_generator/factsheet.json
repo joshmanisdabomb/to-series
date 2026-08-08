@@ -1,0 +1,5 @@
+{
+  "minecraft:block / to_stars:copper_solid_generator": {
+    "renewable": true
+  }
+}

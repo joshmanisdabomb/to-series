@@ -1,0 +1,36 @@
+{
+  "parent": "to_stars:nuke",
+  "criteria": {
+    "race": {
+      "conditions": {
+        "advancement": "to_stars:nuke"
+      },
+      "trigger": "to_stars:race"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.nuke_race.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "id": "to_stars:atomic_bomb"
+    },
+    "title": {
+      "translate": "advancements.to_stars.nuke_race.title"
+    }
+  },
+  "requirements": [
+    [
+      "race"
+    ]
+  ],
+  "rewards": {
+    "experience": 500,
+    "loot": [
+      "to_stars:advancements/nuke_race"
+    ]
+  },
+  "sends_telemetry_event": true
+}

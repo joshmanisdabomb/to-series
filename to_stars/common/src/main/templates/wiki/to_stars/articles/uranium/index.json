@@ -1,0 +1,11 @@
+{
+  "title": { "of": "minecraft:item / to_stars:uranium" },
+  "about": ["minecraft:item / to_stars:uranium"],
+  "icon": ["minecraft:item / to_stars:uranium"],
+  "tags": [
+    "to_stars:uranium",
+    "to_base:raw",
+    "to_base:resource",
+    "to_stars:nuclear"
+  ]
+}

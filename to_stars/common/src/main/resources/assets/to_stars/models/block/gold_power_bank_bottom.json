@@ -1,0 +1,13 @@
+{
+  "parent": "to_stars:block/template_power_bank",
+  "textures": {
+    "bottom": "to_stars:block/machine_enclosure_1_bottom",
+    "end": "to_stars:block/power_bank_1_bottom",
+    "front": "to_stars:block/gold_power_bank_side",
+    "inner_top": "to_stars:block/gold_machine_enclosure_top",
+    "inside": "to_stars:block/gold_machine_enclosure_side",
+    "particle": "to_stars:block/gold_machine_enclosure_side",
+    "side": "to_stars:block/gold_power_bank_side",
+    "top": "to_stars:block/gold_machine_enclosure_top"
+  }
+}

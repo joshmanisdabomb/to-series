@@ -1,8 +1,0 @@
-{
-  "sources": [
-    {
-      "type": "minecraft:single",
-      "resource": "to_sky_and_stars:entity/block/centrifuge"
-    }
-  ]
-}

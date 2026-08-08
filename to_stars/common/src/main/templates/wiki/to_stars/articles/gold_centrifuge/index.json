@@ -1,0 +1,13 @@
+{
+  "title": { "of": "minecraft:block / to_stars:gold_centrifuge" },
+  "about": ["minecraft:block / to_stars:gold_centrifuge"],
+  "redirect": ["minecraft:item / to_stars:gold_centrifuge"],
+  "icon": ["minecraft:block / to_stars:gold_centrifuge"],
+  "tags": [
+    "to_base:energy",
+    "to_stars:machine",
+    "to_stars:machine/tier1.5",
+    "to_stars:machine/processor",
+    "to_stars:centrifuge"
+  ]
+}

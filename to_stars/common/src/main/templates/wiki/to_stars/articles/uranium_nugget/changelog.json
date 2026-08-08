@@ -1,0 +1,20 @@
+[
+  {
+    "version": "lcc_forge:a0.2",
+    "content": {
+      "en_us": "Introduced."
+    }
+  },
+  {
+    "version": "lcc:0.1.0",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  },
+  {
+    "version": "to_stars:0.1.0",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  }
+]

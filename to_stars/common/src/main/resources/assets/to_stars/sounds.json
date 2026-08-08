@@ -1,0 +1,57 @@
+{
+  "block.generator.crackle": {
+    "sounds": [
+      "to_stars:block/generator/crackle1",
+      "to_stars:block/generator/crackle2",
+      "to_stars:block/generator/crackle3",
+      "to_stars:block/generator/crackle4"
+    ],
+    "subtitle": "subtitles.to_stars.block.generator.crackle"
+  },
+  "block.generator.empty": {
+    "sounds": [
+      "to_stars:block/generator/empty"
+    ],
+    "subtitle": "subtitles.to_stars.block.generator.empty"
+  },
+  "entity.atomic_bomb.activate": {
+    "sounds": [
+      "to_stars:entity/atomic_bomb/activate"
+    ],
+    "subtitle": "subtitles.to_stars.entity.atomic_bomb.activate"
+  },
+  "entity.atomic_bomb.cut": {
+    "sounds": [
+      "to_stars:entity/atomic_bomb/cut1",
+      "to_stars:entity/atomic_bomb/cut2",
+      "to_stars:entity/atomic_bomb/cut3"
+    ],
+    "subtitle": "subtitles.to_stars.entity.atomic_bomb.cut"
+  },
+  "entity.atomic_bomb.timer": {
+    "sounds": [
+      "to_stars:entity/atomic_bomb/timer"
+    ],
+    "subtitle": "subtitles.to_stars.entity.atomic_bomb.timer"
+  },
+  "entity.generic.nuke_large": {
+    "sounds": [
+      "to_stars:entity/generic/nuke_large"
+    ],
+    "subtitle": "subtitles.to_stars.entity.generic.nuke_large"
+  },
+  "entity.generic.nuke_small": {
+    "sounds": [
+      "to_stars:entity/generic/nuke_small"
+    ],
+    "subtitle": "subtitles.to_stars.entity.generic.nuke_small"
+  },
+  "music_disc.gravitational_influence": {
+    "sounds": [
+      {
+        "name": "to_stars:records/gravitational_influence",
+        "stream": true
+      }
+    ]
+  }
+}

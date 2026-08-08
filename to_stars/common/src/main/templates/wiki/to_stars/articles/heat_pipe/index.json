@@ -1,0 +1,10 @@
+{
+  "title": { "of": "minecraft:block / to_stars:heat_pipe" },
+  "about": ["minecraft:block / to_stars:heat_pipe"],
+  "redirect": ["minecraft:item / to_stars:heat_pipe"],
+  "icon": ["minecraft:block / to_stars:heat_pipe"],
+  "tags": [
+    "to_stars:heat",
+    "to_stars:cable"
+  ]
+}

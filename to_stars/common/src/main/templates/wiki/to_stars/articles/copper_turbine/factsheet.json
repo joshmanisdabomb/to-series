@@ -1,0 +1,5 @@
+{
+  "minecraft:block / to_stars:copper_turbine": {
+    "renewable": true
+  }
+}

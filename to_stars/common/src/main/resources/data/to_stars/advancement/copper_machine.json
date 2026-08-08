@@ -1,0 +1,32 @@
+{
+  "parent": "to_stars:root",
+  "criteria": {
+    "has_copper_enclosure": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:copper_machine_enclosure"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.copper_machine.description"
+    },
+    "icon": {
+      "id": "to_stars:copper_machine_enclosure"
+    },
+    "title": {
+      "translate": "advancements.to_stars.copper_machine.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_enclosure"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

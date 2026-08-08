@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gold_battery_unlock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:gold_battery_unlock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_stars:gold_battery"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gold_battery_unlock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_stars:gold_battery"
+    ]
+  }
+}

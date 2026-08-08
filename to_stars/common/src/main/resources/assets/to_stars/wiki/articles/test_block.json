@@ -1,0 +1,50 @@
+{
+  "title": {
+    "of": "minecraft:block / to_stars:test_block"
+  },
+  "about": [
+    "minecraft:block / to_stars:test_block"
+  ],
+  "redirect": [
+    "minecraft:item / to_stars:test_block"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:test_block"
+  ],
+  "tags": [
+    "to_base:test",
+    "to_base:test/blocks",
+    "to_base:unobtainable"
+  ],
+  "changelog": [
+    {
+      "version": "to_stars:0.0.2",
+      "content": {
+        "en_us": "Introduced as the first block of the mod."
+      }
+    },
+    {
+      "version": "to_stars:0.0.3",
+      "content": {
+        "en_us": "Added textures."
+      }
+    },
+    {
+      "version": "to_stars:0.1.0",
+      "type": "removed",
+      "content": {
+        "en_us": "Removed."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_stars:test_block": {
+      "renewable": false
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Everybody\u0027s starry-eyed.\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"description\":\"an unobtainable block\",\"plural\":false,\"of\":\"self\"}} was an unobtainable block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.0.2\"}} and removed in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\"}}. It was the first block implemented in {{\"of\":\"to_base:mod / to_base:to_stars\"}} for testing purposes, but was removed in {{\"of\":\"to_base:mod_version / to_stars:0.1.0\",\"short\":true}}, as it served no purpose that wasn\u0027t fulfilled by {{\"of\":\"minecraft:block / to_base:test_block\"}}.\n\n{{\"of\":\"self\",\"plural\":true}} has the same blue texture present on each side of the block."
+    }
+  }
+}

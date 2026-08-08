@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": "to_stars:power_cable",
+    "m": "to_stars:copper_machine_enclosure",
+    "r": "minecraft:redstone",
+    "s": "to_stars:magnetic_iron"
+  },
+  "pattern": [
+    "ccc",
+    "sss",
+    "rmr"
+  ],
+  "result": {
+    "id": "to_stars:copper_turbine"
+  }
+}

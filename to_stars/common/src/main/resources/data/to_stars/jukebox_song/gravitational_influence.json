@@ -1,0 +1,10 @@
+{
+  "comparator_output": 1,
+  "description": {
+    "translate": "jukebox_song.to_stars.gravitational_influence"
+  },
+  "length_in_seconds": 149.355,
+  "sound_event": {
+    "sound_id": "to_stars:music_disc.gravitational_influence"
+  }
+}

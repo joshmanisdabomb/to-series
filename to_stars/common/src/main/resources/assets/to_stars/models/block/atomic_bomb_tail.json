@@ -1,0 +1,10 @@
+{
+  "parent": "to_stars:block/template_atomic_bomb_tail",
+  "textures": {
+    "0": "to_stars:block/atomic_bomb_tail_side",
+    "1": "to_stars:block/atomic_bomb_tail",
+    "2": "to_stars:block/atomic_bomb_fin",
+    "3": "to_stars:block/atomic_bomb_core",
+    "particle": "to_stars:block/atomic_bomb_fin"
+  }
+}

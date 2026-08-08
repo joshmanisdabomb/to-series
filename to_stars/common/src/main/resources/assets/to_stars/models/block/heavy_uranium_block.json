@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "to_stars:block/heavy_uranium_block"
+  }
+}

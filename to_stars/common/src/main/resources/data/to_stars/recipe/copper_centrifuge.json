@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": "minecraft:glass_bottle",
+    "m": "to_stars:copper_machine_enclosure",
+    "r": "to_stars:rotor_blades"
+  },
+  "pattern": [
+    "brb",
+    "bmb"
+  ],
+  "result": {
+    "id": "to_stars:copper_centrifuge"
+  }
+}

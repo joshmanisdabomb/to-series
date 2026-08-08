@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:copper_block",
+    "c": "minecraft:copper_ingot",
+    "i": "minecraft:iron_ingot",
+    "p": "to_stars:power_cable"
+  },
+  "pattern": [
+    "ccc",
+    "pCp",
+    "iii"
+  ],
+  "result": {
+    "id": "to_stars:copper_machine_enclosure"
+  }
+}

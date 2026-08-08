@@ -548,9 +548,9 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
         }
         listToStars = this.addRenderableWidget(
             PlainTextButton.builder(
-                Component.translatable("gui.${ToBaseMod.modid}.research.lists.to_sky_and_stars"),
+                Component.translatable("gui.${ToBaseMod.modid}.research.lists.to_stars"),
                 {
-                    currentList = WikiArticleManager.index.byMod["to_sky_and_stars"] ?: emptyList()
+                    currentList = WikiArticleManager.index.byMod["to_stars"] ?: emptyList()
                     listTitle = it.message
                     changeMode(ResearchScreenMode.LIST)
                 }
@@ -558,7 +558,7 @@ class ResearchScreen(menu: ResearchMenu, playerInventory: Inventory, protected v
                 .width(listsButtonWidth.minus(4 * 3) / 4)
                 .build()
         ).apply {
-            active = Services.environment.isModLoaded("to_sky_and_stars")
+            active = Services.environment.isModLoaded("to_stars")
             setPosition(listAll!!.x, listBlocks!!.y + listBlocks!!.height + 4)
         }
 

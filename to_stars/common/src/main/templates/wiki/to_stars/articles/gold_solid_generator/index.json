@@ -1,0 +1,13 @@
+{
+  "title": { "of": "minecraft:block / to_stars:gold_solid_generator" },
+  "about": ["minecraft:block / to_stars:gold_solid_generator"],
+  "redirect": ["minecraft:item / to_stars:gold_solid_generator"],
+  "icon": ["minecraft:block / to_stars:gold_solid_generator"],
+  "tags": [
+    "to_stars:heat",
+    "to_stars:machine",
+    "to_stars:machine/tier1.5",
+    "to_stars:machine/generator",
+    "to_stars:solid_generator"
+  ]
+}

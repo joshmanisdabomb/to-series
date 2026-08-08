@@ -1,0 +1,190 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_connection",
+        "uvlock": true,
+        "x": 180
+      },
+      "when": {
+        "down": "!none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_center",
+        "uvlock": true,
+        "x": 180
+      },
+      "when": {
+        "down": "none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_end",
+        "uvlock": true,
+        "x": 180
+      },
+      "when": {
+        "down": "node"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_connection",
+        "uvlock": true
+      },
+      "when": {
+        "up": "!none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_center",
+        "uvlock": true
+      },
+      "when": {
+        "up": "none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_end",
+        "uvlock": true
+      },
+      "when": {
+        "up": "node"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_connection",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "north": "!none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_center",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "north": "none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_end",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "north": "node"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_connection",
+        "uvlock": true,
+        "x": 90,
+        "y": 180
+      },
+      "when": {
+        "south": "!none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_center",
+        "uvlock": true,
+        "x": 90,
+        "y": 180
+      },
+      "when": {
+        "south": "none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_end",
+        "uvlock": true,
+        "x": 90,
+        "y": 180
+      },
+      "when": {
+        "south": "node"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_connection",
+        "uvlock": true,
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "west": "!none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_center",
+        "uvlock": true,
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "west": "none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_end",
+        "uvlock": true,
+        "x": 90,
+        "y": 270
+      },
+      "when": {
+        "west": "node"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_connection",
+        "uvlock": true,
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "east": "!none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_center",
+        "uvlock": true,
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "east": "none"
+      }
+    },
+    {
+      "apply": {
+        "model": "to_stars:block/heat_pipe_end",
+        "uvlock": true,
+        "x": 90,
+        "y": 90
+      },
+      "when": {
+        "east": "node"
+      }
+    }
+  ]
+}

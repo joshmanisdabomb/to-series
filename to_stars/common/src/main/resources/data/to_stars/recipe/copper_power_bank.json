@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "M": "to_stars:copper_machine_enclosure",
+    "R": "minecraft:redstone_block",
+    "b": "#to_stars:batteries",
+    "p": "to_stars:power_cable"
+  },
+  "pattern": [
+    "bpb",
+    "bpb",
+    "RMR"
+  ],
+  "result": {
+    "id": "to_stars:copper_power_bank"
+  }
+}

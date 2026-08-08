@@ -1,0 +1,54 @@
+{
+  "title": "Nuclear Explosion",
+  "about": [
+    "to_base:concept / to_stars:nuclear_explosion"
+  ],
+  "redirect": [
+    "minecraft:particle_type / to_stars:nuclear_explosion",
+    "minecraft:sound_event / to_stars:entity.generic.nuke_small",
+    "minecraft:sound_event / to_stars:entity.generic.nuke_large"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:nuclear_fire"
+  ],
+  "tags": [
+    "to_stars:nuclear"
+  ],
+  "changelog": [
+    {
+      "version": "yam:u1",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "aimagg:a0.1.1",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    },
+    {
+      "version": "lcc_forge:a0.3",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    },
+    {
+      "version": "lcc:0.4.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    },
+    {
+      "version": "to_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"BIG BADA BOOM\"\n---\n\n# Introduction\n\nThe {{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is a concept introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / yam:u1\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\"}}. It can be triggered by setting off an {{\"of\":\"minecraft:block / to_stars:atomic_bomb\"}}.\n\n# Interaction\n\n## Blocks\n\nA sphere is determined at the center of the explosion with the radius depending on the strength of the explosion. All blocks within the sphere will be destroyed if their blast resistance is not high enough.\n\nBlocks that are destroyed will mostly be replaced with {{\"of\":\"minecraft:block / minecraft:air\"}}, with blocks further out from the center being replaced with {{\"of\":\"minecraft:block / to_stars:nuclear_waste\"}} and {{\"of\":\"minecraft:block / to_stars:nuclear_fire\"}} instead.\n\nBlocks that have too high a blast resistance, such as {{\"of\":\"minecraft:block / minecraft:obsidian\"}} and {{\"of\":\"minecraft:block / minecraft:bedrock\"}}, will not be destroyed and will remain intact. Blocks behind unbreakable blocks will also be protected, but may be vulnerable to {{\"of\":\"minecraft:block / to_stars:nuclear_fire\"}} damage after the initial blast.\n\n## Entities\n\nEntities that are caught directly in the blast will receive high, often fatal, damage (typically ~50-200 hearts of damage). A line of sight check, similar to the one used for the vanilla {{\"of\":\"to_base:concept / minecraft:explosion\"}}, is performed to determine if the entity is damaged by the blast.\n\nEntities that are fully behind unbreakable blocks are still damaged, but with a more forgiving range between half a heart to 2 hearts total.\n\nEntities are also given knockback proportional to the amount of damage they received.\n\n# History\n\n{{\"of\":\"self\",\"plural\":true}} have been present in:\n- {{\"of\":\"to_base:mod / to_base:yam\"}}, triggered by detonating a {{\"of\":\"minecraft:block / yam:nuke\"}}.\n- {{\"of\":\"to_base:mod / to_base:aimagg\"}}, triggered by launching a Nuclear Missile.\n- {{\"of\":\"to_base:mod / to_base:lcc_forge\"}} and {{\"of\":\"to_base:mod / to_base:lcc\"}}, triggered by detonating a {{\"of\":\"minecraft:block / to_stars:atomic_bomb\"}}.\n\nIn {{\"of\":\"to_base:mod / to_base:lcc\"}}, the blast would additionally inflict nearby entities with {{\"of\":\"minecraft:mob_effect / to_stars:radiation\",\"text\":\"radiation poisoning\"}}, with the effect getting stronger and longer the closer the entity was to the center.\n"
+    }
+  }
+}

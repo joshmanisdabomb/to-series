@@ -1,0 +1,10 @@
+{
+  "title": { "of": "minecraft:item / to_stars:copper_battery" },
+  "about": ["minecraft:item / to_stars:copper_battery"],
+  "redirect": [],
+  "icon": ["minecraft:item / to_stars:copper_battery"],
+  "tags": [
+    "to_base:energy",
+    "to_stars:machine/battery/tier1"
+  ]
+}

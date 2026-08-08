@@ -1,0 +1,80 @@
+{
+  "parent": "to_stars:gold_machine",
+  "criteria": {
+    "has_gold_gold_centrifuge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_centrifuge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gold_gold_power_bank": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_power_bank"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gold_gold_solid_generator": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_solid_generator"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gold_gold_turbine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_turbine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.gold_machine_all.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "components": {
+        "to_base:energy_data": {
+          "energy": 1,
+          "max": 1,
+          "maxInput": 0,
+          "maxOutput": 0
+        }
+      },
+      "id": "to_stars:gold_power_bank"
+    },
+    "title": {
+      "translate": "advancements.to_stars.gold_machine_all.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_gold_gold_power_bank"
+    ],
+    [
+      "has_gold_gold_solid_generator"
+    ],
+    [
+      "has_gold_gold_turbine"
+    ],
+    [
+      "has_gold_gold_centrifuge"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

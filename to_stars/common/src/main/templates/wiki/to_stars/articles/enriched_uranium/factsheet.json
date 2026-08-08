@@ -1,0 +1,5 @@
+{
+  "minecraft:item / to_stars:enriched_uranium": {
+    "renewable": false
+  }
+}
