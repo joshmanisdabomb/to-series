@@ -6,6 +6,9 @@ import net.jidb.to.stars.client.gui.screens.AtomicBombScreen
 import net.jidb.to.stars.client.gui.screens.CentrifugeScreen
 import net.jidb.to.stars.client.gui.screens.EnergyStorageScreen
 import net.jidb.to.stars.client.gui.screens.HeatGeneratorScreen
+import net.jidb.to.stars.client.gui.screens.KilnScreen
+import net.jidb.to.stars.content.ToStarsBlockLibrary
+import net.jidb.to.stars.content.ToStarsBlockLibrary.kiln
 import net.jidb.to.stars.content.ToStarsMenuLibrary
 
 /**
@@ -32,5 +35,13 @@ object ToStarsScreenLibrary : ScreenLibrary(ToStarsMod.modid) {
      * The screen a centrifuge is opened into.
      */
     val centrifuge by this { ScreenEntry({ ToStarsMenuLibrary.centrifuge }, ::CentrifugeScreen) }
+
+    /**
+     * The screen a kiln is opened into.
+     * @see ToStarsBlockLibrary.kiln
+     * @see net.jidb.to.stars.content.ToStarsBlockEntityLibrary.kiln
+     * @see ToStarsMenuLibrary.kiln
+     */
+    val kiln by this { ScreenEntry({ ToStarsMenuLibrary.kiln }, ::KilnScreen) }
 
 }

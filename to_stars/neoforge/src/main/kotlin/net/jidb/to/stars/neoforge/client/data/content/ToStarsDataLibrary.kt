@@ -651,4 +651,29 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
                 .add(LootItem.lootTableItem(it.`object` as Item)))) }
     }
 
+    val kiln by this {
+        addModule {
+            val unlit = TexturedModel.ORIENTABLE_ONLY_TOP.updateTexture {
+                val front = it.get(TextureSlot.FRONT)
+                it.put(TextureSlot.FRONT, Material(front.sprite.withPath { it.replace("_front", "") }, front.forceTranslucent))
+                val side = it.get(TextureSlot.SIDE)
+                it.put(TextureSlot.SIDE, Material(side.sprite, side.forceTranslucent))
+                it.put(TextureSlot.TOP, Material(side.sprite, side.forceTranslucent))
+            }
+            LitMachineBlockModelClientDataCollectionModule(unlit, unlit.updateTexture {
+                val front = it.get(TextureSlot.FRONT)
+                it.put(TextureSlot.FRONT, Material(front.sprite.withSuffix("_lit"), front.forceTranslucent))
+            })
+        }
+        addModule { ShapedRecipeDataCollectionModule { collection, event ->
+            pattern(" b ")
+            pattern("bfb")
+            pattern("bbb")
+            define('b', Blocks.BRICKS)
+            define('f', Blocks.FURNACE)
+            event.helper.createHas(this, Blocks.BRICKS, Blocks.FURNACE)
+            this
+        } }
+    }
+
 }

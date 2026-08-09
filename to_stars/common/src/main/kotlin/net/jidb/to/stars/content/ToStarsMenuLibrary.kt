@@ -6,6 +6,7 @@ import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.inventory.menu.AtomicBombMenu
 import net.jidb.to.stars.inventory.menu.CentrifugeMenu
 import net.jidb.to.stars.inventory.menu.EnergyStorageMenu
+import net.jidb.to.stars.inventory.menu.KilnMenu
 import net.jidb.to.stars.inventory.menu.ProcessorMenu
 import net.jidb.to.stars.inventory.menu.SolidGeneratorMenu
 import net.minecraft.core.registries.BuiltInRegistries
@@ -37,5 +38,13 @@ object ToStarsMenuLibrary : SimpleRegistryLibrary<MenuType<*>>(ToStarsMod.modid)
      * The interface a centrifuge is opened into, which is told which recipes it can run as it opens.
      */
     val centrifuge by this { Services.platform.inventory.createExtendedMenu(::CentrifugeMenu, ProcessorMenu.ProcessorMenuData.codec) }
+
+    /**
+     * The networked inventory interface for the kiln.
+     * @see ToStarsBlockLibrary.kiln
+     * @see ToStarsBlockEntityLibrary.kiln
+     * @see net.jidb.to.stars.client.content.ToStarsScreenLibrary.kiln
+     */
+    val kiln by this { Services.platform.inventory.createBasicMenu(::KilnMenu) }
 
 }

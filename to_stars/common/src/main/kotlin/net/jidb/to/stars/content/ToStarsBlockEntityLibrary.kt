@@ -7,6 +7,7 @@ import net.jidb.to.stars.block.entity.AtomicBombBlockEntity
 import net.jidb.to.stars.block.entity.BoilingCauldronBlockEntity
 import net.jidb.to.stars.block.entity.CentrifugeBlockEntity
 import net.jidb.to.stars.block.entity.EnergyStorageBlockEntity
+import net.jidb.to.stars.block.entity.KilnBlockEntity
 import net.jidb.to.stars.block.entity.RotorBlockEntity
 import net.jidb.to.stars.block.entity.SolidGeneratorBlockEntity
 import net.minecraft.core.registries.BuiltInRegistries
@@ -48,5 +49,13 @@ object ToStarsBlockEntityLibrary : SimpleRegistryLibrary<BlockEntityType<*>>(ToS
      * The block entity of a centrifuge, shared by every tier of one.
      */
     val centrifuge by this { Services.platform.blocks.createBlockEntityType(::CentrifugeBlockEntity, ToStarsMod.blocks.copper_centrifuge, ToStarsMod.blocks.gold_centrifuge) }
+
+    /**
+     * The block entity for the kiln, that handles the smelting routine.
+     * @see ToStarsBlockLibrary.kiln
+     * @see ToStarsMenuLibrary.kiln
+     * @see net.jidb.to.stars.client.content.ToStarsScreenLibrary.kiln
+     */
+    val kiln by this { Services.platform.blocks.createBlockEntityType(::KilnBlockEntity, ToStarsMod.blocks.kiln) }
 
 }

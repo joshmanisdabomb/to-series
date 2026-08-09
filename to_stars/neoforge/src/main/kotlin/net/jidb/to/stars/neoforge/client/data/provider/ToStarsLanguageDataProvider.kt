@@ -34,6 +34,7 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("gui.$modid.atomic_bomb.detonate.error.fuel", "Slot 3: Enriched Uranium")
 
         add("gui.$modid.centrifuge.recipebook.filter", "Showing Centrifugible")
+        add("gui.$modid.kiln.recipebook.filter", "Showing Kiln Smeltable")
 
         add("subtitles.$modid.entity.generic.nuke_small", "Nuclear Explosion")
         add("subtitles.$modid.entity.generic.nuke_large", "Nuclear Explosion")

@@ -9,6 +9,7 @@ import net.jidb.to.stars.block.CentrifugeBlock
 import net.jidb.to.stars.block.EnergyStorageBlock
 import net.jidb.to.stars.block.HeatCableBlock
 import net.jidb.to.stars.block.InfiniteEnergyBlock
+import net.jidb.to.stars.block.KilnBlock
 import net.jidb.to.stars.block.LossyToEnergyCableBlock
 import net.jidb.to.stars.block.NuclearFireBlock
 import net.jidb.to.stars.block.NuclearWasteBlock
@@ -19,6 +20,7 @@ import net.jidb.to.stars.info.MachineTier
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.util.ColorRGBA
 import net.minecraft.util.valueproviders.UniformInt
+import net.minecraft.world.level.block.AbstractFurnaceBlock
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.DropExperienceBlock
@@ -306,5 +308,17 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .strength(-1.0F, 3600000.0F)
         .instrument(NoteBlockInstrument.TRUMPET)
         .sound(SoundType.COPPER_BULB)) }
+
+    /**
+     * Kiln block for smelting recipes faster that can't be blasted or cooked.
+     * @see ToStarsBlockEntityLibrary.kiln
+     * @see ToStarsMenuLibrary.kiln
+     * @see net.jidb.to.stars.client.content.ToStarsScreenLibrary.kiln
+     */
+    val kiln by this { entry -> KilnBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.FURNACE)
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_RED)
+        .instrument(NoteBlockInstrument.BASEDRUM)
+        .sound(SoundType.STONE)) }
 
 }
