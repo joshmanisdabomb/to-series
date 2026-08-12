@@ -191,16 +191,17 @@ def includeSharedModIdCapability = (project.name == "common")
     }
 }
 
+//LGPLv3 s4b requires both the license document and the GNU GPL it incorporates. They are copied to the archive root
+//under their own names, unsuffixed, so that they stay siblings of each other exactly as they are in the repository —
+//the relative links LICENSE.md makes to the other three only resolve if the four remain in one directory together.
+def licenseFiles = rootProject.files('LICENSE.md', 'LGPL-3.0.txt', 'GPL-3.0.txt', 'CC-BY-NC-SA-4.0.txt')
+
 sourcesJar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${modId}" }
-    }
+    from(licenseFiles)
 }
 
 jar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${modId}" }
-    }
+    from(licenseFiles)
 
     manifest {
         attributes([
@@ -257,7 +258,9 @@ processResources {
             'kff_version_range'            : libs.versions.kffRange.get(),
             'to_base_version'              : toBaseVersion,
             'to_base_version_range'        : "[" + toBaseVersion + ", )",
-            'credits'                      : credits,
+            'homepage'                     : homepage,
+            'sources'                      : sources,
+            'issues'                       : issues,
             'java_version'                 : libs.versions.java.get()
     ]
 

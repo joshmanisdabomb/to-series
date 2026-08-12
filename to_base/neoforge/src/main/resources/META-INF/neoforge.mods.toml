@@ -1,6 +1,6 @@
 modLoader = "kotlinforforge"
 loaderVersion = "${kff_version_range}"
-#issueTrackerURL = ""
+issueTrackerURL = "${issues}"
 license = "${license}"
 
 [[mods]]
@@ -11,6 +11,7 @@ authors = "${mod_author}"
 description = '''${description}'''
 logoFile = "assets/${mod_id}/icon.png"
 credits = "annielams"
+displayURL = "${homepage}"
 
 [[dependencies."${mod_id}"]]
 modId = "neoforge"

@@ -11,8 +11,9 @@
     "K3YLET"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "${homepage}",
+    "sources": "${sources}",
+    "issues": "${issues}"
   },
   "license": "${license}",
   "icon": "assets/${mod_id}/icon.png",
@@ -42,6 +43,6 @@
     "to_base": "~${to_base_version}"
   },
   "suggests": {
-    "another-mod": "*"
+    "team_reborn_energy": "*"
   }
 }
