@@ -1,6 +1,6 @@
 package net.jidb.to.base.mixin;
 
-import net.jidb.to.base.data.api.ToDataItemHelper;
+import net.jidb.to.base.pub.item.DefaultItemComponentRegistry;
 import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Mixin that records the construction of every item along with its properties.
- * This is used by {@link net.jidb.to.base.data.api.ToDataItemHelper} to get the default components of any item.
+ * This is used by {@link net.jidb.to.base.pub.item.DefaultItemComponentRegistry} to get the default components of any item.
  *
  * @see net.minecraft.world.item.Item
  */
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ItemMixin {
 
     /**
-     * Registers the item being constructed with the data item helper.
+     * Registers the item being constructed with the default component registry.
      *
      * @param properties the properties the item was built from.
      * @param info the mixin callback info.
@@ -26,7 +26,7 @@ public abstract class ItemMixin {
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     public void construct(Item.Properties properties, CallbackInfo info) {
-        ToDataItemHelper.INSTANCE.add((Item)(Object)this, properties);
+        DefaultItemComponentRegistry.INSTANCE.add((Item)(Object)this, properties);
     }
 
 }

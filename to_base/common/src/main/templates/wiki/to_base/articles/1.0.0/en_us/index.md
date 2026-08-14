@@ -20,3 +20,8 @@ This release adds documentation to the code, and adds support for running unit t
 - Java is now linted with Checkstyle and Kotlin is now linted with Detekt.
 - Added a package for custom Detekt rules, such as brace padding, end-of-line comment spacing, property naming, documentation coverage, and `@since` tags.
 - A *.kt file in the Java source set and a *.java file in the Kotlin source set now fail the build.
+
+## Changes
+- Data generation is no longer included in the final built jar.
+- Renamed ToDataItemHelper to DefaultItemComponentRegistry and moved it out of datagen packages.
+- Added ForgeDataModService, the service a mod registers to say that it generates data, replacing ToForgeClientMod::data.

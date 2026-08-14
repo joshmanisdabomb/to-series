@@ -13,7 +13,17 @@ configurations {
     commonResources {
         canBeResolved = true
     }
+    // Another namespace's jars with their data generators still in, which the shipped ones no longer
+    // carry. Kept off implementation and runtimeOnly on purpose: runtimeElements does not extend
+    // this, so the published metadata stays free of it and only the dev runs, which resolve
+    // runtimeClasspath, ever see these.
+    devRuntime {
+        canBeResolved = true
+        canBeConsumed = false
+    }
 }
+
+configurations.runtimeClasspath.extendsFrom(configurations.devRuntime)
 
 dependencies {
     def namespace = project.path.substring(1).takeBefore(':')
@@ -58,21 +68,16 @@ ext.subprojectNeoforge = { String basePath ->
                 requireCapability("$baseGroup:$baseModId-neoforge")
             }
         }
-        runtimeOnly(project("${basePath}:neoforge")) {
-            capabilities {
-                requireCapability("$baseGroup:$baseModId-neoforge")
-            }
-        }
         compileOnly(project("${basePath}:common")) {
             capabilities {
                 requireCapability("$baseGroup:$baseModId-common")
             }
         }
-        runtimeOnly(project("${basePath}:common")) {
-            capabilities {
-                requireCapability("$baseGroup:$baseModId-common")
-            }
-        }
+        // The runtime side deliberately takes devJar rather than the ordinary runtimeElements jar,
+        // which has had its data generators stripped out. This classpath is only ever a dev run's -
+        // in a real game each mod is its own jar, and each declares the other in its mod metadata.
+        devRuntime project(path: "${basePath}:neoforge", configuration: 'devElements')
+        devRuntime project(path: "${basePath}:common", configuration: 'devElements')
     }
 }
 

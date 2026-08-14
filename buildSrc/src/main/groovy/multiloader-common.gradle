@@ -200,20 +200,80 @@ sourcesJar {
     from(licenseFiles)
 }
 
+// The data generators are development-only: 'runData' and the IDE's data run configuration both
+// build from the class directories, and compile classpaths resolve a project dependency to its
+// classes directory rather than its jar, so nothing outside a dev run ever needs these packages.
+// They are stripped from the shipped jar here.
+//
+// A 'data' package anywhere under a namespace is a generator package, on either side of a 'client'
+// or 'content' split, which is one pattern rather than the six the layout would otherwise need. The
+// exception is anything under 'api', where 'data' means the game's own data rather than generation -
+// api/inventory/data is real runtime code. Ant patterns cannot spell 'include A except B', hence the
+// PatternSet and the eachFile below rather than a plain jar.exclude.
+//
+// Nothing that ships may reference these packages by name, or the jar will not resolve at runtime.
+// What keeps that true is ForgeDataModService: a mod's only seam to its own generation is an
+// implementation of it, which lives in the stripped packages and is reached through ServiceLoader.
+// Its META-INF/services entry names that implementation, so it goes the same way - a jar that
+// declared a provider it did not contain would be one FML could not build a module descriptor for.
+def datagenFilter = new org.gradle.api.tasks.util.PatternSet()
+datagenFilter.include(
+        'net/jidb/to/*/**/data/**',
+        'META-INF/services/net.jidb.to.base.neoforge.client.service.ForgeDataModService'
+)
+datagenFilter.exclude('net/jidb/to/*/api/**')
+def isDatagen = datagenFilter.asSpec
+
+def jarManifestAttributes = [
+        'Specification-Title'   : modName,
+        'Specification-Vendor'  : modAuthor,
+        'Specification-Version' : project.jar.archiveVersion,
+        'Implementation-Title'  : project.name,
+        'Implementation-Version': project.jar.archiveVersion,
+        'Implementation-Vendor' : modAuthor,
+        'Built-On-Minecraft'    : libs.versions.minecraft.get()
+]
+
 jar {
     from(licenseFiles)
 
+    eachFile { if (isDatagen.isSatisfiedBy(it)) it.exclude() }
+    // Otherwise the emptied package directories are still written as entries.
+    includeEmptyDirs = false
+
     manifest {
-        attributes([
-                'Specification-Title'   : modName,
-                'Specification-Vendor'  : modAuthor,
-                'Specification-Version' : project.jar.archiveVersion,
-                'Implementation-Title'  : project.name,
-                'Implementation-Version': project.jar.archiveVersion,
-                'Implementation-Vendor' : modAuthor,
-                'Built-On-Minecraft'    : libs.versions.minecraft.get()
-        ])
+        attributes(jarManifestAttributes)
     }
+}
+
+// The same jar with the generators left in, built but never published. Another namespace's dev runs
+// resolve this project as a jar rather than as class directories (its compile classpath gets the
+// directories, its runtime classpath does not), so without this its 'runData' and 'runTest' would
+// lose the generators that live here. It has to be one whole jar rather than the shipped jar plus a
+// companion holding only the stripped classes: the two would share net.jidb.to.<mod>.data.api, and a
+// package split across two jars is one FML's class loader will not resolve.
+def devJar = tasks.register('devJar', Jar) {
+    group = 'build'
+    description = 'Assembles a jar with the data generators left in, for another namespace\'s dev runs.'
+    archiveClassifier = 'dev'
+    from(sourceSets.main.output)
+    from(licenseFiles)
+    manifest {
+        attributes(jarManifestAttributes)
+    }
+}
+
+configurations {
+    devElements {
+        canBeConsumed = true
+        canBeResolved = false
+        // Same dependencies as the ordinary runtime variant, since all that differs is the artifact.
+        extendsFrom configurations.runtimeElements
+    }
+}
+
+artifacts {
+    devElements devJar
 }
 
 tasks.withType(DokkaTaskPartial).configureEach {

@@ -1,6 +1,6 @@
 package net.jidb.to.base.mixin;
 
-import net.jidb.to.base.data.api.ToDataItemHelper;
+import net.jidb.to.base.pub.item.DefaultItemComponentRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentInitializers;
 import net.minecraft.core.component.DataComponentType;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Mixin that records the data components declared on item properties as they are added.
- * This is used by {@link net.jidb.to.base.data.api.ToDataItemHelper} to get the default components of any item.
+ * This is used by {@link net.jidb.to.base.pub.item.DefaultItemComponentRegistry} to get the default components of any item.
  *
  * @see net.minecraft.world.item.Item.Properties
  */
@@ -31,7 +31,7 @@ public abstract class ItemPropertiesMixin {
      */
     @Inject(method = "component", at = @At("HEAD"))
     public <T> void component(DataComponentType<T> type, T value, CallbackInfoReturnable<Item.Properties> info) {
-        ToDataItemHelper.INSTANCE.addComponent((Item.Properties)(Object)this, type, value);
+        DefaultItemComponentRegistry.INSTANCE.addComponent((Item.Properties)(Object)this, type, value);
     }
 
     /**
@@ -45,7 +45,7 @@ public abstract class ItemPropertiesMixin {
      */
     @Inject(method = "delayedComponent", at = @At("HEAD"))
     public <T> void delayedComponent(DataComponentType<T> type, DataComponentInitializers.SingleComponentInitializer<T> value, CallbackInfoReturnable<Item.Properties> info) {
-        ToDataItemHelper.INSTANCE.addDelayedComponent((Item.Properties)(Object)this, type, value);
+        DefaultItemComponentRegistry.INSTANCE.addDelayedComponent((Item.Properties)(Object)this, type, value);
     }
 
     /**
@@ -59,7 +59,7 @@ public abstract class ItemPropertiesMixin {
      */
     @Inject(method = "delayedHolderComponent", at = @At("HEAD"))
     public <T> void delayedHolderComponent(DataComponentType<Holder<T>> type, ResourceKey<T> value, CallbackInfoReturnable<Item.Properties> info) {
-        ToDataItemHelper.INSTANCE.addHolderComponent((Item.Properties)(Object)this, type, value);
+        DefaultItemComponentRegistry.INSTANCE.addHolderComponent((Item.Properties)(Object)this, type, value);
     }
 
 }

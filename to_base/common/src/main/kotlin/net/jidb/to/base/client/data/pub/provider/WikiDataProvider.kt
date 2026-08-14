@@ -15,9 +15,9 @@ import net.jidb.to.base.api.helper.RegistryHelper
 import net.jidb.to.base.api.wiki.language.WikiLanguage
 import net.jidb.to.base.client.data.pub.provider.wiki.WikiArticleDataTokenParser
 import net.jidb.to.base.client.data.pub.provider.wiki.WikiDataEnforcer
-import net.jidb.to.base.data.api.ToDataItemHelper
 import net.jidb.to.base.mixin.BlockStateBaseAccessor
 import net.jidb.to.base.mixin.FireBlockAccessor
+import net.jidb.to.base.pub.item.DefaultItemComponentRegistry
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.Registry
 import net.minecraft.core.component.DataComponents
@@ -224,8 +224,8 @@ open class WikiDataProvider(val output: PackOutput, val lookup: CompletableFutur
                 when (resource) {
                     is ItemLike -> {
                         val item = resource.asItem()
-                        original.getOrPut("stack_size", ToDataItemHelper.getDefaultComponentValue(item, DataComponents.MAX_STACK_SIZE, lookup) ?: 64)
-                        original.getOrPut("rarity", (ToDataItemHelper.getDefaultComponentValue(item, DataComponents.RARITY, lookup) ?: Rarity.COMMON).name.lowercase())
+                        original.getOrPut("stack_size", DefaultItemComponentRegistry.getDefaultComponentValue(item, DataComponents.MAX_STACK_SIZE, lookup) ?: 64)
+                        original.getOrPut("rarity", (DefaultItemComponentRegistry.getDefaultComponentValue(item, DataComponents.RARITY, lookup) ?: Rarity.COMMON).name.lowercase())
 
                         original.getOrCreateObject("tags") {
                             it.add("minecraft:item", getTagJson(BuiltInRegistries.ITEM, item))
