@@ -70,6 +70,13 @@ jobs:
         with:
           arguments: ${{ steps.gradle_args.outputs.gradle_datagen }}
 
+      - name: Remove Dev Jars
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          find . -path "./${{ steps.gradle_args.outputs.glob }}/*/build/libs/*-dev.jar" -print -delete
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
