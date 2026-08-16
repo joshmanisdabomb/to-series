@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>UndocumentedFunction:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry$fun addListener</ID>
+    <ID>UndocumentedFunction:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry$fun handle</ID>
+    <ID>UndocumentedFunction:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry$internal fun register</ID>
+    <ID>UndocumentedFunction:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry.CollectedEventListener$open fun end</ID>
+    <ID>UndocumentedFunction:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry.CollectedEventListener$open fun run</ID>
+    <ID>UndocumentedFunction:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry.CollectedEventListener$open fun start</ID>
+    <ID>UndocumentedFunction:ForgeEnergyTransferContextProvider.kt:ForgeEnergyTransferContextProvider$fun fromEntity: PlatformEnergyTransferContext?</ID>
+    <ID>UndocumentedFunction:ForgeItemTransferContextProvider.kt:ForgeItemTransferContextProvider$fun fromEntity: ItemTransferContext?</ID>
+    <ID>UndocumentedFunction:ForgeRegisterService.kt:ForgeRegisterService.Companion$fun addListener</ID>
+    <ID>UndocumentedFunction:IToForgeDataMod.kt:IToForgeDataMod$fun generate</ID>
+    <ID>UndocumentedFunction:NetworkingForgePlatformModule.kt:NetworkingForgePlatformModule$private fun &lt;P : CustomPacketPayload> createForgeServerHandler: ((data: P, context: IPayloadContext) -> Unit)</ID>
+    <ID>UndocumentedFunction:ToBaseForgeClientEventHandler.kt:ToBaseForgeClientEventHandler$@SubscribeEvent fun onEntityPreTickEvent</ID>
+    <ID>UndocumentedFunction:ToBaseForgeGameEventHandler.kt:ToBaseForgeGameEventHandler$@SubscribeEvent fun onAdvancementEarnEvent</ID>
+    <ID>UndocumentedFunction:ToBaseForgeGameEventHandler.kt:ToBaseForgeGameEventHandler$@SubscribeEvent fun onEntityPreTickEvent</ID>
+    <ID>UndocumentedFunction:ToBaseForgeGameEventHandler.kt:ToBaseForgeGameEventHandler$@SubscribeEvent fun onLevelPreTickEvent</ID>
+    <ID>UndocumentedFunction:ToBaseForgeGameEventHandler.kt:ToBaseForgeGameEventHandler$@SubscribeEvent fun onUseItemOnBlockEvent</ID>
+    <ID>UndocumentedFunction:ToBaseForgeModEventHandler.kt:ToBaseForgeModEventHandler$@SubscribeEvent fun onDefaultComponentRegister</ID>
+    <ID>UndocumentedFunction:ToForgeClientMod.kt:ToForgeClientMod$@Suppress("detekt.UnusedParameter") fun onClientSetup</ID>
+    <ID>UndocumentedFunction:ToForgeClientMod.kt:ToForgeClientMod$abstract fun subscribeStub</ID>
+    <ID>UndocumentedFunction:ToForgeClientMod.kt:ToForgeClientMod$fun onGatherData</ID>
+    <ID>UndocumentedFunction:ToForgeMod.kt:ToForgeMod$@Suppress("detekt.UnusedParameter") fun onCommonSetup</ID>
+    <ID>UndocumentedFunction:ToForgeMod.kt:ToForgeMod$abstract fun subscribeStub</ID>
+    <ID>UndocumentedProperty:AutoCopyTagDataProvider.kt:AutoCopyTagDataProvider.Companion$val vanillaBlockTags by lazy { BlockTags::class.java.declaredFields.filter { field -> java.lang.reflect.Modifier.isPublic(field.modifiers) &amp;&amp; java.lang.reflect.Modifier.isStatic(field.modifiers) &amp;&amp; java.lang.reflect.Modifier.isFinal(field.modifiers) &amp;&amp; TagKey::class.java.isAssignableFrom(field.type) }.map { it.get(null) as TagKey&lt;Block> }.associateBy { it.location.path.lowercase() } }</ID>
+    <ID>UndocumentedProperty:AutoCopyTagDataProvider.kt:AutoCopyTagDataProvider.Companion$val vanillaItemTags by lazy { ItemTags::class.java.declaredFields.filter { field -> java.lang.reflect.Modifier.isPublic(field.modifiers) &amp;&amp; java.lang.reflect.Modifier.isStatic(field.modifiers) &amp;&amp; java.lang.reflect.Modifier.isFinal(field.modifiers) &amp;&amp; TagKey::class.java.isAssignableFrom(field.type) }.map { it.get(null) as TagKey&lt;Item> }.associateBy { it.location.path.lowercase() } }</ID>
+    <ID>UndocumentedProperty:BlocksForgeClientPlatformModule.kt:BlocksForgeClientPlatformModule$val registry = DeferredForgeEventRegistry(EntityRenderersEvent.RegisterRenderers::class.java)</ID>
+    <ID>UndocumentedProperty:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry$private val callbacks = mutableMapOf&lt;String, MutableList&lt;(event: E) -> Unit>>()</ID>
+    <ID>UndocumentedProperty:EntitiesForgeClientPlatformModule.kt:EntitiesForgeClientPlatformModule$val registry = DeferredForgeEventRegistry(EntityRenderersEvent.RegisterRenderers::class.java)</ID>
+    <ID>UndocumentedProperty:ForgeRegisterService.kt:ForgeRegisterService.Companion$private val registers = mutableMapOf&lt;String, MutableMap&lt;Identifier, DeferredRegister&lt;*>>>()</ID>
+    <ID>UndocumentedProperty:ForgeRegisterService.kt:ForgeRegisterService.Companion$val registry = DeferredForgeEventRegistry(NewRegistryEvent::class.java)</ID>
+    <ID>UndocumentedProperty:ForgeTransferTransaction.kt:ForgeTransferTransaction$val transaction = if (parent != null) Transaction.open(parent) else Transaction.openRoot()</ID>
+    <ID>UndocumentedProperty:IToForgeDataMod.kt:IToForgeDataMod$val event: GatherDataEvent.Client</ID>
+    <ID>UndocumentedProperty:InventoryForgePlatformModule.kt:InventoryForgePlatformModule$private val extendedCodecs = mutableMapOf&lt;MenuType&lt;*>, StreamCodec&lt;in RegistryFriendlyByteBuf, *>>()</ID>
+    <ID>UndocumentedProperty:ModelsForgeClientPlatformModule.kt:ModelsForgeClientPlatformModule$val blockTintRegistry = DeferredForgeEventRegistry(RegisterColorHandlersEvent.BlockTintSources::class.java)</ID>
+    <ID>UndocumentedProperty:ModelsForgeClientPlatformModule.kt:ModelsForgeClientPlatformModule$val itemTintRegistry = DeferredForgeEventRegistry(RegisterColorHandlersEvent.ItemTintSources::class.java)</ID>
+    <ID>UndocumentedProperty:ModelsForgeClientPlatformModule.kt:ModelsForgeClientPlatformModule$val layerRegistry = DeferredForgeEventRegistry(EntityRenderersEvent.RegisterLayerDefinitions::class.java)</ID>
+    <ID>UndocumentedProperty:ModelsForgeClientPlatformModule.kt:ModelsForgeClientPlatformModule$val specialRegistry = DeferredForgeEventRegistry(RegisterSpecialModelRendererEvent::class.java)</ID>
+    <ID>UndocumentedProperty:NetworkingForgeClientPlatformModule.kt:NetworkingForgeClientPlatformModule$val registry = DeferredForgeEventRegistry(RegisterClientPayloadHandlersEvent::class.java)</ID>
+    <ID>UndocumentedProperty:NetworkingForgePlatformModule.kt:NetworkingForgePlatformModule$val registrars = mutableMapOf&lt;String, MutableMap&lt;String, PayloadRegistrar>>()</ID>
+    <ID>UndocumentedProperty:NetworkingForgePlatformModule.kt:NetworkingForgePlatformModule$val registry = DeferredForgeEventRegistry(RegisterPayloadHandlersEvent::class.java)</ID>
+    <ID>UndocumentedProperty:ParticleForgeClientPlatformModule.kt:ParticleForgeClientPlatformModule$val registry = DeferredForgeEventRegistry(RegisterParticleProvidersEvent::class.java)</ID>
+    <ID>UndocumentedProperty:ReloadListenerForgeClientPlatformModule.kt:ReloadListenerForgeClientPlatformModule$val registry = DeferredForgeEventRegistry(AddClientReloadListenersEvent::class.java)</ID>
+    <ID>UndocumentedProperty:ReloadListenerForgePlatformModule.kt:ReloadListenerForgePlatformModule$val registry = DeferredForgeEventRegistry(AddServerReloadListenersEvent::class.java)</ID>
+    <ID>UndocumentedProperty:ScreenForgeClientPlatformModule.kt:ScreenForgeClientPlatformModule$val registry = DeferredForgeEventRegistry(RegisterMenuScreensEvent::class.java)</ID>
+    <ID>UndocumentedProperty:ToBaseDataLibrary.kt:ToBaseDataLibrary$val research_desk by this { addModule { SimpleLanguageClientDataCollectionModule("Researcher's Desk") } addModule { CustomBlockLootDataCollectionModule { collection, event -> event.helper.propertyBlockLoot( ToBaseMod.content.blocks.research_desk, ResearchDeskBlock.segment, ResearchDeskBlock.ResearchDeskSegment.LEFT) } } addModule { MiningBlockTagDataCollectionModule(MiningBlockTagDataCollectionModule.ToolType.AXE) } addModule { ShapedRecipeDataCollectionModule { collection, event -> pattern("bpi") pattern("SSS") pattern("W B") define('W', ItemTags.PLANKS) define('S', ItemTags.WOODEN_SLABS) define('B', Services.platform.tags.getCommonItem("bookshelves")!!) define('b', Items.BOOK) define('p', Items.PAPER) define('i', Items.INK_SAC) event.helper.createHas(this, ToBaseItemTagLibrary.research_desk_unlock) this } } addModule(::ResearchDeskBlockModelClientDataCollectionModule) }</ID>
+    <ID>UndocumentedProperty:ToBaseDataLibrary.kt:ToBaseDataLibrary$val test_block by this { addModule { SilkBlockLootDataCollectionModule(ToBaseMod.content.items.test_item) } }</ID>
+    <ID>UndocumentedProperty:ToBaseDataLibrary.kt:ToBaseDataLibrary$val test_block_2 by this { addModule { HorizontalBlockModelClientDataCollectionModule(TexturedModel.ORIENTABLE.updateTexture { val material = it.get(TextureSlot.BOTTOM) it.put(TextureSlot.BOTTOM, Material(material.sprite().withPath { it.replace("_bottom", "_top") }, material.forceTranslucent)) }) } }</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val bareCableTexture = { identifier: Identifier -> TextureMapping() .put(TextureSlot.SIDE, Material(identifier)) .put(TextureSlot.INSIDE, Material(identifier.withSuffix("_inside"))) .put(TextureSlot.END, Material(identifier.withSuffix("_end"))) .copySlot(TextureSlot.INSIDE, textureSlotCore) .copySlot(TextureSlot.SIDE, TextureSlot.PARTICLE) }</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10Center = TexturedModel.createDefault({ cableTexture(it.identifier.withPrefix("block/")) }, cable10CenterTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10CenterBare = TexturedModel.createDefault({ bareCableTexture(it.identifier.withPrefix("block/")) }, cable10CenterTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10CenterTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_cable10_center")), Optional.of("_center"), TextureSlot.PARTICLE, textureSlotCore )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10Connection = TexturedModel.createDefault({ cableTexture(it.identifier.withPrefix("block/")) }, cable10ConnectionTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10ConnectionBare = TexturedModel.createDefault({ bareCableTexture(it.identifier.withPrefix("block/")) }, cable10ConnectionTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10ConnectionTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_cable10_connection")), Optional.of("_connection"), TextureSlot.PARTICLE, TextureSlot.SIDE, TextureSlot.INSIDE )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10End = TexturedModel.createDefault({ cableTexture(it.identifier.withPrefix("block/")) }, cable10EndTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable10EndTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_cable10_end")), Optional.of("_end"), TextureSlot.PARTICLE, TextureSlot.END, TextureSlot.INSIDE )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4Center = TexturedModel.createDefault({ cableTexture(it.identifier.withPrefix("block/")) }, cable4CenterTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4CenterBare = TexturedModel.createDefault({ bareCableTexture(it.identifier.withPrefix("block/")) }, cable4CenterTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4CenterTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_cable4_center")), Optional.of("_center"), TextureSlot.PARTICLE, textureSlotCore )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4Connection = TexturedModel.createDefault({ cableTexture(it.identifier.withPrefix("block/")) }, cable4ConnectionTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4ConnectionBare = TexturedModel.createDefault({ bareCableTexture(it.identifier.withPrefix("block/")) }, cable4ConnectionTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4ConnectionTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_cable4_connection")), Optional.of("_connection"), TextureSlot.PARTICLE, TextureSlot.SIDE, TextureSlot.INSIDE )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4End = TexturedModel.createDefault({ cableTexture(it.identifier.withPrefix("block/")) }, cable4EndTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4EndTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_cable4_end")), Optional.of("_end"), TextureSlot.PARTICLE, TextureSlot.END, TextureSlot.INSIDE )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cable4ItemTemplate = ModelTemplate( Optional.of(IdentifierHelper.itemPrefix(ToBaseMod.modid, "template_cable4")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.SIDE, TextureSlot.INSIDE )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val cableTexture = { identifier: Identifier -> TextureMapping() .put(TextureSlot.SIDE, Material(identifier)) .put(TextureSlot.INSIDE, Material(identifier.withSuffix("_inside"))) .put(TextureSlot.END, Material(identifier.withSuffix("_end"))) .copySlot(TextureSlot.SIDE, textureSlotCore) .copySlot(TextureSlot.SIDE, TextureSlot.PARTICLE) }</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val researchDeskItemTemplate = ModelTemplate( Optional.of(IdentifierHelper.itemPrefix(ToBaseMod.modid, "template_research_desk")), Optional.empty(), TextureSlot.PARTICLE, *ToDataClientHelper.numericTextures.take(4).toTypedArray() )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val researchDeskLeft = TexturedModel.createDefault({ researchDeskTexture(it.identifier.withPrefix("block/")) }, researchDeskLeftTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val researchDeskLeftTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_research_desk_left")), Optional.of("_left"), TextureSlot.PARTICLE, ToDataClientHelper.numericTextures[0], ToDataClientHelper.numericTextures[2], )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val researchDeskRight = TexturedModel.createDefault({ researchDeskTexture(it.identifier.withPrefix("block/")) }, researchDeskRightTemplate)</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val researchDeskRightTemplate = ModelTemplate( Optional.of(IdentifierHelper.blockPrefix(ToBaseMod.modid, "template_research_desk_right")), Optional.of("_right"), TextureSlot.PARTICLE, *ToDataClientHelper.numericTextures.take(4).toTypedArray() )</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val researchDeskTexture = { identifier: Identifier -> TextureMapping() .put(ToDataClientHelper.numericTextures[0], Material(identifier.withSuffix("_writing"))) .put(ToDataClientHelper.numericTextures[1], Material(identifier.withSuffix("_ink"))) .put(ToDataClientHelper.numericTextures[2], Material(identifier)) .put(ToDataClientHelper.numericTextures[3], Material(identifier.withSuffix("_side"))) .copySlot(ToDataClientHelper.numericTextures[2], TextureSlot.PARTICLE) }</ID>
+    <ID>UndocumentedProperty:ToBaseModels.kt:ToBaseModels$val textureSlotCore = TextureSlot.create("core")</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val biomeModifiers: DatapackLibrary&lt;BiomeModifier>? get() = null</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val copyTags: List&lt;(output: PackOutput, lookup: CompletableFuture&lt;HolderLookup.Provider>, blockTags: CompletableFuture&lt;TagsProvider.TagLookup&lt;Block>>) -> BlockTagCopyingItemTagProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val damageTypes: DatapackLibrary&lt;DamageType>? get() = null</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val languages: List&lt;(output: PackOutput) -> LanguageProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val music: DatapackLibrary&lt;JukeboxSong>? get() = null</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val particles: List&lt;(output: PackOutput, lookup: CompletableFuture&lt;HolderLookup.Provider>) -> ParticleDescriptionProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val recipes: List&lt;(output: PackOutput, lookup: CompletableFuture&lt;HolderLookup.Provider>) -> RecipeProvider.Runner> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentForgeDataMod.kt:ToContentForgeDataMod$val sounds: List&lt;(output: PackOutput, lookup: CompletableFuture&lt;HolderLookup.Provider>) -> SoundDefinitionsProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToForgeClientMod.kt:ToForgeClientMod$open val eventHandler: Any? = null</ID>
+    <ID>UndocumentedProperty:ToForgeDataMod.kt:ToForgeDataMod$protected open val copyResources: Boolean = true</ID>
+    <ID>UndocumentedProperty:ToForgeDataMod.kt:ToForgeDataMod$protected open val copyTemplateModels: Boolean = true</ID>
+    <ID>UndocumentedProperty:ToForgeDataMod.kt:ToForgeDataMod$protected open val deleteExisting: List&lt;Path> = ToDataHelper.getReplaceableResources(resources)</ID>
+    <ID>UndocumentedProperty:ToForgeDataMod.kt:ToForgeDataMod$protected open val resources: Path = Path.of(event.generator.packOutput.outputFolder.toString() .replace("neoforge", "common") .replace("generated", "resources"))</ID>
+    <ID>UndocumentedProperty:ToForgeMod.kt:ToForgeMod$open val gameEvents: Any? = null</ID>
+    <ID>UndocumentedProperty:ToForgeMod.kt:ToForgeMod$open val modEvents: Any? = null</ID>
+    <ID>UndocumentedType:AutoCopyTagDataProvider.kt:AutoCopyTagDataProvider : BlockTagCopyingItemTagProvider</ID>
+    <ID>UndocumentedType:BiomeForgePlatformModule.kt:BiomeForgePlatformModule : BiomePlatformModule</ID>
+    <ID>UndocumentedType:BlocksForgeClientPlatformModule.kt:BlocksForgeClientPlatformModule : BlocksClientPlatformModule</ID>
+    <ID>UndocumentedType:BlocksForgePlatformModule.kt:BlocksForgePlatformModule : BlocksPlatformModule</ID>
+    <ID>UndocumentedType:Cable4BlockModelClientDataCollectionModule.kt:Cable4BlockModelClientDataCollectionModule : CableBlockModelClientDataCollectionModule</ID>
+    <ID>UndocumentedType:CableBlockModelClientDataCollectionModule.kt:CableBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:CollectionBlockLootDataProvider.kt:CollectionBlockLootDataProvider : BlockLootSubProvider</ID>
+    <ID>UndocumentedType:CollectionBlockTagDataProvider.kt:CollectionBlockTagDataProvider : BlockTagsProvider</ID>
+    <ID>UndocumentedType:CollectionGeneralLootDataProvider.kt:CollectionGeneralLootDataProvider : LootTableSubProvider</ID>
+    <ID>UndocumentedType:CollectionItemTagDataProvider.kt:CollectionItemTagDataProvider : ItemTagsProvider</ID>
+    <ID>UndocumentedType:CollectionModelDataProvider.kt:CollectionModelDataProvider : ModelProvider</ID>
+    <ID>UndocumentedType:CollectionRecipeDataProvider.kt:CollectionRecipeDataProvider : RecipeProvider</ID>
+    <ID>UndocumentedType:CollectionRecipeDataProvider.kt:CollectionRecipeDataProvider$Runner : Runner</ID>
+    <ID>UndocumentedType:CreativeTabsForgePlatformModule.kt:CreativeTabsForgePlatformModule : CreativeTabsPlatformModule</ID>
+    <ID>UndocumentedType:DataForgeClientPlatformModule.kt:DataForgeClientPlatformModule : DataClientPlatformModule</ID>
+    <ID>UndocumentedType:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry$CollectedEventListener&lt;E : Event></ID>
+    <ID>UndocumentedType:DeferredForgeEventRegistry.kt:DeferredForgeEventRegistry&lt;E : Event></ID>
+    <ID>UndocumentedType:EntitiesForgeClientPlatformModule.kt:EntitiesForgeClientPlatformModule : EntitiesClientPlatformModule</ID>
+    <ID>UndocumentedType:ExtendedBlockModelGenerators.kt:ExtendedBlockModelGenerators : IExtendedBlockModelGenerators</ID>
+    <ID>UndocumentedType:ForgeClientPlatform.kt:ForgeClientPlatform : ClientPlatform</ID>
+    <ID>UndocumentedType:ForgeClientPlatformService.kt:ForgeClientPlatformService : ClientPlatformService</ID>
+    <ID>UndocumentedType:ForgeEnergyTransferContext.kt:ForgeEnergyTransferContext : PlatformEnergyTransferContext</ID>
+    <ID>UndocumentedType:ForgeEnergyTransferContextProvider.kt:ForgeEnergyTransferContextProvider : TransferContextProvider</ID>
+    <ID>UndocumentedType:ForgeEnvironmentService.kt:ForgeEnvironmentService : BaseEnvironmentService</ID>
+    <ID>UndocumentedType:ForgeItemTransferContext.kt:ForgeItemTransferContext : ItemTransferContext</ID>
+    <ID>UndocumentedType:ForgeItemTransferContextProvider.kt:ForgeItemTransferContextProvider : ItemTransferContextProvider</ID>
+    <ID>UndocumentedType:ForgePlatform.kt:ForgePlatform : Platform</ID>
+    <ID>UndocumentedType:ForgeRegisterService.kt:ForgeRegisterService : BaseRegisterService</ID>
+    <ID>UndocumentedType:ForgeTransferTransaction.kt:ForgeTransferTransaction : TransferTransaction</ID>
+    <ID>UndocumentedType:IToForgeDataMod.kt:IToForgeDataMod</ID>
+    <ID>UndocumentedType:InventoryForgePlatformModule.kt:InventoryForgePlatformModule : InventoryPlatformModule</ID>
+    <ID>UndocumentedType:ModelsForgeClientPlatformModule.kt:ModelsForgeClientPlatformModule : ModelsClientPlatformModule</ID>
+    <ID>UndocumentedType:NetworkingForgeClientPlatformModule.kt:NetworkingForgeClientPlatformModule : NetworkingClientPlatformModule</ID>
+    <ID>UndocumentedType:NetworkingForgePlatformModule.kt:NetworkingForgePlatformModule : NetworkingPlatformModule</ID>
+    <ID>UndocumentedType:ParticleForgeClientPlatformModule.kt:ParticleForgeClientPlatformModule : ParticleClientPlatformModule</ID>
+    <ID>UndocumentedType:ReloadListenerForgeClientPlatformModule.kt:ReloadListenerForgeClientPlatformModule : ReloadListenerClientPlatformModule</ID>
+    <ID>UndocumentedType:ReloadListenerForgePlatformModule.kt:ReloadListenerForgePlatformModule : ReloadListenerPlatformModule</ID>
+    <ID>UndocumentedType:ResearchDeskBlockModelClientDataCollectionModule.kt:ResearchDeskBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:ScreenForgeClientPlatformModule.kt:ScreenForgeClientPlatformModule : ScreenClientPlatformModule</ID>
+    <ID>UndocumentedType:TagsForgePlatformModule.kt:TagsForgePlatformModule : TagsPlatformModule</ID>
+    <ID>UndocumentedType:ToBaseDataLibrary.kt:ToBaseDataLibrary : DataCollectionLibrary</ID>
+    <ID>UndocumentedType:ToBaseForgeClientEventHandler.kt:ToBaseForgeClientEventHandler</ID>
+    <ID>UndocumentedType:ToBaseForgeClientMod.kt:ToBaseForgeClientMod : ToForgeClientMod</ID>
+    <ID>UndocumentedType:ToBaseForgeDataMod.kt:ToBaseForgeDataMod : ToForgeDataMod</ID>
+    <ID>UndocumentedType:ToBaseForgeGameEventHandler.kt:ToBaseForgeGameEventHandler</ID>
+    <ID>UndocumentedType:ToBaseForgeMod.kt:ToBaseForgeMod : ToForgeMod</ID>
+    <ID>UndocumentedType:ToBaseForgeModEventHandler.kt:ToBaseForgeModEventHandler</ID>
+    <ID>UndocumentedType:ToBaseItemTagDataProvider.kt:ToBaseItemTagDataProvider : ItemTagsProvider</ID>
+    <ID>UndocumentedType:ToBaseLanguageDataProvider.kt:ToBaseLanguageDataProvider : MultiLanguageDataProvider</ID>
+    <ID>UndocumentedType:ToBaseModels.kt:ToBaseModels</ID>
+    <ID>UndocumentedType:ToContentForgeDataMod.kt:ToContentForgeDataMod : ToContentDataMod</ID>
+    <ID>UndocumentedType:ToForgeClientMod.kt:ToForgeClientMod : ToPlatformClientMod</ID>
+    <ID>UndocumentedType:ToForgeDataMod.kt:ToForgeDataMod : IToForgeDataModToContentForgeDataModToCollectionDataMod</ID>
+    <ID>UndocumentedType:ToForgeMod.kt:ToForgeMod : ToPlatformMod</ID>
+    <ID>UndocumentedType:TransferForgePlatformModule.kt:TransferForgePlatformModule : TransferPlatformModule</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -126,8 +126,9 @@ Just to be upfront as I know it's a touchy subject - sometimes AI is used to wri
 
 - The code for calculating block networks.
 - The code for calculating damage to blocks in a nuclear explosion.
-- Creating first drafts for articles, which I then edit and improve manually.
+- Creating first drafts for wiki articles, which I then edit and improve manually.
+- Gradle. Bloody 'ate Gradle.
 
 I make use of my locally running AI model where I can, but sometimes I use Codex or Claude.
 
-Creating this mod is how I spend my free time, so rest assured, most of it is written by hand.
+Creating this mod is how I spend my free time, so rest assured, the vast majority of it is written by hand.

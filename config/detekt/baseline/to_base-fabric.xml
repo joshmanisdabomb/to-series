@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>UndocumentedFunction:FabricEventHandlerLibrary.kt:FabricEventHandlerLibrary$operator fun &lt;T : Any> invoke: Library&lt;Any, Any>.LibraryEntry&lt;T, T></ID>
+    <ID>UndocumentedProperty:FabricTransferTransaction.kt:FabricTransferTransaction$val transaction = if (parent != null) Transaction.openNested(parent) else Transaction.openOuter()</ID>
+    <ID>UndocumentedProperty:ToBaseFabricClientEventHandlerLibrary.kt:ToBaseFabricClientEventHandlerLibrary$val client_level_tick_pre by this(ClientTickEvents.START_LEVEL_TICK, ClientTickEvents.StartLevelTick { level -> ToBaseClientEventLibrary.client_level_tick_pre.call(ClientLevelEventContext(level)) })</ID>
+    <ID>UndocumentedProperty:ToBaseFabricEventHandlerLibrary.kt:ToBaseFabricEventHandlerLibrary$val modify_default_components by this(DefaultItemComponentEvents.MODIFY, DefaultItemComponentEvents.ModifyCallback { ToBaseEventLibrary.modify_default_components.call(ModifyItemComponentEventContext({ item, patch -> it.modify(item.asItem()) { builder, holder, item -> patch(builder, item) } }, { predicate, patch -> it.modify(predicate) { builder, holder, item -> patch(builder, item) } })) })</ID>
+    <ID>UndocumentedProperty:ToBaseFabricEventHandlerLibrary.kt:ToBaseFabricEventHandlerLibrary$val server_level_tick_pre by this(ServerTickEvents.START_LEVEL_TICK, ServerTickEvents.StartLevelTick { level -> ToBaseEventLibrary.server_level_tick_pre.call(ServerLevelEventContext(level)) })</ID>
+    <ID>UndocumentedProperty:ToBaseFabricEventHandlerLibrary.kt:ToBaseFabricEventHandlerLibrary$val use_item_on_block by this(BlockEvents.USE_ITEM_ON, BlockEvents.UseItemOnCallback { stack, state, level, pos, player, hand, result -> val results = ToBaseEventLibrary.use_item_on_block.call(BlockInteractEventContext(player, stack, level, state, pos, hand)) if (results.cancelled) { return@UseItemOnCallback results.results.last().result } return@UseItemOnCallback null })</ID>
+    <ID>UndocumentedProperty:ToFabricClientMod.kt:ToFabricClientMod$open val events: FabricEventHandlerLibrary? = null</ID>
+    <ID>UndocumentedProperty:ToFabricMod.kt:ToFabricMod$open val events: FabricEventHandlerLibrary? = null</ID>
+    <ID>UndocumentedType:BiomeFabricPlatformModule.kt:BiomeFabricPlatformModule : BiomePlatformModule</ID>
+    <ID>UndocumentedType:BlocksFabricClientPlatformModule.kt:BlocksFabricClientPlatformModule : BlocksClientPlatformModule</ID>
+    <ID>UndocumentedType:BlocksFabricPlatformModule.kt:BlocksFabricPlatformModule : BlocksPlatformModule</ID>
+    <ID>UndocumentedType:CreativeTabsFabricPlatformModule.kt:CreativeTabsFabricPlatformModule : CreativeTabsPlatformModule</ID>
+    <ID>UndocumentedType:DataFabricClientPlatformModule.kt:DataFabricClientPlatformModule : DataClientPlatformModule</ID>
+    <ID>UndocumentedType:EntitiesFabricClientPlatformModule.kt:EntitiesFabricClientPlatformModule : EntitiesClientPlatformModule</ID>
+    <ID>UndocumentedType:FabricClientPlatform.kt:FabricClientPlatform : ClientPlatform</ID>
+    <ID>UndocumentedType:FabricClientPlatformService.kt:FabricClientPlatformService : ClientPlatformService</ID>
+    <ID>UndocumentedType:FabricEnergyTransferContext.kt:FabricEnergyTransferContext : PlatformEnergyTransferContext</ID>
+    <ID>UndocumentedType:FabricEnergyTransferContextProvider.kt:FabricEnergyTransferContextProvider : TransferContextProvider</ID>
+    <ID>UndocumentedType:FabricEnvironmentService.kt:FabricEnvironmentService : BaseEnvironmentService</ID>
+    <ID>UndocumentedType:FabricEventHandlerLibrary.kt:FabricEventHandlerLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:FabricItemTransferContext.kt:FabricItemTransferContext : ItemTransferContext</ID>
+    <ID>UndocumentedType:FabricItemTransferContextProvider.kt:FabricItemTransferContextProvider : ItemTransferContextProvider</ID>
+    <ID>UndocumentedType:FabricPlatform.kt:FabricPlatform : Platform</ID>
+    <ID>UndocumentedType:FabricRegisterService.kt:FabricRegisterService : BaseRegisterService</ID>
+    <ID>UndocumentedType:FabricTransferTransaction.kt:FabricTransferTransaction : TransferTransaction</ID>
+    <ID>UndocumentedType:InventoryFabricPlatformModule.kt:InventoryFabricPlatformModule : InventoryPlatformModule</ID>
+    <ID>UndocumentedType:ModelsFabricClientPlatformModule.kt:ModelsFabricClientPlatformModule : ModelsClientPlatformModule</ID>
+    <ID>UndocumentedType:NetworkingFabricClientPlatformModule.kt:NetworkingFabricClientPlatformModule : NetworkingClientPlatformModule</ID>
+    <ID>UndocumentedType:NetworkingFabricPlatformModule.kt:NetworkingFabricPlatformModule : NetworkingPlatformModule</ID>
+    <ID>UndocumentedType:ParticleFabricClientPlatformModule.kt:ParticleFabricClientPlatformModule : ParticleClientPlatformModule</ID>
+    <ID>UndocumentedType:ReloadListenerFabricClientPlatformModule.kt:ReloadListenerFabricClientPlatformModule : ReloadListenerClientPlatformModule</ID>
+    <ID>UndocumentedType:ReloadListenerFabricPlatformModule.kt:ReloadListenerFabricPlatformModule : ReloadListenerPlatformModule</ID>
+    <ID>UndocumentedType:ScreenFabricClientPlatformModule.kt:ScreenFabricClientPlatformModule : ScreenClientPlatformModule</ID>
+    <ID>UndocumentedType:TagsFabricPlatformModule.kt:TagsFabricPlatformModule : TagsPlatformModule</ID>
+    <ID>UndocumentedType:ToBaseFabricClientEventHandlerLibrary.kt:ToBaseFabricClientEventHandlerLibrary : FabricEventHandlerLibrary</ID>
+    <ID>UndocumentedType:ToBaseFabricClientMod.kt:ToBaseFabricClientMod : ToFabricClientMod</ID>
+    <ID>UndocumentedType:ToBaseFabricEventHandlerLibrary.kt:ToBaseFabricEventHandlerLibrary : FabricEventHandlerLibrary</ID>
+    <ID>UndocumentedType:ToBaseFabricMod.kt:ToBaseFabricMod : ToFabricMod</ID>
+    <ID>UndocumentedType:ToFabricClientMod.kt:ToFabricClientMod : ToPlatformClientModClientModInitializer</ID>
+    <ID>UndocumentedType:ToFabricMod.kt:ToFabricMod : ToPlatformModModInitializer</ID>
+    <ID>UndocumentedType:TransferFabricPlatformModule.kt:TransferFabricPlatformModule : TransferPlatformModule</ID>
+  </CurrentIssues>
+</SmellBaseline>

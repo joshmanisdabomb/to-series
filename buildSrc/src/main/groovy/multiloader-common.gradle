@@ -54,6 +54,11 @@ detekt {
     basePath = rootProject.layout.projectDirectory
     // Any finding at all fails the build, matching checkstyle's maxWarnings = 0.
     failOnSeverity = dev.detekt.gradle.extensions.FailOnSeverity.Info
+    // Findings that were already present when the baseline was taken are recorded there and no longer
+    // fail the build; anything new still does. One file per project, since each project runs its own
+    // detekt over its own sources. Regenerate a project's file with its detektBaseline task, and note
+    // that the task overwrites rather than merges - it re-records everything detekt currently finds.
+    baseline = rootProject.file("config/detekt/baseline/${project.path.substring(1).replace(':', '-')}.xml")
 }
 
 dependencies {

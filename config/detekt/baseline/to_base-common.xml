@@ -1,0 +1,676 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>MissingSinceTag:ToBaseMod.kt:ToBaseMod$/** * A sub mod object that holds the "content" of To Lay the Foundations, such as the research desk. * This is here to keep the content of the mod separate from the API available to modders. */ val content by lazy { ToBaseContentMod(modid, logger) }</ID>
+    <ID>MissingSinceTag:ToBaseMod.kt:ToBaseMod$/** * The mod ID for To Lay the Foundations, defined as a constant for Forge @Mod and @EventBusSubscriber annotations. */ const val MOD_ID = "to_base"</ID>
+    <ID>MissingSinceTag:ToMod.kt:ToMod$/** * A collection of initialization hooks that will be executed after the mod is initialised. * This stores hooks passed to [onInitialised] from [ToModListener]. */ protected val initHooks = mutableListOf&lt;(mod: ToMod) -> Unit>()</ID>
+    <ID>MissingSinceTag:ToMod.kt:ToMod$/** * A collection of setup hooks that will be executed after the mod is set up. * This stores hooks passed to [onSetup] from [ToModListener]. */ protected val setupHooks = mutableListOf&lt;(mod: ToMod) -> Unit>()</ID>
+    <ID>UndocumentedFunction:AbstractBarWidget.kt:AbstractBarWidget$abstract fun getBackTexture: Identifier?</ID>
+    <ID>UndocumentedFunction:AbstractBarWidget.kt:AbstractBarWidget$abstract fun getFill: Float</ID>
+    <ID>UndocumentedFunction:AbstractBarWidget.kt:AbstractBarWidget$abstract fun getFrontTexture: Identifier?</ID>
+    <ID>UndocumentedFunction:BlockEntityRendererLibrary.kt:BlockEntityRendererLibrary$operator fun &lt;B : BlockEntity, S : BlockEntityRenderState> invoke</ID>
+    <ID>UndocumentedFunction:BlockItemLibrary.kt:BlockItemLibrary$constructor</ID>
+    <ID>UndocumentedFunction:BlockItemLibrary.kt:BlockItemLibrary$open fun createDefault: () -> BlockItem</ID>
+    <ID>UndocumentedFunction:BlockItemLibrary.kt:BlockItemLibrary$operator fun &lt;U : BlockItem> invoke: Library&lt;BlockItem?, BlockItem?>.LibraryEntry&lt;U, U></ID>
+    <ID>UndocumentedFunction:BlockItemLibrary.kt:BlockItemLibrary$operator fun invoke</ID>
+    <ID>UndocumentedFunction:BlockLibrary.kt:BlockLibrary.ExtendedBlockPropertiesList$fun build</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$constructor</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$fun notify</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$fun notifyWithNeighbors</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$fun tick</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$operator fun get: List&lt;BlockNetwork>?</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$private fun add</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$private fun calculate: BlockNetwork?</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$private fun processChanges</ID>
+    <ID>UndocumentedFunction:BlockNetworkSavedData.kt:BlockNetworkSavedData$private fun remove</ID>
+    <ID>UndocumentedFunction:BlockTintLibrary.kt:BlockTintLibrary$operator fun &lt;S : BlockTintSource> invoke</ID>
+    <ID>UndocumentedFunction:CableBlock.kt:CableBlock$abstract fun shouldConnect: CableAttachType</ID>
+    <ID>UndocumentedFunction:ClientDataCollectionModule.kt:ClientDataCollectionModule$protected open fun generateBlockModels: Boolean</ID>
+    <ID>UndocumentedFunction:ClientDataCollectionModule.kt:ClientDataCollectionModule$protected open fun generateItemModels: Boolean</ID>
+    <ID>UndocumentedFunction:ClientDataCollectionModule.kt:ClientDataCollectionModule$protected open fun generateLang: Map&lt;String, Map&lt;String, Component>>?</ID>
+    <ID>UndocumentedFunction:ClientDataCollectionModule.kt:ClientDataCollectionModule$protected open fun generateModels: Boolean</ID>
+    <ID>UndocumentedFunction:ClientPayloadHandlerLibrary.kt:ClientPayloadHandlerLibrary$private fun &lt;P : CustomPacketPayload> registerPayload</ID>
+    <ID>UndocumentedFunction:ClientServices.kt:ClientServices$operator fun &lt;T> invoke</ID>
+    <ID>UndocumentedFunction:CompactRecipeDataCollectionModule.kt:CompactRecipeDataCollectionModule$private fun getCompactRecipe</ID>
+    <ID>UndocumentedFunction:CookingRecipeDataCollectionModule.kt:CookingRecipeDataCollectionModule$constructor</ID>
+    <ID>UndocumentedFunction:CookingRecipeDataCollectionModule.kt:CookingRecipeDataCollectionModule.Companion$fun getDefaultTime</ID>
+    <ID>UndocumentedFunction:CustomBlockLootDataCollectionModule.kt:CustomBlockLootDataCollectionModule$constructor</ID>
+    <ID>UndocumentedFunction:DamageTypeLibrary.kt:DamageTypeLibrary$fun getSource</ID>
+    <ID>UndocumentedFunction:DataClientPlatformModule.kt:DataClientPlatformModule$abstract fun createTextureSlot: TextureSlot</ID>
+    <ID>UndocumentedFunction:DataCollection.kt:DataCollection$fun add</ID>
+    <ID>UndocumentedFunction:DataCollection.kt:DataCollection$fun addDefaultModule: DataCollection&lt;T></ID>
+    <ID>UndocumentedFunction:DataCollection.kt:DataCollection$fun addModule: DataCollection&lt;T></ID>
+    <ID>UndocumentedFunction:DataCollection.kt:DataCollection$open fun process</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun addAffects</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun addAffects: DataCollectionDescription</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun addDefaultModule</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun addDefaultModule: DataCollectionDescription</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun addModule</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun addModule: DataCollectionDescription</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun clearAffects: DataCollectionDescription</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun clearDefaultModules: DataCollectionDescription</ID>
+    <ID>UndocumentedFunction:DataCollectionDescription.kt:DataCollectionDescription$fun clearModules: DataCollectionDescription</ID>
+    <ID>UndocumentedFunction:DataCollectionEvent.kt:DataCollectionEvent$abstract fun combineFromCollections: F?</ID>
+    <ID>UndocumentedFunction:DataCollectionEvent.kt:DataCollectionEvent$abstract fun combineFromModules: C?</ID>
+    <ID>UndocumentedFunction:DataCollectionEvent.kt:DataCollectionEvent$fun process: F?</ID>
+    <ID>UndocumentedFunction:DataCollectionEvent.kt:DataCollectionEvent$open fun addResult</ID>
+    <ID>UndocumentedFunction:DataCollectionLibrary.kt:DataCollectionLibrary$protected open fun createDefaultData: DataCollectionDescription</ID>
+    <ID>UndocumentedFunction:DataCollectionLibrary.kt:DataCollectionLibrary$protected operator fun invoke</ID>
+    <ID>UndocumentedFunction:DataCollectionModule.kt:DataCollectionModule$protected open fun generateBlockLoot: Map&lt;Block, LootTable.Builder>?</ID>
+    <ID>UndocumentedFunction:DataCollectionModule.kt:DataCollectionModule$protected open fun generateBlockTags: Map&lt;TagKey&lt;Block>, List&lt;Block>>?</ID>
+    <ID>UndocumentedFunction:DataCollectionModule.kt:DataCollectionModule$protected open fun generateConfiguredFeatures</ID>
+    <ID>UndocumentedFunction:DataCollectionModule.kt:DataCollectionModule$protected open fun generateGeneralLoot: Map&lt;Identifier, LootTable.Builder>?</ID>
+    <ID>UndocumentedFunction:DataCollectionModule.kt:DataCollectionModule$protected open fun generateItemTags: Map&lt;TagKey&lt;Item>, List&lt;Item>>?</ID>
+    <ID>UndocumentedFunction:DataCollectionModule.kt:DataCollectionModule$protected open fun generatePlacedFeatures</ID>
+    <ID>UndocumentedFunction:DataCollectionModule.kt:DataCollectionModule$protected open fun generateRecipes</ID>
+    <ID>UndocumentedFunction:DatapackDataCollectionEvent.kt:DatapackDataCollectionEvent$fun &lt;S : Any> lookup</ID>
+    <ID>UndocumentedFunction:DatapackDataCollectionEvent.kt:DatapackDataCollectionEvent$fun &lt;S : Any> lookupRegistry</ID>
+    <ID>UndocumentedFunction:DatapackDataCollectionEvent.kt:DatapackDataCollectionEvent$fun add</ID>
+    <ID>UndocumentedFunction:DatapackLibrary.kt:DatapackLibrary$protected fun &lt;S : Any> lookup</ID>
+    <ID>UndocumentedFunction:DatapackLibrary.kt:DatapackLibrary$protected fun &lt;S : Any> lookupRegistry</ID>
+    <ID>UndocumentedFunction:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$fun &lt;T : Any> addComponent</ID>
+    <ID>UndocumentedFunction:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$fun &lt;T : Any> addDelayedComponent</ID>
+    <ID>UndocumentedFunction:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$fun &lt;T : Any> addHolderComponent</ID>
+    <ID>UndocumentedFunction:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$fun &lt;T : Any> getDefaultComponentValue: T?</ID>
+    <ID>UndocumentedFunction:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$fun add</ID>
+    <ID>UndocumentedFunction:DeleteDataProvider.kt:DeleteDataProvider$constructor</ID>
+    <ID>UndocumentedFunction:DistantSoundInstance.kt:DistantSoundInstance$private fun calculate</ID>
+    <ID>UndocumentedFunction:DistantSoundPayloadHandler.kt:DistantSoundPayloadHandler$fun handle</ID>
+    <ID>UndocumentedFunction:EnergyTransferStackWidget.kt:EnergyTransferStackWidget$abstract fun getIconTexture: Identifier</ID>
+    <ID>UndocumentedFunction:EntitiesClientPlatformModule.kt:EntitiesClientPlatformModule$abstract fun &lt;E : Entity> registerEntityRenderer</ID>
+    <ID>UndocumentedFunction:EntityRendererLibrary.kt:EntityRendererLibrary.EntityRendererEntry$internal fun register</ID>
+    <ID>UndocumentedFunction:EnvironmentService.kt:EnvironmentService$abstract fun getModVersion: String?</ID>
+    <ID>UndocumentedFunction:EnvironmentService.kt:EnvironmentService$abstract fun isModLoaded: Boolean</ID>
+    <ID>UndocumentedFunction:EventHandlerLibrary.kt:EventHandlerLibrary$operator fun &lt;E : EventHandler&lt;C, R>, C : Any, R : Any> invoke: Library&lt;EventHandler&lt;*, *>, EventHandler&lt;*, *>>.LibraryEntry&lt;E, E></ID>
+    <ID>UndocumentedFunction:ExtendedClientBlockProperties.kt:ExtendedClientBlockProperties$fun handle</ID>
+    <ID>UndocumentedFunction:GenericRecipeDataCollectionModule.kt:GenericRecipeDataCollectionModule$abstract fun createBuilder: List&lt;B></ID>
+    <ID>UndocumentedFunction:IDataCollectionModule.kt:IDataCollectionModule$fun process: EventResult</ID>
+    <ID>UndocumentedFunction:IExtendedBlockModelGenerators.kt:IExtendedBlockModelGenerators$fun createFire: Unit</ID>
+    <ID>UndocumentedFunction:IExtendedBlockModelGenerators.kt:IExtendedBlockModelGenerators$fun createFullRotatedVariantBlock: Unit</ID>
+    <ID>UndocumentedFunction:IExtendedBlockModelGenerators.kt:IExtendedBlockModelGenerators$fun createUprightDirectionalBlock: Unit</ID>
+    <ID>UndocumentedFunction:IdentifierLanguageClientDataCollectionModule.kt:IdentifierLanguageClientDataCollectionModule$protected open fun getEntryName: String</ID>
+    <ID>UndocumentedFunction:IdentifierLanguageClientDataCollectionModule.kt:IdentifierLanguageClientDataCollectionModule$protected open fun getTranslationKey: String</ID>
+    <ID>UndocumentedFunction:IdentifierLanguageClientDataCollectionModule.kt:IdentifierLanguageClientDataCollectionModule$protected open fun inflector</ID>
+    <ID>UndocumentedFunction:ItemTintLibrary.kt:ItemTintLibrary$operator fun &lt;S : ItemTintSource> invoke</ID>
+    <ID>UndocumentedFunction:JukeboxSongLibrary.kt:JukeboxSongLibrary$operator fun invoke: Library&lt;JukeboxSong, JukeboxSong>.LibraryEntry&lt;JukeboxSong, JukeboxSong></ID>
+    <ID>UndocumentedFunction:ModelLayerLibrary.kt:ModelLayerLibrary$operator fun invoke: Library&lt;Identifier, ModelLayerLocation>.LibraryEntry&lt;Identifier, ModelLayerLocation></ID>
+    <ID>UndocumentedFunction:ModelsClientPlatformModule.kt:ModelsClientPlatformModule$abstract fun &lt;R : SpecialModelRenderer.Unbaked&lt;*>> registerSpecialModel</ID>
+    <ID>UndocumentedFunction:ModelsClientPlatformModule.kt:ModelsClientPlatformModule$abstract fun &lt;S : ItemTintSource> registerItemTint</ID>
+    <ID>UndocumentedFunction:ModelsClientPlatformModule.kt:ModelsClientPlatformModule$abstract fun createLayer: ModelLayerLocation</ID>
+    <ID>UndocumentedFunction:ModelsClientPlatformModule.kt:ModelsClientPlatformModule$abstract fun registerBlockTint</ID>
+    <ID>UndocumentedFunction:ModifyItemComponentEventContext.kt:ModifyItemComponentEventContext$fun modify</ID>
+    <ID>UndocumentedFunction:MultiLanguageDataProvider.kt:MultiLanguageDataProvider$fun add</ID>
+    <ID>UndocumentedFunction:MultiLanguageDataProvider.kt:MultiLanguageDataProvider$open fun addTranslations</ID>
+    <ID>UndocumentedFunction:NetworkToEnergyTransferContext.kt:NetworkToEnergyTransferContext$private fun move: Long</ID>
+    <ID>UndocumentedFunction:NetworkToEnergyTransferContext.kt:NetworkToEnergyTransferContext$private fun runOnConnections: Long</ID>
+    <ID>UndocumentedFunction:NetworkToEnergyTransferContext.kt:NetworkToEnergyTransferContext$private fun runOnPaths: Long</ID>
+    <ID>UndocumentedFunction:NetworkingClientPlatformModule.kt:NetworkingClientPlatformModule$abstract fun &lt;P : CustomPacketPayload> registerHandler</ID>
+    <ID>UndocumentedFunction:NetworkingClientPlatformModule.kt:NetworkingClientPlatformModule$abstract fun sendToServer</ID>
+    <ID>UndocumentedFunction:ParticleClientPlatformModule.kt:ParticleClientPlatformModule$abstract fun &lt;O : ParticleOptions> registerProvider</ID>
+    <ID>UndocumentedFunction:ParticleLibrary.kt:ParticleLibrary.ParticleEntry$internal fun register</ID>
+    <ID>UndocumentedFunction:PayloadLibrary.kt:PayloadLibrary$fun register</ID>
+    <ID>UndocumentedFunction:PayloadLibrary.kt:PayloadLibrary$private fun &lt;P : CustomPacketPayload> registerPayload</ID>
+    <ID>UndocumentedFunction:PlacedFeatureDataCollectionEvent.kt:PlacedFeatureDataCollectionEvent$fun add</ID>
+    <ID>UndocumentedFunction:RecipeTypeLibrary.kt:RecipeTypeLibrary$operator fun &lt;T : Recipe&lt;*>> invoke: Library&lt;RecipeType&lt;*>, RecipeType&lt;*>>.LibraryEntry&lt;out RecipeType&lt;T>, out RecipeType&lt;T>></ID>
+    <ID>UndocumentedFunction:RegisterService.kt:RegisterService$abstract fun &lt;T : Any, E : T> register: () -> E</ID>
+    <ID>UndocumentedFunction:RegisterService.kt:RegisterService$abstract fun &lt;T : Any> createRegistry: Registry&lt;T></ID>
+    <ID>UndocumentedFunction:RegisterService.kt:RegisterService$fun &lt;T : Any, E : T> register: () -> E</ID>
+    <ID>UndocumentedFunction:RegisterService.kt:RegisterService$operator fun &lt;T : Any, E : T> invoke</ID>
+    <ID>UndocumentedFunction:RegistryWikiDataEnforcer.kt:RegistryWikiDataEnforcer$constructor</ID>
+    <ID>UndocumentedFunction:ResearchDeskBlock.kt:ResearchDeskBlock$private fun isSegment</ID>
+    <ID>UndocumentedFunction:ResearchMenu.kt:ResearchMenu$constructor</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen$private fun changeMode</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen$private fun getScrollPosition: Int</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen$private fun setScrollPosition</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen$private fun startSearch</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen.Companion$private fun extractArticleIcon</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen.Companion$private fun getArticleIcon: Any?</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen.Companion$private fun getArticleIcons: List&lt;Any></ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen.Companion$private fun getArticleSubtitle: Component</ID>
+    <ID>UndocumentedFunction:ResearchScreen.kt:ResearchScreen.Companion$private fun getSlotArticle: WikiArticle?</ID>
+    <ID>UndocumentedFunction:ScaledTrackingItemStackRenderState.kt:ScaledTrackingItemStackRenderState.Companion$fun extractItem</ID>
+    <ID>UndocumentedFunction:ScreenClientPlatformModule.kt:ScreenClientPlatformModule$abstract fun &lt;M : AbstractContainerMenu, S> registerMenuScreen</ID>
+    <ID>UndocumentedFunction:ScreenLibrary.kt:ScreenLibrary.ScreenEntry$internal fun register</ID>
+    <ID>UndocumentedFunction:Services.kt:Services$fun &lt;T> load</ID>
+    <ID>UndocumentedFunction:Services.kt:Services$operator fun &lt;T> invoke</ID>
+    <ID>UndocumentedFunction:ShapedRecipeDataCollectionModule.kt:ShapedRecipeDataCollectionModule$constructor</ID>
+    <ID>UndocumentedFunction:ShapelessRecipeDataCollectionModule.kt:ShapelessRecipeDataCollectionModule$constructor</ID>
+    <ID>UndocumentedFunction:SingleItemRecipeDataCollectionModule.kt:SingleItemRecipeDataCollectionModule$constructor</ID>
+    <ID>UndocumentedFunction:SpecialModelLibrary.kt:SpecialModelLibrary$operator fun &lt;R : SpecialModelRenderer.Unbaked&lt;*>> invoke</ID>
+    <ID>UndocumentedFunction:TagLibrary.kt:TagLibrary$operator fun invoke</ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun createDurationComponent: MutableComponent</ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun createPlusComponent: Any</ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun createSIComponent: MutableComponent</ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun getAdvancedPrompt</ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun getEnergyChangeInfo: List&lt;MutableComponent></ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun getEnergyDurationInfo: List&lt;MutableComponent></ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun getEnergyInfo: List&lt;MutableComponent></ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun getEnergyItemInfo</ID>
+    <ID>UndocumentedFunction:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$fun getEnergyMaxInfo: List&lt;MutableComponent></ID>
+    <ID>UndocumentedFunction:ToDataClientHelper.kt:ToDataClientHelper$fun directionalRotation</ID>
+    <ID>UndocumentedFunction:ToDataClientHelper.kt:ToDataClientHelper$fun horizontalRotation</ID>
+    <ID>UndocumentedFunction:ToDataHelper.kt:ToDataHelper$fun getReplaceableResources: List&lt;Path></ID>
+    <ID>UndocumentedFunction:ToDataLootHelper.kt:ToDataLootHelper$fun &lt;T> propertyBlockLoot</ID>
+    <ID>UndocumentedFunction:ToDataLootHelper.kt:ToDataLootHelper$fun oreBlockLoot</ID>
+    <ID>UndocumentedFunction:ToDataLootHelper.kt:ToDataLootHelper$fun silkBlockLoot</ID>
+    <ID>UndocumentedFunction:ToDataLootHelper.kt:ToDataLootHelper$fun simpleBlockLoot</ID>
+    <ID>UndocumentedFunction:ToDataRecipeHelper.kt:ToDataRecipeHelper$fun createHas</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun &lt;K : StringRepresentable> getFromDataSchema</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun &lt;K : StringRepresentable> setFromDataSchema: Boolean</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun applyImplicitComponents</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun collectImplicitComponents</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun getUpdateTag</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun loadAdditional</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun saveAdditional</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun shouldNetworkSync: Boolean</ID>
+    <ID>UndocumentedFunction:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$fun tickAverages</ID>
+    <ID>UndocumentedFunction:ToEnergyCableBlock.kt:ToEnergyCableBlock$protected fun getNetworkContext: ToEnergyTransferContext?</ID>
+    <ID>UndocumentedFunction:ToEnergyDisplayItem.kt:ToEnergyDisplayItem$fun getEnergyColor: Int</ID>
+    <ID>UndocumentedFunction:ToEnergyDisplayItem.kt:ToEnergyDisplayItem$fun getEnergyWidth: Int</ID>
+    <ID>UndocumentedFunction:ToEnergyItemContainerListener.kt:ToEnergyItemContainerListener$fun getTooltipFromContainerItem: List&lt;Component>?</ID>
+    <ID>UndocumentedFunction:ToEnergyItemContainerListener.kt:ToEnergyItemContainerListener$fun tick</ID>
+    <ID>UndocumentedFunction:ToEnergyItemProvider.kt:ToEnergyItemProvider$fun getTransferContext: ToEnergyTransferContext?</ID>
+    <ID>UndocumentedFunction:ToEnergyItemProvider.kt:ToEnergyItemProvider.Companion$fun getProvider: ToEnergyItemProvider?</ID>
+    <ID>UndocumentedFunction:ToEnergyItemProvider.kt:ToEnergyItemProvider.Companion$fun getTransferContext</ID>
+    <ID>UndocumentedFunction:ToEnergyPath.kt:ToEnergyPath$fun changeEnergy</ID>
+    <ID>UndocumentedFunction:ToEnergyWorldlyProvider.kt:ToEnergyWorldlyProvider$fun getTransferContext: ToEnergyTransferContext?</ID>
+    <ID>UndocumentedFunction:ToEnergyWorldlyProvider.kt:ToEnergyWorldlyProvider.Companion$fun getProvider: ToEnergyWorldlyProvider?</ID>
+    <ID>UndocumentedFunction:ToEnergyWorldlyProvider.kt:ToEnergyWorldlyProvider.Companion$fun getTransferContext</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$fun displayAfter</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$fun displayBottom</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$fun displayTop</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$fun register</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$fun registerAfter</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$fun registerBottom</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$fun registerTop</ID>
+    <ID>UndocumentedFunction:TooltipProviderRegistry.kt:TooltipProviderRegistry$private fun display</ID>
+    <ID>UndocumentedFunction:WikiArticleDataTokenParser.kt:WikiArticleDataTokenParser$private fun consumeIntroductionToken: String</ID>
+    <ID>UndocumentedFunction:WikiArticleDataTokenParser.kt:WikiArticleDataTokenParser$private fun consumeModVersionIntroductionToken: String</ID>
+    <ID>UndocumentedFunction:WikiArticleDataTokenParser.kt:WikiArticleDataTokenParser$private fun consumeReferralToken</ID>
+    <ID>UndocumentedFunction:WikiArticleManager.kt:WikiArticleManager$internal fun bake</ID>
+    <ID>UndocumentedFunction:WikiArticleManager.kt:WikiArticleManager$internal fun load: WikiArticle</ID>
+    <ID>UndocumentedFunction:WikiArticleManager.kt:WikiArticleManager$private fun load</ID>
+    <ID>UndocumentedFunction:WikiArticleManager.kt:WikiArticleManager$private fun loadTitle: MutableComponent?</ID>
+    <ID>UndocumentedFunction:WikiDataEnforcer.kt:WikiDataEnforcer$fun enforce: List&lt;Pair&lt;Identifier, Identifier>></ID>
+    <ID>UndocumentedFunction:WikiDataProvider.kt:WikiDataProvider$constructor</ID>
+    <ID>UndocumentedFunction:WikiDataProvider.kt:WikiDataProvider$fun enforce: WikiDataProvider</ID>
+    <ID>UndocumentedFunction:WikiDataProvider.kt:WikiDataProvider$open fun getPathProvider</ID>
+    <ID>UndocumentedFunction:WikiDataProvider.kt:WikiDataProvider$protected open fun writeContent</ID>
+    <ID>UndocumentedFunction:WikiDataProvider.kt:WikiDataProvider$protected open fun writeFactsheet</ID>
+    <ID>UndocumentedFunction:WikiDataProvider.kt:WikiDataProvider.Companion$protected fun &lt;I : Any> getTagJson</ID>
+    <ID>UndocumentedProperty:AbstractBarWidget.kt:AbstractBarWidget$open val animation: AnimationDirection = AnimationDirection.LEFT_RIGHT</ID>
+    <ID>UndocumentedProperty:AbstractBarWidget.kt:AbstractBarWidget.AnimationDirection$BOTTOM_TOP</ID>
+    <ID>UndocumentedProperty:AbstractBarWidget.kt:AbstractBarWidget.AnimationDirection$LEFT_RIGHT</ID>
+    <ID>UndocumentedProperty:AbstractBarWidget.kt:AbstractBarWidget.AnimationDirection$RIGHT_LEFT</ID>
+    <ID>UndocumentedProperty:AbstractBarWidget.kt:AbstractBarWidget.AnimationDirection$TOP_BOTTOM</ID>
+    <ID>UndocumentedProperty:BlockEntityToEnergyTransferContext.kt:BlockEntityToEnergyTransferContext$val journal = object : TransferTransactionJournal&lt;LongArray>() { override fun create() = longArrayOf(handler.energy, handler.historyInsert[0], handler.historyExtract[0]) override fun rewind(snapshot: LongArray) { handler.energy = snapshot[0] handler.historyInsert[0] = snapshot[1] handler.historyExtract[0] = snapshot[2] } }</ID>
+    <ID>UndocumentedProperty:BlockItemLibrary.kt:BlockItemLibrary$private val blocks by lazy(getter)</ID>
+    <ID>UndocumentedProperty:BlockItemLibrary.kt:BlockItemLibrary$val registry = BuiltInRegistries.ITEM</ID>
+    <ID>UndocumentedProperty:BlockLibrary.kt:BlockLibrary$val properties = ExtendedBlockPropertiesList()</ID>
+    <ID>UndocumentedProperty:BlockLootDataCollectionEvent.kt:BlockLootDataCollectionEvent$val helper = ToDataLootHelper(provider)</ID>
+    <ID>UndocumentedProperty:BlockNetworkSavedData.kt:BlockNetworkSavedData$private val changes = mutableSetOf&lt;NetworkChange>()</ID>
+    <ID>UndocumentedProperty:BlockNetworkSavedData.kt:BlockNetworkSavedData$private val networkById = map.toMutableMap()</ID>
+    <ID>UndocumentedProperty:BlockNetworkSavedData.kt:BlockNetworkSavedData$private val networkByPos = mutableMapOf&lt;BlockPos, MutableList&lt;BlockNetwork>>()</ID>
+    <ID>UndocumentedProperty:BlockNetworkSavedData.kt:BlockNetworkSavedData.Companion$val codec = Codec.unboundedMap(UUIDUtil.STRING_CODEC, BlockNetwork.codec) .xmap(::BlockNetworkSavedData, BlockNetworkSavedData::networkById)</ID>
+    <ID>UndocumentedProperty:BurnBarWidget.kt:BurnBarWidget.Companion$val front: Identifier = Identifier.withDefaultNamespace("container/furnace/lit_progress")</ID>
+    <ID>UndocumentedProperty:CableBlock.kt:CableBlock$protected abstract val cableWidth: Int</ID>
+    <ID>UndocumentedProperty:CableBlock.kt:CableBlock$protected abstract val rimWidth: Int</ID>
+    <ID>UndocumentedProperty:CableBlock.kt:CableBlock$protected val shapes by lazy { val center = cube(cableWidth.toDouble()) val connections = Shapes.rotateAll(boxZ(cableWidth.toDouble(), 0.0, 8.0)) val rim = Shapes.rotateAll(boxZ((cableWidth + rimWidth.times(2)).toDouble(), 0.0, rimWidth.toDouble())) getShapeForEachState { var shape: VoxelShape = center for ((dir, prop) in attachments) { if (it.getValue(prop) != CableAttachType.NONE) { shape = Shapes.or(shape, connections[dir]!!) if (it.getValue(prop) == CableAttachType.NODE) { shape = Shapes.or(shape, rim[dir]!!) } } } shape } }</ID>
+    <ID>UndocumentedProperty:CableBlock.kt:CableBlock.CableAttachType$CABLE</ID>
+    <ID>UndocumentedProperty:CableBlock.kt:CableBlock.CableAttachType$NODE</ID>
+    <ID>UndocumentedProperty:CableBlock.kt:CableBlock.CableAttachType$NONE</ID>
+    <ID>UndocumentedProperty:CableBlock.kt:CableBlock.Companion$val attachments = Direction.entries.associateWith { EnumProperty.create(it.name.lowercase(), CableAttachType::class.java) }</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val blocks: BlocksClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val data: DataClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val entities: EntitiesClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val models: ModelsClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val networking: NetworkingClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val particles: ParticleClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val reloadListeners: ReloadListenerClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatform.kt:ClientPlatform$val screens: ScreenClientPlatformModule</ID>
+    <ID>UndocumentedProperty:ClientPlatformService.kt:ClientPlatformService$abstract val platform: ClientPlatform</ID>
+    <ID>UndocumentedProperty:ClientServices.kt:ClientServices$private val _platform = this(ClientPlatformService::class.java)</ID>
+    <ID>UndocumentedProperty:ClientServices.kt:ClientServices$val platform get() = _platform.platform</ID>
+    <ID>UndocumentedProperty:ClientSide.kt:ClientSide$val minecraft get() = Minecraft.getInstance()</ID>
+    <ID>UndocumentedProperty:CraftingOutputSlot.kt:CraftingOutputSlot$private var removeCount = 0</ID>
+    <ID>UndocumentedProperty:DamageTypeLibrary.kt:DamageTypeLibrary$private val sources = mutableMapOf&lt;RegistryAccess, MutableMap&lt;ResourceKey&lt;DamageType>, DamageSource>>()</ID>
+    <ID>UndocumentedProperty:DataCollection.kt:DataCollection$protected val defaults = mutableListOf&lt;DataCollectionModule>()</ID>
+    <ID>UndocumentedProperty:DataCollection.kt:DataCollection$protected val modules = mutableListOf&lt;DataCollectionModule>()</ID>
+    <ID>UndocumentedProperty:DataCollection.kt:DataCollection$val `object` by lazy { RegistryHelper.getResource(entry)!! }</ID>
+    <ID>UndocumentedProperty:DataCollectionDescription.kt:DataCollectionDescription$val affects: Set&lt;(key: ResourceKey&lt;*>) -> Boolean> field = affects.toMutableSet()</ID>
+    <ID>UndocumentedProperty:DataCollectionDescription.kt:DataCollectionDescription$val defaults: Set&lt;(collection: DataCollection&lt;*>) -> DataCollectionModule?> field = mutableSetOf&lt;(collection: DataCollection&lt;*>) -> DataCollectionModule?>()</ID>
+    <ID>UndocumentedProperty:DataCollectionDescription.kt:DataCollectionDescription$val modules: Set&lt;(collection: DataCollection&lt;*>) -> DataCollectionModule?> field = mutableSetOf&lt;(collection: DataCollection&lt;*>) -> DataCollectionModule?>()</ID>
+    <ID>UndocumentedProperty:DataCollectionEvent.kt:DataCollectionEvent$private val results = mutableMapOf&lt;DataCollection&lt;*>, MutableMap&lt;DataCollectionModule, M>>()</ID>
+    <ID>UndocumentedProperty:DataCollectionLibrary.kt:DataCollectionLibrary$open val registries: List&lt;Registry&lt;*>> = listOf(BuiltInRegistries.BLOCK, BuiltInRegistries.ITEM, BuiltInRegistries.FLUID, BuiltInRegistries.ENTITY_TYPE)</ID>
+    <ID>UndocumentedProperty:DataCollectionLibrary.kt:DataCollectionLibrary$protected open val defaultKeys: Set&lt;ResourceKey&lt;*>> by lazy { registries.flatMap { it.entrySet().filter { it.key.identifier().namespace == modid }.map { it.key } }.toSet() }</ID>
+    <ID>UndocumentedProperty:DataCollectionLibrary.kt:DataCollectionLibrary$protected val _collections = mutableListOf&lt;DataCollection&lt;*>>()</ID>
+    <ID>UndocumentedProperty:DataCollectionLibrary.kt:DataCollectionLibrary$val collections: List&lt;DataCollection&lt;*>> get() = _collections</ID>
+    <ID>UndocumentedProperty:DataCollectionModule.kt:DataCollectionModule$val all: List&lt;DataCollection&lt;*>> field = mutableListOf()</ID>
+    <ID>UndocumentedProperty:DatapackLibrary.kt:DatapackLibrary$lateinit var context: BootstrapContext&lt;T></ID>
+    <ID>UndocumentedProperty:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$private val components = mutableMapOf&lt;Item.Properties, MutableList&lt;ComponentEntry&lt;*>>>()</ID>
+    <ID>UndocumentedProperty:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$private val delayedComponents = mutableMapOf&lt;Item.Properties, MutableList&lt;DelayedComponentEntry&lt;*>>>()</ID>
+    <ID>UndocumentedProperty:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$private val holderComponents = mutableMapOf&lt;Item.Properties, MutableList&lt;HolderComponentEntry&lt;*>>>()</ID>
+    <ID>UndocumentedProperty:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$private val properties = mutableMapOf&lt;Item, Item.Properties>()</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val ingots = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", "ingots"))</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val nuggets = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", "nuggets"))</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val ores = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("c", "ores"))</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val oresDeepslate = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("c", "ores_in_ground/deepslate"))</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val oresNetherrack = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("c", "ores_in_ground/netherrack"))</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val oresStone = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("c", "ores_in_ground/stone"))</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val rawMaterials = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", "raw_materials"))</ID>
+    <ID>UndocumentedProperty:DictTagDataCollectionModule.kt:DictTagDataCollectionModule.Companion$private val storageBlocks = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("c", "storage_blocks"))</ID>
+    <ID>UndocumentedProperty:EnergyBarWidget.kt:EnergyBarWidget.Companion$val back = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "energy/bar_empty")</ID>
+    <ID>UndocumentedProperty:EnergyBarWidget.kt:EnergyBarWidget.Companion$val front = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "energy/bar_full")</ID>
+    <ID>UndocumentedProperty:EnergyTransferStackWidget.kt:EnergyTransferStackWidget$val block = base.withSuffix("block")</ID>
+    <ID>UndocumentedProperty:EnergyTransferStackWidget.kt:EnergyTransferStackWidget$val done = base.withSuffix("done")</ID>
+    <ID>UndocumentedProperty:EnergyTransferStackWidget.kt:EnergyTransferStackWidget$val empty = base.withSuffix("empty")</ID>
+    <ID>UndocumentedProperty:EnergyTransferStackWidget.kt:EnergyTransferStackWidget$val full = base.withSuffix("full")</ID>
+    <ID>UndocumentedProperty:EnglishWikiLanguage.kt:EnglishWikiLanguage.Companion$private val inflector = Inflector.getInstance()</ID>
+    <ID>UndocumentedProperty:EnvironmentService.kt:EnvironmentService$abstract val environment: Environment</ID>
+    <ID>UndocumentedProperty:EnvironmentService.kt:EnvironmentService$abstract val platform: Platform</ID>
+    <ID>UndocumentedProperty:EnvironmentService.kt:EnvironmentService$abstract val side: Side</ID>
+    <ID>UndocumentedProperty:EnvironmentService.kt:EnvironmentService.Environment$BUILD</ID>
+    <ID>UndocumentedProperty:EnvironmentService.kt:EnvironmentService.Environment$DEV</ID>
+    <ID>UndocumentedProperty:GeneralLootDataCollectionEvent.kt:GeneralLootDataCollectionEvent$val helper = ToDataLootHelper(provider)</ID>
+    <ID>UndocumentedProperty:HorizontalGenericBlock.kt:HorizontalGenericBlock.Companion$val codec = simpleCodec(::HorizontalGenericBlock)</ID>
+    <ID>UndocumentedProperty:IDataCollectionModule.kt:IDataCollectionModule.EventResult$PASS</ID>
+    <ID>UndocumentedProperty:IDataCollectionModule.kt:IDataCollectionModule.EventResult$SUCCESS</ID>
+    <ID>UndocumentedProperty:IDataCollectionModule.kt:IDataCollectionModule.EventResult$SUCCESS_BLOCK</ID>
+    <ID>UndocumentedProperty:ItemComponentToEnergyTransferContext.kt:ItemComponentToEnergyTransferContext$private val capacity get() = stack.get(ToBaseMod.itemComponents.energy_data)?.max ?: 0L</ID>
+    <ID>UndocumentedProperty:ItemComponentToEnergyTransferContext.kt:ItemComponentToEnergyTransferContext$private val maxInput get() = stack.get(ToBaseMod.itemComponents.energy_data)?.maxInput ?: Long.MAX_VALUE</ID>
+    <ID>UndocumentedProperty:ItemComponentToEnergyTransferContext.kt:ItemComponentToEnergyTransferContext$private val maxOutput get() = stack.get(ToBaseMod.itemComponents.energy_data)?.maxOutput ?: Long.MAX_VALUE</ID>
+    <ID>UndocumentedProperty:ItemComponentToEnergyTransferContext.kt:ItemComponentToEnergyTransferContext$private var energy get() = stack.get(ToBaseMod.itemComponents.energy_data)?.energy ?: 0L set(value) { stack.set(ToBaseMod.itemComponents.energy_data, stack.get(ToBaseMod.itemComponents.energy_data)?.copy(energy = value) ?: return) }</ID>
+    <ID>UndocumentedProperty:ItemComponentToEnergyTransferContext.kt:ItemComponentToEnergyTransferContext$val journal = object : TransferTransactionJournal&lt;Long>() { override fun create() = stack.get(ToBaseMod.itemComponents.energy_data)?.energy ?: 0L override fun rewind(snapshot: Long) { energy = snapshot } }</ID>
+    <ID>UndocumentedProperty:MiniEnergyBarWidget.kt:MiniEnergyBarWidget.Companion$val back = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "energy/minibar_empty")</ID>
+    <ID>UndocumentedProperty:MiniEnergyBarWidget.kt:MiniEnergyBarWidget.Companion$val front = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "energy/minibar_full")</ID>
+    <ID>UndocumentedProperty:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule.ToolType$AXE</ID>
+    <ID>UndocumentedProperty:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule.ToolType$HOE</ID>
+    <ID>UndocumentedProperty:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule.ToolType$PICKAXE</ID>
+    <ID>UndocumentedProperty:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule.ToolType$SHEARS</ID>
+    <ID>UndocumentedProperty:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule.ToolType$SHOVEL</ID>
+    <ID>UndocumentedProperty:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule.ToolType$SWORD_EFFICIENT</ID>
+    <ID>UndocumentedProperty:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule.ToolType$SWORD_INSTANT</ID>
+    <ID>UndocumentedProperty:MultiLanguageDataProvider.kt:MultiLanguageDataProvider$protected val tokens = tokens.mapValues { it.value.toMutableMap() }.toMutableMap()</ID>
+    <ID>UndocumentedProperty:MultiLanguageDataProvider.kt:MultiLanguageDataProvider.Companion$const val DEFAULT_LOCALE = "en_us"</ID>
+    <ID>UndocumentedProperty:MultiLanguageDataProvider.kt:MultiLanguageDataProvider.Companion$protected val codec = Codec.unboundedMap(Codec.STRING, ComponentSerialization.CODEC)</ID>
+    <ID>UndocumentedProperty:NetworkCableBlock.kt:NetworkCableBlock$abstract val network: N</ID>
+    <ID>UndocumentedProperty:PayloadHandlerLibrary.kt:PayloadHandlerLibrary.PayloadHandlerEntry$val type: CustomPacketPayload.Type&lt;P> by lazy { getter() }</ID>
+    <ID>UndocumentedProperty:ProcessBarWidget.kt:ProcessBarWidget.Companion$val front: Identifier = Identifier.withDefaultNamespace("container/furnace/burn_progress")</ID>
+    <ID>UndocumentedProperty:RecipeDataCollectionEvent.kt:RecipeDataCollectionEvent$val helper = ToDataRecipeHelper(registry)</ID>
+    <ID>UndocumentedProperty:RecipeDataCollectionEvent.kt:RecipeDataCollectionEvent$val registry = registries.lookupOrThrow(Registries.ITEM)</ID>
+    <ID>UndocumentedProperty:ReloadListenerLibrary.kt:ReloadListenerLibrary$abstract val registry: R</ID>
+    <ID>UndocumentedProperty:ResearchDeskBlock.kt:ResearchDeskBlock.Companion$val codec = simpleCodec(::ResearchDeskBlock)</ID>
+    <ID>UndocumentedProperty:ResearchDeskBlock.kt:ResearchDeskBlock.Companion$val segment = EnumProperty.create("segment", ResearchDeskSegment::class.java)</ID>
+    <ID>UndocumentedProperty:ResearchDeskBlock.kt:ResearchDeskBlock.ResearchDeskSegment$LEFT : ResearchDeskSegment</ID>
+    <ID>UndocumentedProperty:ResearchDeskBlock.kt:ResearchDeskBlock.ResearchDeskSegment$RIGHT : ResearchDeskSegment</ID>
+    <ID>UndocumentedProperty:ResearchDeskBlock.kt:ResearchDeskBlock.ResearchDeskSegment$val shapes = Shapes.rotateHorizontal(shape)</ID>
+    <ID>UndocumentedProperty:ResearchMenu.kt:ResearchMenu$val player = playerInventory.player</ID>
+    <ID>UndocumentedProperty:ResearchMenu.kt:ResearchMenu$var active = true</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentBottom = imageHeight - 8</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentHeight get() = if (mode == ResearchScreenMode.LIST) contentListHeight else contentPageHeight</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentLineHeight = 9</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentListHeight = 165</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentListY = contentBottom - contentListHeight</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentPadding = 3</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentPageHeight = 141</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentPageY = contentBottom - contentPageHeight</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentRight = contentX + contentWidth</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentWidth = 195</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentX = 9</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val contentY get() = if (mode == ResearchScreenMode.LIST) contentListY else contentPageY</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val iconOffsetSize = 30</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val iconOffsetX = 6</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val iconOffsetY = 33</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val labelX = 8</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val labelY = 33</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val leftToolbarX = 8</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val listButtonHeight = 26</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val listsButtonWidth = 192</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val rightToolbarX = imageWidth - 8 - toolbarWidth</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val scrollbarRight = scrollbarX + scrollbarWidth - 1</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val scrollbarThumbHeight = 15</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val scrollbarWidth = 12</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val scrollbarX = 209</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val subtitleY = 55</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val titleHeight = 13</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val titleWidth = 89</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val titleX = 42</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val titleY = 31</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val toolbarHeight = 20</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val toolbarWidth = 20</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private val toolbarY = 8</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var articleText: MultiLineTextWidget? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var currentArticle: WikiArticle? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var currentList = WikiArticleManager.index.all</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var home: SpriteIconButton? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var iconTicks = 0f</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var icons: List&lt;Any> = emptyList()</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var listAll: Button? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var listBlocks: Button? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var listButtons: List&lt;Button> = emptyList()</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var listEntities: Button? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var listItems: Button? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var listTitle: Component? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var listToStars: Button? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var mode = ResearchScreenMode.HOME</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var openInBrowser: SpriteIconButton? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var scrollDragPoint: Int? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var scrollHeight = 0</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var scrollY = 0</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var search: SpriteIconButton? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen$private var searchText: EditBox? = null</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$private const val URL = "https://to.jidb.net"</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$private const val listButtonIconPadding = 24</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$private const val listButtonIconX = 5</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$private const val listButtonIconY = 5</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$private const val listButtonPadding = 2</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$val scrollbarThumb = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb")</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$val scrollbarThumbDisabled = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "scroll/thumb_disabled")</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.Companion$val slotLocked = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "research/slot")</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.ListButton$val icons = getArticleIcons(article)</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.ListButton$var iconTicks = 0f</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.ResearchScreenMode$HOME</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.ResearchScreenMode$LIST</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.ResearchScreenMode$PAGE</ID>
+    <ID>UndocumentedProperty:ResearchScreen.kt:ResearchScreen.ResearchScreenMode$val texture = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "textures/gui/research/${name.lowercase()}.png")</ID>
+    <ID>UndocumentedProperty:Services.kt:Services$val environment = this(EnvironmentService::class.java)</ID>
+    <ID>UndocumentedProperty:Services.kt:Services$val platform get() = environment.platform</ID>
+    <ID>UndocumentedProperty:Services.kt:Services$val register = this(RegisterService::class.java)</ID>
+    <ID>UndocumentedProperty:Services.kt:Services$val side get() = environment.side</ID>
+    <ID>UndocumentedProperty:TagLibrary.kt:TagLibrary$abstract val registryKey: ResourceKey&lt;Registry&lt;T>></ID>
+    <ID>UndocumentedProperty:ToBaseBlockLibrary.kt:ToBaseBlockLibrary$val research_desk by this { entry -> ResearchDeskBlock(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.WOOD) .forceSolidOn() .instrument(NoteBlockInstrument.BASS) .strength(2.5F) .sound(SoundType.WOOD) .ignitedByLava()) } .tag(properties, ExtendedBlockProperties() .flammable())</ID>
+    <ID>UndocumentedProperty:ToBaseBlockLibrary.kt:ToBaseBlockLibrary$val test_block by this { entry -> Block(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_YELLOW) .strength(0.5f) .sound(SoundType.SCAFFOLDING)) }</ID>
+    <ID>UndocumentedProperty:ToBaseBlockLibrary.kt:ToBaseBlockLibrary$val test_block_2 by this { entry -> HorizontalGenericBlock(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_YELLOW) .strength(0.5f) .sound(SoundType.SCAFFOLDING)) }</ID>
+    <ID>UndocumentedProperty:ToBaseBlockNetworkLibrary.kt:ToBaseBlockNetworkLibrary$val to_energy by this { ToEnergyBlockNetworkType() }</ID>
+    <ID>UndocumentedProperty:ToBaseBlockTagLibrary.kt:ToBaseBlockTagLibrary$val shears_efficient by this() //TODO functionality</ID>
+    <ID>UndocumentedProperty:ToBaseClientEventLibrary.kt:ToBaseClientEventLibrary$val client_entity_tick_pre by this { ClientEntityTickPreEvent(it.id) }</ID>
+    <ID>UndocumentedProperty:ToBaseClientEventLibrary.kt:ToBaseClientEventLibrary$val client_level_tick_pre by this { ClientLevelTickPreEvent(it.id) }</ID>
+    <ID>UndocumentedProperty:ToBaseClientMod.kt:ToBaseClientMod$val content by lazy { ToBaseClientContentMod(common.content) }</ID>
+    <ID>UndocumentedProperty:ToBaseClientPayloadHandlerLibrary.kt:ToBaseClientPayloadHandlerLibrary$val distant_sound by this { PayloadHandlerEntry({ ToBaseMod.payloads.distant_sound.type }, DistantSoundPayloadHandler::handle) }</ID>
+    <ID>UndocumentedProperty:ToBaseClientReloadListenerLibrary.kt:ToBaseClientReloadListenerLibrary$val wiki_articles by this { WikiArticleManager }</ID>
+    <ID>UndocumentedProperty:ToBaseCreativeTabLibrary.kt:ToBaseCreativeTabLibrary$val tab by this { entry -> Services.platform.creativeTabs.builder { parameters, output -> output(ItemStack(ToBaseMod.content.blocks.research_desk)) output(ItemStack(ToBaseMod.content.blocks.test_block)) output(ItemStack(ToBaseMod.content.blocks.test_block_2)) output(ItemStack(ToBaseMod.content.items.test_item)) } .title(Component.translatable("itemgroup.$modid.${entry.name}")) .icon { ItemStack(ToBaseMod.content.items.test_item) } .build() }</ID>
+    <ID>UndocumentedProperty:ToBaseEventHandlerLibrary.kt:ToBaseEventHandlerLibrary$val block_network_tick by this(BlockNetworkTickHandler(), ToBaseMod.events::server_level_tick_pre)</ID>
+    <ID>UndocumentedProperty:ToBaseEventLibrary.kt:ToBaseEventLibrary$val advancement_grant_post by this { AdvancementGrantPostEvent(it.id) }</ID>
+    <ID>UndocumentedProperty:ToBaseEventLibrary.kt:ToBaseEventLibrary$val modify_default_components by this { ModifyDefaultItemComponentsEvent(it.id) }</ID>
+    <ID>UndocumentedProperty:ToBaseEventLibrary.kt:ToBaseEventLibrary$val server_entity_tick_pre by this { ServerEntityTickPreEvent(it.id) }</ID>
+    <ID>UndocumentedProperty:ToBaseEventLibrary.kt:ToBaseEventLibrary$val server_level_tick_pre by this { ServerLevelTickPreEvent(it.id) }</ID>
+    <ID>UndocumentedProperty:ToBaseEventLibrary.kt:ToBaseEventLibrary$val use_item_on_block by this { UseItemOnBlockEvent(it.id) }</ID>
+    <ID>UndocumentedProperty:ToBaseItemComponentLibrary.kt:ToBaseItemComponentLibrary$val energy_data by this { DataComponentType.Builder&lt;ToEnergyItemComponentData>().persistent(ToEnergyItemComponentData.codec) .build().also { TooltipProviderRegistry.register(it) } }</ID>
+    <ID>UndocumentedProperty:ToBaseItemLibrary.kt:ToBaseItemLibrary$val test_item by this { entry -> Item(Item.Properties().setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToBaseItemTagLibrary.kt:ToBaseItemTagLibrary$val research_desk_unlock by this()</ID>
+    <ID>UndocumentedProperty:ToBaseMenuLibrary.kt:ToBaseMenuLibrary$val research by this { Services.platform.inventory.createBasicMenu(::ResearchMenu) }</ID>
+    <ID>UndocumentedProperty:ToBasePayloadLibrary.kt:ToBasePayloadLibrary$val distant_sound by this { DistantSoundPayload.Companion }</ID>
+    <ID>UndocumentedProperty:ToBaseRegistryLibrary.kt:ToBaseRegistryLibrary$val block_networks by this&lt;BlockNetworkType>()</ID>
+    <ID>UndocumentedProperty:ToBaseSavedDataLibrary.kt:ToBaseSavedDataLibrary$val block_networks by this { SavedDataTypeConstructor.createType(it.id, ::BlockNetworkSavedData, BlockNetworkSavedData.codec, null) }</ID>
+    <ID>UndocumentedProperty:ToBaseScreenLibrary.kt:ToBaseScreenLibrary$val research_desk by this { ScreenEntry({ ToBaseMenuLibrary.research }, ::ResearchScreen) }</ID>
+    <ID>UndocumentedProperty:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$val none = Component.translatable("tooltip.$modid.none")</ID>
+    <ID>UndocumentedProperty:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$val siComponents = siPrefixes.map { if (it != "") Component.translatable("tooltip.$modid.number.si.$it") else Component.empty() }</ID>
+    <ID>UndocumentedProperty:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$val siPrefixes = arrayOf("n", "u", "-m", "", "k", "m", "g", "t", "p", "e")</ID>
+    <ID>UndocumentedProperty:ToBaseTooltipEngine.kt:ToBaseTooltipEngine$val timeUnits = listOf( "year" to 20L * 60L * 60L * 24L * 365L, "month" to 20L * 60L * 60L * 24L * 30L, "week" to 20L * 60L * 60L * 24L * 7L, "day" to 20L * 60L * 60L * 24L, "hour" to 20L * 60L * 60L, "minute" to 20L * 60L, "second" to 20L, "tick" to 1L )</ID>
+    <ID>UndocumentedProperty:ToBaseTransferProviderLibrary.kt:ToBaseTransferProviderLibrary$val items by this { Services.platform.transfer.itemProvider }</ID>
+    <ID>UndocumentedProperty:ToBaseTransferProviderLibrary.kt:ToBaseTransferProviderLibrary$val platform_energy by this { Services.platform.transfer.energyProvider }</ID>
+    <ID>UndocumentedProperty:ToBaseTransferProviderLibrary.kt:ToBaseTransferProviderLibrary$val to_energy by this { ToEnergyTransferContextProvider }</ID>
+    <ID>UndocumentedProperty:ToClientMod.kt:ToClientMod$protected val initHooks = mutableListOf&lt;(mod: ToClientMod) -> Unit>()</ID>
+    <ID>UndocumentedProperty:ToClientMod.kt:ToClientMod$protected val setupHooks = mutableListOf&lt;(mod: ToClientMod) -> Unit>()</ID>
+    <ID>UndocumentedProperty:ToCollectionDataMod.kt:ToCollectionDataMod$val collections: DataCollectionLibrary? get() = null</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val advancements: List&lt;AdvancementSubProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val biomeMods: List&lt;SimpleLibrary&lt;BiomeMod>> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val blockLoot: List&lt;(provider: HolderLookup.Provider) -> BlockLootSubProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val configuredFeatures: DatapackLibrary&lt;ConfiguredFeature&lt;*, *>>? get() = null</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val generalLoot: List&lt;(provider: HolderLookup.Provider) -> LootTableSubProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val language: ((tokens: Map&lt;String, Map&lt;String, Component>>, output: PackOutput) -> MultiLanguageDataProvider)? get() = null</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val models: List&lt;(output: PackOutput) -> ModelProvider> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val modid: String</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val placedFeatures: DatapackLibrary&lt;PlacedFeature>? get() = null</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val tags: List&lt;(output: PackOutput, lookup: CompletableFuture&lt;HolderLookup.Provider>) -> TagsProvider&lt;*>> get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToContentDataMod.kt:ToContentDataMod$val wiki: List&lt;WikiDataEnforcer?>? get() = emptyList()</ID>
+    <ID>UndocumentedProperty:ToDataClientHelper.kt:ToDataClientHelper$private val dr: Map&lt;Direction, Map&lt;Direction, List&lt;VariantMutator>>> = mapOf( Direction.UP to mapOf( Direction.UP to emptyList(), Direction.NORTH to listOf(BlockModelGenerators.X_ROT_90), Direction.EAST to listOf(BlockModelGenerators.X_ROT_90, BlockModelGenerators.Y_ROT_90), Direction.SOUTH to listOf(BlockModelGenerators.X_ROT_90, BlockModelGenerators.Y_ROT_180), Direction.WEST to listOf(BlockModelGenerators.X_ROT_90, BlockModelGenerators.Y_ROT_270), Direction.DOWN to listOf(BlockModelGenerators.X_ROT_180) ), Direction.NORTH to mapOf( Direction.UP to listOf(BlockModelGenerators.X_ROT_270), Direction.NORTH to emptyList(), Direction.EAST to listOf(BlockModelGenerators.Y_ROT_90), Direction.SOUTH to listOf(BlockModelGenerators.Y_ROT_180), Direction.WEST to listOf(BlockModelGenerators.Y_ROT_270), Direction.DOWN to listOf(BlockModelGenerators.X_ROT_90) ) )</ID>
+    <ID>UndocumentedProperty:ToDataClientHelper.kt:ToDataClientHelper$private val hr: Map&lt;Direction, Map&lt;Direction, List&lt;VariantMutator>>> = mapOf( Direction.NORTH to mapOf( Direction.NORTH to emptyList(), Direction.EAST to listOf(BlockModelGenerators.Y_ROT_90), Direction.SOUTH to listOf(BlockModelGenerators.Y_ROT_180), Direction.WEST to listOf(BlockModelGenerators.Y_ROT_270), ) )</ID>
+    <ID>UndocumentedProperty:ToDataClientHelper.kt:ToDataClientHelper$val numericTextures = List(16) { ClientServices.platform.data.createTextureSlot(it.toString()) }</ID>
+    <ID>UndocumentedProperty:ToDataHelper.kt:ToDataHelper$val replaceableAssets = listOf("blockstates", "items", "models", "particles", "lang", "wiki", "sounds.json")</ID>
+    <ID>UndocumentedProperty:ToDataHelper.kt:ToDataHelper$val replaceableData = listOf("advancement", "loot_table", "recipe", "tags")</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$val dataAccess = object : ContainerData { override fun get(key: Int) = dataSchema.getShort(key, ::getFromDataSchema) ?: 0 override fun set(key: Int, value: Int) { dataSchema.set(key, value.toShort(), ::setFromDataSchema) } override fun getCount() = dataSchema.getDataSize() }</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$val historyExtract = LongArray(averageLength) { 0 }</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$val historyInsert = LongArray(averageLength) { 0 }</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$val transfer = BlockEntityToEnergyTransferContext(this)</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$var capacity = defaultCapacity</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$var energy = 0L</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$var historyExtractAvg = 0L</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$var historyInsertAvg = 0L</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$var maxInput = defaultMaxInput</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$var maxOutput = defaultMaxOutput</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$var nextEnergySync = 0</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.Companion$val dataSchema = ContainerDataSchema&lt;EnergyStorageDataKey>() .defineLong(EnergyStorageDataKey.TOTAL) .defineLong(EnergyStorageDataKey.CAPACITY) .defineLong(EnergyStorageDataKey.MAX_INPUT) .defineLong(EnergyStorageDataKey.MAX_OUTPUT) .defineLong(EnergyStorageDataKey.INSERT_CHANGE) .defineLong(EnergyStorageDataKey.INSERT_AVERAGE) .defineLong(EnergyStorageDataKey.EXTRACT_CHANGE) .defineLong(EnergyStorageDataKey.EXTRACT_AVERAGE)</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$CAPACITY</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$EXTRACT_AVERAGE</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$EXTRACT_CHANGE</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$INSERT_AVERAGE</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$INSERT_CHANGE</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$MAX_INPUT</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$MAX_OUTPUT</ID>
+    <ID>UndocumentedProperty:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler.EnergyStorageDataKey$TOTAL</ID>
+    <ID>UndocumentedProperty:ToEnergyCableBlock.kt:ToEnergyCableBlock$protected val contexts = mutableMapOf&lt;Pair&lt;UUID, NetworkToEnergyTransferContext.NodeSide?>, ToEnergyTransferContext>()</ID>
+    <ID>UndocumentedProperty:ToEnergyItemComponentData.kt:ToEnergyItemComponentData.Companion$val codec = RecordCodecBuilder.create { it.group( Codec.LONG.fieldOf("energy").forGetter(ToEnergyItemComponentData::energy), Codec.LONG.fieldOf("max").forGetter(ToEnergyItemComponentData::max), Codec.LONG.fieldOf("maxInput").forGetter(ToEnergyItemComponentData::maxInput), Codec.LONG.fieldOf("maxOutput").forGetter(ToEnergyItemComponentData::maxOutput) ) .apply(it, ::ToEnergyItemComponentData) }</ID>
+    <ID>UndocumentedProperty:ToEnergyItemContainerListener.kt:ToEnergyItemContainerListener$private val lastEnergyChange = LongArray(slots.size)</ID>
+    <ID>UndocumentedProperty:ToEnergyItemContainerListener.kt:ToEnergyItemContainerListener$private val lastEnergySeen = LongArray(slots.size)</ID>
+    <ID>UndocumentedProperty:ToEnergyItemContainerListener.kt:ToEnergyItemContainerListener$private val lastEnergyStale = LongArray(slots.size)</ID>
+    <ID>UndocumentedProperty:TooltipProviderRegistry.kt:TooltipProviderRegistry$private val after = mutableMapOf&lt;DataComponentType&lt;*>, MutableSet&lt;DataComponentType&lt;out TooltipProvider>>>()</ID>
+    <ID>UndocumentedProperty:TooltipProviderRegistry.kt:TooltipProviderRegistry$private val bottom = mutableSetOf&lt;DataComponentType&lt;out TooltipProvider>>()</ID>
+    <ID>UndocumentedProperty:TooltipProviderRegistry.kt:TooltipProviderRegistry$private val top = mutableSetOf&lt;DataComponentType&lt;out TooltipProvider>>()</ID>
+    <ID>UndocumentedProperty:WikiArticleDataTokenParser.kt:WikiArticleDataTokenParser$private var builder = StringBuilder()</ID>
+    <ID>UndocumentedProperty:WikiArticleDataTokenParser.kt:WikiArticleDataTokenParser$val changelog by lazy { data.getAsJsonArray("changelog").filterIsInstance&lt;JsonObject>() }</ID>
+    <ID>UndocumentedProperty:WikiArticleManager.kt:WikiArticleManager$lateinit var index: WikiArticleIndex private set</ID>
+    <ID>UndocumentedProperty:WikiDataProvider.kt:WikiDataProvider$var enforcer: WikiDataEnforcer? = null private set</ID>
+    <ID>UndocumentedProperty:WikiDataProvider.kt:WikiDataProvider.Companion$private val articleMatcher = FileSystems.getDefault().getPathMatcher("glob:*/articles/*/index.json")</ID>
+    <ID>UndocumentedType:AbstractBarWidget.kt:AbstractBarWidget : AbstractWidget</ID>
+    <ID>UndocumentedType:AbstractBarWidget.kt:AbstractBarWidget$AnimationDirection</ID>
+    <ID>UndocumentedType:AbstractEnergyBarWidget.kt:AbstractEnergyBarWidget : AbstractBarWidget</ID>
+    <ID>UndocumentedType:AccessibleSimpleParticleType.kt:AccessibleSimpleParticleType : SimpleParticleType</ID>
+    <ID>UndocumentedType:AdvancementEventContext.kt:AdvancementEventContext</ID>
+    <ID>UndocumentedType:AdvancementGrantPostEvent.kt:AdvancementGrantPostEvent : Event</ID>
+    <ID>UndocumentedType:AggregateTagLookup.kt:AggregateTagLookup&lt;T : Any> : TagLookup</ID>
+    <ID>UndocumentedType:BiomeModLibrary.kt:BiomeModLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:BlockEntityRendererLibrary.kt:BlockEntityRendererLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:BlockEntityToEnergyTransferContext.kt:BlockEntityToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:BlockInteractEventContext.kt:BlockInteractEventContext</ID>
+    <ID>UndocumentedType:BlockInteractEventResult.kt:BlockInteractEventResult : EventResult</ID>
+    <ID>UndocumentedType:BlockItemLibrary.kt:BlockItemLibrary : SimpleLibraryIResourceKeyLibrary</ID>
+    <ID>UndocumentedType:BlockLibrary.kt:BlockLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:BlockLibrary.kt:BlockLibrary$ExtendedBlockPropertiesList : LibraryTagList</ID>
+    <ID>UndocumentedType:BlockLootDataCollectionEvent.kt:BlockLootDataCollectionEvent : DataCollectionEvent</ID>
+    <ID>UndocumentedType:BlockNetworkSavedData.kt:BlockNetworkSavedData : SavedData</ID>
+    <ID>UndocumentedType:BlockNetworkSavedData.kt:BlockNetworkSavedData$NetworkChange</ID>
+    <ID>UndocumentedType:BlockNetworkTickHandler.kt:BlockNetworkTickHandler : EventHandler</ID>
+    <ID>UndocumentedType:BlockTagDataCollectionEvent.kt:BlockTagDataCollectionEvent : TagDataCollectionEvent</ID>
+    <ID>UndocumentedType:BlockTintLibrary.kt:BlockTintLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:BurnBarWidget.kt:BurnBarWidget : AbstractBarWidget</ID>
+    <ID>UndocumentedType:CableBlock.kt:CableBlock : Block</ID>
+    <ID>UndocumentedType:CableBlock.kt:CableBlock$CableAttachType : StringRepresentable</ID>
+    <ID>UndocumentedType:ClientDataCollectionModule.kt:ClientDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:ClientEntityTickPreEvent.kt:ClientEntityTickPreEvent : Event</ID>
+    <ID>UndocumentedType:ClientLevelEventContext.kt:ClientLevelEventContext</ID>
+    <ID>UndocumentedType:ClientLevelTickPreEvent.kt:ClientLevelTickPreEvent : Event</ID>
+    <ID>UndocumentedType:ClientPayloadHandlerLibrary.kt:ClientPayloadHandlerLibrary : PayloadHandlerLibrary</ID>
+    <ID>UndocumentedType:ClientPlatform.kt:ClientPlatform</ID>
+    <ID>UndocumentedType:ClientPlatformService.kt:ClientPlatformService</ID>
+    <ID>UndocumentedType:ClientServices.kt:ClientServices</ID>
+    <ID>UndocumentedType:ClientSide.kt:ClientSide : Side</ID>
+    <ID>UndocumentedType:CompactRecipeDataCollectionModule.kt:CompactRecipeDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:CompositeWikiDataEnforcer.kt:CompositeWikiDataEnforcer : WikiDataEnforcer</ID>
+    <ID>UndocumentedType:ConfiguredFeatureDataCollectionEvent.kt:ConfiguredFeatureDataCollectionEvent : DatapackDataCollectionEvent</ID>
+    <ID>UndocumentedType:CookingRecipeDataCollectionModule.kt:CookingRecipeDataCollectionModule&lt;R : AbstractCookingRecipe> : GenericRecipeDataCollectionModule</ID>
+    <ID>UndocumentedType:CopyDataProvider.kt:CopyDataProvider : DataProvider</ID>
+    <ID>UndocumentedType:CraftingOutputSlot.kt:CraftingOutputSlot : OutputSlot</ID>
+    <ID>UndocumentedType:CubeBlockModelClientDataCollectionModule.kt:CubeBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:CubeBottomTopBlockModelClientDataCollectionModule.kt:CubeBottomTopBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:CustomBlockLootDataCollectionModule.kt:CustomBlockLootDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:DamageTypeLibrary.kt:DamageTypeLibrary : ResourceKeyLibrary</ID>
+    <ID>UndocumentedType:DataClientPlatformModule.kt:DataClientPlatformModule</ID>
+    <ID>UndocumentedType:DataCollection.kt:DataCollection&lt;T : Any></ID>
+    <ID>UndocumentedType:DataCollectionDescription.kt:DataCollectionDescription</ID>
+    <ID>UndocumentedType:DataCollectionEvent.kt:DataCollectionEvent&lt;M : Any, C : Any, F : Any></ID>
+    <ID>UndocumentedType:DataCollectionLibrary.kt:DataCollectionLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:DataCollectionModule.kt:DataCollectionModule : IDataCollectionModule</ID>
+    <ID>UndocumentedType:DatapackDataCollectionEvent.kt:DatapackDataCollectionEvent&lt;T : Any> : DataCollectionEvent</ID>
+    <ID>UndocumentedType:DatapackLibrary.kt:DatapackLibrary&lt;T : Any> : SimpleLibraryIResourceKeyLibrary</ID>
+    <ID>UndocumentedType:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry</ID>
+    <ID>UndocumentedType:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$ComponentEntry&lt;T : Any></ID>
+    <ID>UndocumentedType:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$DelayedComponentEntry&lt;T : Any></ID>
+    <ID>UndocumentedType:DefaultItemComponentRegistry.kt:DefaultItemComponentRegistry$HolderComponentEntry&lt;T : Any></ID>
+    <ID>UndocumentedType:DeleteDataProvider.kt:DeleteDataProvider : DataProvider</ID>
+    <ID>UndocumentedType:DictTagDataCollectionModule.kt:DictTagDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:DistantSoundInstance.kt:DistantSoundInstance : SimpleSoundInstanceTickableSoundInstance</ID>
+    <ID>UndocumentedType:DistantSoundPayload.kt:DistantSoundPayload : CustomPacketPayload</ID>
+    <ID>UndocumentedType:DistantSoundPayloadHandler.kt:DistantSoundPayloadHandler</ID>
+    <ID>UndocumentedType:EmptyPlatformEnergyTransferContextProvider.kt:EmptyPlatformEnergyTransferContextProvider : TransferContextProvider</ID>
+    <ID>UndocumentedType:EmptyToEnergyTransferContext.kt:EmptyToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:EnergyBarWidget.kt:EnergyBarWidget : AbstractEnergyBarWidget</ID>
+    <ID>UndocumentedType:EnergyTransferFromStackWidget.kt:EnergyTransferFromStackWidget : EnergyTransferStackWidget</ID>
+    <ID>UndocumentedType:EnergyTransferStackWidget.kt:EnergyTransferStackWidget : AbstractWidget</ID>
+    <ID>UndocumentedType:EnergyTransferToStackWidget.kt:EnergyTransferToStackWidget : EnergyTransferStackWidget</ID>
+    <ID>UndocumentedType:EnglishWikiLanguage.kt:EnglishWikiLanguage : WikiLanguage</ID>
+    <ID>UndocumentedType:EntitiesClientPlatformModule.kt:EntitiesClientPlatformModule</ID>
+    <ID>UndocumentedType:EntityEventContext.kt:EntityEventContext</ID>
+    <ID>UndocumentedType:EntityRendererLibrary.kt:EntityRendererLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:EntityRendererLibrary.kt:EntityRendererLibrary$EntityRendererEntry&lt;E : Entity></ID>
+    <ID>UndocumentedType:EnvironmentService.kt:EnvironmentService</ID>
+    <ID>UndocumentedType:EnvironmentService.kt:EnvironmentService$Environment</ID>
+    <ID>UndocumentedType:EventHandlerLibrary.kt:EventHandlerLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ExtendedClientBlockProperties.kt:ExtendedClientBlockProperties</ID>
+    <ID>UndocumentedType:FireBlockModelClientDataCollectionModule.kt:FireBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:FlatItemModelClientDataCollectionModule.kt:FlatItemModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:FullRotatingBlockModelClientDataCollectionModule.kt:FullRotatingBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:GeneralLootDataCollectionEvent.kt:GeneralLootDataCollectionEvent : DataCollectionEvent</ID>
+    <ID>UndocumentedType:GeneralLootDataCollectionModule.kt:GeneralLootDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:GenericRecipeDataCollectionModule.kt:GenericRecipeDataCollectionModule&lt;B : RecipeBuilder> : DataCollectionModule</ID>
+    <ID>UndocumentedType:HorizontalBlockModelClientDataCollectionModule.kt:HorizontalBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:HorizontalGenericBlock.kt:HorizontalGenericBlock : HorizontalDirectionalBlock</ID>
+    <ID>UndocumentedType:IDataCollectionModule.kt:IDataCollectionModule</ID>
+    <ID>UndocumentedType:IDataCollectionModule.kt:IDataCollectionModule$EventResult</ID>
+    <ID>UndocumentedType:IExtendedBlockModelGenerators.kt:IExtendedBlockModelGenerators</ID>
+    <ID>UndocumentedType:IdentifierLanguageClientDataCollectionModule.kt:IdentifierLanguageClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:InfiniteToEnergyTransferContext.kt:InfiniteToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:InputToEnergyTransferContext.kt:InputToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:ItemComponentToEnergyTransferContext.kt:ItemComponentToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:ItemTagDataCollectionEvent.kt:ItemTagDataCollectionEvent : TagDataCollectionEvent</ID>
+    <ID>UndocumentedType:ItemTintLibrary.kt:ItemTintLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:JukeboxSongLibrary.kt:JukeboxSongLibrary : DatapackLibraryIResourceKeyLibrary</ID>
+    <ID>UndocumentedType:LangClientDataCollectionEvent.kt:LangClientDataCollectionEvent : DataCollectionEvent</ID>
+    <ID>UndocumentedType:MiniEnergyBarWidget.kt:MiniEnergyBarWidget : AbstractEnergyBarWidget</ID>
+    <ID>UndocumentedType:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:MiningBlockTagDataCollectionModule.kt:MiningBlockTagDataCollectionModule$ToolType</ID>
+    <ID>UndocumentedType:ModWikiDataEnforcer.kt:ModWikiDataEnforcer : WikiDataEnforcer</ID>
+    <ID>UndocumentedType:ModelClientDataCollectionEvent.kt:ModelClientDataCollectionEvent : DataCollectionEvent</ID>
+    <ID>UndocumentedType:ModelLayerLibrary.kt:ModelLayerLibrary : AdvancedLibrary</ID>
+    <ID>UndocumentedType:ModelsClientPlatformModule.kt:ModelsClientPlatformModule</ID>
+    <ID>UndocumentedType:ModifyDefaultItemComponentsEvent.kt:ModifyDefaultItemComponentsEvent : Event</ID>
+    <ID>UndocumentedType:ModifyItemComponentEventContext.kt:ModifyItemComponentEventContext</ID>
+    <ID>UndocumentedType:MultiLanguageDataProvider.kt:MultiLanguageDataProvider : DataProvider</ID>
+    <ID>UndocumentedType:NetworkCableBlock.kt:NetworkCableBlock&lt;N : BlockNetworkType> : CableBlock</ID>
+    <ID>UndocumentedType:NetworkToEnergyTransferContext.kt:NetworkToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:NetworkToEnergyTransferContext.kt:NetworkToEnergyTransferContext$NodeSide</ID>
+    <ID>UndocumentedType:NetworkingClientPlatformModule.kt:NetworkingClientPlatformModule</ID>
+    <ID>UndocumentedType:NoopBlockLootDataCollectionModule.kt:NoopBlockLootDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:OreBlockLootDataCollectionModule.kt:OreBlockLootDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:OreRecipeDataCollectionModule.kt:OreRecipeDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:OutputSlot.kt:OutputSlot : Slot</ID>
+    <ID>UndocumentedType:OutputToEnergyTransferContext.kt:OutputToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:ParticleBlockModelClientDataCollectionModule.kt:ParticleBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:ParticleClientPlatformModule.kt:ParticleClientPlatformModule</ID>
+    <ID>UndocumentedType:ParticleLibrary.kt:ParticleLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ParticleLibrary.kt:ParticleLibrary$ParticleEntry&lt;O : ParticleOptions></ID>
+    <ID>UndocumentedType:PayloadHandlerLibrary.kt:PayloadHandlerLibrary$PayloadHandlerEntry&lt;P : CustomPacketPayload></ID>
+    <ID>UndocumentedType:PayloadHandlerLibrary.kt:PayloadHandlerLibrary&lt;C : PayloadContext> : SimpleLibraryPayloadHandlerRegistry</ID>
+    <ID>UndocumentedType:PayloadLibrary.kt:PayloadLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:PlacedFeatureDataCollectionEvent.kt:PlacedFeatureDataCollectionEvent : DatapackDataCollectionEvent</ID>
+    <ID>UndocumentedType:ProcessBarWidget.kt:ProcessBarWidget : AbstractBarWidget</ID>
+    <ID>UndocumentedType:RecipeDataCollectionEvent.kt:RecipeDataCollectionEvent : DataCollectionEvent</ID>
+    <ID>UndocumentedType:RecipeTypeLibrary.kt:RecipeTypeLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:RegisterService.kt:RegisterService</ID>
+    <ID>UndocumentedType:RegistryWikiDataEnforcer.kt:RegistryWikiDataEnforcer : WikiDataEnforcer</ID>
+    <ID>UndocumentedType:ReloadListenerClientPlatformModule.kt:ReloadListenerClientPlatformModule : ReloadListenerPlatformModule</ID>
+    <ID>UndocumentedType:ReloadListenerLibrary.kt:ReloadListenerLibrary&lt;R : ReloadListenerPlatformModule> : SimpleLibrary</ID>
+    <ID>UndocumentedType:ResearchDeskBlock.kt:ResearchDeskBlock : HorizontalDirectionalBlock</ID>
+    <ID>UndocumentedType:ResearchDeskBlock.kt:ResearchDeskBlock$ResearchDeskSegment : StringRepresentable</ID>
+    <ID>UndocumentedType:ResearchMenu.kt:ResearchMenu : AbstractContainerMenu</ID>
+    <ID>UndocumentedType:ResearchMenu.kt:ResearchMenu$ResearchSlot : Slot</ID>
+    <ID>UndocumentedType:ResearchScreen.kt:ResearchScreen : AbstractContainerScreen</ID>
+    <ID>UndocumentedType:ResearchScreen.kt:ResearchScreen$ListButton : Button</ID>
+    <ID>UndocumentedType:ResearchScreen.kt:ResearchScreen$ResearchScreenMode</ID>
+    <ID>UndocumentedType:ScaledTrackingItemStackRenderState.kt:ScaledTrackingItemStackRenderState : TrackingItemStackRenderState</ID>
+    <ID>UndocumentedType:ScreenClientPlatformModule.kt:ScreenClientPlatformModule</ID>
+    <ID>UndocumentedType:ScreenLibrary.kt:ScreenLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ScreenLibrary.kt:ScreenLibrary$ScreenEntry&lt;M : AbstractContainerMenu, S></ID>
+    <ID>UndocumentedType:ServerEntityTickPreEvent.kt:ServerEntityTickPreEvent : Event</ID>
+    <ID>UndocumentedType:ServerLevelEventContext.kt:ServerLevelEventContext</ID>
+    <ID>UndocumentedType:ServerLevelTickPreEvent.kt:ServerLevelTickPreEvent : Event</ID>
+    <ID>UndocumentedType:Services.kt:Services</ID>
+    <ID>UndocumentedType:ShapedRecipeDataCollectionModule.kt:ShapedRecipeDataCollectionModule : GenericRecipeDataCollectionModule</ID>
+    <ID>UndocumentedType:ShapelessRecipeDataCollectionModule.kt:ShapelessRecipeDataCollectionModule : GenericRecipeDataCollectionModule</ID>
+    <ID>UndocumentedType:SilkBlockLootDataCollectionModule.kt:SilkBlockLootDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:SimpleBlockLootDataCollectionModule.kt:SimpleBlockLootDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:SimpleBlockModelClientDataCollectionModule.kt:SimpleBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:SimpleBlockTagDataCollectionModule.kt:SimpleBlockTagDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:SimpleItemModelClientDataCollectionModule.kt:SimpleItemModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:SimpleItemTagDataCollectionModule.kt:SimpleItemTagDataCollectionModule : DataCollectionModule</ID>
+    <ID>UndocumentedType:SimpleLanguageClientDataCollectionModule.kt:SimpleLanguageClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:SingleItemRecipeDataCollectionModule.kt:SingleItemRecipeDataCollectionModule&lt;R : SingleItemRecipe> : GenericRecipeDataCollectionModule</ID>
+    <ID>UndocumentedType:SoundEventLibrary.kt:SoundEventLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:SpecialModelLibrary.kt:SpecialModelLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:StorageIdentifierLanguageClientDataCollectionModule.kt:StorageIdentifierLanguageClientDataCollectionModule : IdentifierLanguageClientDataCollectionModule</ID>
+    <ID>UndocumentedType:TagDataCollectionEvent.kt:TagDataCollectionEvent&lt;T : Any> : DataCollectionEvent</ID>
+    <ID>UndocumentedType:TagLibrary.kt:TagLibrary&lt;T : Any> : AdvancedLibraryAdvancedLibraryBuilder</ID>
+    <ID>UndocumentedType:TintedItemModelClientDataCollectionModule.kt:TintedItemModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:ToBaseBlockItemLibrary.kt:ToBaseBlockItemLibrary : BlockItemLibrary</ID>
+    <ID>UndocumentedType:ToBaseBlockLibrary.kt:ToBaseBlockLibrary : BlockLibrary</ID>
+    <ID>UndocumentedType:ToBaseBlockNetworkLibrary.kt:ToBaseBlockNetworkLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToBaseBlockTagLibrary.kt:ToBaseBlockTagLibrary : TagLibrary</ID>
+    <ID>UndocumentedType:ToBaseClientContentMod.kt:ToBaseClientContentMod : ToClientMod</ID>
+    <ID>UndocumentedType:ToBaseClientEventLibrary.kt:ToBaseClientEventLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ToBaseClientMod.kt:ToBaseClientMod : ToClientMod</ID>
+    <ID>UndocumentedType:ToBaseClientPayloadHandlerLibrary.kt:ToBaseClientPayloadHandlerLibrary : ClientPayloadHandlerLibrary</ID>
+    <ID>UndocumentedType:ToBaseClientReloadListenerLibrary.kt:ToBaseClientReloadListenerLibrary : ReloadListenerLibrary</ID>
+    <ID>UndocumentedType:ToBaseContentMod.kt:ToBaseContentMod : ToMod</ID>
+    <ID>UndocumentedType:ToBaseCreativeTabLibrary.kt:ToBaseCreativeTabLibrary : SimpleRegistryLibraryTranslatableLibrary</ID>
+    <ID>UndocumentedType:ToBaseEventHandlerLibrary.kt:ToBaseEventHandlerLibrary : EventHandlerLibrary</ID>
+    <ID>UndocumentedType:ToBaseEventLibrary.kt:ToBaseEventLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ToBaseItemComponentLibrary.kt:ToBaseItemComponentLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToBaseItemLibrary.kt:ToBaseItemLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToBaseItemTagLibrary.kt:ToBaseItemTagLibrary : TagLibrary</ID>
+    <ID>UndocumentedType:ToBaseMenuLibrary.kt:ToBaseMenuLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToBasePayloadLibrary.kt:ToBasePayloadLibrary : PayloadLibrary</ID>
+    <ID>UndocumentedType:ToBaseRegistryLibrary.kt:ToBaseRegistryLibrary : RegistryRegistryLibrary</ID>
+    <ID>UndocumentedType:ToBaseSavedDataLibrary.kt:ToBaseSavedDataLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ToBaseScreenLibrary.kt:ToBaseScreenLibrary : ScreenLibrary</ID>
+    <ID>UndocumentedType:ToBaseTooltipEngine.kt:ToBaseTooltipEngine : TooltipEngine</ID>
+    <ID>UndocumentedType:ToBaseTransferProviderLibrary.kt:ToBaseTransferProviderLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ToClientMod.kt:ToClientMod : IToClientModToContentClientModToModListener</ID>
+    <ID>UndocumentedType:ToCollectionDataMod.kt:ToCollectionDataMod</ID>
+    <ID>UndocumentedType:ToContentDataMod.kt:ToContentDataMod</ID>
+    <ID>UndocumentedType:ToDataClientHelper.kt:ToDataClientHelper</ID>
+    <ID>UndocumentedType:ToDataHelper.kt:ToDataHelper</ID>
+    <ID>UndocumentedType:ToDataLootHelper.kt:ToDataLootHelper</ID>
+    <ID>UndocumentedType:ToDataRecipeHelper.kt:ToDataRecipeHelper</ID>
+    <ID>UndocumentedType:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler</ID>
+    <ID>UndocumentedType:ToEnergyBlockEntityHandler.kt:ToEnergyBlockEntityHandler$EnergyStorageDataKey : StringRepresentable</ID>
+    <ID>UndocumentedType:ToEnergyBlockNetworkType.kt:ToEnergyBlockNetworkType : BlockNetworkType</ID>
+    <ID>UndocumentedType:ToEnergyCableBlock.kt:ToEnergyCableBlock : NetworkCableBlockToEnergyWorldlyProviderToEnergyPath</ID>
+    <ID>UndocumentedType:ToEnergyDisplayItem.kt:ToEnergyDisplayItem</ID>
+    <ID>UndocumentedType:ToEnergyItemComponentData.kt:ToEnergyItemComponentData : TooltipProviderToEnergyItemProvider</ID>
+    <ID>UndocumentedType:ToEnergyItemContainerListener.kt:ToEnergyItemContainerListener : ContainerListener</ID>
+    <ID>UndocumentedType:ToEnergyItemProvider.kt:ToEnergyItemProvider</ID>
+    <ID>UndocumentedType:ToEnergyItemSlot.kt:ToEnergyItemSlot : Slot</ID>
+    <ID>UndocumentedType:ToEnergyPath.kt:ToEnergyPath</ID>
+    <ID>UndocumentedType:ToEnergyTransferContext.kt:ToEnergyTransferContext : AbstractEnergyTransferContext</ID>
+    <ID>UndocumentedType:ToEnergyTransferContextProvider.kt:ToEnergyTransferContextProvider : TransferContextProvider</ID>
+    <ID>UndocumentedType:ToEnergyWorldlyProvider.kt:ToEnergyWorldlyProvider</ID>
+    <ID>UndocumentedType:TooltipProviderRegistry.kt:TooltipProviderRegistry</ID>
+    <ID>UndocumentedType:UprightDirectionalBlockModelClientDataCollectionModule.kt:UprightDirectionalBlockModelClientDataCollectionModule : ClientDataCollectionModule</ID>
+    <ID>UndocumentedType:UseItemOnBlockEvent.kt:UseItemOnBlockEvent : Event</ID>
+    <ID>UndocumentedType:WikiArticleDataTokenParser.kt:WikiArticleDataTokenParser : WikiArticleTokenParser</ID>
+    <ID>UndocumentedType:WikiArticleManager.kt:WikiArticleManager : PreparableReloadListener</ID>
+    <ID>UndocumentedType:WikiDataEnforcer.kt:WikiDataEnforcer</ID>
+    <ID>UndocumentedType:WikiDataProvider.kt:WikiDataProvider : DataProvider</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -1,0 +1,625 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>UndocumentedFunction:AdvancementRaceSavedData.kt:AdvancementRaceSavedData$constructor</ID>
+    <ID>UndocumentedFunction:AdvancementRaceSavedData.kt:AdvancementRaceSavedData$operator fun get</ID>
+    <ID>UndocumentedFunction:AdvancementRaceSavedData.kt:AdvancementRaceSavedData$operator fun set</ID>
+    <ID>UndocumentedFunction:AtomicBombAdvancementTrigger.kt:AtomicBombAdvancementTrigger$fun trigger</ID>
+    <ID>UndocumentedFunction:AtomicBombAdvancementTrigger.kt:AtomicBombAdvancementTrigger.TriggerInstance$fun matches</ID>
+    <ID>UndocumentedFunction:AtomicBombBlock.kt:AtomicBombBlock$private fun canFall: Boolean</ID>
+    <ID>UndocumentedFunction:AtomicBombBlock.kt:AtomicBombBlock$private fun getMiddle</ID>
+    <ID>UndocumentedFunction:AtomicBombBlock.kt:AtomicBombBlock$private fun getMiddleEntity</ID>
+    <ID>UndocumentedFunction:AtomicBombBlock.kt:AtomicBombBlock$private fun isSegment</ID>
+    <ID>UndocumentedFunction:AtomicBombBlock.kt:AtomicBombBlock.Companion$private fun createBodyShape: VoxelShape</ID>
+    <ID>UndocumentedFunction:AtomicBombBlockEntity.kt:AtomicBombBlockEntity$fun detonate</ID>
+    <ID>UndocumentedFunction:AtomicBombBlockEntity.kt:AtomicBombBlockEntity$fun fall</ID>
+    <ID>UndocumentedFunction:AtomicBombBlockEntity.kt:AtomicBombBlockEntity$private fun removeAll</ID>
+    <ID>UndocumentedFunction:AtomicBombDetonatePayloadHandler.kt:AtomicBombDetonatePayloadHandler$@Suppress("detekt.UnusedParameter") fun handle</ID>
+    <ID>UndocumentedFunction:AtomicBombEntity.kt:AtomicBombEntity$constructor</ID>
+    <ID>UndocumentedFunction:AtomicBombEntity.kt:AtomicBombEntity$private fun drop</ID>
+    <ID>UndocumentedFunction:AtomicBombEntity.kt:AtomicBombEntity$private fun explode</ID>
+    <ID>UndocumentedFunction:AtomicBombEntity.kt:AtomicBombEntity.Companion$fun getExplosionStrength: Int</ID>
+    <ID>UndocumentedFunction:AtomicBombEntity.kt:AtomicBombEntity.Companion$fun getFuseTime: Int</ID>
+    <ID>UndocumentedFunction:AtomicBombEntity.kt:AtomicBombEntity.Companion$fun getUraniumCount</ID>
+    <ID>UndocumentedFunction:AtomicBombMenu.kt:AtomicBombMenu$constructor</ID>
+    <ID>UndocumentedFunction:AtomicBombMenu.kt:AtomicBombMenu$fun getErroredSlots: IntArray</ID>
+    <ID>UndocumentedFunction:AtomicBombMenu.kt:AtomicBombMenu.Companion$fun canPlaceItem</ID>
+    <ID>UndocumentedFunction:AtomicBombMenu.kt:AtomicBombMenu.Companion$fun getMaxStackSize</ID>
+    <ID>UndocumentedFunction:AtomicBombScreen.kt:AtomicBombScreen$private fun updateCanDetonate</ID>
+    <ID>UndocumentedFunction:BoilingCauldronBlock.kt:BoilingCauldronBlock$fun setHeat</ID>
+    <ID>UndocumentedFunction:BoilingCauldronBlockEntity.kt:BoilingCauldronBlockEntity.Companion$fun tick</ID>
+    <ID>UndocumentedFunction:CentrifugeBlockEntity.kt:CentrifugeBlockEntity.Companion$fun tick</ID>
+    <ID>UndocumentedFunction:CentrifugeBlockEntityModel.kt:CentrifugeBlockEntityModel.Companion$fun create: LayerDefinition</ID>
+    <ID>UndocumentedFunction:CentrifugeMenu.kt:CentrifugeMenu$constructor</ID>
+    <ID>UndocumentedFunction:EnergyStorageBlockEntity.kt:EnergyStorageBlockEntity.Companion$fun tick</ID>
+    <ID>UndocumentedFunction:EnergyStorageMenu.kt:EnergyStorageMenu$constructor</ID>
+    <ID>UndocumentedFunction:EnergyStorageRenderer.kt:EnergyStorageRenderer$fun submit</ID>
+    <ID>UndocumentedFunction:EnergyStorageRenderer.kt:EnergyStorageRenderer$private fun getFillGeometry: SubmitNodeCollector.CustomGeometryRenderer</ID>
+    <ID>UndocumentedFunction:EnergySyncPayloadHandler.kt:EnergySyncPayloadHandler$fun handle</ID>
+    <ID>UndocumentedFunction:HeatBarWidget.kt:HeatBarWidget$fun getGhostFill: Float</ID>
+    <ID>UndocumentedFunction:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$abstract fun getFuelDuration: Short</ID>
+    <ID>UndocumentedFunction:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$abstract fun getFuelValue: Float</ID>
+    <ID>UndocumentedFunction:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity.Companion$fun tick</ID>
+    <ID>UndocumentedFunction:HeatGeneratorMenu.kt:HeatGeneratorMenu$abstract fun canPlaceItem: Boolean</ID>
+    <ID>UndocumentedFunction:HeatGeneratorMenu.kt:HeatGeneratorMenu$abstract fun getFuelDuration: Short</ID>
+    <ID>UndocumentedFunction:HeatGeneratorMenu.kt:HeatGeneratorMenu$abstract fun getFuelValue: Float</ID>
+    <ID>UndocumentedFunction:NuclearExplosion.kt:NuclearExplosion$fun doBlockDamage</ID>
+    <ID>UndocumentedFunction:NuclearExplosion.kt:NuclearExplosion$fun doEntityDamage</ID>
+    <ID>UndocumentedFunction:NuclearExplosion.kt:NuclearExplosion$fun run</ID>
+    <ID>UndocumentedFunction:NuclearExplosion.kt:NuclearExplosion$fun updateClients</ID>
+    <ID>UndocumentedFunction:NuclearExplosion.kt:NuclearExplosion$private fun generateSphereShell: LongOpenHashSet</ID>
+    <ID>UndocumentedFunction:NuclearExplosion.kt:NuclearExplosion$private fun traceRay</ID>
+    <ID>UndocumentedFunction:NuclearExplosionPayloadHandler.kt:NuclearExplosionPayloadHandler$fun handle</ID>
+    <ID>UndocumentedFunction:NuclearExplosionPayloadHandler.kt:NuclearExplosionPayloadHandler$fun playKnockback</ID>
+    <ID>UndocumentedFunction:NuclearExplosionPayloadHandler.kt:NuclearExplosionPayloadHandler$fun playParticles</ID>
+    <ID>UndocumentedFunction:NuclearExplosionPayloadHandler.kt:NuclearExplosionPayloadHandler$fun playSound</ID>
+    <ID>UndocumentedFunction:NuclearFireBlock.kt:NuclearFireBlock$private fun faceSupports: Boolean</ID>
+    <ID>UndocumentedFunction:NuclearFireBlock.kt:NuclearFireBlock$private fun spread</ID>
+    <ID>UndocumentedFunction:NuclearWasteBlock.kt:NuclearWasteBlock$fun fall</ID>
+    <ID>UndocumentedFunction:ProcessorBlockEntity.kt:ProcessorBlockEntity$open fun inputConsume</ID>
+    <ID>UndocumentedFunction:ProcessorBlockEntity.kt:ProcessorBlockEntity$open fun outputResults: Boolean</ID>
+    <ID>UndocumentedFunction:ProcessorBlockEntity.kt:ProcessorBlockEntity.Companion$fun tick</ID>
+    <ID>UndocumentedFunction:ProcessorMenu.kt:ProcessorMenu.ProcessorMenuData$constructor</ID>
+    <ID>UndocumentedFunction:ProcessorRecipe.kt:ProcessorRecipe$fun assembleAll: List&lt;ItemStack></ID>
+    <ID>UndocumentedFunction:ProcessorRecipe.kt:ProcessorRecipe$fun getFirstOutput</ID>
+    <ID>UndocumentedFunction:ProcessorRecipeBookCategory.kt:ProcessorRecipeBookCategory$fun get</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun addEfficiencyBarWidget</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun addEnergyBarWidget: AbstractEnergyBarWidget</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun extractEfficiencyIcon</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun extractEfficiencyTooltip: Boolean</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun extractEnergyIcon</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun extractEnergyTooltip: Boolean</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun extractLastRecipeIcon</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun extractProcessorIcons</ID>
+    <ID>UndocumentedFunction:ProcessorScreen.kt:ProcessorScreen$protected open fun extractProgressTooltip: Boolean</ID>
+    <ID>UndocumentedFunction:ProcessorSyncPayloadHandler.kt:ProcessorSyncPayloadHandler$fun handle</ID>
+    <ID>UndocumentedFunction:RaceAdvancementTrigger.kt:RaceAdvancementTrigger$fun trigger</ID>
+    <ID>UndocumentedFunction:RaceAdvancementTrigger.kt:RaceAdvancementTrigger.TriggerInstance$fun matches</ID>
+    <ID>UndocumentedFunction:RotorBlock.kt:RotorBlock$fun getTurbine: MachineTier?</ID>
+    <ID>UndocumentedFunction:RotorBlock.kt:RotorBlock$fun isRedstonePowered: Boolean</ID>
+    <ID>UndocumentedFunction:RotorBlock.kt:RotorBlock$fun isValid: Boolean</ID>
+    <ID>UndocumentedFunction:RotorBlockEntity.kt:RotorBlockEntity.Companion$fun tick</ID>
+    <ID>UndocumentedFunction:RotorSyncPayloadHandler.kt:RotorSyncPayloadHandler$fun handle</ID>
+    <ID>UndocumentedFunction:SolidGeneratorMenu.kt:SolidGeneratorMenu$constructor</ID>
+    <ID>UndocumentedFunction:SolidGeneratorMenu.kt:SolidGeneratorMenu.Companion$fun getFuelDuration: Short</ID>
+    <ID>UndocumentedFunction:SolidGeneratorMenu.kt:SolidGeneratorMenu.Companion$fun getFuelValue: Float</ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getAtomicBombInfo</ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getEfficiencyInfo</ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getGeneratorBurnInfo</ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getGeneratorFuelInfo: List&lt;Component></ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getGeneratorHeatInfo: List&lt;Component></ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getGeneratorInfo</ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getMachineInfo</ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getPowerCableInfo: List&lt;MutableComponent></ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getProcessorInfo</ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getProcessorProgressInfo: List&lt;MutableComponent></ID>
+    <ID>UndocumentedFunction:ToStarsTooltipEngine.kt:ToStarsTooltipEngine$fun getTurbineInfo</ID>
+    <ID>UndocumentedProperty:AdvancementRaceSavedData.kt:AdvancementRaceSavedData$private val map = map.toMutableMap()</ID>
+    <ID>UndocumentedProperty:AdvancementRaceSavedData.kt:AdvancementRaceSavedData.Companion$val codec = Codec.unboundedMap(Identifier.CODEC, EntityReference.codec&lt;Player>()) .xmap(::AdvancementRaceSavedData, AdvancementRaceSavedData::map)</ID>
+    <ID>UndocumentedProperty:AtomicBombAdvancementTrigger.kt:AtomicBombAdvancementTrigger.Companion$val codec = RecordCodecBuilder.create { it.group( EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::component1), EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("entity").forGetter(TriggerInstance::component2), ) .apply(it, ::TriggerInstance) }</ID>
+    <ID>UndocumentedProperty:AtomicBombBlock.kt:AtomicBombBlock.AtomicBombSegment$HEAD : AtomicBombSegment</ID>
+    <ID>UndocumentedProperty:AtomicBombBlock.kt:AtomicBombBlock.AtomicBombSegment$MIDDLE : AtomicBombSegment</ID>
+    <ID>UndocumentedProperty:AtomicBombBlock.kt:AtomicBombBlock.AtomicBombSegment$TAIL : AtomicBombSegment</ID>
+    <ID>UndocumentedProperty:AtomicBombBlock.kt:AtomicBombBlock.AtomicBombSegment$val offset = 1 - ordinal</ID>
+    <ID>UndocumentedProperty:AtomicBombBlock.kt:AtomicBombBlock.AtomicBombSegment$val shapes = Shapes.rotateHorizontal(shape)</ID>
+    <ID>UndocumentedProperty:AtomicBombBlock.kt:AtomicBombBlock.Companion$val codec = simpleCodec(::AtomicBombBlock)</ID>
+    <ID>UndocumentedProperty:AtomicBombBlock.kt:AtomicBombBlock.Companion$val segment = EnumProperty.create("segment", AtomicBombSegment::class.java)</ID>
+    <ID>UndocumentedProperty:AtomicBombBlockEntity.kt:AtomicBombBlockEntity$private var inventory = NonNullList.withSize(AtomicBombMenu.allSlots.size, ItemStack.EMPTY)</ID>
+    <ID>UndocumentedProperty:AtomicBombDetonatePayload.kt:AtomicBombDetonatePayload.Companion$val instance = AtomicBombDetonatePayload()</ID>
+    <ID>UndocumentedProperty:AtomicBombEntity.kt:AtomicBombEntity$private var owner: EntityReference&lt;LivingEntity>? = null</ID>
+    <ID>UndocumentedProperty:AtomicBombEntity.kt:AtomicBombEntity$private var stacks = NonNullList.withSize(AtomicBombMenu.allSlots.size, ItemStack.EMPTY)</ID>
+    <ID>UndocumentedProperty:AtomicBombEntity.kt:AtomicBombEntity$var forceTickAfterTeleportToDuplicate: Boolean = false</ID>
+    <ID>UndocumentedProperty:AtomicBombEntity.kt:AtomicBombEntity$var ticketTimer: Long = 0</ID>
+    <ID>UndocumentedProperty:AtomicBombEntity.kt:AtomicBombEntity.Companion$val dataTimer = SynchedEntityData.defineId(AtomicBombEntity::class.java, EntityDataSerializers.INT)</ID>
+    <ID>UndocumentedProperty:AtomicBombEntityRenderer.kt:AtomicBombEntityRenderer$val head = BlockModelRenderState() .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.segment, AtomicBombBlock.AtomicBombSegment.HEAD), BlockDisplayContext.create()) }</ID>
+    <ID>UndocumentedProperty:AtomicBombEntityRenderer.kt:AtomicBombEntityRenderer$val middle = BlockModelRenderState() .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.segment, AtomicBombBlock.AtomicBombSegment.MIDDLE), BlockDisplayContext.create()) }</ID>
+    <ID>UndocumentedProperty:AtomicBombEntityRenderer.kt:AtomicBombEntityRenderer$val tail = BlockModelRenderState() .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.segment, AtomicBombBlock.AtomicBombSegment.TAIL), BlockDisplayContext.create()) }</ID>
+    <ID>UndocumentedProperty:AtomicBombEntityState.kt:AtomicBombEntityState$var fuse: Float = 0f</ID>
+    <ID>UndocumentedProperty:AtomicBombEntityState.kt:AtomicBombEntityState$var yRot: Float = 0f</ID>
+    <ID>UndocumentedProperty:AtomicBombMenu.kt:AtomicBombMenu.Companion$val allSlots = intArrayOf(*explosiveSlots, *bulletSlots, *fuelSlots)</ID>
+    <ID>UndocumentedProperty:AtomicBombMenu.kt:AtomicBombMenu.Companion$val bulletSlots = intArrayOf(1)</ID>
+    <ID>UndocumentedProperty:AtomicBombMenu.kt:AtomicBombMenu.Companion$val explosiveSlots = intArrayOf(0)</ID>
+    <ID>UndocumentedProperty:AtomicBombMenu.kt:AtomicBombMenu.Companion$val fuelSlots = intArrayOf(2)</ID>
+    <ID>UndocumentedProperty:AtomicBombScreen.kt:AtomicBombScreen$private val detonateListener = object : ContainerListener { override fun slotChanged(menu: AbstractContainerMenu, slot: Int, stack: ItemStack) { updateCanDetonate() } override fun dataChanged(menu: AbstractContainerMenu, data: Int, value: Int) = Unit }</ID>
+    <ID>UndocumentedProperty:AtomicBombScreen.kt:AtomicBombScreen$private var detonate: Button? = null</ID>
+    <ID>UndocumentedProperty:AtomicBombScreen.kt:AtomicBombScreen$private var errors: IntArray = intArrayOf(0, 1, 2)</ID>
+    <ID>UndocumentedProperty:AtomicBombScreen.kt:AtomicBombScreen$private var initiated = false</ID>
+    <ID>UndocumentedProperty:AtomicBombScreen.kt:AtomicBombScreen.AtomicBombButton$private val sprites = WidgetSprites( Identifier.fromNamespaceAndPath(ToStarsMod.modid, "atomic_bomb/button"), Identifier.fromNamespaceAndPath(ToStarsMod.modid, "atomic_bomb/button_disabled"), Identifier.fromNamespaceAndPath(ToStarsMod.modid, "atomic_bomb/button_highlighted") )</ID>
+    <ID>UndocumentedProperty:AtomicBombScreen.kt:AtomicBombScreen.Companion$private val bullet = Component.literal("\n - ")</ID>
+    <ID>UndocumentedProperty:AtomicBombScreen.kt:AtomicBombScreen.Companion$val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/atomic_bomb.png")</ID>
+    <ID>UndocumentedProperty:BatteryItemTint.kt:BatteryItemTint.Companion$val codec = MapCodec.unit(instance)</ID>
+    <ID>UndocumentedProperty:BatteryItemTint.kt:BatteryItemTint.Companion$val instance = BatteryItemTint()</ID>
+    <ID>UndocumentedProperty:BoilingCauldronBlockEntity.kt:BoilingCauldronBlockEntity$var heats = mutableMapOf&lt;Direction, Float>()</ID>
+    <ID>UndocumentedProperty:BoilingCauldronBlockEntity.kt:BoilingCauldronBlockEntity.Companion$val heatCodec = Codec.unboundedMap(Direction.CODEC, Codec.FLOAT)</ID>
+    <ID>UndocumentedProperty:CentrifugeBlock.kt:CentrifugeBlock.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( MachineTier.codec.fieldOf("machine").forGetter(CentrifugeBlock::machine), propertiesCodec() ) .apply(it, ::CentrifugeBlock) }</ID>
+    <ID>UndocumentedProperty:CentrifugeBlock.kt:CentrifugeBlock.Companion$val shapes = Shapes.rotateHorizontal(Shapes.or( box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0), box(0.0, 7.0, 4.0, 16.0, 16.0, 16.0), box(2.0, 7.0, 0.0, 14.0, 8.0, 2.0), box(0.0, 7.0, 0.0, 2.0, 13.0, 4.0), box(14.0, 7.0, 0.0, 16.0, 13.0, 4.0), box(0.0, 13.0, 1.0, 2.0, 14.0, 4.0), box(14.0, 13.0, 1.0, 16.0, 14.0, 4.0), box(0.0, 14.0, 2.0, 2.0, 15.0, 4.0), box(14.0, 14.0, 2.0, 16.0, 15.0, 4.0), box(0.0, 15.0, 3.0, 2.0, 16.0, 4.0), box(14.0, 15.0, 3.0, 16.0, 16.0, 4.0), ))</ID>
+    <ID>UndocumentedProperty:CentrifugeBlockEntityModel.kt:CentrifugeBlockEntityModel$val bone = root.getChild("bone")</ID>
+    <ID>UndocumentedProperty:CentrifugeBlockEntityRenderer.kt:CentrifugeBlockEntityRenderer$val model = CentrifugeBlockEntityModel(context.bakeLayer(ToStarsModelLayersLibrary.centrifuge))</ID>
+    <ID>UndocumentedProperty:CentrifugeBlockEntityRenderer.kt:CentrifugeBlockEntityRenderer$val sprites = context.sprites()</ID>
+    <ID>UndocumentedProperty:CentrifugeBlockEntityRenderer.kt:CentrifugeBlockEntityRenderer.Companion$val texture = Sheets.BLOCK_ENTITIES_MAPPER.apply(Identifier.fromNamespaceAndPath(ToStarsMod.modid, "block/centrifuge"))</ID>
+    <ID>UndocumentedProperty:CentrifugeBlockEntityState.kt:CentrifugeBlockEntityState$var lit: Boolean = false</ID>
+    <ID>UndocumentedProperty:CentrifugeBlockEntityState.kt:CentrifugeBlockEntityState$var progress: Float = 0f</ID>
+    <ID>UndocumentedProperty:CentrifugeMenu.kt:CentrifugeMenu.Companion$val allSlots = intArrayOf(*inputSlots, *outputSlots, *batterySlots)</ID>
+    <ID>UndocumentedProperty:CentrifugeMenu.kt:CentrifugeMenu.Companion$val batterySlots = intArrayOf(3)</ID>
+    <ID>UndocumentedProperty:CentrifugeMenu.kt:CentrifugeMenu.Companion$val inputSlots = intArrayOf(0)</ID>
+    <ID>UndocumentedProperty:CentrifugeMenu.kt:CentrifugeMenu.Companion$val outputSlots = intArrayOf(1, 2)</ID>
+    <ID>UndocumentedProperty:CentrifugeScreen.kt:CentrifugeScreen$private var progressl: AbstractBarWidget? = null</ID>
+    <ID>UndocumentedProperty:CentrifugeScreen.kt:CentrifugeScreen$private var progressr: AbstractBarWidget? = null</ID>
+    <ID>UndocumentedProperty:CentrifugeScreen.kt:CentrifugeScreen.Companion$val progress = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "centrifuge/progress")</ID>
+    <ID>UndocumentedProperty:CentrifugeScreen.kt:CentrifugeScreen.Companion$val progressl = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "centrifuge/progress_l")</ID>
+    <ID>UndocumentedProperty:CentrifugeScreen.kt:CentrifugeScreen.Companion$val progressr = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "centrifuge/progress_r")</ID>
+    <ID>UndocumentedProperty:CentrifugeScreen.kt:CentrifugeScreen.Companion$val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/centrifuge.png")</ID>
+    <ID>UndocumentedProperty:EfficiencyBarWidget.kt:EfficiencyBarWidget.Companion$val back = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "efficiency_empty")</ID>
+    <ID>UndocumentedProperty:EfficiencyBarWidget.kt:EfficiencyBarWidget.Companion$val front = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "efficiency_full")</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlock.kt:EnergyStorageBlock.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( MachineTier.codec.fieldOf("machine").forGetter(EnergyStorageBlock::machine), propertiesCodec() ) .apply(it, ::EnergyStorageBlock) }</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlockEntity.kt:EnergyStorageBlockEntity$private var inventory = NonNullList.withSize(EnergyStorageMenu.allSlots.size, ItemStack.EMPTY)</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlockEntity.kt:EnergyStorageBlockEntity$val energy = ToEnergyBlockEntityHandler( (state.block as? EnergyStorageBlock)?.machine?.bankStorage ?: 0L, (state.block as? EnergyStorageBlock)?.machine?.maxInput ?: 0L, (state.block as? EnergyStorageBlock)?.machine?.maxOutput ?: 0L, )</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlockEntity.kt:EnergyStorageBlockEntity$val transferInput = InputToEnergyTransferContext(energy.transfer)</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlockEntity.kt:EnergyStorageBlockEntity$val transferOutput = OutputToEnergyTransferContext(energy.transfer)</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlockEntityRenderer.kt:EnergyStorageBlockEntityRenderer$val renderer = EnergyStorageRenderer()</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlockEntityState.kt:EnergyStorageBlockEntityState$var direction: Direction = Direction.UP</ID>
+    <ID>UndocumentedProperty:EnergyStorageBlockEntityState.kt:EnergyStorageBlockEntityState$var fill: Float = 0f</ID>
+    <ID>UndocumentedProperty:EnergyStorageMenu.kt:EnergyStorageMenu.Companion$val allSlots = intArrayOf(*transferFromSlots, *transferToSlots)</ID>
+    <ID>UndocumentedProperty:EnergyStorageMenu.kt:EnergyStorageMenu.Companion$val transferFromSlots = intArrayOf(0)</ID>
+    <ID>UndocumentedProperty:EnergyStorageMenu.kt:EnergyStorageMenu.Companion$val transferToSlots = intArrayOf(1)</ID>
+    <ID>UndocumentedProperty:EnergyStorageRenderer.kt:EnergyStorageRenderer.Companion$val energyStorageEmpty = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/entity/block/power_bank/empty.png")</ID>
+    <ID>UndocumentedProperty:EnergyStorageRenderer.kt:EnergyStorageRenderer.Companion$val energyStorageFull = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/entity/block/power_bank/full.png")</ID>
+    <ID>UndocumentedProperty:EnergyStorageScreen.kt:EnergyStorageScreen$private val energyItemListener = ToEnergyItemContainerListener(EnergyStorageMenu.allSlots, minecraft::level)</ID>
+    <ID>UndocumentedProperty:EnergyStorageScreen.kt:EnergyStorageScreen$private var bar: EnergyBarWidget? = null</ID>
+    <ID>UndocumentedProperty:EnergyStorageScreen.kt:EnergyStorageScreen.Companion$val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/energy_storage.png")</ID>
+    <ID>UndocumentedProperty:EnergyStorageSpecialRenderer.kt:EnergyStorageSpecialRenderer$val default by lazy { block.defaultBlockState().setValue(DirectionalBlock.FACING, Direction.UP) }</ID>
+    <ID>UndocumentedProperty:EnergyStorageSpecialRenderer.kt:EnergyStorageSpecialRenderer$val model by lazy { BlockModelRenderState() .also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update( it, default, BlockDisplayContext.create() ) } }</ID>
+    <ID>UndocumentedProperty:EnergyStorageSpecialRenderer.kt:EnergyStorageSpecialRenderer$val renderer = EnergyStorageRenderer()</ID>
+    <ID>UndocumentedProperty:EnergyStorageSpecialRenderer.kt:EnergyStorageSpecialRenderer.Companion$private val extents = arrayOf( Vector3f(0.0f, 0.0f, 0.0f), Vector3f(0.0f, 0.0f, 1.0f), Vector3f(0.0f, 1.0f, 0.0f), Vector3f(0.0f, 1.0f, 1.0f), Vector3f(1.0f, 0.0f, 0.0f), Vector3f(1.0f, 0.0f, 1.0f), Vector3f(1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), )</ID>
+    <ID>UndocumentedProperty:EnergyStorageSpecialRenderer.kt:EnergyStorageSpecialRenderer.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( BuiltInRegistries.BLOCK.byNameCodec().fieldOf("base").forGetter(Unbaked::block) ) .apply(it, ::Unbaked) }</ID>
+    <ID>UndocumentedProperty:HeatBarWidget.kt:HeatBarWidget.Companion$const val bulb = 13</ID>
+    <ID>UndocumentedProperty:HeatBarWidget.kt:HeatBarWidget.Companion$val back = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "heat/thermometer_empty")</ID>
+    <ID>UndocumentedProperty:HeatBarWidget.kt:HeatBarWidget.Companion$val front = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "heat/thermometer_full")</ID>
+    <ID>UndocumentedProperty:HeatBarWidget.kt:HeatBarWidget.Companion$val ghost = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "heat/thermometer_ghost")</ID>
+    <ID>UndocumentedProperty:HeatBarWidget.kt:HeatBarWidget.Companion$val max = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "heat/thermometer_max")</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$protected var inventory = NonNullList.withSize(HeatGeneratorMenu.allSlots.size, ItemStack.EMPTY)</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$val dataAccess = object : ContainerData { override fun get(key: Int) = HeatGeneratorMenu.dataSchema.getShort(key) { when (it) { HeatGeneratorMenu.HeatGeneratorDataKey.HEAT -> heat HeatGeneratorMenu.HeatGeneratorDataKey.CHANGE -> heatChange HeatGeneratorMenu.HeatGeneratorDataKey.ADD -> heatAdd HeatGeneratorMenu.HeatGeneratorDataKey.DURATION -> heatDuration HeatGeneratorMenu.HeatGeneratorDataKey.MAX_DURATION -> heatMaxDuration HeatGeneratorMenu.HeatGeneratorDataKey.SPEED -> heatSpeed HeatGeneratorMenu.HeatGeneratorDataKey.VALUE -> heatValue HeatGeneratorMenu.HeatGeneratorDataKey.INITIAL -> heatInitial HeatGeneratorMenu.HeatGeneratorDataKey.RANGE -> heatRange HeatGeneratorMenu.HeatGeneratorDataKey.BONUS -> heatBonus HeatGeneratorMenu.HeatGeneratorDataKey.COOLING -> heatCooling } } ?: 0 override fun set(key: Int, value: Int) { HeatGeneratorMenu.dataSchema.set(key, value.toShort()) { index, fn -> when (index) { HeatGeneratorMenu.HeatGeneratorDataKey.HEAT -> heat = fn(heat) HeatGeneratorMenu.HeatGeneratorDataKey.CHANGE -> heatChange = fn(heatChange) HeatGeneratorMenu.HeatGeneratorDataKey.ADD -> heatAdd = fn(heatAdd) HeatGeneratorMenu.HeatGeneratorDataKey.DURATION -> heatDuration = fn(heatDuration) HeatGeneratorMenu.HeatGeneratorDataKey.MAX_DURATION -> heatMaxDuration = fn(heatMaxDuration) HeatGeneratorMenu.HeatGeneratorDataKey.SPEED -> heatSpeed = fn(heatSpeed) HeatGeneratorMenu.HeatGeneratorDataKey.VALUE -> heatValue = fn(heatValue) HeatGeneratorMenu.HeatGeneratorDataKey.INITIAL -> heatInitial = fn(heatInitial) HeatGeneratorMenu.HeatGeneratorDataKey.RANGE -> heatRange = fn(heatRange) HeatGeneratorMenu.HeatGeneratorDataKey.BONUS -> heatBonus = fn(heatBonus) HeatGeneratorMenu.HeatGeneratorDataKey.COOLING -> heatCooling = fn(heatCooling) } } } override fun getCount() = HeatGeneratorMenu.dataSchema.getDataSize() }</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heat = 0f</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatAdd = 0f</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatBonus = (state.block as HeatGeneratorBlock).machine.generatorBonus</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatChange = 0f</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatCooling = (state.block as HeatGeneratorBlock).machine.generatorCooling</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatDuration: Short = 0</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatInitial = (state.block as HeatGeneratorBlock).machine.generatorInitial</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatMaxDuration: Short = 0</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatRange = (state.block as HeatGeneratorBlock).machine.generatorRange</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatSpeed = (state.block as HeatGeneratorBlock).machine.machineSpeed</ID>
+    <ID>UndocumentedProperty:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity$var heatValue = (state.block as HeatGeneratorBlock).machine.generatorHeat</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.Companion$val allSlots = intArrayOf(*fuelSlots)</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.Companion$val dataSchema = ContainerDataSchema&lt;HeatGeneratorDataKey>() .defineDecimal(HeatGeneratorDataKey.HEAT) .defineDecimal(HeatGeneratorDataKey.CHANGE, 1, 3) .defineDecimal(HeatGeneratorDataKey.ADD, 1, 4) .defineShort(HeatGeneratorDataKey.DURATION) .defineShort(HeatGeneratorDataKey.MAX_DURATION) .defineDecimal(HeatGeneratorDataKey.SPEED, 1, 3) .defineDecimal(HeatGeneratorDataKey.VALUE, 1, 3) .defineDecimal(HeatGeneratorDataKey.INITIAL, 1, 1) .defineDecimal(HeatGeneratorDataKey.RANGE, 1, 1) .defineDecimal(HeatGeneratorDataKey.BONUS, 1, 1) .defineDecimal(HeatGeneratorDataKey.COOLING, 1, 4)</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.Companion$val fuelSlots = intArrayOf(0)</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$ADD</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$BONUS</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$CHANGE</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$COOLING</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$DURATION</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$HEAT</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$INITIAL</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$MAX_DURATION</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$RANGE</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$SPEED</ID>
+    <ID>UndocumentedProperty:HeatGeneratorMenu.kt:HeatGeneratorMenu.HeatGeneratorDataKey$VALUE</ID>
+    <ID>UndocumentedProperty:HeatGeneratorScreen.kt:HeatGeneratorScreen$private var progress: BurnBarWidget? = null</ID>
+    <ID>UndocumentedProperty:HeatGeneratorScreen.kt:HeatGeneratorScreen$private var thermometer: HeatBarWidget? = null</ID>
+    <ID>UndocumentedProperty:HeatGeneratorScreen.kt:HeatGeneratorScreen.Companion$val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/heat_generator.png")</ID>
+    <ID>UndocumentedProperty:InfiniteEnergyItemComponent.kt:InfiniteEnergyItemComponent$val codec = MapCodec.unit(InfiniteEnergyItemComponent).codec()</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$ONE : MachineTier</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$ONE_5 : MachineTier</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val bankStorage: Long</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val batteryStorage: Long</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val chatColor: Int</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val generatorBonus: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val generatorCooling: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val generatorHeat: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val generatorInitial: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val generatorRange: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val machineBonus: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val machineBonusMax: Int</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val machineBuffer: Long</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val machineSpeed: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val machineUsage: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val maxInput: Long</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val maxOutput: Long</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier$abstract val turbineRate: Float</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier.Companion$val byId = ByIdMap.continuous(MachineTier::ordinal, MachineTier.entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier.Companion$val codec = StringRepresentable.fromEnum(::values)</ID>
+    <ID>UndocumentedProperty:MachineTier.kt:MachineTier.Companion$val streamCodec = ByteBufCodecs.idMapper(byId, MachineTier::ordinal)</ID>
+    <ID>UndocumentedProperty:NuclearExplosion.kt:NuclearExplosion$val knockback = mutableMapOf&lt;UUID, Vec3>()</ID>
+    <ID>UndocumentedProperty:NuclearExplosion.kt:NuclearExplosion$val source = source ?: Explosion.getDefaultDamageSource(level, entity)</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$private val quickCheck = RecipeManager.createCheck(ToStarsMod.recipeTypes.processor)</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$protected abstract val batterySlots: IntArray</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$protected abstract val inputSlots: IntArray</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$protected abstract val outputSlots: IntArray</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$protected abstract var inventory: NonNullList&lt;ItemStack></ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$val dataAccess = object : ContainerData { override fun get(key: Int) = ProcessorMenu.dataSchema.getShort(key) { when (it) { ProcessorMenu.ProcessorDataKey.PROGRESS -> progress ProcessorMenu.ProcessorDataKey.MAX_PROGRESS -> progressMax ProcessorMenu.ProcessorDataKey.RECIPE_SAME -> sameRecipe ProcessorMenu.ProcessorDataKey.RECIPE_ENERGY -> recipeEnergy ProcessorMenu.ProcessorDataKey.RECIPE_TIME -> recipeTime ProcessorMenu.ProcessorDataKey.COMPLETIONS -> completion else -> energy.getFromDataSchema(it) } } ?: 0 override fun set(key: Int, value: Int) { ProcessorMenu.dataSchema.set(key, value.toShort()) { index, fn -> when (index) { ProcessorMenu.ProcessorDataKey.PROGRESS -> progress = fn(progress) ProcessorMenu.ProcessorDataKey.MAX_PROGRESS -> progressMax = fn(progressMax) ProcessorMenu.ProcessorDataKey.RECIPE_SAME -> sameRecipe = fn(sameRecipe) ProcessorMenu.ProcessorDataKey.RECIPE_ENERGY -> recipeEnergy = fn(recipeEnergy) ProcessorMenu.ProcessorDataKey.RECIPE_TIME -> recipeTime = fn(recipeTime) ProcessorMenu.ProcessorDataKey.COMPLETIONS -> completion = fn(completion) else -> energy.setFromDataSchema(index, fn) } } } override fun getCount() = ProcessorMenu.dataSchema.getDataSize() }</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$val energy = ToEnergyBlockEntityHandler( (state.block as? CentrifugeBlock)?.machine?.machineBuffer ?: 0L, (state.block as? CentrifugeBlock)?.machine?.maxInput ?: 0L, (state.block as? CentrifugeBlock)?.machine?.maxOutput ?: 0L, )</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$val transferInput = InputToEnergyTransferContext(energy.transfer)</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var completion = 0</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var currentRecipe: ResourceKey&lt;Recipe&lt;*>>? = null</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var lastRecipe: ResourceKey&lt;Recipe&lt;*>>? = null</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var lastRecipeIcon: ResourceKey&lt;Item>? = null</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var machineBonus = (state.block as CentrifugeBlock).machine.machineBonus</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var machineBonusMax = (state.block as CentrifugeBlock).machine.machineBonusMax</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var machineSpeed = (state.block as CentrifugeBlock).machine.machineSpeed</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var machineUsage = (state.block as CentrifugeBlock).machine.machineUsage</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var progress = 0</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var progressMax = 0</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var recipeEnergy = 0L</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var recipeTime = 0</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var sameRecipe: Boolean = false</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity$var seed: Long? = null</ID>
+    <ID>UndocumentedProperty:ProcessorBlockEntity.kt:ProcessorBlockEntity.Companion$val itemCodec = ResourceKey.codec(Registries.ITEM)</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu$abstract val batterySlots: IntArray</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu$abstract val inputSlots: IntArray</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu$abstract val outputSlots: IntArray</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu$abstract var clientData: ProcessorMenuData?</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.Companion$val dataSchema = ContainerDataSchema&lt;ProcessorDataKey>() .defineInclude(ToEnergyBlockEntityHandler.dataSchema) { ProcessorDataKey.entries[it.ordinal] } .defineShort(ProcessorDataKey.PROGRESS) .defineShort(ProcessorDataKey.MAX_PROGRESS) .defineShort(ProcessorDataKey.COMPLETIONS) .defineLong(ProcessorDataKey.RECIPE_ENERGY) .defineInt(ProcessorDataKey.RECIPE_TIME) .defineBool(ProcessorDataKey.RECIPE_SAME)</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$COMPLETIONS</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_CAPACITY</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_EXTRACT_AVERAGE</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_EXTRACT_CHANGE</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_INSERT_AVERAGE</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_INSERT_CHANGE</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_MAX_INPUT</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_MAX_OUTPUT</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$ENERGY_TOTAL</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$MAX_PROGRESS</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$PROGRESS</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$RECIPE_ENERGY</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$RECIPE_SAME</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorDataKey$RECIPE_TIME</ID>
+    <ID>UndocumentedProperty:ProcessorMenu.kt:ProcessorMenu.ProcessorMenuData.Companion$val codec = StreamCodec.composite( BlockPos.STREAM_CODEC, ProcessorMenuData::pos, ByteBufCodecs.FLOAT, ProcessorMenuData::machineSpeed, ByteBufCodecs.FLOAT, ProcessorMenuData::machineUsage, ByteBufCodecs.FLOAT, ProcessorMenuData::machineBonus, ByteBufCodecs.INT, ProcessorMenuData::machineBonusMax, ResourceKey.streamCodec(Registries.RECIPE).apply(ByteBufCodecs::optional), ProcessorMenuData::lastRecipe, ResourceKey.streamCodec(Registries.ITEM).apply(ByteBufCodecs::optional), ProcessorMenuData::lastRecipeIcon, ::ProcessorMenuData )</ID>
+    <ID>UndocumentedProperty:ProcessorRecipe.kt:ProcessorRecipe$private var placement: PlacementInfo? = null</ID>
+    <ID>UndocumentedProperty:ProcessorRecipe.kt:ProcessorRecipe.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( Recipe.CommonInfo.MAP_CODEC.forGetter(ProcessorRecipe::info), ProcessorRecipeBookInfo.mapCodec.forGetter(ProcessorRecipe::book), ProcessorType.codec.fieldOf("machine").forGetter(ProcessorRecipe::type), MachineTier.codec.optionalFieldOf("tier").forGetter(ProcessorRecipe::tier), ProcessorRecipeIngredient.codec.listOf().fieldOf("ingredients").forGetter(ProcessorRecipe::ingredients), ExtraCodecs.optionalEmptyMap(ItemStackTemplate.CODEC).listOf().listOf().fieldOf("preview").forGetter(ProcessorRecipe::preview), Codec.INT.fieldOf("time").forGetter(ProcessorRecipe::time), Codec.LONG.fieldOf("energy").forGetter(ProcessorRecipe::energy) ) .apply(it, ::ProcessorRecipe) }</ID>
+    <ID>UndocumentedProperty:ProcessorRecipe.kt:ProcessorRecipe.Companion$val paramSet = ContextKeySet.Builder().required(LootContextParams.ORIGIN).required(LootContextParams.BLOCK_STATE).required(LootContextParams.BLOCK_ENTITY).build()</ID>
+    <ID>UndocumentedProperty:ProcessorRecipe.kt:ProcessorRecipe.Companion$val streamCodec = StreamCodec.composite( Recipe.CommonInfo.STREAM_CODEC, ProcessorRecipe::info, ProcessorRecipeBookInfo.streamCodec, ProcessorRecipe::book, ProcessorType.streamCodec, ProcessorRecipe::type, MachineTier.streamCodec.apply(ByteBufCodecs::optional), ProcessorRecipe::tier, ProcessorRecipeIngredient.streamCodec.apply(ByteBufCodecs.list()), ProcessorRecipe::ingredients, ItemStackTemplate.STREAM_CODEC.apply(ByteBufCodecs::optional).apply(ByteBufCodecs.list()).apply(ByteBufCodecs.list()), ProcessorRecipe::preview, ByteBufCodecs.INT, ProcessorRecipe::time, ByteBufCodecs.LONG, ProcessorRecipe::energy, ::ProcessorRecipe )</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookCategory.kt:ProcessorRecipeBookCategory$MISC : ProcessorRecipeBookCategory</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookCategory.kt:ProcessorRecipeBookCategory.Companion$val byId = ByIdMap.continuous(ProcessorRecipeBookCategory::ordinal, entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookCategory.kt:ProcessorRecipeBookCategory.Companion$val codec = StringRepresentable.fromEnum(::values)</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookCategory.kt:ProcessorRecipeBookCategory.Companion$val streamCodec = ByteBufCodecs.idMapper(byId, ProcessorRecipeBookCategory::ordinal)</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookComponent.kt:ProcessorRecipeBookComponent.Companion$private val filterSprites = WidgetSprites( Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_enabled"), Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_disabled"), Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_enabled_highlighted"), Identifier.fromNamespaceAndPath(ToStarsMod.modid, "processor/filter_disabled_highlighted") )</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookComponent.kt:ProcessorRecipeBookComponent.FakeRecipeBook$var filtering = false</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookComponent.kt:ProcessorRecipeBookComponent.FakeRecipeBook$var open = false</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookComponent.kt:ProcessorRecipeBookComponent.FakeRecipeBook$var settings = RecipeBookSettings()</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookInfo.kt:ProcessorRecipeBookInfo.Companion$val mapCodec = Recipe.BookInfo.mapCodec(ProcessorRecipeBookCategory.codec, ProcessorRecipeBookCategory.MISC, ::ProcessorRecipeBookInfo)</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeBookInfo.kt:ProcessorRecipeBookInfo.Companion$val streamCodec = Recipe.BookInfo.streamCodec(ProcessorRecipeBookCategory.streamCodec, ::ProcessorRecipeBookInfo)</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeDisplay.kt:ProcessorRecipeDisplay.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( SlotDisplay.CODEC.listOf().fieldOf("input").forGetter(ProcessorRecipeDisplay::input), SlotDisplay.CODEC.listOf().fieldOf("output").forGetter(ProcessorRecipeDisplay::output), SlotDisplay.CODEC.fieldOf("crafting_station").forGetter(ProcessorRecipeDisplay::station) ) .apply(it, ::ProcessorRecipeDisplay) }</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeDisplay.kt:ProcessorRecipeDisplay.Companion$val streamCodec = StreamCodec.composite( SlotDisplay.STREAM_CODEC.apply(ByteBufCodecs.list()), ProcessorRecipeDisplay::input, SlotDisplay.STREAM_CODEC.apply(ByteBufCodecs.list()), ProcessorRecipeDisplay::output, SlotDisplay.STREAM_CODEC, ProcessorRecipeDisplay::station, ::ProcessorRecipeDisplay )</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeIngredient.kt:ProcessorRecipeIngredient.Companion$val codec = RecordCodecBuilder.create { it.group( Ingredient.CODEC.fieldOf("ingredient").forGetter(ProcessorRecipeIngredient::ingredient), Codec.INT.fieldOf("count").forGetter(ProcessorRecipeIngredient::count), ) .apply(it, ::ProcessorRecipeIngredient) }</ID>
+    <ID>UndocumentedProperty:ProcessorRecipeIngredient.kt:ProcessorRecipeIngredient.Companion$val streamCodec = StreamCodec.composite( Ingredient.CONTENTS_STREAM_CODEC, ProcessorRecipeIngredient::ingredient, ByteBufCodecs.INT, ProcessorRecipeIngredient::count, ::ProcessorRecipeIngredient )</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen$protected abstract val texture: Identifier</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen$protected val energyItemListener = ToEnergyItemContainerListener(menu.batterySlots, minecraft::level)</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen$protected var efficiency: EfficiencyBarWidget? = null</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen$protected var energy: AbstractEnergyBarWidget? = null</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen$protected var progress: AbstractBarWidget? = null</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen$protected var recipeBook: ProcessorRecipeBookComponent? = null</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen.Companion$val efficiencyIndicator = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "efficiency")</ID>
+    <ID>UndocumentedProperty:ProcessorScreen.kt:ProcessorScreen.Companion$val energyIndicator = Identifier.fromNamespaceAndPath(ToBaseMod.modid, "energy/indicator_full")</ID>
+    <ID>UndocumentedProperty:ProcessorType.kt:ProcessorType$CENTRIFUGE</ID>
+    <ID>UndocumentedProperty:ProcessorType.kt:ProcessorType.Companion$val byId = ByIdMap.continuous(ProcessorType::ordinal, ProcessorType.entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)</ID>
+    <ID>UndocumentedProperty:ProcessorType.kt:ProcessorType.Companion$val codec = StringRepresentable.fromEnum(::values)</ID>
+    <ID>UndocumentedProperty:ProcessorType.kt:ProcessorType.Companion$val streamCodec = ByteBufCodecs.idMapper(byId, ProcessorType::ordinal)</ID>
+    <ID>UndocumentedProperty:RaceAdvancementTrigger.kt:RaceAdvancementTrigger.Companion$val codec = RecordCodecBuilder.create { it.group( EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::component1), Identifier.CODEC.optionalFieldOf("advancement").forGetter(TriggerInstance::component2), ) .apply(it, ::TriggerInstance) }</ID>
+    <ID>UndocumentedProperty:RotorBlock.kt:RotorBlock.Companion$val alternate = BooleanProperty.create("alternate")</ID>
+    <ID>UndocumentedProperty:RotorBlock.kt:RotorBlock.Companion$val codec = simpleCodec(::RotorBlock)</ID>
+    <ID>UndocumentedProperty:RotorBlock.kt:RotorBlock.Companion$val shapes = Shapes.rotateHorizontal(Shapes.or( box(1.0, 1.0, 5.0, 15.0, 15.0, 11.0), box(7.0, 7.0, 11.0, 9.0, 9.0, 16.0) ))</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity$val energy = MachineTier.entries.associateWith(::RotorToEnergyTransferContext)</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity$var clientAngle: Float = 0f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity$var clientPrevAngle: Float = 0f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity$var speed: Float = 0f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity$var syncLast = 0f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity$var syncTime = 0</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity.Companion$const val baseEnergyRate = 1000L</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity.Companion$const val fanMotion = 7.5f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity.Companion$const val fanRange = 7.0f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity.Companion$const val fanSpeed = 0.14f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity.Companion$const val turbineSpeed = 0.04f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity.RotorToEnergyTransferContext$val journal = object : TransferTransactionJournal&lt;Long>() { override fun create() = energy override fun rewind(snapshot: Long) { energy = snapshot } }</ID>
+    <ID>UndocumentedProperty:RotorBlockEntity.kt:RotorBlockEntity.RotorToEnergyTransferContext$var energy = 0L</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityRenderer.kt:RotorBlockEntityRenderer$val alt by lazy { ToStarsMod.blocks.rotor_blades.defaultBlockState().setValue(RotorBlock.alternate, true) }</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityRenderer.kt:RotorBlockEntityRenderer$val altModel by lazy { BlockModelRenderState().also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update( it, alt, BlockDisplayContext.create() ) } }</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityRenderer.kt:RotorBlockEntityRenderer$val default by lazy { ToStarsMod.blocks.rotor_blades.defaultBlockState() }</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityRenderer.kt:RotorBlockEntityRenderer$val model by lazy { BlockModelRenderState().also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update( it, default, BlockDisplayContext.create() ) } }</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityState.kt:RotorBlockEntityState$var alternate: Boolean = false</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityState.kt:RotorBlockEntityState$var angle: Float = 0f</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityState.kt:RotorBlockEntityState$var direction: Direction = Direction.NORTH</ID>
+    <ID>UndocumentedProperty:RotorBlockEntityState.kt:RotorBlockEntityState$var powered: Boolean = false</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer$val default by lazy { ToStarsMod.blocks.rotor_blades.defaultBlockState() }</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer$val model by lazy { BlockModelRenderState() .also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update( it, default, BlockDisplayContext.create() ) } }</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer$var frameTime: Long = 0L</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer.Companion$private val extents = arrayOf( Vector3f(0.0f, 0.0f, 0.0f), Vector3f(0.0f, 0.0f, 1.0f), Vector3f(0.0f, 1.0f, 0.0f), Vector3f(0.0f, 1.0f, 1.0f), Vector3f(1.0f, 0.0f, 0.0f), Vector3f(1.0f, 0.0f, 1.0f), Vector3f(1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), )</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( Codec.BOOL.fieldOf("gui").forGetter(Unbaked::gui) ) .apply(it, ::Unbaked) }</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer.Companion$val rotationAngles = mutableMapOf&lt;ItemStack, Float>()</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer.Companion$val rotationMouseX = mutableMapOf&lt;ItemStack, Double>()</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer.Companion$val rotationMouseY = mutableMapOf&lt;ItemStack, Double>()</ID>
+    <ID>UndocumentedProperty:RotorSpecialRenderer.kt:RotorSpecialRenderer.Companion$val rotationSpeeds = mutableMapOf&lt;ItemStack, Float>()</ID>
+    <ID>UndocumentedProperty:SolidGeneratorBlock.kt:SolidGeneratorBlock.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( MachineTier.codec.fieldOf("machine").forGetter(SolidGeneratorBlock::machine), propertiesCodec() ) .apply(it, ::SolidGeneratorBlock) }</ID>
+    <ID>UndocumentedProperty:SteamParticle.kt:SteamParticle$private val ceiling by lazy { Vec3(random.nextDouble().times(2).minus(1), 0.0, random.nextDouble().times(2).minus(1)).normalize() }</ID>
+    <ID>UndocumentedProperty:ToStarsAdvancementTriggerLibrary.kt:ToStarsAdvancementTriggerLibrary$val atomic_bomb by this { AtomicBombAdvancementTrigger() }</ID>
+    <ID>UndocumentedProperty:ToStarsAdvancementTriggerLibrary.kt:ToStarsAdvancementTriggerLibrary$val race by this { RaceAdvancementTrigger() }</ID>
+    <ID>UndocumentedProperty:ToStarsBiomeModLibrary.kt:ToStarsBiomeModLibrary$val uranium_ores by this { BiomeMod() .addOverworldFeature( setOf(ToStarsMod.placedFeatures.uranium_ore, ToStarsMod.placedFeatures.deepslate_uranium_ore), GenerationStep.Decoration.UNDERGROUND_ORES ) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityLibrary.kt:ToStarsBlockEntityLibrary$val atomic_bomb by this { Services.platform.blocks.createBlockEntityType(::AtomicBombBlockEntity, ToStarsMod.blocks.atomic_bomb) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityLibrary.kt:ToStarsBlockEntityLibrary$val boiler by this { Services.platform.blocks.createBlockEntityType(::BoilingCauldronBlockEntity, ToStarsMod.blocks.boiler) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityLibrary.kt:ToStarsBlockEntityLibrary$val centrifuge by this { Services.platform.blocks.createBlockEntityType(::CentrifugeBlockEntity, ToStarsMod.blocks.copper_centrifuge, ToStarsMod.blocks.gold_centrifuge) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityLibrary.kt:ToStarsBlockEntityLibrary$val power_bank by this { Services.platform.blocks.createBlockEntityType(::EnergyStorageBlockEntity, ToStarsMod.blocks.copper_power_bank, ToStarsMod.blocks.gold_power_bank) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityLibrary.kt:ToStarsBlockEntityLibrary$val rotor_blades by this { Services.platform.blocks.createBlockEntityType(::RotorBlockEntity, ToStarsMod.blocks.rotor_blades) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityLibrary.kt:ToStarsBlockEntityLibrary$val solid_generator by this { Services.platform.blocks.createBlockEntityType(::SolidGeneratorBlockEntity, ToStarsMod.blocks.copper_solid_generator, ToStarsMod.blocks.gold_solid_generator) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityRenderersLibrary.kt:ToStarsBlockEntityRenderersLibrary$val centrifuge by this(ToStarsMod.blockEntities::centrifuge) { ctx: BlockEntityRendererProvider.Context -> CentrifugeBlockEntityRenderer(ctx) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityRenderersLibrary.kt:ToStarsBlockEntityRenderersLibrary$val power_bank by this(ToStarsMod.blockEntities::power_bank) { ctx: BlockEntityRendererProvider.Context -> EnergyStorageBlockEntityRenderer(ctx) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockEntityRenderersLibrary.kt:ToStarsBlockEntityRenderersLibrary$val rotor_blades by this(ToStarsMod.blockEntities::rotor_blades) { ctx: BlockEntityRendererProvider.Context -> RotorBlockEntityRenderer(ctx) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val boiler by this()</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val copper_centrifuge by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val copper_machine_enclosure by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val copper_power_bank by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val copper_solid_generator by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getGeneratorInfo(MachineTier.ONE)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val copper_turbine by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getTurbineInfo(MachineTier.ONE)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val creative_power_source by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(ToStarsMod.itemComponents.infinite_energy, InfiniteEnergyItemComponent)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val gold_centrifuge by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE_5)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val gold_machine_enclosure by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val gold_power_bank by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val gold_solid_generator by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getGeneratorInfo(MachineTier.ONE_5)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val gold_turbine by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getTurbineInfo(MachineTier.ONE_5)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val nuclear_fire by this()</ID>
+    <ID>UndocumentedProperty:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary$val power_cable by this { block, initial -> BlockItem(block!!(), Item.Properties() .setId(ResourceKey.create(Registries.ITEM, block().identifier)) .useBlockDescriptionPrefix() .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getPowerCableInfo(block() as ToEnergyCableBlock)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val atomic_bomb by this { entry -> AtomicBombBlock(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.METAL) .requiresCorrectToolForDrops() .strength(9.0F, 90.0F) .sound(SoundType.METAL)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val boiler by this { entry -> BoilingCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON) .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val copper_centrifuge by this { entry -> CentrifugeBlock(MachineTier.ONE, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_ORANGE) .requiresCorrectToolForDrops() .strength(4.0F, 5.0F) .instrument(NoteBlockInstrument.TRUMPET) .sound(SoundType.COPPER_GOLEM_STATUE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val copper_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_ORANGE) .requiresCorrectToolForDrops() .strength(4.0F, 5.0F) .instrument(NoteBlockInstrument.TRUMPET) .sound(SoundType.COPPER_GOLEM_STATUE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val copper_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_ORANGE) .requiresCorrectToolForDrops() .strength(4.0F, 5.0F) .instrument(NoteBlockInstrument.TRUMPET) .sound(SoundType.COPPER_GOLEM_STATUE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val copper_solid_generator by this { entry -> SolidGeneratorBlock(MachineTier.ONE, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_ORANGE) .requiresCorrectToolForDrops() .lightLevel { it.getValue(BlockStateProperties.LIT).either(13, 0) } .strength(4.0F, 5.0F) .isValidSpawn { state, blockGetter, blockPos, entityType -> entityType.fireImmune() } .instrument(NoteBlockInstrument.TRUMPET) .sound(SoundType.COPPER_GOLEM_STATUE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val copper_turbine by this { entry -> TurbineBlock(MachineTier.ONE, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_ORANGE) .requiresCorrectToolForDrops() .lightLevel { it.getValue(BlockStateProperties.LIT).either(5, 0) } .strength(4.0F, 5.0F) .instrument(NoteBlockInstrument.TRUMPET) .sound(SoundType.COPPER_GOLEM_STATUE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val creative_power_source by this { entry -> InfiniteEnergyBlock(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_ORANGE) .strength(-1.0F, 3600000.0F) .instrument(NoteBlockInstrument.TRUMPET) .sound(SoundType.COPPER_BULB)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val deepslate_uranium_ore by this { entry -> DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.DEEPSLATE) .instrument(NoteBlockInstrument.BASEDRUM) .requiresCorrectToolForDrops() .lightLevel { 1 } .strength(4.5F, 3.0F) .sound(SoundType.DEEPSLATE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val enriched_uranium_block by this { entry -> Block(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_LIGHT_GREEN) .instrument(NoteBlockInstrument.DIDGERIDOO) .requiresCorrectToolForDrops() .lightLevel { 3 } .strength(5.0F, 6.0F) .sound(SoundType.STONE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val gold_centrifuge by this { entry -> CentrifugeBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.GOLD) .requiresCorrectToolForDrops() .strength(5.0F, 9.0F) .instrument(NoteBlockInstrument.BELL) .sound(SoundType.NETHERITE_BLOCK)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val gold_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.GOLD) .requiresCorrectToolForDrops() .strength(5.0F, 9.0F) .instrument(NoteBlockInstrument.BELL) .sound(SoundType.NETHERITE_BLOCK)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val gold_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.GOLD) .requiresCorrectToolForDrops() .strength(3.0F, 8.0F) .instrument(NoteBlockInstrument.BELL) .sound(SoundType.COPPER_BULB)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val gold_solid_generator by this { entry -> SolidGeneratorBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.GOLD) .requiresCorrectToolForDrops() .lightLevel { it.getValue(BlockStateProperties.LIT).either(13, 0) } .strength(5.0F, 9.0F) .isValidSpawn { state, blockGetter, blockPos, entityType -> entityType.fireImmune() } .instrument(NoteBlockInstrument.BELL) .sound(SoundType.NETHERITE_BLOCK)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val gold_turbine by this { entry -> TurbineBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.GOLD) .requiresCorrectToolForDrops() .lightLevel { it.getValue(BlockStateProperties.LIT).either(5, 0) } .strength(5.0F, 9.0F) .instrument(NoteBlockInstrument.BELL) .sound(SoundType.NETHERITE_BLOCK)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val heat_pipe by this { entry -> HeatCableBlock(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.DEEPSLATE) .requiresCorrectToolForDrops() .strength(3.0F, 8.0F) .instrument(NoteBlockInstrument.IRON_XYLOPHONE) .sound(SoundType.COPPER_BULB)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val heavy_uranium_block by this { entry -> Block(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_GREEN) .instrument(NoteBlockInstrument.DIDGERIDOO) .requiresCorrectToolForDrops() .strength(5.0F, 6.0F) .sound(SoundType.STONE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val heavy_uranium_shielding by this { entry -> Block(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_GREEN) .instrument(NoteBlockInstrument.DIDGERIDOO) .requiresCorrectToolForDrops() .strength(7.5F, 14.0F) .sound(SoundType.FUNGUS)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val nuclear_fire by this { entry -> NuclearFireBlock(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_LIGHT_GREEN) .randomTicks() .replaceable() .noCollision() .instabreak() .lightLevel { 15 } .sound(SoundType.SCULK_SENSOR) .pushReaction(PushReaction.DESTROY)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val nuclear_waste by this { entry -> NuclearWasteBlock(ColorRGBA(0xFF544F4E.toInt()), BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.TERRACOTTA_CYAN) .instrument(NoteBlockInstrument.BASEDRUM) .requiresCorrectToolForDrops() .strength(30.0f, 8.0f) .randomTicks() .sound(SoundType.CORAL_BLOCK)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val power_cable by this { entry -> LossyToEnergyCableBlock(0.02f, BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_ORANGE) .requiresCorrectToolForDrops() .strength(1.1F, 1.0F) .instrument(NoteBlockInstrument.TRUMPET) .sound(SoundType.COPPER_GRATE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val rotor_blades by this { entry -> RotorBlock(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.DEEPSLATE) .requiresCorrectToolForDrops() .strength(3.0F, 8.0F) .instrument(NoteBlockInstrument.IRON_XYLOPHONE) .sound(SoundType.METAL)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val uranium_block by this { entry -> Block(BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.COLOR_LIGHT_GREEN) .instrument(NoteBlockInstrument.DIDGERIDOO) .requiresCorrectToolForDrops() .lightLevel { 1 } .strength(5.0F, 6.0F) .sound(SoundType.STONE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockLibrary.kt:ToStarsBlockLibrary$val uranium_ore by this { entry -> DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of() .setId(getEntryResourceKey(entry)) .mapColor(MapColor.STONE) .instrument(NoteBlockInstrument.BASEDRUM) .requiresCorrectToolForDrops() .lightLevel { 1 } .strength(3.0F, 3.0F) .sound(SoundType.STONE)) }</ID>
+    <ID>UndocumentedProperty:ToStarsBlockNetworkLibrary.kt:ToStarsBlockNetworkLibrary$val heat by this { HeatBlockNetworkType() } .deferBuild(ToBaseMod::onInitialised)</ID>
+    <ID>UndocumentedProperty:ToStarsBlockTagLibrary.kt:ToStarsBlockTagLibrary$val nuke_immune by this()</ID>
+    <ID>UndocumentedProperty:ToStarsBlockTagLibrary.kt:ToStarsBlockTagLibrary$val nuke_passthrough by this()</ID>
+    <ID>UndocumentedProperty:ToStarsBlockTagLibrary.kt:ToStarsBlockTagLibrary$val nuke_shielding by this()</ID>
+    <ID>UndocumentedProperty:ToStarsClientEventHandlerLibrary.kt:ToStarsClientEventHandlerLibrary$val rotor_blades_movement by this(RotorMovementEventHandler(), ToBaseClientMod.events::client_entity_tick_pre) .deferBuild(ToBaseClientMod::onInitialised)</ID>
+    <ID>UndocumentedProperty:ToStarsClientParticleLibrary.kt:ToStarsClientParticleLibrary$val foam by this { ParticleEntry({ ToStarsMod.particles.foam }, ::FoamParticleProvider) }</ID>
+    <ID>UndocumentedProperty:ToStarsClientParticleLibrary.kt:ToStarsClientParticleLibrary$val nuclear_explosion by this { ParticleEntry({ ToStarsMod.particles.nuclear_explosion }, ::NuclearExplosionParticleProvider) }</ID>
+    <ID>UndocumentedProperty:ToStarsClientParticleLibrary.kt:ToStarsClientParticleLibrary$val steam by this { ParticleEntry({ ToStarsMod.particles.steam }, ::SteamParticleProvider) }</ID>
+    <ID>UndocumentedProperty:ToStarsClientPayloadHandlerLibrary.kt:ToStarsClientPayloadHandlerLibrary$val energy_storage_sync by this { PayloadHandlerEntry({ ToStarsPayloadLibrary.energy_storage_sync.type }, EnergySyncPayloadHandler::handle) }</ID>
+    <ID>UndocumentedProperty:ToStarsClientPayloadHandlerLibrary.kt:ToStarsClientPayloadHandlerLibrary$val nuclear_explosion by this { PayloadHandlerEntry({ ToStarsPayloadLibrary.nuclear_explosion.type }, NuclearExplosionPayloadHandler::handle) }</ID>
+    <ID>UndocumentedProperty:ToStarsClientPayloadHandlerLibrary.kt:ToStarsClientPayloadHandlerLibrary$val processor_sync by this { PayloadHandlerEntry({ ToStarsPayloadLibrary.processor_sync.type }, ProcessorSyncPayloadHandler::handle) }</ID>
+    <ID>UndocumentedProperty:ToStarsClientPayloadHandlerLibrary.kt:ToStarsClientPayloadHandlerLibrary$val rotor_sync by this { PayloadHandlerEntry({ ToStarsPayloadLibrary.rotor_sync.type }, RotorSyncPayloadHandler::handle) }</ID>
+    <ID>UndocumentedProperty:ToStarsConfiguredFeatureLibrary.kt:ToStarsConfiguredFeatureLibrary$val deepslate_uranium_ore by this()</ID>
+    <ID>UndocumentedProperty:ToStarsConfiguredFeatureLibrary.kt:ToStarsConfiguredFeatureLibrary$val uranium_ore by this()</ID>
+    <ID>UndocumentedProperty:ToStarsCreativeTabLibrary.kt:ToStarsCreativeTabLibrary$val tab by this(::i) { entry -> Services.platform.creativeTabs.builder { parameters, output -> output(ItemStack(ToStarsMod.blocks.uranium_ore)) output(ItemStack(ToStarsMod.blocks.deepslate_uranium_ore)) output(ItemStack(ToStarsMod.items.uranium_nugget)) output(ItemStack(ToStarsMod.items.uranium)) output(ItemStack(ToStarsMod.blocks.uranium_block)) output(ItemStack(ToStarsMod.items.enriched_uranium_nugget)) output(ItemStack(ToStarsMod.items.enriched_uranium)) output(ItemStack(ToStarsMod.blocks.enriched_uranium_block)) output(ItemStack(ToStarsMod.items.heavy_uranium_nugget)) output(ItemStack(ToStarsMod.items.heavy_uranium)) output(ItemStack(ToStarsMod.blocks.heavy_uranium_block)) output(ItemStack(ToStarsMod.blocks.heavy_uranium_shielding)) output(ItemStack(ToStarsMod.items.magnetic_iron)) output(ItemStack(ToStarsMod.blocks.copper_machine_enclosure)) output(ItemStack(ToStarsMod.blocks.gold_machine_enclosure)) output(ItemStack(ToStarsMod.blocks.copper_solid_generator)) output(ItemStack(ToStarsMod.blocks.gold_solid_generator)) output(ItemStack(ToStarsMod.blocks.rotor_blades)) output(ItemStack(ToStarsMod.blocks.copper_turbine)) output(ItemStack(ToStarsMod.blocks.gold_turbine)) output(ItemStack(ToStarsMod.blocks.copper_power_bank)) output(ItemStack(ToStarsMod.blocks.copper_power_bank).also { it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.maxInput, ToStarsMod.blocks.copper_power_bank.machine.maxOutput)) }) output(ItemStack(ToStarsMod.blocks.gold_power_bank)) output(ItemStack(ToStarsMod.blocks.gold_power_bank).also { it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.maxInput, ToStarsMod.blocks.gold_power_bank.machine.maxOutput)) }) output(ItemStack(ToStarsMod.items.copper_battery)) output(ItemStack(ToStarsMod.items.copper_battery).also { it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.items.copper_battery.machine.batteryStorage, ToStarsMod.items.copper_battery.machine.batteryStorage, ToStarsMod.items.copper_battery.machine.maxInput, ToStarsMod.items.copper_battery.machine.maxOutput)) }) output(ItemStack(ToStarsMod.items.gold_battery)) output(ItemStack(ToStarsMod.items.gold_battery).also { it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.maxInput, ToStarsMod.items.gold_battery.machine.maxOutput)) }) output(ItemStack(ToStarsMod.blocks.copper_centrifuge)) output(ItemStack(ToStarsMod.blocks.gold_centrifuge)) output(ItemStack(ToStarsMod.blocks.power_cable)) output(ItemStack(ToStarsMod.blocks.heat_pipe)) output(ItemStack(ToStarsMod.blocks.creative_power_source)) output(ItemStack(ToStarsMod.blocks.atomic_bomb)) output(ItemStack(ToStarsMod.blocks.nuclear_waste)) output(ItemStack(ToStarsMod.items.music_disc_gravitational_influence)) output(ItemStack(ToStarsMod.items.test_item)) } .title(Component.translatable("itemgroup.$modid.${entry.name}")) .icon { ItemStack(ToStarsMod.items.test_item) } .build() }</ID>
+    <ID>UndocumentedProperty:ToStarsDamageTypeLibrary.kt:ToStarsDamageTypeLibrary$val boiled by this()</ID>
+    <ID>UndocumentedProperty:ToStarsDamageTypeLibrary.kt:ToStarsDamageTypeLibrary$val heated by this()</ID>
+    <ID>UndocumentedProperty:ToStarsDamageTypeLibrary.kt:ToStarsDamageTypeLibrary$val rotor_blades by this()</ID>
+    <ID>UndocumentedProperty:ToStarsEntityLibrary.kt:ToStarsEntityLibrary$val atomic_bomb by this { EntityType.Builder.of(::AtomicBombEntity, MobCategory.MISC) .noLootTable() .fireImmune() .sized(0.98f, 0.98f) .eyeHeight(0.15f) .clientTrackingRange(100) .updateInterval(10) .build(getEntryResourceKey(it)) }</ID>
+    <ID>UndocumentedProperty:ToStarsEntityRenderersLibrary.kt:ToStarsEntityRenderersLibrary$val atomic_bomb by this { EntityRendererEntry({ ToStarsMod.entities.atomic_bomb }, ::AtomicBombEntityRenderer) }</ID>
+    <ID>UndocumentedProperty:ToStarsEventHandlerLibrary.kt:ToStarsEventHandlerLibrary$val advancement_race by this(AdvancementRaceEventHandler(), ToBaseMod.events::advancement_grant_post) .deferBuild(ToBaseMod::onInitialised)</ID>
+    <ID>UndocumentedProperty:ToStarsEventHandlerLibrary.kt:ToStarsEventHandlerLibrary$val energy_item_storage by this(EnergyItemStorageEventHandler(), ToBaseMod.events::modify_default_components) .deferBuild(ToBaseMod::onInitialised)</ID>
+    <ID>UndocumentedProperty:ToStarsEventHandlerLibrary.kt:ToStarsEventHandlerLibrary$val magnetic_iron by this(MagneticIronEventHandler(), ToBaseMod.events::use_item_on_block) .deferBuild(ToBaseMod::onInitialised)</ID>
+    <ID>UndocumentedProperty:ToStarsItemComponentLibrary.kt:ToStarsItemComponentLibrary$val infinite_energy by this { DataComponentType.Builder&lt;InfiniteEnergyItemComponent>().persistent(InfiniteEnergyItemComponent.codec) .build() }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val copper_battery by this { entry -> BatteryItem(MachineTier.ONE, Item.Properties() .setId(getEntryResourceKey(entry)) .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val enriched_uranium by this { entry -> Item(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val enriched_uranium_nugget by this { entry -> Item(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val gold_battery by this { entry -> BatteryItem(MachineTier.ONE_5, Item.Properties() .setId(getEntryResourceKey(entry)) .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val heavy_uranium by this { entry -> Item(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val heavy_uranium_nugget by this { entry -> Item(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val magnetic_iron by this { entry -> Item(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val music_disc_gravitational_influence by this { entry -> Item(Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ToStarsMod.music.gravitational_influence) .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val test_item by this(::i) { entry -> TestItem(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val uranium by this { entry -> Item(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemLibrary.kt:ToStarsItemLibrary$val uranium_nugget by this { entry -> Item(Item.Properties() .setId(getEntryResourceKey(entry))) }</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val batteries by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val centrifuges by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val copper_machines by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val copper_power_bank_unlock by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val enriched_uranium by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val gold_battery_unlock by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val gold_machines by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val heat_generator_2x by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val heat_generators by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val power_banks by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val root_advancement_unlock by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary$val turbines by this()</ID>
+    <ID>UndocumentedProperty:ToStarsItemTintsLibrary.kt:ToStarsItemTintsLibrary$val battery by this(BatteryItemTint.codec)</ID>
+    <ID>UndocumentedProperty:ToStarsLootTableLibrary.kt:ToStarsLootTableLibrary$val advancement_nuke_race by this(Identifier.fromNamespaceAndPath(ToStarsMod.modid, "advancements/nuke_race"))</ID>
+    <ID>UndocumentedProperty:ToStarsMenuLibrary.kt:ToStarsMenuLibrary$val atomic_bomb by this { Services.platform.inventory.createBasicMenu(::AtomicBombMenu) }</ID>
+    <ID>UndocumentedProperty:ToStarsMenuLibrary.kt:ToStarsMenuLibrary$val centrifuge by this { Services.platform.inventory.createExtendedMenu(::CentrifugeMenu, ProcessorMenu.ProcessorMenuData.codec) }</ID>
+    <ID>UndocumentedProperty:ToStarsMenuLibrary.kt:ToStarsMenuLibrary$val energy_storage by this { Services.platform.inventory.createBasicMenu(::EnergyStorageMenu) }</ID>
+    <ID>UndocumentedProperty:ToStarsMenuLibrary.kt:ToStarsMenuLibrary$val solid_generator by this { Services.platform.inventory.createBasicMenu(::SolidGeneratorMenu) }</ID>
+    <ID>UndocumentedProperty:ToStarsMod.kt:ToStarsMod$const val MOD_ID = "to_stars"</ID>
+    <ID>UndocumentedProperty:ToStarsModelLayersLibrary.kt:ToStarsModelLayersLibrary$val centrifuge by this(provider = CentrifugeBlockEntityModel::create)</ID>
+    <ID>UndocumentedProperty:ToStarsMusicLibrary.kt:ToStarsMusicLibrary$val gravitational_influence by this()</ID>
+    <ID>UndocumentedProperty:ToStarsParticleLibrary.kt:ToStarsParticleLibrary$val foam by this { AccessibleSimpleParticleType(false) }</ID>
+    <ID>UndocumentedProperty:ToStarsParticleLibrary.kt:ToStarsParticleLibrary$val nuclear_explosion by this { object : ParticleType&lt;PowerParticleOption>(true) { override fun codec() = PowerParticleOption.codec(this) override fun streamCodec() = PowerParticleOption.streamCodec(this) } }</ID>
+    <ID>UndocumentedProperty:ToStarsParticleLibrary.kt:ToStarsParticleLibrary$val steam by this { AccessibleSimpleParticleType(false) }</ID>
+    <ID>UndocumentedProperty:ToStarsPayloadHandlerLibrary.kt:ToStarsPayloadHandlerLibrary$val atomic_bomb_detonate by this { PayloadHandlerEntry({ ToStarsPayloadLibrary.atomic_bomb_detonate.type }, AtomicBombDetonatePayloadHandler::handle) }</ID>
+    <ID>UndocumentedProperty:ToStarsPayloadLibrary.kt:ToStarsPayloadLibrary$val atomic_bomb_detonate by this { AtomicBombDetonatePayload.Companion }</ID>
+    <ID>UndocumentedProperty:ToStarsPayloadLibrary.kt:ToStarsPayloadLibrary$val energy_storage_sync by this { EnergySyncPayload.Companion }</ID>
+    <ID>UndocumentedProperty:ToStarsPayloadLibrary.kt:ToStarsPayloadLibrary$val nuclear_explosion by this { NuclearExplosionPayload.Companion }</ID>
+    <ID>UndocumentedProperty:ToStarsPayloadLibrary.kt:ToStarsPayloadLibrary$val processor_sync by this { ProcessorSyncPayload.Companion }</ID>
+    <ID>UndocumentedProperty:ToStarsPayloadLibrary.kt:ToStarsPayloadLibrary$val rotor_sync by this { RotorSyncPayload.Companion }</ID>
+    <ID>UndocumentedProperty:ToStarsPlacedFeatureLibrary.kt:ToStarsPlacedFeatureLibrary$val deepslate_uranium_ore by this()</ID>
+    <ID>UndocumentedProperty:ToStarsPlacedFeatureLibrary.kt:ToStarsPlacedFeatureLibrary$val uranium_ore by this()</ID>
+    <ID>UndocumentedProperty:ToStarsRecipeCategoryLibrary.kt:ToStarsRecipeCategoryLibrary$val processor_misc by this { RecipeBookCategory() }</ID>
+    <ID>UndocumentedProperty:ToStarsRecipeDisplayLibrary.kt:ToStarsRecipeDisplayLibrary$val processor by this { RecipeDisplay.Type(ProcessorRecipeDisplay.codec, ProcessorRecipeDisplay.streamCodec) }</ID>
+    <ID>UndocumentedProperty:ToStarsRecipeLibrary.kt:ToStarsRecipeLibrary$val processor by this&lt;ProcessorRecipe>()</ID>
+    <ID>UndocumentedProperty:ToStarsRecipeSerializerLibrary.kt:ToStarsRecipeSerializerLibrary$val processor by this { RecipeSerializer(ProcessorRecipe.codec, ProcessorRecipe.streamCodec) }</ID>
+    <ID>UndocumentedProperty:ToStarsSavedDataLibrary.kt:ToStarsSavedDataLibrary$val advancement_race by this { SavedDataTypeConstructor.createType(it.id, ::AdvancementRaceSavedData, AdvancementRaceSavedData.codec, null) }</ID>
+    <ID>UndocumentedProperty:ToStarsScreenLibrary.kt:ToStarsScreenLibrary$val atomic_bomb by this { ScreenEntry({ ToStarsMenuLibrary.atomic_bomb }, ::AtomicBombScreen) }</ID>
+    <ID>UndocumentedProperty:ToStarsScreenLibrary.kt:ToStarsScreenLibrary$val centrifuge by this { ScreenEntry({ ToStarsMenuLibrary.centrifuge }, ::CentrifugeScreen) }</ID>
+    <ID>UndocumentedProperty:ToStarsScreenLibrary.kt:ToStarsScreenLibrary$val energy_storage by this { ScreenEntry({ ToStarsMenuLibrary.energy_storage }, ::EnergyStorageScreen) }</ID>
+    <ID>UndocumentedProperty:ToStarsScreenLibrary.kt:ToStarsScreenLibrary$val solid_generator by this { ScreenEntry({ ToStarsMenuLibrary.solid_generator }, ::HeatGeneratorScreen) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val atomic_bomb_activate by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("entity.").withPath { it.replace("atomic_bomb_", "atomic_bomb.") }) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val atomic_bomb_cut by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("entity.").withPath { it.replace("atomic_bomb_", "atomic_bomb.") }) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val atomic_bomb_timer by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("entity.").withPath { it.replace("atomic_bomb_", "atomic_bomb.") }) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val generator_crackle by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("block.").withPath { it.replace("generator_", "generator.") }) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val generator_empty by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("block.").withPath { it.replace("generator_", "generator.") }) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val gravitational_influence by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("music_disc.")) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val nuke_large by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("entity.generic.")) }</ID>
+    <ID>UndocumentedProperty:ToStarsSoundLibrary.kt:ToStarsSoundLibrary$val nuke_small by this { SoundEvent.createVariableRangeEvent(it.id.withPrefix("entity.generic.")) }</ID>
+    <ID>UndocumentedProperty:ToStarsSpecialModelLibrary.kt:ToStarsSpecialModelLibrary$val power_bank by this(EnergyStorageSpecialRenderer.codec)</ID>
+    <ID>UndocumentedProperty:ToStarsSpecialModelLibrary.kt:ToStarsSpecialModelLibrary$val rotor_blades by this(RotorSpecialRenderer.codec)</ID>
+    <ID>UndocumentedProperty:ToStarsTicketLibrary.kt:ToStarsTicketLibrary$val atomic_bomb by this { TicketType(100, TicketType.FLAG_LOADING or TicketType.FLAG_SIMULATION or TicketType.FLAG_KEEP_DIMENSION_ACTIVE) }</ID>
+    <ID>UndocumentedProperty:TurbineBlock.kt:TurbineBlock.Companion$val codec = RecordCodecBuilder.mapCodec { it.group( MachineTier.codec.fieldOf("machine").forGetter(TurbineBlock::machine), propertiesCodec() ) .apply(it, ::TurbineBlock) }</ID>
+    <ID>UndocumentedType:AdvancementRaceEventHandler.kt:AdvancementRaceEventHandler : EventHandler</ID>
+    <ID>UndocumentedType:AdvancementRaceSavedData.kt:AdvancementRaceSavedData : SavedData</ID>
+    <ID>UndocumentedType:AtomicBombAdvancementTrigger.kt:AtomicBombAdvancementTrigger : SimpleCriterionTrigger</ID>
+    <ID>UndocumentedType:AtomicBombAdvancementTrigger.kt:AtomicBombAdvancementTrigger$TriggerInstance : SimpleInstance</ID>
+    <ID>UndocumentedType:AtomicBombBlock.kt:AtomicBombBlock : BaseEntityBlock</ID>
+    <ID>UndocumentedType:AtomicBombBlock.kt:AtomicBombBlock$AtomicBombSegment : StringRepresentable</ID>
+    <ID>UndocumentedType:AtomicBombBlockEntity.kt:AtomicBombBlockEntity : BaseContainerBlockEntityWorldlyContainer</ID>
+    <ID>UndocumentedType:AtomicBombDetonatePayload.kt:AtomicBombDetonatePayload : CustomPacketPayload</ID>
+    <ID>UndocumentedType:AtomicBombDetonatePayloadHandler.kt:AtomicBombDetonatePayloadHandler</ID>
+    <ID>UndocumentedType:AtomicBombEntity.kt:AtomicBombEntity : EntityTraceableEntity</ID>
+    <ID>UndocumentedType:AtomicBombEntityRenderer.kt:AtomicBombEntityRenderer : EntityRenderer</ID>
+    <ID>UndocumentedType:AtomicBombEntityState.kt:AtomicBombEntityState : EntityRenderState</ID>
+    <ID>UndocumentedType:AtomicBombMenu.kt:AtomicBombMenu : AbstractContainerMenu</ID>
+    <ID>UndocumentedType:AtomicBombMenu.kt:AtomicBombMenu$AtomicBombSlot : Slot</ID>
+    <ID>UndocumentedType:AtomicBombScreen.kt:AtomicBombScreen : AbstractContainerScreen</ID>
+    <ID>UndocumentedType:AtomicBombScreen.kt:AtomicBombScreen$AtomicBombButton : Plain</ID>
+    <ID>UndocumentedType:BatteryBlockItem.kt:BatteryBlockItem : BlockItem</ID>
+    <ID>UndocumentedType:BatteryItem.kt:BatteryItem : Item</ID>
+    <ID>UndocumentedType:BatteryItemTint.kt:BatteryItemTint : ItemTintSource</ID>
+    <ID>UndocumentedType:BoilingCauldronBlock.kt:BoilingCauldronBlock : LayeredCauldronBlockEntityBlock</ID>
+    <ID>UndocumentedType:BoilingCauldronBlockEntity.kt:BoilingCauldronBlockEntity : BlockEntity</ID>
+    <ID>UndocumentedType:CentrifugeBlock.kt:CentrifugeBlock : ProcessorBlock</ID>
+    <ID>UndocumentedType:CentrifugeBlockEntity.kt:CentrifugeBlockEntity : ProcessorBlockEntity</ID>
+    <ID>UndocumentedType:CentrifugeBlockEntityModel.kt:CentrifugeBlockEntityModel : Model</ID>
+    <ID>UndocumentedType:CentrifugeBlockEntityRenderer.kt:CentrifugeBlockEntityRenderer : BlockEntityRenderer</ID>
+    <ID>UndocumentedType:CentrifugeBlockEntityState.kt:CentrifugeBlockEntityState : BlockEntityRenderState</ID>
+    <ID>UndocumentedType:CentrifugeMenu.kt:CentrifugeMenu : ProcessorMenu</ID>
+    <ID>UndocumentedType:CentrifugeScreen.kt:CentrifugeScreen&lt;M : CentrifugeMenu> : ProcessorScreen</ID>
+    <ID>UndocumentedType:EfficiencyBarWidget.kt:EfficiencyBarWidget : AbstractBarWidget</ID>
+    <ID>UndocumentedType:EnergyItemStorageEventHandler.kt:EnergyItemStorageEventHandler : EventHandler</ID>
+    <ID>UndocumentedType:EnergyStorageBlock.kt:EnergyStorageBlock : BaseEntityBlock</ID>
+    <ID>UndocumentedType:EnergyStorageBlockEntity.kt:EnergyStorageBlockEntity : BaseContainerBlockEntityWorldlyContainerToEnergyWorldlyProvider</ID>
+    <ID>UndocumentedType:EnergyStorageBlockEntityRenderer.kt:EnergyStorageBlockEntityRenderer : BlockEntityRenderer</ID>
+    <ID>UndocumentedType:EnergyStorageBlockEntityState.kt:EnergyStorageBlockEntityState : BlockEntityRenderState</ID>
+    <ID>UndocumentedType:EnergyStorageMenu.kt:EnergyStorageMenu : AbstractContainerMenu</ID>
+    <ID>UndocumentedType:EnergyStorageRenderer.kt:EnergyStorageRenderer</ID>
+    <ID>UndocumentedType:EnergyStorageScreen.kt:EnergyStorageScreen : AbstractContainerScreen</ID>
+    <ID>UndocumentedType:EnergyStorageSpecialRenderer.kt:EnergyStorageSpecialRenderer : SpecialModelRenderer</ID>
+    <ID>UndocumentedType:EnergyStorageSpecialRenderer.kt:EnergyStorageSpecialRenderer$Unbaked : Unbaked</ID>
+    <ID>UndocumentedType:EnergySyncPayload.kt:EnergySyncPayload : CustomPacketPayload</ID>
+    <ID>UndocumentedType:EnergySyncPayloadHandler.kt:EnergySyncPayloadHandler</ID>
+    <ID>UndocumentedType:FoamParticle.kt:FoamParticle : SingleQuadParticle</ID>
+    <ID>UndocumentedType:FoamParticle.kt:FoamParticle$FoamParticleProvider : ParticleProvider</ID>
+    <ID>UndocumentedType:HeatBarWidget.kt:HeatBarWidget : AbstractBarWidget</ID>
+    <ID>UndocumentedType:HeatBlockNetworkType.kt:HeatBlockNetworkType : BlockNetworkType</ID>
+    <ID>UndocumentedType:HeatCableBlock.kt:HeatCableBlock : NetworkCableBlock</ID>
+    <ID>UndocumentedType:HeatGeneratorBlock.kt:HeatGeneratorBlock : BaseEntityBlock</ID>
+    <ID>UndocumentedType:HeatGeneratorBlockEntity.kt:HeatGeneratorBlockEntity : BaseContainerBlockEntityWorldlyContainer</ID>
+    <ID>UndocumentedType:HeatGeneratorMenu.kt:HeatGeneratorMenu : AbstractContainerMenu</ID>
+    <ID>UndocumentedType:HeatGeneratorMenu.kt:HeatGeneratorMenu$GeneratorFuelSlot : Slot</ID>
+    <ID>UndocumentedType:HeatGeneratorMenu.kt:HeatGeneratorMenu$HeatGeneratorDataKey</ID>
+    <ID>UndocumentedType:HeatGeneratorScreen.kt:HeatGeneratorScreen&lt;M : HeatGeneratorMenu> : AbstractContainerScreen</ID>
+    <ID>UndocumentedType:InfiniteEnergyBlock.kt:InfiniteEnergyBlock : BlockToEnergyWorldlyProvider</ID>
+    <ID>UndocumentedType:InfiniteEnergyItemComponent.kt:InfiniteEnergyItemComponent : ToEnergyItemProvider</ID>
+    <ID>UndocumentedType:LossyToEnergyCableBlock.kt:LossyToEnergyCableBlock : ToEnergyCableBlock</ID>
+    <ID>UndocumentedType:MachineTier.kt:MachineTier : StringRepresentable</ID>
+    <ID>UndocumentedType:MagneticIronEventHandler.kt:MagneticIronEventHandler : EventHandler</ID>
+    <ID>UndocumentedType:NuclearExplosion.kt:NuclearExplosion</ID>
+    <ID>UndocumentedType:NuclearExplosionParticle.kt:NuclearExplosionParticle : SingleQuadParticle</ID>
+    <ID>UndocumentedType:NuclearExplosionParticle.kt:NuclearExplosionParticle$NuclearExplosionParticleProvider : ParticleProvider</ID>
+    <ID>UndocumentedType:NuclearExplosionPayload.kt:NuclearExplosionPayload : CustomPacketPayload</ID>
+    <ID>UndocumentedType:NuclearExplosionPayloadHandler.kt:NuclearExplosionPayloadHandler</ID>
+    <ID>UndocumentedType:NuclearFireBlock.kt:NuclearFireBlock : FireBlock</ID>
+    <ID>UndocumentedType:NuclearWasteBlock.kt:NuclearWasteBlock : ColoredFallingBlock</ID>
+    <ID>UndocumentedType:ProcessorBlock.kt:ProcessorBlock : BaseEntityBlock</ID>
+    <ID>UndocumentedType:ProcessorBlockEntity.kt:ProcessorBlockEntity : BaseContainerBlockEntityWorldlyContainerToEnergyWorldlyProviderStackedContentsCompatibleRecipeCraftingHolder</ID>
+    <ID>UndocumentedType:ProcessorMenu.kt:ProcessorMenu : RecipeBookMenu</ID>
+    <ID>UndocumentedType:ProcessorMenu.kt:ProcessorMenu$ProcessorDataKey : StringRepresentable</ID>
+    <ID>UndocumentedType:ProcessorMenu.kt:ProcessorMenu$ProcessorMenuData</ID>
+    <ID>UndocumentedType:ProcessorRecipe.kt:ProcessorRecipe : Recipe</ID>
+    <ID>UndocumentedType:ProcessorRecipeBookCategory.kt:ProcessorRecipeBookCategory : StringRepresentable</ID>
+    <ID>UndocumentedType:ProcessorRecipeBookComponent.kt:ProcessorRecipeBookComponent : RecipeBookComponent</ID>
+    <ID>UndocumentedType:ProcessorRecipeBookComponent.kt:ProcessorRecipeBookComponent$FakeRecipeBook : ClientRecipeBook</ID>
+    <ID>UndocumentedType:ProcessorRecipeBookInfo.kt:ProcessorRecipeBookInfo : BookInfo</ID>
+    <ID>UndocumentedType:ProcessorRecipeDisplay.kt:ProcessorRecipeDisplay : RecipeDisplay</ID>
+    <ID>UndocumentedType:ProcessorRecipeIngredient.kt:ProcessorRecipeIngredient</ID>
+    <ID>UndocumentedType:ProcessorRecipeInput.kt:ProcessorRecipeInput : RecipeInput</ID>
+    <ID>UndocumentedType:ProcessorScreen.kt:ProcessorScreen&lt;M : ProcessorMenu> : AbstractRecipeBookScreen</ID>
+    <ID>UndocumentedType:ProcessorSyncPayload.kt:ProcessorSyncPayload : CustomPacketPayload</ID>
+    <ID>UndocumentedType:ProcessorSyncPayloadHandler.kt:ProcessorSyncPayloadHandler</ID>
+    <ID>UndocumentedType:ProcessorType.kt:ProcessorType : StringRepresentable</ID>
+    <ID>UndocumentedType:RaceAdvancementTrigger.kt:RaceAdvancementTrigger : SimpleCriterionTrigger</ID>
+    <ID>UndocumentedType:RaceAdvancementTrigger.kt:RaceAdvancementTrigger$TriggerInstance : SimpleInstance</ID>
+    <ID>UndocumentedType:RotorBlock.kt:RotorBlock : BaseEntityBlock</ID>
+    <ID>UndocumentedType:RotorBlockEntity.kt:RotorBlockEntity : BlockEntity</ID>
+    <ID>UndocumentedType:RotorBlockEntity.kt:RotorBlockEntity$RotorToEnergyTransferContext : ToEnergyTransferContext</ID>
+    <ID>UndocumentedType:RotorBlockEntityRenderer.kt:RotorBlockEntityRenderer : BlockEntityRenderer</ID>
+    <ID>UndocumentedType:RotorBlockEntityState.kt:RotorBlockEntityState : BlockEntityRenderState</ID>
+    <ID>UndocumentedType:RotorItem.kt:RotorItem : BlockItem</ID>
+    <ID>UndocumentedType:RotorMovementEventHandler.kt:RotorMovementEventHandler : EventHandler</ID>
+    <ID>UndocumentedType:RotorSpecialRenderer.kt:RotorSpecialRenderer : SpecialModelRenderer</ID>
+    <ID>UndocumentedType:RotorSpecialRenderer.kt:RotorSpecialRenderer$Unbaked : Unbaked</ID>
+    <ID>UndocumentedType:RotorSyncPayload.kt:RotorSyncPayload : CustomPacketPayload</ID>
+    <ID>UndocumentedType:RotorSyncPayloadHandler.kt:RotorSyncPayloadHandler</ID>
+    <ID>UndocumentedType:SolidGeneratorBlock.kt:SolidGeneratorBlock : HeatGeneratorBlock</ID>
+    <ID>UndocumentedType:SolidGeneratorBlockEntity.kt:SolidGeneratorBlockEntity : HeatGeneratorBlockEntity</ID>
+    <ID>UndocumentedType:SolidGeneratorMenu.kt:SolidGeneratorMenu : HeatGeneratorMenu</ID>
+    <ID>UndocumentedType:SteamParticle.kt:SteamParticle : RisingParticle</ID>
+    <ID>UndocumentedType:SteamParticle.kt:SteamParticle$SteamParticleProvider : ParticleProvider</ID>
+    <ID>UndocumentedType:TestItem.kt:TestItem : Item</ID>
+    <ID>UndocumentedType:ToStarsAdvancementTriggerLibrary.kt:ToStarsAdvancementTriggerLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsBiomeModLibrary.kt:ToStarsBiomeModLibrary : BiomeModLibrary</ID>
+    <ID>UndocumentedType:ToStarsBlockEntityLibrary.kt:ToStarsBlockEntityLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsBlockEntityRenderersLibrary.kt:ToStarsBlockEntityRenderersLibrary : BlockEntityRendererLibrary</ID>
+    <ID>UndocumentedType:ToStarsBlockItemLibrary.kt:ToStarsBlockItemLibrary : BlockItemLibrary</ID>
+    <ID>UndocumentedType:ToStarsBlockLibrary.kt:ToStarsBlockLibrary : BlockLibrary</ID>
+    <ID>UndocumentedType:ToStarsBlockNetworkLibrary.kt:ToStarsBlockNetworkLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsBlockTagLibrary.kt:ToStarsBlockTagLibrary : TagLibrary</ID>
+    <ID>UndocumentedType:ToStarsClientEventHandlerLibrary.kt:ToStarsClientEventHandlerLibrary : EventHandlerLibrary</ID>
+    <ID>UndocumentedType:ToStarsClientMod.kt:ToStarsClientMod : ToClientMod</ID>
+    <ID>UndocumentedType:ToStarsClientParticleLibrary.kt:ToStarsClientParticleLibrary : ParticleLibrary</ID>
+    <ID>UndocumentedType:ToStarsClientPayloadHandlerLibrary.kt:ToStarsClientPayloadHandlerLibrary : ClientPayloadHandlerLibrary</ID>
+    <ID>UndocumentedType:ToStarsConfiguredFeatureLibrary.kt:ToStarsConfiguredFeatureLibrary : ResourceKeyLibrary</ID>
+    <ID>UndocumentedType:ToStarsCreativeTabLibrary.kt:ToStarsCreativeTabLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsDamageTypeLibrary.kt:ToStarsDamageTypeLibrary : DamageTypeLibrary</ID>
+    <ID>UndocumentedType:ToStarsEntityLibrary.kt:ToStarsEntityLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsEntityRenderersLibrary.kt:ToStarsEntityRenderersLibrary : EntityRendererLibrary</ID>
+    <ID>UndocumentedType:ToStarsEventHandlerLibrary.kt:ToStarsEventHandlerLibrary : EventHandlerLibrary</ID>
+    <ID>UndocumentedType:ToStarsItemComponentLibrary.kt:ToStarsItemComponentLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsItemLibrary.kt:ToStarsItemLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsItemTagLibrary.kt:ToStarsItemTagLibrary : TagLibrary</ID>
+    <ID>UndocumentedType:ToStarsItemTintsLibrary.kt:ToStarsItemTintsLibrary : ItemTintLibrary</ID>
+    <ID>UndocumentedType:ToStarsLootTableLibrary.kt:ToStarsLootTableLibrary : ResourceKeyLibrary</ID>
+    <ID>UndocumentedType:ToStarsMenuLibrary.kt:ToStarsMenuLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsMod.kt:ToStarsMod : ToMod</ID>
+    <ID>UndocumentedType:ToStarsModelLayersLibrary.kt:ToStarsModelLayersLibrary : ModelLayerLibrary</ID>
+    <ID>UndocumentedType:ToStarsMusicLibrary.kt:ToStarsMusicLibrary : ResourceKeyLibrary</ID>
+    <ID>UndocumentedType:ToStarsParticleLibrary.kt:ToStarsParticleLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsPayloadHandlerLibrary.kt:ToStarsPayloadHandlerLibrary : PayloadHandlerLibrary</ID>
+    <ID>UndocumentedType:ToStarsPayloadLibrary.kt:ToStarsPayloadLibrary : PayloadLibrary</ID>
+    <ID>UndocumentedType:ToStarsPlacedFeatureLibrary.kt:ToStarsPlacedFeatureLibrary : ResourceKeyLibrary</ID>
+    <ID>UndocumentedType:ToStarsRecipeCategoryLibrary.kt:ToStarsRecipeCategoryLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsRecipeDisplayLibrary.kt:ToStarsRecipeDisplayLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsRecipeLibrary.kt:ToStarsRecipeLibrary : RecipeTypeLibrary</ID>
+    <ID>UndocumentedType:ToStarsRecipeSerializerLibrary.kt:ToStarsRecipeSerializerLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsSavedDataLibrary.kt:ToStarsSavedDataLibrary : SimpleLibrary</ID>
+    <ID>UndocumentedType:ToStarsScreenLibrary.kt:ToStarsScreenLibrary : ScreenLibrary</ID>
+    <ID>UndocumentedType:ToStarsSoundLibrary.kt:ToStarsSoundLibrary : SoundEventLibrary</ID>
+    <ID>UndocumentedType:ToStarsSpecialModelLibrary.kt:ToStarsSpecialModelLibrary : SpecialModelLibrary</ID>
+    <ID>UndocumentedType:ToStarsTicketLibrary.kt:ToStarsTicketLibrary : SimpleRegistryLibrary</ID>
+    <ID>UndocumentedType:ToStarsTooltipEngine.kt:ToStarsTooltipEngine : TooltipEngine</ID>
+    <ID>UndocumentedType:TurbineBlock.kt:TurbineBlock : BlockToEnergyWorldlyProvider</ID>
+  </CurrentIssues>
+</SmellBaseline>
