@@ -10,16 +10,10 @@ import net.minecraft.world.level.levelgen.placement.InSquarePlacement
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
 import net.minecraft.world.level.levelgen.placement.RarityFilter
 
-/**
- * [DatapackLibrary] implementation generating the placed features of this mod, i.e. where and how often its ores are generated.
- */
 object ToStarsPlacedFeatureDataLibrary : DatapackLibrary<PlacedFeature>(ToStarsMod.modid) {
 
     override val registryKey = Registries.PLACED_FEATURE
 
-    /**
-     * Uranium ore in stone, generated between Y 0 and Y 16 and thickest in the middle of that band, once every six chunks on average.
-     */
     val uranium_ore by this {
         PlacedFeature(lookup(ToStarsMod.configuredFeatures.uranium_ore)!!, listOf(
             InSquarePlacement.spread(),
@@ -29,9 +23,6 @@ object ToStarsPlacedFeatureDataLibrary : DatapackLibrary<PlacedFeature>(ToStarsM
         ))
     }
 
-    /**
-     * Uranium ore in deepslate, generated between Y -16 and Y 16 and thickest in the middle of that band, once every fourteen chunks on average.
-     */
     val deepslate_uranium_ore by this {
         PlacedFeature(lookup(ToStarsMod.configuredFeatures.deepslate_uranium_ore)!!, listOf(
             InSquarePlacement.spread(),

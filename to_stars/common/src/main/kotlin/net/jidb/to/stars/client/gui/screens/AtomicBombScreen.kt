@@ -22,26 +22,10 @@ import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerListener
 import net.minecraft.world.item.ItemStack
 
-/**
- * The screen an atomic bomb is loaded and armed through.
- *
- * The arming button stays disabled until all three slots hold the right thing, and its tooltip either names what is missing or describes the blast that is about to happen.
- * Once it has been pressed it stays disabled, since the bomb is already on its way and there is nothing further to say.
- *
- * @param menu The interface being drawn.
- * @param playerInventory The inventory of the player who opened it.
- * @param title The title of the interface.
- */
 class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: Component) : AbstractContainerScreen<AtomicBombMenu>(menu, playerInventory, title, 176, 171) {
 
-    /**
-     * The arming button, or `null` before the screen has been laid out.
-     */
     private var detonate: Button? = null
 
-    /**
-     * Watches the slots so that the arming button is re-checked whenever what is in the bomb changes.
-     */
     private val detonateListener = object : ContainerListener {
 
         override fun slotChanged(menu: AbstractContainerMenu, slot: Int, stack: ItemStack) {
@@ -52,14 +36,8 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
 
     }
 
-    /**
-     * Whether the bomb has already been armed from this screen.
-     */
     private var initiated = false
 
-    /**
-     * Which slots hold the wrong thing, which is what the button's tooltip lists.
-     */
     private var errors: IntArray = intArrayOf(0, 1, 2)
 
     init {
@@ -137,9 +115,6 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
         }
     }
 
-    /**
-     * Re-checks whether the bomb can be armed, and sets the button's state and wording to suit.
-     */
     private fun updateCanDetonate() {
         val button = detonate ?: return
         if (initiated) {
@@ -159,20 +134,8 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
         menu.removeSlotListener(detonateListener)
     }
 
-    /**
-     * The arming button, which is drawn from the bomb's own textures rather than as an ordinary button.
-     *
-     * @param x The x position of the button.
-     * @param y The y position of the button.
-     * @param width The width of the button.
-     * @param message What the button says.
-     * @param onPress What happens when it is pressed.
-     */
     inner class AtomicBombButton(x: Int, y: Int, width: Int, message: Component, onPress: OnPress) : Button.Plain(x, y, width, DEFAULT_HEIGHT, message, onPress, DEFAULT_NARRATION) {
 
-        /**
-         * The textures of the button, in each of its three states.
-         */
         private val sprites = WidgetSprites(
             Identifier.fromNamespaceAndPath(ToStarsMod.modid, "atomic_bomb/button"),
             Identifier.fromNamespaceAndPath(ToStarsMod.modid, "atomic_bomb/button_disabled"),
@@ -188,14 +151,8 @@ class AtomicBombScreen(menu: AtomicBombMenu, playerInventory: Inventory, title: 
 
     companion object {
 
-        /**
-         * The background of the screen.
-         */
         val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/atomic_bomb.png")
 
-        /**
-         * What each line of the button's error tooltip is prefixed with.
-         */
         private val bullet = Component.literal("\n - ")
 
     }

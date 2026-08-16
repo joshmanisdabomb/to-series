@@ -7,11 +7,6 @@ import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
 import net.jidb.to.base.service.RegisterService as BaseRegisterService
 
-/**
- * [net.jidb.to.base.service.RegisterService] implementation for Fabric, loaded through Java's service loader from the entry this loader project registers.
- *
- * @since 0.0.3
- */
 class FabricRegisterService : BaseRegisterService() {
 
     override fun <T : Any, E : T> register(registry: Registry<T>, key: Identifier, value: (key: Identifier) -> E): () -> E {

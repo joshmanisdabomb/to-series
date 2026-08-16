@@ -47,53 +47,20 @@ import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-/**
- * An atomic bomb as it falls, which is what the block turns into once it is armed or has the ground taken out from under it.
- *
- * Its fuse and the strength of its blast both follow from how much enriched uranium it was loaded with; the fuse can still be cut with shears while it falls.
- * It keeps the chunks around it loaded, so that a bomb dropped from a height still goes off where no player is watching.
- *
- * @param type The entity type being built.
- * @param level The level the bomb is in.
- */
 class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : Entity(type, level), TraceableEntity {
 
-    /**
-     * What the bomb was loaded with, which is dropped again if it lands without going off.
-     */
     private var stacks = NonNullList.withSize(AtomicBombMenu.allSlots.size, ItemStack.EMPTY)
 
-    /**
-     * Who is to blame for the blast, or `null` where nobody is.
-     */
     private var owner: EntityReference<LivingEntity>? = null
 
-    /**
-     * How long the chunks around the bomb have been kept loaded for.
-     */
     var ticketTimer: Long = 0
 
-    /**
-     * Whether the bomb should be ticked again immediately after moving between dimensions.
-     */
     var forceTickAfterTeleportToDuplicate: Boolean = false
 
     init {
         blocksBuilding = true
     }
 
-    /**
-     * Creates a falling bomb at a position, either already armed or simply falling.
-     *
-     * @param level The level the bomb is in.
-     * @param x Where it starts, along x.
-     * @param y Where it starts, along y.
-     * @param z Where it starts, along z.
-     * @param facing Which way the bomb faces.
-     * @param stacks What it was loaded with.
-     * @param active Whether its fuse is already burning.
-     * @param owner Who is to blame for the blast, or `null` where nobody is. Defaults to `null`.
-     */
     constructor(level: Level, x: Double, y: Double, z: Double, facing: Direction, stacks: NonNullList<ItemStack>, active: Boolean, owner: LivingEntity? = null) : this(ToStarsMod.entities.atomic_bomb, level) {
         setPos(x, y, z)
         xo = x
@@ -193,11 +160,6 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         deltaMovement = deltaMovement.scale(0.98)
     }
 
-    /**
-     * Sets the blast off, and grants the advancement for it to whoever is to blame.
-     *
-     * @param level The level the bomb is in.
-     */
     private fun explode(level: ServerLevel) {
         val owner = getOwner()
         if (owner is ServerPlayer) {
@@ -208,11 +170,6 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
         explosion.run()
     }
 
-    /**
-     * Drops the bomb and everything it was loaded with, which is what happens where it lands without going off.
-     *
-     * @param level The level the bomb is in.
-     */
     private fun drop(level: ServerLevel) {
         if (!level.gameRules.get(GameRules.ENTITY_DROPS)) return
 
@@ -292,41 +249,20 @@ class AtomicBombEntity(type: EntityType<out AtomicBombEntity>, level: Level) : E
 
     companion object {
 
-        /**
-         * How long the fuse has left, in ticks, or `-1` where it is not burning at all. Synced so that the client can draw the countdown.
-         */
         val dataTimer = SynchedEntityData.defineId(AtomicBombEntity::class.java, EntityDataSerializers.INT)
 
-        /**
-         * How much enriched uranium a stack is worth, counting a block of it as nine.
-         *
-         * @param uranium The stack the bomb was loaded with.
-         * @return How much uranium it comes to, or `0` where the stack is not uranium at all.
-         */
         fun getUraniumCount(uranium: ItemStack) = when (uranium.item) {
             ToStarsMod.blocks.enriched_uranium_block.asItem() -> uranium.count * 9
             ToStarsMod.items.enriched_uranium.asItem() -> uranium.count
             else -> 0
         }
 
-        /**
-         * How strong a bomb loaded with a given amount of uranium goes off, which climbs quickly at first and then flattens out.
-         *
-         * @param uranium How much uranium the bomb holds.
-         * @return The strength of the blast, or `0` where the bomb holds no uranium.
-         */
         fun getExplosionStrength(uranium: Int): Int {
             if (uranium <= 0) return 0
             val percent = (uranium - 1) / 44.0
             return 20 + Mth.floor(sqrt(percent) * 120)
         }
 
-        /**
-         * How long the fuse of a bomb loaded with a given amount of uranium burns for, which climbs with the load so that a larger bomb gives more warning.
-         *
-         * @param uranium How much uranium the bomb holds.
-         * @return How long the fuse burns, in ticks, or `0` where the bomb holds no uranium.
-         */
         fun getFuseTime(uranium: Int): Int {
             if (uranium <= 0) return 0
             val percent = (uranium - 1) / 44.0

@@ -14,14 +14,6 @@ import net.minecraft.world.inventory.SimpleContainerData
 import net.minecraft.world.inventory.Slot
 import net.minecraft.world.item.ItemStack
 
-/**
- * The interface a centrifuge is opened into, which has one input, two outputs and a slot for a battery to run it from.
- *
- * @param id The id of the menu.
- * @param playerInventory The inventory of the player who opened it.
- * @param container The centrifuge the menu is opened on.
- * @param data The centrifuge's figures, as the interface reads them.
- */
 class CentrifugeMenu(id: Int, playerInventory: Inventory, container: Container, data: ContainerData) : ProcessorMenu(ToStarsMod.menus.centrifuge, id, playerInventory, container, data) {
 
     override val inputSlots = Companion.inputSlots
@@ -30,13 +22,6 @@ class CentrifugeMenu(id: Int, playerInventory: Inventory, container: Container, 
 
     override var clientData: ProcessorMenuData? = null
 
-    /**
-     * Creates the menu on the client, where the centrifuge itself is not available and what it needs to draw is sent with the opening packet instead.
-     *
-     * @param id The id of the menu.
-     * @param playerInventory The inventory of the player who opened it.
-     * @param data What the client needs to know about the centrifuge.
-     */
     constructor(id: Int, playerInventory: Inventory, data: ProcessorMenuData) : this(id, playerInventory, SimpleContainer(allSlots.size), SimpleContainerData(dataSchema.getDataSize())) {
         clientData = data
     }
@@ -100,24 +85,12 @@ class CentrifugeMenu(id: Int, playerInventory: Inventory, container: Container, 
 
     companion object {
 
-        /**
-         * The slot a recipe's ingredients are taken from.
-         */
         val inputSlots = intArrayOf(0)
 
-        /**
-         * The slots a recipe's results are put into, which are not interchangeable.
-         */
         val outputSlots = intArrayOf(1, 2)
 
-        /**
-         * The slot the centrifuge draws energy out of a battery in.
-         */
         val batterySlots = intArrayOf(3)
 
-        /**
-         * Every slot of the centrifuge, in the order they are drawn.
-         */
         val allSlots = intArrayOf(*inputSlots, *outputSlots, *batterySlots)
 
     }

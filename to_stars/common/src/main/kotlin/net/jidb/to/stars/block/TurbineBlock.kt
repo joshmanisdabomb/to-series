@@ -21,14 +21,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.POWERED
 import kotlin.jvm.optionals.getOrNull
 
-/**
- * The turbine, which makes To Energy from the rotor blades turning in front of it and gives it out at its back.
- *
- * It has no store of its own: what it gives out is whatever the blades have made, so a turbine with nothing turning in front of it gives out nothing at all.
- *
- * @property machine The tier the turbine is built at.
- * @param properties The block's own properties.
- */
 class TurbineBlock(val machine: MachineTier, properties: Properties) : Block(properties), ToEnergyWorldlyProvider {
 
     init {
@@ -73,9 +65,6 @@ class TurbineBlock(val machine: MachineTier, properties: Properties) : Block(pro
 
     companion object {
 
-        /**
-         * The codec the block is read from a data pack through, which carries its tier.
-         */
         val codec = RecordCodecBuilder.mapCodec {
             it.group(
                 MachineTier.codec.fieldOf("machine").forGetter(TurbineBlock::machine),

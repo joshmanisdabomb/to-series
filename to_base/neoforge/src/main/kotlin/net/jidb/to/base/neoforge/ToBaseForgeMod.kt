@@ -9,11 +9,6 @@ import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 
-/**
- * [ToForgeMod] implementation for the base mod itself, i.e. the entry point Neoforge loads it through.
- *
- * @since 0.0.1
- */
 @Mod(ToBaseMod.MOD_ID)
 @EventBusSubscriber
 object ToBaseForgeMod : ToForgeMod() {

@@ -11,24 +11,10 @@ import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.item.Items
 
-/**
- * The screen a centrifuge is opened into, whose progress is drawn as one arrow down into the drum and then two out of it, one per output slot.
- *
- * @param M The type of the interface being drawn.
- * @param menu The interface being drawn.
- * @param playerInventory The inventory of the player who opened it.
- * @param title The title of the interface.
- */
 class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, title: Component) : ProcessorScreen<M>(menu, Component.translatable("gui.${ToStarsMod.modid}.centrifuge.recipebook.filter"), listOf(RecipeBookComponent.TabInfo(Items.COMPASS, ToStarsMod.recipeCategories.processor_misc), RecipeBookComponent.TabInfo(Items.IRON_INGOT, ToStarsMod.recipeCategories.processor_misc)), playerInventory, title, 209) {
 
-    /**
-     * The arrow running out to the left output, or `null` before the screen has been laid out.
-     */
     private var progressl: AbstractBarWidget? = null
 
-    /**
-     * The arrow running out to the right output, or `null` before the screen has been laid out.
-     */
     private var progressr: AbstractBarWidget? = null
 
     override val texture = Companion.texture
@@ -101,24 +87,12 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
 
     companion object {
 
-        /**
-         * The background of the screen.
-         */
         val texture = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/gui/centrifuge.png")
 
-        /**
-         * The texture of the arrow running down into the drum.
-         */
         val progress = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "centrifuge/progress")
 
-        /**
-         * The texture of the arrow running out to the left output.
-         */
         val progressl = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "centrifuge/progress_l")
 
-        /**
-         * The texture of the arrow running out to the right output.
-         */
         val progressr = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "centrifuge/progress_r")
 
     }

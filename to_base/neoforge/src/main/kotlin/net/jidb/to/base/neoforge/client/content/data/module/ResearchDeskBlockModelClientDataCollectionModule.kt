@@ -16,11 +16,6 @@ import net.minecraft.client.renderer.block.dispatch.VariantMutator
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 
-/**
- * A [ClientDataCollectionModule] generating the models of the research desk, which is two blocks wide and so is drawn from a different model for each half.
- *
- * @since 0.3.0
- */
 class ResearchDeskBlockModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {

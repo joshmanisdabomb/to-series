@@ -23,12 +23,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.Shapes
 
-/**
- * The centrifuge, which processes uranium into its enriched and heavy forms and lights up while it is working.
- *
- * @param machine The tier the centrifuge is built at.
- * @param properties The block's own properties.
- */
 class CentrifugeBlock(machine: MachineTier, properties: Properties) : ProcessorBlock(ProcessorType.CENTRIFUGE, machine, properties) {
 
     init {
@@ -56,9 +50,6 @@ class CentrifugeBlock(machine: MachineTier, properties: Properties) : ProcessorB
 
     companion object {
 
-        /**
-         * The codec the block is read from a data pack through, which carries its tier.
-         */
         val codec = RecordCodecBuilder.mapCodec {
             it.group(
                 MachineTier.codec.fieldOf("machine").forGetter(CentrifugeBlock::machine),
@@ -67,9 +58,6 @@ class CentrifugeBlock(machine: MachineTier, properties: Properties) : ProcessorB
                 .apply(it, ::CentrifugeBlock)
         }
 
-        /**
-         * The collision shape of the centrifuge, for each of the four directions it can face.
-         */
         val shapes = Shapes.rotateHorizontal(Shapes.or(
             box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0),
             box(0.0, 7.0, 4.0, 16.0, 16.0, 16.0),

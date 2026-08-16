@@ -8,9 +8,6 @@ import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
 
-/**
- * [ToForgeClientMod] implementation for the content mod, i.e. the client-side entry point Neoforge loads it through.
- */
 @EventBusSubscriber(value = [Dist.CLIENT], modid = ToStarsMod.MOD_ID)
 object ToStarsForgeClientMod : ToForgeClientMod() {
 

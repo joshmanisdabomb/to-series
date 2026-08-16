@@ -11,12 +11,6 @@ import net.minecraft.core.Direction
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 
-/**
- * [IExtendedBlockModelGenerators] implementation for Neoforge, which writes through vanilla's own generator rather than replacing it.
- *
- * @property models The generator the blockstates and models are written through.
- * @since 0.3.0
- */
 class ExtendedBlockModelGenerators(val models: BlockModelGenerators) : IExtendedBlockModelGenerators {
 
     override fun createFullRotatedVariantBlock(block: Block, model: TexturedModel.Provider) {

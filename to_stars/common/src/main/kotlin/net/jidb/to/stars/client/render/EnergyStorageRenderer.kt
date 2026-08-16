@@ -11,21 +11,8 @@ import net.minecraft.core.Direction
 import net.minecraft.resources.Identifier
 import net.minecraft.util.LightCoordsUtil
 
-/**
- * Draws the charge showing on the sides of something that stores To Energy, which both the block and its item are drawn with.
- *
- * The filled part is drawn twice, once solid and once as an overlay that ignores the light around it, which is what makes it glow.
- */
 class EnergyStorageRenderer {
 
-    /**
-     * Draws the charge on every horizontal side but one.
-     *
-     * @param fill How full it is, from `0` to `1`.
-     * @param exclude The side to leave alone, i.e. the one the block faces, or `null` to draw all four. Defaults to `null`.
-     * @param stack The pose the drawing is done in.
-     * @param nodes What the drawing is submitted to.
-     */
     fun submit(fill: Float, exclude: Direction? = null, stack: PoseStack, nodes: SubmitNodeCollector) {
         stack.pushPose()
         for (direction in Direction.Plane.HORIZONTAL) {
@@ -54,15 +41,6 @@ class EnergyStorageRenderer {
         stack.popPose()
     }
 
-    /**
-     * Builds the quad of one part of the charge bar, from one height up it to another.
-     *
-     * @param start Where the part begins, as a fraction up the bar.
-     * @param end Where it ends.
-     * @param normal Which way the quad faces.
-     * @param light How brightly it is lit.
-     * @return The geometry, ready to be submitted.
-     */
     private fun getFillGeometry(start: Float, end: Float, normal: Direction, light: Int): SubmitNodeCollector.CustomGeometryRenderer = { pose: PoseStack.Pose, buffer: VertexConsumer ->
         val top = 13 / 16f
         val height = 10 / 16f
@@ -97,14 +75,8 @@ class EnergyStorageRenderer {
 
     companion object {
 
-        /**
-         * The texture of the part of the bar that is not filled.
-         */
         val energyStorageEmpty = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/entity/block/power_bank/empty.png")
 
-        /**
-         * The texture of the part of the bar that is filled, which is also drawn as a glow.
-         */
         val energyStorageFull = Identifier.fromNamespaceAndPath(ToStarsMod.modid, "textures/entity/block/power_bank/full.png")
 
     }

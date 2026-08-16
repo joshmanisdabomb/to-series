@@ -7,14 +7,6 @@ import net.jidb.to.base.neoforge.transfer.ForgeTransferTransaction
 import net.neoforged.neoforge.transfer.ResourceHandler
 import net.neoforged.neoforge.transfer.item.ItemResource as ForgeItemResource
 
-/**
- * [ItemTransferContext] implementation for Neoforge, which wraps one of its resource handlers.
- *
- * Neoforge counts items in an `Int` rather than a `Long`, so an amount asked for is clamped to what one can hold before it is passed on.
- *
- * @property handler The resource handler the items are moved through.
- * @since 0.6.0
- */
 class ForgeItemTransferContext(val handler: ResourceHandler<ForgeItemResource>) : ItemTransferContext {
 
     override fun getSlotCount() = handler.size()

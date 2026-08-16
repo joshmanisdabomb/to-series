@@ -35,15 +35,6 @@ import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
 
-/**
- * The research desk, a two-block-wide table that opens the in-game wiki when used.
- * Both halves are the same block, told apart by a segment property in the same way vanilla's own double blocks are, and placing or breaking either half places or breaks the other.
- *
- * Because it is two blocks that drop one item, breaking it drops from the left half only, and the drop is thrown towards the missing half so that it does not land inside whatever replaced it.
- *
- * @param properties The vanilla block properties.
- * @since 0.1.0
- */
 class ResearchDeskBlock(properties: Properties) : HorizontalDirectionalBlock(properties) {
 
     init {
@@ -137,15 +128,6 @@ class ResearchDeskBlock(properties: Properties) : HorizontalDirectionalBlock(pro
 
     override fun getMenuProvider(state: BlockState, level: Level, pos: BlockPos) = SimpleMenuProvider({ id, playerInventory, player -> ResearchMenu(id, playerInventory, ContainerLevelAccess.create(level, pos)) }, name)
 
-    /**
-     * Whether the given state is the other half of this same desk, i.e. the same block facing the same way and holding the segment expected of it.
-     *
-     * @param state The state of the neighbour being checked.
-     * @param facing The direction this desk faces.
-     * @param segment The segment the neighbour is expected to be.
-     * @return Returns `true` if the neighbour is the matching half of this desk, `false` otherwise.
-     * @since 0.1.0
-     */
     private fun isSegment(state: BlockState, facing: Direction, segment: ResearchDeskSegment) = state.block === this && state.getValue(FACING) == facing && state.getValue(Companion.segment) == segment
 
     override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext) = state.getValue(segment).shapes[state.getValue(FACING)]!!
@@ -154,56 +136,22 @@ class ResearchDeskBlock(properties: Properties) : HorizontalDirectionalBlock(pro
 
     companion object {
 
-        /**
-         * The block state property saying which half of the desk a block is.
-         *
-         * @since 0.2.0
-         */
         val segment = EnumProperty.create("segment", ResearchDeskSegment::class.java)
-
-        /**
-         * The codec vanilla reads and writes this block with, which every block has to declare.
-         *
-         * @since 0.1.0
-         */
         val codec = simpleCodec(::ResearchDeskBlock)
 
     }
 
-    /**
-     * Enum that defines which half of a research desk a block is, each carrying the shape that half is drawn with.
-     *
-     * @param shape The shape of this half when facing north, from which the other three rotations are derived.
-     * @see ResearchDeskBlock.segment
-     * @since 0.1.0
-     */
     enum class ResearchDeskSegment(shape: VoxelShape) : StringRepresentable {
 
-        /**
-         * The left half of the desk as it is looked at, whose leg is on its own right.
-         *
-         * @since 0.1.0
-         */
         LEFT(Shapes.or(
             box(10.0, 0.0, 0.0, 16.0, 12.0, 16.0),
             box(0.0, 12.0, 0.0, 16.0, 14.0, 16.0),
         )),
-
-        /**
-         * The right half of the desk as it is looked at, whose leg is on its own left.
-         *
-         * @since 0.1.0
-         */
         RIGHT(Shapes.or(
             box(0.0, 0.0, 0.0, 12.0, 12.0, 16.0),
             box(0.0, 12.0, 0.0, 16.0, 14.0, 16.0),
         ));
 
-        /**
-         * The shape of this half, in each of the four horizontal directions it can face.
-         *
-         * @since 0.1.0
-         */
         val shapes = Shapes.rotateHorizontal(shape)
 
         override fun getSerializedName() = name.lowercase()

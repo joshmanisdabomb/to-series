@@ -19,17 +19,8 @@ import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
 import kotlin.jvm.optionals.getOrNull
 
-/**
- * The block entity of the boiler, which keeps how much heat is reaching it from each side so that it can be worked out whether the water boils.
- *
- * @param pos The position of the block.
- * @param state The state of the block.
- */
 class BoilingCauldronBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMod.blockEntities.boiler, pos, state) {
 
-    /**
-     * How much heat is reaching the cauldron from each side.
-     */
     var heats = mutableMapOf<Direction, Float>()
 
     override fun loadAdditional(input: ValueInput) {
@@ -44,19 +35,8 @@ class BoilingCauldronBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity
 
     companion object {
 
-        /**
-         * The codec the per-side heat is saved and loaded through.
-         */
         val heatCodec = Codec.unboundedMap(Direction.CODEC, Codec.FLOAT)
 
-        /**
-         * Ticks the block entity.
-         *
-         * @param level The level it is in.
-         * @param pos Its position.
-         * @param state Its state.
-         * @param entity The block entity being ticked.
-         */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: BoilingCauldronBlockEntity) {
             val fill = state.getValue(LEVEL)
             if (level.isClientSide) {

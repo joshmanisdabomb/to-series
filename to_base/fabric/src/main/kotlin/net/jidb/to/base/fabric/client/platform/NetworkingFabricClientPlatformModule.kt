@@ -5,11 +5,6 @@ import net.jidb.to.base.client.api.network.ClientPayloadContext
 import net.jidb.to.base.client.api.platform.NetworkingClientPlatformModule
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 
-/**
- * [NetworkingClientPlatformModule] implementation for Fabric.
- *
- * @since 0.2.0
- */
 object NetworkingFabricClientPlatformModule : NetworkingClientPlatformModule() {
 
     override fun <P : CustomPacketPayload> registerHandler(type: CustomPacketPayload.Type<P>, clientHandler: (P, ClientPayloadContext) -> Unit) {

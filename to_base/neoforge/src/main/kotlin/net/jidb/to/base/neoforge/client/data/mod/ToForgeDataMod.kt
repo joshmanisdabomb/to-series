@@ -37,50 +37,20 @@ import java.util.concurrent.CompletableFuture
 import kotlin.io.path.div
 import kotlin.io.path.isDirectory
 
-/**
- * The data generation of a mod on Neoforge, which registers every provider it needs against the generation event.
- *
- * The collections come first and describe most of the content on their own; the providers a mod names by hand are registered after them, and the data pack registries each mod library writes into are added last.
- *
- * Generation runs against the loader project but writes to the common one, since that is where the resources actually live, which is what [resources] resolves; anything that would otherwise be left behind by a rename is deleted first and the source resources are copied back over the result at the end.
- *
- * @param event The event the providers are registered against.
- * @since 0.3.0
- */
 abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToForgeDataMod, ToContentForgeDataMod, ToCollectionDataMod {
 
     override val modid = event.modContainer.modId
 
     override val language: ((tokens: Map<String, Map<String, Component>>, output: PackOutput) -> MultiLanguageDataProvider)? = { tokens, output -> MultiLanguageDataProvider(tokens, output, modid) }
 
-    /**
-     * Where the generated files ultimately belong, i.e. the resources directory of the common project rather than the loader project this is being run from.
-     *
-     * @since 0.3.0
-     */
     protected open val resources: Path = Path.of(event.generator.packOutput.outputFolder.toString()
         .replace("neoforge", "common")
         .replace("generated", "resources"))
 
-    /**
-     * The generated files that are cleared out before anything is written, so that a file left behind by a rename does not linger. Defaults to everything the generator is allowed to replace.
-     *
-     * @since 0.3.0
-     */
     protected open val deleteExisting: List<Path> = ToDataHelper.getReplaceableResources(resources)
 
-    /**
-     * Whether the model templates written by hand are copied into the generated models, under a `template_` prefix. Defaults to `true`.
-     *
-     * @since 0.3.0
-     */
     protected open val copyTemplateModels: Boolean = true
 
-    /**
-     * Whether everything generated is copied back into the common project's resources once it is written. Defaults to `true`.
-     *
-     * @since 0.3.0
-     */
     protected open val copyResources: Boolean = true
 
     override fun generate() {

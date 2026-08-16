@@ -8,11 +8,6 @@ import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.Explosion
 import net.minecraft.world.phys.Vec3
 
-/**
- * An item used for testing, which sets off a nuclear explosion where it is used.
- *
- * @param properties The item's own properties.
- */
 class TestItem(properties: Properties) : Item(properties) {
 
     override fun useOn(context: UseOnContext): InteractionResult {

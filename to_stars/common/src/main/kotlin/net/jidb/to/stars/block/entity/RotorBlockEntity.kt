@@ -38,44 +38,18 @@ import kotlin.math.absoluteValue
 import kotlin.math.ceil
 import kotlin.math.min
 
-/**
- * The block entity of the rotor blades, which keeps how fast they are turning and what that is worth to the turbine behind them.
- *
- * The speed is what the server works with; the angle is only kept on the client, where it is carried on between the syncs the server sends so that the blades turn smoothly rather than jumping.
- *
- * @param pos The position of the block.
- * @param state The state of the block.
- */
 class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMod.blockEntities.rotor_blades, pos, state) {
 
-    /**
-     * How fast the blades are turning.
-     */
     var speed: Float = 0f
 
-    /**
-     * How far round the blades have turned, kept on the client so that they can be drawn between ticks.
-     */
     var clientAngle: Float = 0f
 
-    /**
-     * Where the blades were on the previous tick, which the drawn angle is worked out between.
-     */
     var clientPrevAngle: Float = 0f
 
-    /**
-     * How long it has been since the speed was last sent to the client.
-     */
     var syncTime = 0
 
-    /**
-     * The speed that was last sent to the client, which is what a change is measured against.
-     */
     var syncLast = 0f
 
-    /**
-     * What the blades are worth to a turbine of each tier, since the same blades drive every tier differently.
-     */
     val energy = MachineTier.entries.associateWith(::RotorToEnergyTransferContext)
 
     override fun loadAdditional(input: ValueInput) {
@@ -193,39 +167,16 @@ class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMo
 
     companion object {
 
-        /**
-         * How fast the blades turn while a turbine is driving them.
-         */
         const val turbineSpeed = 0.04f
 
-        /**
-         * How much energy a turbine of rate one makes from the blades turning at full speed.
-         */
         const val baseEnergyRate = 1000L
 
-        /**
-         * How fast the blades turn while redstone rather than a turbine is driving them.
-         */
         const val fanSpeed = 0.14f
 
-        /**
-         * How hard the blades push an entity in front of them while they are being used as a fan.
-         */
         const val fanMotion = 7.5f
 
-        /**
-         * How far in front of the blades that push reaches.
-         */
         const val fanRange = 7.0f
 
-        /**
-         * Ticks the block entity.
-         *
-         * @param level The level it is in.
-         * @param pos Its position.
-         * @param state Its state.
-         * @param entity The block entity being ticked.
-         */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: RotorBlockEntity) {
             val turbine = ToStarsMod.blocks.rotor_blades.getTurbine(state, pos, level)
             val facing = state.getValue(HORIZONTAL_FACING)
@@ -276,21 +227,10 @@ class RotorBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(ToStarsMo
 
     }
 
-    /**
-     * What the blades offer a turbine of one tier, which can only be extracted from: the blades hold whatever they have made this tick and nothing can be put into them.
-     *
-     * @property tier The tier of turbine this is offered to, which decides how much the blades are worth.
-     */
     class RotorToEnergyTransferContext(val tier: MachineTier) : ToEnergyTransferContext {
 
-        /**
-         * How much energy the blades are currently holding for this tier.
-         */
         var energy = 0L
 
-        /**
-         * How the energy is rolled back where a transaction is abandoned.
-         */
         val journal = object : TransferTransactionJournal<Long>() {
 
             override fun create() = energy

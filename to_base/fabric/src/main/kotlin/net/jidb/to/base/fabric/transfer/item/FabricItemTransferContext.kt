@@ -8,14 +8,6 @@ import net.jidb.to.base.api.transfer.item.ItemResource
 import net.jidb.to.base.api.transfer.item.ItemTransferContext
 import net.jidb.to.base.fabric.transfer.FabricTransferTransaction
 
-/**
- * [ItemTransferContext] implementation for Fabric, which wraps one of the Transfer API's own item storages.
- *
- * A storage need not be divided into slots at all, in which case its contents are read as a list and indexed by position instead.
- *
- * @property storage The item storage the items are moved through.
- * @since 0.6.0
- */
 class FabricItemTransferContext(val storage: Storage<ItemVariant>) : ItemTransferContext {
 
     override fun getSlotCount(): Int {

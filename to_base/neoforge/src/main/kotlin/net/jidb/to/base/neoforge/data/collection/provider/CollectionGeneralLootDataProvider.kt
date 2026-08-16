@@ -9,13 +9,6 @@ import net.minecraft.resources.ResourceKey
 import net.minecraft.world.level.storage.loot.LootTable
 import java.util.function.BiConsumer
 
-/**
- * The [LootTableSubProvider] that generates the loot tables described by a mod's collections which belong to no block, such as those of a chest or an entity.
- *
- * @param collections The collections being generated from.
- * @property provider The registries the loot tables are built against.
- * @since 0.8.0
- */
 class CollectionGeneralLootDataProvider(private val collections: Iterable<DataCollection<*>>, protected val provider: HolderLookup.Provider) : LootTableSubProvider {
 
     override fun generate(output: BiConsumer<ResourceKey<LootTable>, LootTable.Builder>) {

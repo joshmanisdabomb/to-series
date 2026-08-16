@@ -19,26 +19,12 @@ import org.joml.Vector3f
 import org.joml.Vector3fc
 import java.util.function.Consumer
 
-/**
- * Draws the item form of a block that stores To Energy, with its charge showing just as the block itself has it.
- *
- * @property block The block whose model the item is drawn from.
- */
 class EnergyStorageSpecialRenderer(val block: Block) : SpecialModelRenderer<Float> {
 
-    /**
-     * The shared drawing of the charge, which the block itself uses too.
-     */
     val renderer = EnergyStorageRenderer()
 
-    /**
-     * The blockstate the item is drawn from, faced up so that its charge shows on every side.
-     */
     val default by lazy { block.defaultBlockState().setValue(DirectionalBlock.FACING, Direction.UP) }
 
-    /**
-     * The baked model of the block.
-     */
     val model by lazy { BlockModelRenderState()
         .also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update(
             it,
@@ -62,11 +48,6 @@ class EnergyStorageSpecialRenderer(val block: Block) : SpecialModelRenderer<Floa
         return energy.getTotalAmount(Unit) / energy.getTotalCapacity(Unit).toFloat()
     }
 
-    /**
-     * The declaration of this renderer as it is written in an item's model, before the models it needs have been baked.
-     *
-     * @property block The block whose model the item is drawn from.
-     */
     data class Unbaked(val block: Block) : SpecialModelRenderer.Unbaked<Float> {
 
         override fun type() = codec
@@ -77,9 +58,6 @@ class EnergyStorageSpecialRenderer(val block: Block) : SpecialModelRenderer<Floa
 
     companion object {
 
-        /**
-         * The codec the declaration is read from an item's model through.
-         */
         val codec = RecordCodecBuilder.mapCodec {
             it.group(
                 BuiltInRegistries.BLOCK.byNameCodec().fieldOf("base").forGetter(Unbaked::block)
@@ -87,9 +65,6 @@ class EnergyStorageSpecialRenderer(val block: Block) : SpecialModelRenderer<Floa
                 .apply(it, ::Unbaked)
         }
 
-        /**
-         * The corners of the space the item is drawn within, which is the whole of one block.
-         */
         private val extents = arrayOf(
             Vector3f(0.0f, 0.0f, 0.0f),
             Vector3f(0.0f, 0.0f, 1.0f),

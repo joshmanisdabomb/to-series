@@ -16,18 +16,6 @@ import kotlin.io.path.deleteRecursively
 import kotlin.io.path.div
 import kotlin.io.path.isDirectory
 
-/**
- * A [DataProvider] that copies a directory tree into the generated output rather than generating anything itself.
- * This is how content authored by hand, such as the wiki article sources, reaches the resources alongside what the generators build.
- *
- * The copy is recursive and overwrites what is already there, and the cache directory the generators leave behind is removed afterwards so it does not end up in the output.
- *
- * @property output The pack output the provider belongs to.
- * @property source The directory to copy from.
- * @property target The directory to copy into.
- * @property modify A function adjusting the destination of each file, given that destination and the file it came from. Defaults to leaving it as it is.
- * @since 0.0.4
- */
 open class CopyDataProvider(val output: PackOutput, val source: Path, val target: Path, val modify: (destination: Path, source: Path) -> Path = { dst, _ -> dst }) : DataProvider {
 
     @OptIn(ExperimentalPathApi::class)

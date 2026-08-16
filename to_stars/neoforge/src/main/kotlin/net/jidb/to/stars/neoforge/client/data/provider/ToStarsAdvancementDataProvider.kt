@@ -29,9 +29,6 @@ import net.minecraft.world.item.ItemStackTemplate
 import java.util.Optional
 import java.util.function.Consumer
 
-/**
- * Generates the advancements of this mod, which follow the player from their first uranium through each tier of machine to setting off an atomic bomb.
- */
 class ToStarsAdvancementDataProvider : AdvancementSubProvider {
 
     override fun generate(registries: HolderLookup.Provider, output: Consumer<AdvancementHolder>) {

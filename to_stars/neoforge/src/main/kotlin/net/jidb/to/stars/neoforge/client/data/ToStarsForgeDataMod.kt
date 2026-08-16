@@ -29,13 +29,6 @@ import net.minecraft.world.level.block.Block
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import java.util.concurrent.CompletableFuture
 
-/**
- * [ToForgeDataMod] implementation for the content mod, i.e. what its data generation run goes through.
- *
- * Every registry entry it adds is expected to have a wiki article, other than a creative tab, a recipe or the race criterion, none of which is something a player would look up.
- *
- * @param event The event the providers are registered against.
- */
 class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event) {
 
     override val collections = ToStarsDataLibrary

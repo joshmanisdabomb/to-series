@@ -7,16 +7,10 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.MobCategory
 
-/**
- * [SimpleRegistryLibrary] implementation holding the entity types of this mod.
- */
 object ToStarsEntityLibrary : SimpleRegistryLibrary<EntityType<*>>(ToStarsMod.modid) {
 
     override val registry = BuiltInRegistries.ENTITY_TYPE
 
-    /**
-     * The atomic bomb as it falls, which is tracked from much further away than an ordinary entity so that a player can watch it come down.
-     */
     val atomic_bomb by this { EntityType.Builder.of(::AtomicBombEntity, MobCategory.MISC)
         .noLootTable()
         .fireImmune()

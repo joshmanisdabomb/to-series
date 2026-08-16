@@ -32,16 +32,8 @@ import net.jidb.to.stars.content.key.ToStarsConfiguredFeatureLibrary
 import net.jidb.to.stars.content.key.ToStarsDamageTypeLibrary
 import net.jidb.to.stars.content.key.ToStarsPlacedFeatureLibrary
 
-/**
- * [ToMod] implementation for To Sky and Stars, which names every library its content is registered through.
- *
- * See [net.jidb.to.stars.client.ToStarsClientMod] for the libraries that only exist on the client side.
- */
 object ToStarsMod : ToMod() {
 
-    /**
-     * The mod ID this mod's content is registered under.
-     */
     const val MOD_ID = "to_stars"
     override val modid = MOD_ID
 

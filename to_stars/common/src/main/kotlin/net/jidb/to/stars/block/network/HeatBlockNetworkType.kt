@@ -14,12 +14,6 @@ import net.minecraft.world.level.LevelReader
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 
-/**
- * The kind of block network heat is carried across, i.e. what a heat pipe joins together.
- *
- * A heat pipe is what the network runs through; a generator below the pipe and a cauldron beside it are where it ends.
- * Each tick the heat of every generator on the network is added up and shared out between as many cauldrons as it can keep boiling, rather than being spread thinly across all of them, so that a network with too little heat still boils something.
- */
 class HeatBlockNetworkType : BlockNetworkType() {
 
     override fun getPositionType(level: LevelReader, pos: BlockPos, state: BlockState, from: Direction?): BlockNetworkPositionType? {

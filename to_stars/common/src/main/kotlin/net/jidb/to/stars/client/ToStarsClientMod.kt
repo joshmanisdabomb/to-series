@@ -12,9 +12,6 @@ import net.jidb.to.stars.client.content.ToStarsScreenLibrary
 import net.jidb.to.stars.client.content.ToStarsSpecialModelLibrary
 import net.jidb.to.stars.client.event.ToStarsClientEventHandlerLibrary
 
-/**
- * [ToClientMod] implementation for To Sky and Stars, which names every library its client-side content is registered through.
- */
 object ToStarsClientMod : ToClientMod() {
 
     override val common get() = ToStarsMod

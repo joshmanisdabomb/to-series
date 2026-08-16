@@ -11,16 +11,6 @@ import net.minecraft.client.resources.model.sprite.Material
 import net.minecraft.resources.Identifier
 import net.minecraft.world.item.Item
 
-/**
- * A [ClientDataCollectionModule] generating the model of a flat item, i.e. the single sprite an ordinary item is drawn as.
- * This is the default every item is given unless another model module is declared for it.
- *
- * Up to two further sprites can be drawn over the bottom one, which is how an item carrying an overlay is built.
- *
- * @property texture The texture of the bottom layer, or `null` for one named after the item. Defaults to `null`.
- * @property layers The textures drawn over the bottom layer, of which at most two are supported. Defaults to none.
- * @since 0.3.0
- */
 class FlatItemModelClientDataCollectionModule(val texture: Identifier? = null, val layers: List<Identifier> = emptyList()) : ClientDataCollectionModule() {
 
     override fun generateItemModels(collection: DataCollection<Item>, event: ModelClientDataCollectionEvent): Boolean {

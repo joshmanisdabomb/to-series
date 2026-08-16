@@ -28,18 +28,6 @@ import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
-/**
- * A nuclear explosion, which is far larger than a vanilla one and worked out quite differently.
- *
- * Rather than casting a fixed number of rays, it walks one ray out to every point on the shell of a sphere, so that the blast covers the whole of its radius however large that is.
- * Blocks are cleared, turned to nuclear waste or set alight depending on how far the ray got and what it met; entities are hurt and thrown by how much of the blast they were exposed to.
- *
- * @property level The level the blast goes off in.
- * @property entity What set it off, or `null` where nothing did.
- * @param source What the damage is blamed on, or `null` to blame the blast itself.
- * @property origin Where the blast goes off.
- * @property strength How strong the blast is, which is also its radius in blocks.
- */
 class NuclearExplosion(
     val level: ServerLevel,
     val entity: Entity?,
@@ -48,28 +36,16 @@ class NuclearExplosion(
     val strength: Float
 ) {
 
-    /**
-     * What the damage from the blast is blamed on.
-     */
     val source = source ?: Explosion.getDefaultDamageSource(level, entity)
 
-    /**
-     * How hard each player was thrown, kept so that it can be sent to them along with the blast itself.
-     */
     val knockback = mutableMapOf<UUID, Vec3>()
 
-    /**
-     * Sets the blast off, i.e. damages the blocks, hurts the entities and tells the clients about it.
-     */
     fun run() {
         doBlockDamage()
         doEntityDamage()
         updateClients()
     }
 
-    /**
-     * Clears, wastes or sets alight every block the blast reaches, by walking a ray out to each point on the shell of its sphere.
-     */
     fun doBlockDamage() {
         val radius = strength.roundToInt().coerceAtLeast(1)
         val endpoints = generateSphereShell(radius)
@@ -128,21 +104,6 @@ class NuclearExplosion(
         }
     }
 
-    /**
-     * Walks one ray out from the origin, weakening it by what each block it passes through resists, and records what should happen to every block it reached.
-     *
-     * @param dxEnd Where the ray ends, along x.
-     * @param dyEnd Where it ends, along y.
-     * @param dzEnd Where it ends, along z.
-     * @param maxDistance How far the ray can reach.
-     * @param minY The lowest the ray may go, i.e. the bottom of the world.
-     * @param maxY The highest it may go, i.e. the top of the world.
-     * @param processed The positions already walked over, which is shared between rays so that none is dealt with twice.
-     * @param toRemove The positions to clear, which the ray adds to.
-     * @param toWaste The positions to turn to nuclear waste, which the ray adds to.
-     * @param toFire The positions to set alight, which the ray adds to.
-     * @param pos A position the ray reuses as it walks, rather than allocating a fresh one per step.
-     */
     private fun traceRay(
         dxEnd: Double,
         dyEnd: Double,
@@ -320,12 +281,6 @@ class NuclearExplosion(
         return reach
     }
 
-    /**
-     * Every position on the shell of a sphere, which is where the rays are walked out to.
-     *
-     * @param radius The radius of the sphere.
-     * @return The positions on its shell, relative to the origin.
-     */
     private fun generateSphereShell(radius: Int): LongOpenHashSet {
         val shell = LongOpenHashSet(radius * radius * 12)
         val r2 = radius * radius
@@ -367,11 +322,6 @@ class NuclearExplosion(
         return shell
     }
 
-    /**
-     * Hurts and throws every entity within reach of the blast, by how much of it they were exposed to and how far away they were.
-     *
-     * A creative player who is flying is left alone entirely, and one who is not is thrown only gently, so that the blast does not fling them across the world.
-     */
     fun doEntityDamage() {
         knockback.clear()
 
@@ -410,9 +360,6 @@ class NuclearExplosion(
         }
     }
 
-    /**
-     * Tells every player near enough to notice that the blast has gone off, along with how hard they themselves were thrown.
-     */
     fun updateClients() {
         val players = level.getPlayers { it.distanceToSqr(origin) <= 1000000.0 }
         for (player in players) {

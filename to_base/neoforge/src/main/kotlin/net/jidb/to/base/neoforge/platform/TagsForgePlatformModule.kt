@@ -6,13 +6,6 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.neoforged.neoforge.common.Tags
 
-/**
- * [TagsPlatformModule] implementation for Neoforge, whose common tags are Neoforge's own.
- *
- * They are read off the class by reflection rather than named one at a time, so that a tag added by a later version of the API is picked up without this having to be touched.
- *
- * @since 0.1.0
- */
 object TagsForgePlatformModule : TagsPlatformModule() {
 
     override fun reflectedBlockTags() = Tags.Blocks::class.java.declaredFields.filter { field ->

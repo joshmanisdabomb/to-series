@@ -18,19 +18,6 @@ import net.minecraft.resources.Identifier
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 
-/**
- * A [ClientDataCollectionModule] generating the models of a cable, which is drawn as one piece per direction rather than as a single model, since which sides it reaches out to depends on what it is next to.
- *
- * Each of the six directions gets a connection piece where the cable joins something and a plain end piece where it does not.
- * A rim can be drawn on top where the cable meets a machine rather than another cable, which is what makes the join look finished.
- *
- * @property center The model drawn where the cable reaches out in no direction.
- * @property connection The model drawn where it reaches out.
- * @property item The model the cable's own item is drawn from, or `null` to leave the item to another module. Defaults to `null`.
- * @property textures The textures filling that item model, given the name of the block's texture. Defaults to the ordinary cable mapping.
- * @property rim The model drawn over a join to a machine, or `null` where nothing extra is drawn. Defaults to `null`.
- * @since 0.6.0
- */
 open class CableBlockModelClientDataCollectionModule(val center: TexturedModel.Provider, val connection: TexturedModel.Provider, val item: ModelTemplate? = null, val textures: (Identifier) -> TextureMapping = ToBaseModels.cableTexture, val rim: TexturedModel.Provider? = null) : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {

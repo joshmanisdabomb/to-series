@@ -47,129 +47,54 @@ import net.minecraft.world.level.storage.ValueOutput
 import java.util.Optional
 import kotlin.jvm.optionals.getOrNull
 
-/**
- * The block entity of a machine that runs processor recipes, which holds the energy it works from and how far through the current recipe it is.
- *
- * A processor becomes more efficient the longer it is left on one recipe, so how many times the current recipe has been run in a row is kept and reset whenever it changes.
- *
- * @param type The block entity type being built.
- * @param pos The position of the block.
- * @param state The state of the block.
- */
 abstract class ProcessorBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state: BlockState) : BaseContainerBlockEntity(type, pos, state), WorldlyContainer, ToEnergyWorldlyProvider, StackedContentsCompatible, RecipeCraftingHolder {
 
-    /**
-     * The items in the machine, across all of its slots.
-     */
     protected abstract var inventory: NonNullList<ItemStack>
 
-    /**
-     * Which of the slots a recipe's ingredients are taken from.
-     */
     protected abstract val inputSlots: IntArray
 
-    /**
-     * Which of the slots a recipe's results are put into.
-     */
     protected abstract val outputSlots: IntArray
 
-    /**
-     * Which of the slots the machine draws energy out of a battery in.
-     */
     protected abstract val batterySlots: IntArray
 
-    /**
-     * The energy the machine has by it to work from, along with how much can move in and out of it per tick.
-     */
     val energy = ToEnergyBlockEntityHandler(
         (state.block as? CentrifugeBlock)?.machine?.machineBuffer ?: 0L,
         (state.block as? CentrifugeBlock)?.machine?.maxInput ?: 0L,
         (state.block as? CentrifugeBlock)?.machine?.maxOutput ?: 0L,
     )
 
-    /**
-     * What the sides of the block offer to something inserting energy, which can only insert, since a machine gives nothing back.
-     */
     val transferInput = InputToEnergyTransferContext(energy.transfer)
 
-    /**
-     * How far through the current recipe the machine is, in ticks.
-     */
     var progress = 0
 
-    /**
-     * How long the current recipe takes this machine, in ticks.
-     */
     var progressMax = 0
 
-    /**
-     * How long the machine takes over a recipe, as a multiple of what the recipe itself asks for.
-     */
     var machineSpeed = (state.block as CentrifugeBlock).machine.machineSpeed
 
-    /**
-     * How much energy the machine spends on a recipe, as a multiple of what the recipe itself asks for.
-     */
     var machineUsage = (state.block as CentrifugeBlock).machine.machineUsage
 
-    /**
-     * How many runs of the same recipe the machine keeps gaining efficiency over.
-     */
     var machineBonusMax = (state.block as CentrifugeBlock).machine.machineBonusMax
 
-    /**
-     * How much more efficient the machine becomes with each run of the same recipe.
-     */
     var machineBonus = (state.block as CentrifugeBlock).machine.machineBonus
 
-    /**
-     * The recipe the machine is running, or `null` where it is running none.
-     */
     var currentRecipe: ResourceKey<Recipe<*>>? = null
 
-    /**
-     * The recipe the machine last ran, which is what the current run is compared against to decide whether its efficiency carries over.
-     */
     var lastRecipe: ResourceKey<Recipe<*>>? = null
 
-    /**
-     * The item shown for the last recipe in the interface, kept separately so that it can be drawn without the recipe itself having to be loaded.
-     */
     var lastRecipeIcon: ResourceKey<Item>? = null
 
-    /**
-     * Whether what is in the machine still matches the recipe it built its efficiency up on.
-     */
     var sameRecipe: Boolean = false
 
-    /**
-     * How much energy the current recipe asks for.
-     */
     var recipeEnergy = 0L
 
-    /**
-     * How long the current recipe asks for, in ticks.
-     */
     var recipeTime = 0
 
-    /**
-     * How many times the current recipe has been run in a row, which is what the efficiency bonus is worked out from.
-     */
     var completion = 0
 
-    /**
-     * The randomness a recipe with a chance in it is decided by, kept so that the outcome does not change if the machine is reloaded partway through.
-     */
     var seed: Long? = null
 
-    /**
-     * The cached lookup that finds which recipe the current ingredients match, so that every recipe need not be tried each tick.
-     */
     private val quickCheck = RecipeManager.createCheck(ToStarsMod.recipeTypes.processor)
 
-    /**
-     * How the machine's figures are read by and written from the interface it is opened into.
-     */
     val dataAccess = object : ContainerData {
 
         override fun get(key: Int) = ProcessorMenu.dataSchema.getShort(key) { when (it) {
@@ -198,11 +123,6 @@ abstract class ProcessorBlockEntity(type: BlockEntityType<*>, pos: BlockPos, sta
 
     }
 
-    /**
-     * Takes a recipe's ingredients out of the input slots, drawing each one from as many slots as it needs to.
-     *
-     * @param recipe The recipe being run.
-     */
     open fun inputConsume(recipe: RecipeHolder<out ProcessorRecipe>) {
         val ingredients = recipe.value.ingredients
         val slots = inputSlots.map(::getSlot)
@@ -222,13 +142,6 @@ abstract class ProcessorBlockEntity(type: BlockEntityType<*>, pos: BlockPos, sta
         }
     }
 
-    /**
-     * Puts a recipe's results into the output slots, filling what is already there before starting anything new.
-     *
-     * @param recipe The recipe being run.
-     * @param results What it produced.
-     * @return Returns `true` if all of it fitted, otherwise `false`, in which case nothing is put anywhere.
-     */
     open fun outputResults(recipe: RecipeHolder<out ProcessorRecipe>, results: List<ItemStack>): Boolean {
         val slots = outputSlots.map(::getSlot)
         val stacks = slots.mapNotNull { it?.get()?.copy() }.toMutableList()
@@ -374,19 +287,8 @@ abstract class ProcessorBlockEntity(type: BlockEntityType<*>, pos: BlockPos, sta
 
     companion object {
 
-        /**
-         * The codec the icon of the last recipe is saved and loaded through.
-         */
         val itemCodec = ResourceKey.codec(Registries.ITEM)
 
-        /**
-         * Ticks the block entity.
-         *
-         * @param level The level it is in.
-         * @param pos Its position.
-         * @param state Its state.
-         * @param entity The block entity being ticked.
-         */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: ProcessorBlockEntity) {
             if (level.isClientSide) return
 

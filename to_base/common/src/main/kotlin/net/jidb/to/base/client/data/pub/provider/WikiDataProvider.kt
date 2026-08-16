@@ -43,57 +43,18 @@ import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.nameWithoutExtension
 import kotlin.io.path.walk
 
-/**
- * A [DataProvider] baking the wiki articles of a mod, turning the directory of Markdown and JSON that an article is written as into the one file the game reads.
- *
- * Each article's `index.json` is the whole of the output: its changelog and factsheet are folded into it, its Markdown pages are parsed a locale at a time into a `content` object, and the figures that can be read off the game itself, such as a block's hardness or an item's stack size, are filled in where the author did not write them by hand.
- * The templates are read from where the source lives rather than from the resources directory, which is why the article is never edited where it lands.
- *
- * Where a [WikiDataEnforcer] has been given, anything it expects an article for and did not get is logged and written out as a report alongside the articles.
- *
- * @property output Where the generated files are written.
- * @property lookup The registries the figures on a factsheet are read against.
- * @property templates Where the articles are written, given the folder the generated files are going to.
- * @since 0.1.0
- */
 open class WikiDataProvider(val output: PackOutput, val lookup: CompletableFuture<HolderLookup.Provider>, val templates: (output: Path) -> Path) : DataProvider {
 
-    /**
-     * Creates a provider reading the articles from a fixed path, for the usual case where it does not depend on where the output is going.
-     *
-     * @param output Where the generated files are written.
-     * @param lookup The registries the figures on a factsheet are read against.
-     * @param path Where the articles are written.
-     * @since 0.1.0
-     */
     constructor(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>, path: Path) : this(output, lookup, { path })
 
-    /**
-     * The rule deciding which articles the mod is expected to have, or `null` where nothing is checked.
-     *
-     * @since 0.1.0
-     */
     var enforcer: WikiDataEnforcer? = null
         private set
 
-    /**
-     * Sets the rule deciding which articles the mod is expected to have.
-     *
-     * @param enforcer The rule to check the baked articles against.
-     * @return This provider, so that the call can be chained onto its construction.
-     * @since 0.1.0
-     */
     fun enforce(enforcer: WikiDataEnforcer): WikiDataProvider {
         this.enforcer = enforcer
         return this
     }
 
-    /**
-     * Where the baked articles are written to, which is the resource pack rather than the data pack because the wiki is read on the client.
-     *
-     * @return The path provider the articles are written through.
-     * @since 0.1.0
-     */
     open fun getPathProvider() = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "wiki/articles")
 
     override fun run(cached: CachedOutput): CompletableFuture<*> {
@@ -160,14 +121,6 @@ open class WikiDataProvider(val output: PackOutput, val lookup: CompletableFutur
         }
     }
 
-    /**
-     * Parses every Markdown page of an article, keyed by locale and then by the name of the page.
-     *
-     * @param article The directory the article is written in.
-     * @param parser The parser resolving the templates the article was written with.
-     * @return The parsed content of the article.
-     * @since 0.1.0
-     */
     protected open fun writeContent(article: Path, parser: WikiArticleDataTokenParser) = JsonObject().apply {
         WikiLanguage.languages.forEach { language ->
             val directory = article.resolve(language.locale)
@@ -180,16 +133,6 @@ open class WikiDataProvider(val output: PackOutput, val lookup: CompletableFutur
         }
     }
 
-    /**
-     * Fills in the figures of a factsheet that can be read off the game itself, such as a block's hardness, the states it has and the odds of it catching fire, or an item's stack size and rarity.
-     * Anything the author wrote by hand is left alone, so a written figure always wins over the one the game reports.
-     *
-     * @param input The factsheet as it was written.
-     * @param resources The things the article is about, keyed by their registry entry.
-     * @param lookup The registries the figures are read against.
-     * @return The factsheet, with the figures filled in.
-     * @since 0.1.0
-     */
     protected open fun writeFactsheet(input: JsonObject, resources: Map<ResourceKey<*>, Any>, lookup: HolderLookup.Provider) = input.apply {
         resources.forEach { (key, resource) ->
             getOrCreateObject(RegistryHelper.keyToString(key)) { original ->
@@ -242,22 +185,8 @@ open class WikiDataProvider(val output: PackOutput, val lookup: CompletableFutur
 
     companion object {
 
-        /**
-         * Which files under the templates directory are an article, i.e. the `index.json` of one directory per article.
-         *
-         * @since 0.1.0
-         */
         private val articleMatcher = FileSystems.getDefault().getPathMatcher("glob:*/articles/*/index.json")
 
-        /**
-         * The tags a registry entry belongs to, written out for a factsheet.
-         *
-         * @param I The type of the registry entry.
-         * @param registry The registry the entry belongs to.
-         * @param value The entry whose tags are being written.
-         * @return The tags, as an array of their names.
-         * @since 0.1.0
-         */
         protected fun <I : Any> getTagJson(registry: Registry<I>, value: I) = JsonArray().also {
             it.addStrings(registry.getOrThrow(registry.getResourceKey(value).orElseThrow()).tags().map(TagKey<I>::toString).toList().toTypedArray())
         }

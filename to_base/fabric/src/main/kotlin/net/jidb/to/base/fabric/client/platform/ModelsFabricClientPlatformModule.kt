@@ -14,11 +14,6 @@ import net.minecraft.client.renderer.special.SpecialModelRenderers
 import net.minecraft.resources.Identifier
 import net.minecraft.world.level.block.Block
 
-/**
- * [ModelsClientPlatformModule] implementation for Fabric.
- *
- * @since 0.6.0
- */
 object ModelsFabricClientPlatformModule : ModelsClientPlatformModule() {
 
     override fun createLayer(model: Identifier, layer: String?, provider: () -> LayerDefinition): ModelLayerLocation {

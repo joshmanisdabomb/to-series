@@ -8,12 +8,6 @@ import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 import net.minecraft.resources.Identifier
 
-/**
- * Tells the client how fast a set of rotor blades is turning, so that they can be drawn turning at the right rate.
- *
- * @property pos The position of the block.
- * @property speed How fast the blades are turning.
- */
 data class RotorSyncPayload(val pos: BlockPos, val speed: Float) : CustomPacketPayload {
 
     override fun type() = type

@@ -23,9 +23,6 @@ import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition
 import net.minecraft.world.level.storage.loot.predicates.MatchTool
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 
-/**
- * A [DataCollectionModule] generating the loot table of a block that stores To Energy, which keeps whatever it was holding when it is broken with silk touch and loses it otherwise.
- */
 class EnergySilkBlockLootDataCollectionModule : DataCollectionModule() {
 
     override fun generateBlockLoot(collection: DataCollection<Block>, event: BlockLootDataCollectionEvent) = mapOf(collection.`object` to LootTable.lootTable()

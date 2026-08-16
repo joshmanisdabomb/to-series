@@ -9,9 +9,6 @@ import net.minecraft.util.Mth
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.item.ItemStack
 
-/**
- * Colours a battery's overlay by how much charge it is holding, running from a dull red when empty to a bright yellow when full.
- */
 class BatteryItemTint : ItemTintSource {
 
     override fun calculate(stack: ItemStack, level: ClientLevel?, entity: LivingEntity?): Int {
@@ -24,14 +21,8 @@ class BatteryItemTint : ItemTintSource {
 
     companion object {
 
-        /**
-         * The one tint source of this kind there is, since it holds nothing to tell one from another.
-         */
         val instance = BatteryItemTint()
 
-        /**
-         * The codec the tint source is read through, which carries nothing.
-         */
         val codec = MapCodec.unit(instance)
 
     }

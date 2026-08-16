@@ -6,13 +6,6 @@ import net.minecraft.data.PackOutput
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.contents.TranslatableContents
 
-/**
- * [MultiLanguageDataProvider] implementation adding the base mod's own translations that no collection produces, i.e. the wiki interface, its tooltips and the tags a player can see.
- *
- * @param tokens The translations gathered from the collections.
- * @param output Where the generated files are written.
- * @since 0.0.4
- */
 class ToBaseLanguageDataProvider(tokens: Map<String, Map<String, Component>>, output: PackOutput) : MultiLanguageDataProvider(tokens, output, ToBaseMod.modid) {
 
     override fun addTranslations() {

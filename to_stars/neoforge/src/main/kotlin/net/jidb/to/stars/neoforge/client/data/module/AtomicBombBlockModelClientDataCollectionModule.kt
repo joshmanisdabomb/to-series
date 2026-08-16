@@ -17,9 +17,6 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 
-/**
- * A [ClientDataCollectionModule] generating the models of the atomic bomb, which is three blocks long and so is drawn from a different model for each of its segments.
- */
 class AtomicBombBlockModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {

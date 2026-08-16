@@ -15,13 +15,6 @@ import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 
-/**
- * A [ClientDataCollectionModule] generating the models of a power bank, which faces any of the six directions and is drawn differently for each of the three axes so that the charge always reads upright.
- *
- * Its item is drawn by a renderer rather than from a model, so that the charge it is holding shows in the hand as well as in the world.
- *
- * @property tier Which tier of power bank this is, which is what its textures are named after.
- */
 class PowerBankModelClientDataCollectionModule(val tier: Int) : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {

@@ -37,13 +37,6 @@ import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
 import kotlin.jvm.optionals.getOrNull
 
-/**
- * The atomic bomb, which is three blocks long and lies flat, and is armed through the interface its middle segment opens.
- *
- * Only the middle segment carries a block entity, so every other segment works out where its middle is from which way it is facing and how far along it sits; a redstone signal on any of them sets the whole thing off.
- *
- * @param properties The block's own properties.
- */
 class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     init {
@@ -135,45 +128,15 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
         }
     }
 
-    /**
-     * Whether the bomb would fall from a position, i.e. whether there is nothing under it to hold it up.
-     *
-     * @param level The level the bomb is in.
-     * @param pos The position being asked about.
-     * @return Returns `true` if there is nothing holding the bomb up, otherwise `false`.
-     */
     private fun canFall(level: Level, pos: BlockPos): Boolean {
         val below = pos.below()
         return level.isEmptyBlock(below) || FallingBlock.isFree(level.getBlockState(below))
     }
 
-    /**
-     * Whether a state is a particular segment of this same bomb, i.e. the same block facing the same way.
-     *
-     * @param state The state being checked.
-     * @param facing The direction the bomb faces.
-     * @param segment The segment being looked for.
-     * @return Returns `true` if the state is that segment, otherwise `false`.
-     */
     private fun isSegment(state: BlockState, facing: Direction, segment: AtomicBombSegment) = state.block === this && state.getValue(FACING) == facing && state.getValue(Companion.segment) == segment
 
-    /**
-     * Where the middle segment of the bomb a position belongs to sits.
-     *
-     * @param pos The position of one of its segments.
-     * @param state The state at that position.
-     * @return The position of the middle segment.
-     */
     private fun getMiddle(pos: BlockPos, state: BlockState) = pos.relative(state.getValue(FACING).clockWise, state.getValue(segment).offset)
 
-    /**
-     * The block entity of the bomb a position belongs to, which only its middle segment carries.
-     *
-     * @param level The level the bomb is in.
-     * @param pos The position of one of its segments.
-     * @param state The state at that position.
-     * @return The block entity, or empty where the middle segment is missing.
-     */
     private fun getMiddleEntity(level: Level, pos: BlockPos, state: BlockState) = level.getBlockEntity(getMiddle(pos, state), ToStarsMod.blockEntities.atomic_bomb)
 
     override fun getShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext) = state.getValue(segment).shapes[state.getValue(FACING).counterClockWise]!!
@@ -198,24 +161,10 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     companion object {
 
-        /**
-         * Which of the three segments of the bomb a block is.
-         */
         val segment = EnumProperty.create("segment", AtomicBombSegment::class.java)
 
-        /**
-         * The codec the block is read from a data pack through.
-         */
         val codec = simpleCodec(::AtomicBombBlock)
 
-        /**
-         * Builds one tapered length of the bomb's collision shape, as a stack of boxes narrowing from one width to another, since a shape cannot itself be curved.
-         *
-         * @param minH How far in the shape starts at the near end.
-         * @param minV How far in it ends at the far end.
-         * @param depth How long the length is.
-         * @return The shape.
-         */
         private fun createBodyShape(minH: Double, minV: Double, depth: Double): VoxelShape {
             val bodyWidth = 16.0 - minH.times(2.0)
             val points = Mth.floor(bodyWidth)
@@ -230,16 +179,8 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
 
     }
 
-    /**
-     * Enum that defines which part of an atomic bomb a block is, from its nose to its tail.
-     *
-     * @param shape The collision shape of the segment, facing north.
-     */
     enum class AtomicBombSegment(shape: VoxelShape) : StringRepresentable {
 
-        /**
-         * The nose of the bomb, which tapers to a point.
-         */
         HEAD(Shapes.or(
             createBodyShape(4.6863, 0.0, 12.0).move(0.0, 0.0, 0.25),
             createBodyShape(5.1005, 1.0, 1.0).move(0.0, 0.0, 0.1875),
@@ -248,27 +189,15 @@ class AtomicBombBlock(properties: Properties) : BaseEntityBlock(properties) {
             createBodyShape(6.3431, 4.0, 1.0)
         )),
 
-        /**
-         * The body of the bomb, which is the only segment carrying a block entity.
-         */
         MIDDLE(createBodyShape(4.6863, 0.0, 16.0)),
 
-        /**
-         * The tail of the bomb, which carries its fins.
-         */
         TAIL(Shapes.or(
             box(0.0, 0.0, 8.0, 16.0, 16.0, 16.0),
             box(3.0, 3.0, 0.0, 13.0, 13.0, 8.0),
         ));
 
-        /**
-         * How far this segment sits from the middle one, measured along the bomb.
-         */
         val offset = 1 - ordinal
 
-        /**
-         * The collision shape of this segment, for each of the four directions it can face.
-         */
         val shapes = Shapes.rotateHorizontal(shape)
 
         override fun getSerializedName() = name.lowercase()

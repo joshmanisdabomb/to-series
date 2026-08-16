@@ -23,12 +23,6 @@ import net.minecraft.world.item.ItemDisplayContext
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 
-/**
- * A [ClientDataCollectionModule] generating the models of the rotor blades.
- *
- * Turning blades are drawn by the block entity renderer rather than from a model, so the blockstate points at a particle-only model while they are powered; the still blades come in two forms, a half turn apart, so that a stack of them does not all line up.
- * The item is drawn by a renderer too, and by a different one in an interface than in the world, since the two are turned by different things.
- */
 class RotorModelClientDataCollectionModule : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {

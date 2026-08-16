@@ -9,11 +9,6 @@ import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.MenuType
 
-/**
- * [ScreenClientPlatformModule] implementation for Fabric.
- *
- * @since 0.1.0
- */
 object ScreenFabricClientPlatformModule : ScreenClientPlatformModule() {
 
     override fun <M : AbstractContainerMenu, S> registerMenuScreen(modid: String, type: () -> MenuType<M>, factory: (M, Inventory, Component) -> S) where S : Screen, S : MenuAccess<M> = MenuScreens.register(type(), factory)

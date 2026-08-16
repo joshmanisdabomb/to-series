@@ -13,11 +13,6 @@ import net.minecraft.world.flag.FeatureFlagSet
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.MenuType
 
-/**
- * [InventoryPlatformModule] implementation for Fabric.
- *
- * @since 0.1.0
- */
 object InventoryFabricPlatformModule : InventoryPlatformModule() {
 
     override fun <T : AbstractContainerMenu> createBasicMenu(constructor: (id: Int, playerInventory: Inventory) -> T, features: FeatureFlagSet) = MenuType(constructor, features)

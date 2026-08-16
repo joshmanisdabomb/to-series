@@ -21,8 +21,6 @@ object ToBaseMod : ToMod() {
 
     /**
      * The mod ID for To Lay the Foundations, defined as a constant for Forge @Mod and @EventBusSubscriber annotations.
-     *
-     * @since 0.0.3
      */
     const val MOD_ID = "to_base"
 
@@ -31,8 +29,6 @@ object ToBaseMod : ToMod() {
     /**
      * A sub mod object that holds the "content" of To Lay the Foundations, such as the research desk.
      * This is here to keep the content of the mod separate from the API available to modders.
-     *
-     * @since 0.5.0
      */
     val content by lazy { ToBaseContentMod(modid, logger) }
 

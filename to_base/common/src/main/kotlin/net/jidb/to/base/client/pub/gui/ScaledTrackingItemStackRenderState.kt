@@ -15,13 +15,6 @@ import org.joml.Vector3f
 import org.joml.Vector3fc
 import java.util.function.Consumer
 
-/**
- * A [TrackingItemStackRenderState] that draws its item at a scale other than the one the GUI would normally use.
- * Vanilla has no way to ask for a larger or smaller item in a GUI, so the scale is applied to the pose the item is submitted with, and to the extents and bounding box that decide how much room it is given.
- *
- * @property scale The factor the item is drawn at, where `1` is the size vanilla would draw it.
- * @since 0.1.0
- */
 class ScaledTrackingItemStackRenderState(val scale: Float) : TrackingItemStackRenderState() {
 
     override fun visitExtents(visitor: Consumer<Vector3fc>) = super.visitExtents { v -> visitor.accept(Vector3f(v).mul(scale)) }
@@ -37,19 +30,6 @@ class ScaledTrackingItemStackRenderState(val scale: Float) : TrackingItemStackRe
 
     companion object {
 
-        /**
-         * Draws an item stack into a GUI at the given scale, in the same way [net.minecraft.client.gui.GuiGraphics] draws one at its normal size.
-         * The item is kept centred on the position it would have occupied unscaled, which is what the offset accounts for.
-         *
-         * @param graphics The graphics to draw the item into.
-         * @param stack The item stack to draw.
-         * @param x The x position to draw the item at.
-         * @param y The y position to draw the item at.
-         * @param scale The factor to draw the item at, where `1` is the size vanilla would draw it. Defaults to `1`.
-         * @param scissors The rectangle to clip the item to, or `null` for no clipping. Defaults to `null`.
-         * @param seed The seed used to pick between the random model variants of the item. Defaults to `0`.
-         * @since 0.6.0
-         */
         fun extractItem(graphics: GuiGraphicsExtractor, stack: ItemStack, x: Int, y: Int, scale: Float = 1f, scissors: ScreenRectangle? = null, seed: Int = 0) {
             val minecraft = Minecraft.getInstance()
             val state = ScaledTrackingItemStackRenderState(scale)

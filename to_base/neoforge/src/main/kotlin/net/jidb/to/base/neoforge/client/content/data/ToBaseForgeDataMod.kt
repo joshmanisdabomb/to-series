@@ -11,14 +11,6 @@ import net.jidb.to.base.neoforge.content.data.provider.ToBaseItemTagDataProvider
 import net.minecraft.core.registries.BuiltInRegistries
 import net.neoforged.neoforge.data.event.GatherDataEvent
 
-/**
- * [ToForgeDataMod] implementation for the base mod itself, i.e. what its data generation run goes through.
- *
- * Every registry entry it adds is expected to have a wiki article, other than a creative tab, which is not something a player would look up.
- *
- * @param event The event the providers are registered against.
- * @since 0.3.0
- */
 class ToBaseForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event) {
 
     override val collections = ToBaseDataLibrary

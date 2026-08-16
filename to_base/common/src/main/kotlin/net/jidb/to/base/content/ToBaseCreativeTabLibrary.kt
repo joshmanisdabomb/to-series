@@ -10,20 +10,10 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
 
-/**
- * [SimpleRegistryLibrary] implementation that registers the [CreativeModeTab] content of To Lay the Foundations, and provides access to it in one place.
- *
- * @since 0.0.3
- */
 object ToBaseCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToBaseMod.modid), TranslatableLibrary<CreativeModeTab, CreativeModeTab> {
 
     override val registry = BuiltInRegistries.CREATIVE_MODE_TAB
 
-    /**
-     * The creative tab holding the content of To Lay the Foundations.
-     *
-     * @since 0.0.3
-     */
     val tab by this { entry ->
         Services.platform.creativeTabs.builder { parameters, output ->
             output(ItemStack(ToBaseMod.content.blocks.research_desk))

@@ -22,32 +22,14 @@ import kotlin.math.roundToInt
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-/**
- * Draws and plays a nuclear explosion the server has set off, i.e. the cloud, the sound and the shove the player is given.
- */
 object NuclearExplosionPayloadHandler {
 
-    /**
-     * Plays out the whole of a nuclear explosion on the client.
-     *
-     * @param data What the server sent.
-     * @param context Where it arrived.
-     */
     fun handle(data: NuclearExplosionPayload, context: ClientPayloadContext) {
         playSound(data.strength, data.origin, context.player)
         playParticles(data.strength, data.origin, context.level)
         playKnockback(context.player, data.velocity)
     }
 
-    /**
-     * Throws up the cloud of the blast, as particles scattered evenly through the sphere it fills.
-     *
-     * A particle is skipped where it would start inside a block or where anything stands between it and the origin, so that the cloud does not appear through walls; how many are thrown at all is capped, so that a very large blast does not bring the client to a halt.
-     *
-     * @param strength How strong the blast was, i.e. how large the cloud is.
-     * @param origin Where the blast went off.
-     * @param level The level it went off in.
-     */
     fun playParticles(strength: Float, origin: Vector3fc, level: ClientLevel) {
         val ox = origin.x().toDouble()
         val oy = origin.y().toDouble()
@@ -100,13 +82,6 @@ object NuclearExplosionPayloadHandler {
         }
     }
 
-    /**
-     * Plays the sound of the blast, which carries far further than an ordinary sound and is played differently depending on how far off the player is.
-     *
-     * @param strength How strong the blast was.
-     * @param origin Where it went off.
-     * @param player The player hearing it.
-     */
     fun playSound(strength: Float, origin: Vector3fc, player: LocalPlayer) {
         val large = strength >= 75f
         val soundEvent = if (large) ToStarsMod.sounds.nuke_large else ToStarsMod.sounds.nuke_small
@@ -125,12 +100,6 @@ object NuclearExplosionPayloadHandler {
         Minecraft.getInstance().soundManager.playDelayed(soundInstance, 2)
     }
 
-    /**
-     * Shoves the player as hard as the server said the blast threw them, since the client works out its own movement.
-     *
-     * @param player The player being thrown.
-     * @param velocity How hard, and in which direction, they were thrown.
-     */
     fun playKnockback(player: LocalPlayer, velocity: Vector3fc) {
         if (velocity.lengthSquared() <= 0.0) return
         player.push(velocity.x().toDouble(), velocity.y().toDouble(), velocity.z().toDouble())

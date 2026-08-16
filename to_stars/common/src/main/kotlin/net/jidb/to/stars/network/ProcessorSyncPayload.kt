@@ -13,13 +13,6 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.crafting.Recipe
 import java.util.Optional
 
-/**
- * Tells the client which recipe a processor last ran, which is what its interface shows while it is idle.
- *
- * @property pos The position of the block.
- * @property lastRecipe The recipe it last ran, or empty where it has run none.
- * @property lastRecipeIcon The item shown for that recipe, sent alongside it so that the client need not have the recipe loaded to draw it.
- */
 data class ProcessorSyncPayload(val pos: BlockPos, val lastRecipe: Optional<ResourceKey<Recipe<*>>>, val lastRecipeIcon: Optional<ResourceKey<Item>>) : CustomPacketPayload {
 
     override fun type() = type

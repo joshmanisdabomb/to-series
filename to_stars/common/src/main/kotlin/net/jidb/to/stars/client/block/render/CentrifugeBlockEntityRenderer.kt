@@ -18,21 +18,10 @@ import net.minecraft.resources.Identifier
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.phys.Vec3
 
-/**
- * Draws a centrifuge's drum spinning, which is only shown while the machine is actually working.
- *
- * @param context What the renderer is built from, i.e. the baked models and sprites available to it.
- */
 class CentrifugeBlockEntityRenderer(context: BlockEntityRendererProvider.Context) : BlockEntityRenderer<CentrifugeBlockEntity, CentrifugeBlockEntityState> {
 
-    /**
-     * The moving parts of the centrifuge.
-     */
     val model = CentrifugeBlockEntityModel(context.bakeLayer(ToStarsModelLayersLibrary.centrifuge))
 
-    /**
-     * The sprites the model's texture is looked up in.
-     */
     val sprites = context.sprites()
 
     override fun submit(state: CentrifugeBlockEntityState, stack: PoseStack, nodes: SubmitNodeCollector, camera: CameraRenderState) {
@@ -55,9 +44,6 @@ class CentrifugeBlockEntityRenderer(context: BlockEntityRendererProvider.Context
 
     companion object {
 
-        /**
-         * The texture the centrifuge's moving parts are drawn with.
-         */
         val texture = Sheets.BLOCK_ENTITIES_MAPPER.apply(Identifier.fromNamespaceAndPath(ToStarsMod.modid, "block/centrifuge"))
 
     }

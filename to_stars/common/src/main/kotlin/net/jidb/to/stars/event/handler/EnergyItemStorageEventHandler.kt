@@ -6,9 +6,6 @@ import net.jidb.to.base.pub.event.item.ModifyItemComponentEventContext
 import net.jidb.to.base.pub.item.component.ToEnergyItemComponentData
 import net.jidb.to.stars.ToStarsMod
 
-/**
- * Gives every item of this mod that stores To Energy the component it stores it in, so that it holds a charge in the hand as well as in the world.
- */
 class EnergyItemStorageEventHandler : EventHandler<ModifyItemComponentEventContext, Unit>() {
 
     override fun invoke(context: ModifyItemComponentEventContext) {

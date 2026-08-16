@@ -22,12 +22,6 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.phys.BlockHitResult
 
-/**
- * A power bank, which stores To Energy and gives it out to whatever is joined to it.
- *
- * @property machine The tier the power bank is built at.
- * @param properties The block's own properties.
- */
 class EnergyStorageBlock(val machine: MachineTier, properties: Properties) : BaseEntityBlock(properties) {
 
     init {
@@ -61,9 +55,6 @@ class EnergyStorageBlock(val machine: MachineTier, properties: Properties) : Bas
 
     companion object {
 
-        /**
-         * The codec the block is read from a data pack through, which carries its tier.
-         */
         val codec = RecordCodecBuilder.mapCodec {
             it.group(
                 MachineTier.codec.fieldOf("machine").forGetter(EnergyStorageBlock::machine),

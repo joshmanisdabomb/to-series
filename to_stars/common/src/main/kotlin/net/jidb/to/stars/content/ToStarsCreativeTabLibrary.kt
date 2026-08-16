@@ -10,18 +10,10 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
 
-/**
- * [SimpleRegistryLibrary] implementation holding the creative tab of this mod.
- */
 object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStarsMod.MOD_ID) {
 
     override val registry = BuiltInRegistries.CREATIVE_MODE_TAB
 
-    /**
-     * The creative tab holding every item of this mod, in the order a player would work through them.
-     *
-     * Anything that stores energy appears twice, once empty and once full, so that a creative player need not charge it by hand.
-     */
     val tab by this(::i) { entry ->
         Services.platform.creativeTabs.builder { parameters, output ->
             output(ItemStack(ToStarsMod.blocks.uranium_ore))

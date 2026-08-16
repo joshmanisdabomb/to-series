@@ -11,23 +11,8 @@ import net.minecraft.resources.Identifier
 import net.minecraft.util.ARGB
 import net.minecraft.util.Mth
 
-/**
- * A widget that draws a progress bar, as a foreground texture revealed over a background one in proportion to how full it is.
- * Subclasses supply the two textures and the fill, so that a bar for fuel, progress or energy differs only in what it reads and what it looks like.
- *
- * @param x The x position of the widget.
- * @param y The y position of the widget.
- * @param width The width of the widget, which is also the width of both textures.
- * @param height The height of the widget, which is also the height of both textures.
- * @since 0.8.0
- */
 abstract class AbstractBarWidget(x: Int, y: Int, width: Int, height: Int) : AbstractWidget(x, y, width, height, Component.empty()) {
 
-    /**
-     * The direction the bar fills in. Defaults to [AnimationDirection.LEFT_RIGHT].
-     *
-     * @since 0.8.0
-     */
     open val animation: AnimationDirection = AnimationDirection.LEFT_RIGHT
 
     override fun extractWidgetRenderState(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, a: Float) {
@@ -59,28 +44,9 @@ abstract class AbstractBarWidget(x: Int, y: Int, width: Int, height: Int) : Abst
         }
     }
 
-    /**
-     * How full the bar currently is, which subclasses read from whatever the bar is showing.
-     *
-     * @return A fraction between `0` and `1`, which is clamped into that range before it is drawn.
-     * @since 0.8.0
-     */
     abstract fun getFill(): Float
 
-    /**
-     * The texture drawn underneath the bar, at its full size.
-     *
-     * @return The background texture, or `null` where the bar draws straight onto the screen behind it.
-     * @since 0.8.0
-     */
     abstract fun getBackTexture(): Identifier?
-
-    /**
-     * The texture drawn over the background, revealed in proportion to [getFill].
-     *
-     * @return The foreground texture, or `null` where the bar has nothing to reveal.
-     * @since 0.8.0
-     */
     abstract fun getFrontTexture(): Identifier?
 
     override fun createNarrationMessage() = Component.empty()
@@ -91,40 +57,11 @@ abstract class AbstractBarWidget(x: Int, y: Int, width: Int, height: Int) : Abst
 
     override fun isValidClickButton(buttonInfo: MouseButtonInfo) = false
 
-    /**
-     * Enum that defines the directions a bar can fill in.
-     *
-     * @see AbstractBarWidget.animation
-     * @since 0.8.0
-     */
     enum class AnimationDirection {
 
-        /**
-         * The bar fills from its left edge towards its right, as a furnace's progress arrow does.
-         *
-         * @since 0.8.0
-         */
         LEFT_RIGHT,
-
-        /**
-         * The bar fills from its right edge towards its left.
-         *
-         * @since 0.8.0
-         */
         RIGHT_LEFT,
-
-        /**
-         * The bar fills from its bottom edge towards its top, as a furnace's fuel flame does.
-         *
-         * @since 0.8.0
-         */
         BOTTOM_TOP,
-
-        /**
-         * The bar fills from its top edge towards its bottom.
-         *
-         * @since 0.8.0
-         */
         TOP_BOTTOM
 
     }

@@ -28,12 +28,6 @@ import net.minecraft.world.phys.BlockHitResult
 import kotlin.math.ceil
 import kotlin.math.sqrt
 
-/**
- * A machine that makes heat, which is what a boiler above it and the network around it draw on.
- *
- * @property machine The tier the generator is built at.
- * @param properties The block's own properties.
- */
 abstract class HeatGeneratorBlock(val machine: MachineTier, properties: Properties) : BaseEntityBlock(properties) {
 
     init {

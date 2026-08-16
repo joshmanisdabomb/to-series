@@ -5,11 +5,6 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext
 import net.jidb.to.base.api.level.biome.BiomeMod
 import net.jidb.to.base.api.platform.BiomePlatformModule
 
-/**
- * [BiomePlatformModule] implementation for Fabric.
- *
- * @since 0.3.0
- */
 object BiomeFabricPlatformModule : BiomePlatformModule() {
 
     override fun registerBiomeMod(mod: BiomeMod) {

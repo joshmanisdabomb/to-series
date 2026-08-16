@@ -16,30 +16,14 @@ import net.minecraft.client.renderer.entity.TntMinecartRenderer
 import net.minecraft.client.renderer.state.level.CameraRenderState
 import net.minecraft.util.Mth
 
-/**
- * Draws a falling atomic bomb, as its three block segments laid end to end.
- *
- * Once the fuse is close to running out the bomb swells and flashes white, as vanilla's own primed TNT does.
- *
- * @param context What the renderer is built from.
- */
 class AtomicBombEntityRenderer(context: EntityRendererProvider.Context) : EntityRenderer<AtomicBombEntity, AtomicBombEntityState>(context) {
 
-    /**
-     * The baked model of the bomb's body.
-     */
     val middle = BlockModelRenderState()
         .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.segment, AtomicBombBlock.AtomicBombSegment.MIDDLE), BlockDisplayContext.create()) }
 
-    /**
-     * The baked model of the bomb's nose.
-     */
     val head = BlockModelRenderState()
         .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.segment, AtomicBombBlock.AtomicBombSegment.HEAD), BlockDisplayContext.create()) }
 
-    /**
-     * The baked model of the bomb's tail.
-     */
     val tail = BlockModelRenderState()
         .also { context.blockModelResolver.update(it, ToStarsMod.blocks.atomic_bomb.defaultBlockState().setValue(AtomicBombBlock.segment, AtomicBombBlock.AtomicBombSegment.TAIL), BlockDisplayContext.create()) }
 

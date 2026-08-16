@@ -2,11 +2,6 @@ package net.jidb.to.base.fabric.client.platform
 
 import net.jidb.to.base.client.api.platform.ClientPlatform
 
-/**
- * [ClientPlatform] implementation for Fabric, naming the module that answers each part of the client-side platform on this loader.
- *
- * @since 0.2.0
- */
 object FabricClientPlatform : ClientPlatform {
 
     override val blocks = BlocksFabricClientPlatformModule

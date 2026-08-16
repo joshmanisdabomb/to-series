@@ -7,11 +7,6 @@ import net.jidb.to.base.fabric.transfer.item.FabricItemTransferContextProvider
 import net.jidb.to.base.pub.transfer.energy.platform.EmptyPlatformEnergyTransferContextProvider
 import net.jidb.to.base.service.Services
 
-/**
- * [TransferPlatformModule] implementation for Fabric, which is backed by the Fabric Transfer API.
- *
- * @since 0.6.0
- */
 object TransferFabricPlatformModule : TransferPlatformModule() {
 
     override fun startRootTransaction() = FabricTransferTransaction()

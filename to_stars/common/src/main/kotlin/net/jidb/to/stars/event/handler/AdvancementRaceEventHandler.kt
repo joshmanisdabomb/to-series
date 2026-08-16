@@ -4,9 +4,6 @@ import net.jidb.to.base.api.event.EventHandler
 import net.jidb.to.base.pub.event.advancements.AdvancementEventContext
 import net.jidb.to.stars.ToStarsMod
 
-/**
- * Records which player was first on the server to earn each advancement, and grants them the criterion for having been first.
- */
 class AdvancementRaceEventHandler : EventHandler<AdvancementEventContext, Unit>() {
 
     override fun invoke(context: AdvancementEventContext) {

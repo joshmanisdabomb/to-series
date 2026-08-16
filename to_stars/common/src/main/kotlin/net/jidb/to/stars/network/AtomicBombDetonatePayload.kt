@@ -7,20 +7,12 @@ import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 import net.minecraft.resources.Identifier
 
-/**
- * Tells the server that a player has confirmed arming the atomic bomb whose interface they have open.
- *
- * It carries nothing at all, since which bomb is meant follows from the menu the player has open.
- */
 class AtomicBombDetonatePayload private constructor() : CustomPacketPayload {
 
     override fun type() = type
 
     companion object : PayloadEntry<AtomicBombDetonatePayload> {
 
-        /**
-         * The one payload of this kind there is, since it carries nothing to tell one from another.
-         */
         val instance = AtomicBombDetonatePayload()
 
         override val type = CustomPacketPayload.Type<AtomicBombDetonatePayload>(Identifier.fromNamespaceAndPath(ToStarsMod.MOD_ID, "atomic_bomb_detonate"))

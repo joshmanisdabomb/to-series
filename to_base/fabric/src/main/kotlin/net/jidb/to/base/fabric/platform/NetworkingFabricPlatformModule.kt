@@ -18,11 +18,6 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.level.ChunkPos
 import net.minecraft.world.phys.Vec3
 
-/**
- * [NetworkingPlatformModule] implementation for Fabric.
- *
- * @since 0.2.0
- */
 object NetworkingFabricPlatformModule : NetworkingPlatformModule() {
 
     override fun <P : CustomPacketPayload> register(entry: PayloadEntry<P>, serverHandler: ((P, ServerPayloadContext) -> Unit)?) {

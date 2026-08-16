@@ -12,16 +12,8 @@ import net.minecraft.client.model.geom.builders.PartDefinition
 import net.minecraft.client.renderer.rendertype.RenderTypes
 import kotlin.math.pow
 
-/**
- * The model of a centrifuge's moving parts, i.e. the drum that spins while it is working.
- *
- * @param root The baked parts of the model.
- */
 class CentrifugeBlockEntityModel(root: ModelPart) : Model<CentrifugeBlockEntityState>(root, RenderTypes::entitySolid) {
 
-    /**
-     * The part the whole drum hangs off, which is what is turned.
-     */
     val bone = root.getChild("bone")
 
     override fun setupAnim(state: CentrifugeBlockEntityState) {
@@ -31,11 +23,6 @@ class CentrifugeBlockEntityModel(root: ModelPart) : Model<CentrifugeBlockEntityS
 
     companion object {
 
-        /**
-         * Builds the layer definition of the model.
-         *
-         * @return The layer definition.
-         */
         fun create(): LayerDefinition {
             val mesh = MeshDefinition()
             val root = mesh.root

@@ -9,9 +9,6 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
 
-/**
- * Turns an iron ingot into magnetic iron when it is used on a lodestone.
- */
 class MagneticIronEventHandler : EventHandler<BlockInteractEventContext, BlockInteractEventResult>() {
 
     override fun invoke(context: BlockInteractEventContext): BlockInteractEventResult {

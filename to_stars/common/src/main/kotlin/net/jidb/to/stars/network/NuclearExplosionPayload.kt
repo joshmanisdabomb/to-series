@@ -8,13 +8,6 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload
 import net.minecraft.resources.Identifier
 import org.joml.Vector3fc
 
-/**
- * Tells the client that a nuclear explosion has gone off, so that it can throw up the cloud and play the sound.
- *
- * @property strength How strong the blast was, which decides how large the cloud is drawn.
- * @property origin Where the blast went off.
- * @property velocity Which way the cloud is moving.
- */
 data class NuclearExplosionPayload(val strength: Float, val origin: Vector3fc, val velocity: Vector3fc) : CustomPacketPayload {
 
     override fun type() = type

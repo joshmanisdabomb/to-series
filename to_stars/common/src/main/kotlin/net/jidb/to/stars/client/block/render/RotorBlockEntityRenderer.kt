@@ -20,37 +20,18 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.POWERED
 import net.minecraft.world.phys.Vec3
 
-/**
- * Draws the rotor blades turning, which is only shown while they are actually being driven.
- *
- * The blades are drawn from the block's own model turned about its axis, rather than from a model of their own, and every other set is drawn from the alternate model so that a stack of them does not all line up.
- *
- * @param context What the renderer is built from.
- */
 class RotorBlockEntityRenderer(context: BlockEntityRendererProvider.Context) : BlockEntityRenderer<RotorBlockEntity, RotorBlockEntityState> {
 
-    /**
-     * The blockstate the ordinary blades are drawn from.
-     */
     val default by lazy { ToStarsMod.blocks.rotor_blades.defaultBlockState() }
 
-    /**
-     * The blockstate the alternate blades are drawn from.
-     */
     val alt by lazy { ToStarsMod.blocks.rotor_blades.defaultBlockState().setValue(RotorBlock.alternate, true) }
 
-    /**
-     * The baked model of the ordinary blades.
-     */
     val model by lazy { BlockModelRenderState().also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update(
         it,
         default,
         BlockDisplayContext.create()
     ) } }
 
-    /**
-     * The baked model of the alternate blades.
-     */
     val altModel by lazy { BlockModelRenderState().also { (Minecraft.getInstance().blockEntityRenderDispatcher as BlockEntityRenderDispatcherAccessor).`to_base$getBlockModelResolver`().update(
         it,
         alt,

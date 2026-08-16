@@ -14,41 +14,14 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent
 
-/**
- * [ModelsClientPlatformModule] implementation for Neoforge.
- *
- * Neoforge raises a separate event for each kind of thing registered here, so there is one [DeferredForgeEventRegistry] per event rather than one for the module.
- *
- * @since 0.6.0
- */
 object ModelsForgeClientPlatformModule : ModelsClientPlatformModule() {
 
-    /**
-     * The queued model layer registrations.
-     *
-     * @since 0.6.0
-     */
     val layerRegistry = DeferredForgeEventRegistry(EntityRenderersEvent.RegisterLayerDefinitions::class.java)
 
-    /**
-     * The queued special model renderer registrations.
-     *
-     * @since 0.6.0
-     */
     val specialRegistry = DeferredForgeEventRegistry(RegisterSpecialModelRendererEvent::class.java)
 
-    /**
-     * The queued item tint source registrations.
-     *
-     * @since 0.7.0
-     */
     val itemTintRegistry = DeferredForgeEventRegistry(RegisterColorHandlersEvent.ItemTintSources::class.java)
 
-    /**
-     * The queued block tint source registrations.
-     *
-     * @since 0.7.0
-     */
     val blockTintRegistry = DeferredForgeEventRegistry(RegisterColorHandlersEvent.BlockTintSources::class.java)
 
     override fun createLayer(model: Identifier, layer: String?, provider: () -> LayerDefinition): ModelLayerLocation {

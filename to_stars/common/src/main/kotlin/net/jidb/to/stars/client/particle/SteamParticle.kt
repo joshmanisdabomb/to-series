@@ -8,23 +8,8 @@ import net.minecraft.core.particles.SimpleParticleType
 import net.minecraft.util.RandomSource
 import net.minecraft.world.phys.Vec3
 
-/**
- * The steam a boiler gives off, which rises until it meets something and then spreads out sideways along it.
- *
- * @param level The level the particle is in.
- * @param x Where it starts, along x.
- * @param y Where it starts, along y.
- * @param z Where it starts, along z.
- * @param xSpeed How fast it moves, along x.
- * @param ySpeed How fast it moves, along y.
- * @param zSpeed How fast it moves, along z.
- * @property sprites The sprites the particle is drawn from as it ages.
- */
 class SteamParticle(level: ClientLevel, x: Double, y: Double, z: Double, xSpeed: Double, ySpeed: Double, zSpeed: Double, val sprites: SpriteSet) : RisingParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, sprites.first()) {
 
-    /**
-     * Which way the steam spreads once it has met a ceiling, picked at random when it is first needed.
-     */
     private val ceiling by lazy { Vec3(random.nextDouble().times(2).minus(1), 0.0, random.nextDouble().times(2).minus(1)).normalize() }
 
     init {
@@ -63,11 +48,6 @@ class SteamParticle(level: ClientLevel, x: Double, y: Double, z: Double, xSpeed:
 
     override fun getLayer() = Layer.TRANSLUCENT
 
-    /**
-     * Builds a [SteamParticle] wherever one is asked for.
-     *
-     * @property sprites The sprites the particle is drawn from as it ages.
-     */
     class SteamParticleProvider(val sprites: SpriteSet) : ParticleProvider<SimpleParticleType> {
 
         override fun createParticle(options: SimpleParticleType, level: ClientLevel, x: Double, y: Double, z: Double, xSpeed: Double, ySpeed: Double, zSpeed: Double, random: RandomSource) = SteamParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, sprites)

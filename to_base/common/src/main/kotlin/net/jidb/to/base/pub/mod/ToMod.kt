@@ -24,8 +24,6 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
     /**
      * A collection of initialization hooks that will be executed after the mod is initialised.
      * This stores hooks passed to [onInitialised] from [ToModListener].
-     *
-     * @since 0.5.0
      */
     protected val initHooks = mutableListOf<(mod: ToMod) -> Unit>()
 
@@ -35,8 +33,6 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
     /**
      * A collection of setup hooks that will be executed after the mod is set up.
      * This stores hooks passed to [onSetup] from [ToModListener].
-     *
-     * @since 0.5.0
      */
     protected val setupHooks = mutableListOf<(mod: ToMod) -> Unit>()
 

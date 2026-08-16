@@ -9,13 +9,6 @@ import net.minecraft.client.data.models.model.ModelTemplate
 import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.world.item.Item
 
-/**
- * A [ClientDataCollectionModule] generating the model of an item from a named model template and a texture mapping filling it, for an item that is drawn as neither a flat sprite nor a block.
- *
- * @property template The model the item is drawn from.
- * @property textures The textures filling that model's slots.
- * @since 0.6.0
- */
 class SimpleItemModelClientDataCollectionModule(val template: ModelTemplate, val textures: TextureMapping) : ClientDataCollectionModule() {
 
     override fun generateItemModels(collection: DataCollection<Item>, event: ModelClientDataCollectionEvent): Boolean {

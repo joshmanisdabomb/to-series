@@ -9,9 +9,6 @@ import net.minecraft.world.entity.LivingEntity
 import kotlin.math.absoluteValue
 import kotlin.math.max
 
-/**
- * Turns rotor blades held or worn by an entity at the speed that entity is moving, so that carrying them about spins them up.
- */
 class RotorMovementEventHandler : EventHandler<EntityEventContext, Unit>() {
 
     override fun invoke(context: EntityEventContext) {
