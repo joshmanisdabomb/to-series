@@ -10,10 +10,22 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
 
+/**
+ * The creative tab library for To Lay the Foundations, which automatically registers creative tabs to Minecraft's [net.minecraft.core.Registry].
+ *
+ * This mod only provides one [tab].
+ *
+ * @since 0.0.3
+ */
 object ToBaseCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToBaseMod.modid), TranslatableLibrary<CreativeModeTab, CreativeModeTab> {
 
     override val registry = BuiltInRegistries.CREATIVE_MODE_TAB
 
+    /**
+     * The tab for the mod, which contains the Researcher's Desk and the test blocks and items.
+     *
+     * @since 0.0.3
+     */
     val tab by this { entry ->
         Services.platform.creativeTabs.builder { parameters, output ->
             output(ItemStack(ToBaseMod.content.blocks.research_desk))

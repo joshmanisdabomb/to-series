@@ -10,10 +10,18 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.ItemStack
 
+/**
+ * The creative tab library for To Sky and Stars, which automatically registers creative tabs to Minecraft's [net.minecraft.core.Registry].
+ *
+ * This mod only provides one [tab].
+ */
 object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStarsMod.MOD_ID) {
 
     override val registry = BuiltInRegistries.CREATIVE_MODE_TAB
 
+    /**
+     * The tab for the mod, which contains all the blocks and items.
+     */
     val tab by this(::i) { entry ->
         Services.platform.creativeTabs.builder { parameters, output ->
             output(ItemStack(ToStarsMod.blocks.uranium_ore))

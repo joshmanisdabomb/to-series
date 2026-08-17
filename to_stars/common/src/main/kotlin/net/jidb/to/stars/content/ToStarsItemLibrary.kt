@@ -55,6 +55,13 @@ object ToStarsItemLibrary : SimpleRegistryLibrary<Item>(ToStarsMod.MOD_ID) {
     val music_disc_gravitational_influence by this { entry -> Item(Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ToStarsMod.music.gravitational_influence)
         .setId(getEntryResourceKey(entry))) }
 
+    /**
+     * The item stack icon that represents this mod, which renders a fake client item generated in ToStarsModelsDataProvider.
+     *
+     * May move to [net.jidb.to.base.pub.mod.ToMod] in future.
+     *
+     * @since 0.1.0
+     */
     val icon get() = ItemStackTemplate(Items.BARRIER, DataComponentPatch.builder().set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "icon")).build())
 
 }
