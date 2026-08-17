@@ -10,6 +10,7 @@ import net.jidb.to.stars.block.EnergyStorageBlock
 import net.jidb.to.stars.block.HeatGeneratorBlock
 import net.jidb.to.stars.block.ProcessorBlock
 import net.jidb.to.stars.block.TurbineBlock
+import net.jidb.to.stars.content.ToStarsItemLibrary
 import net.jidb.to.stars.content.ToStarsItemTagLibrary
 import net.jidb.to.stars.info.MachineTier
 import net.minecraft.advancements.Advancement
@@ -36,7 +37,7 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
 
         val root = Advancement.Builder.advancement()
             .display(
-                ItemStackTemplate(ToStarsMod.items.test_item),
+                ToStarsItemLibrary.icon,
                 Component.translatable("advancements.${ToStarsMod.modid}.root.title"),
                 Component.translatable("advancements.${ToStarsMod.modid}.root.description"),
                 Identifier.fromNamespaceAndPath(ToStarsMod.modid, "gui/advancements/background"),

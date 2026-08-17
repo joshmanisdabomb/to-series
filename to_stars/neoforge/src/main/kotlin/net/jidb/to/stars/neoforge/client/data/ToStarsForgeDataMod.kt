@@ -11,6 +11,7 @@ import net.jidb.to.stars.content.ToStarsGameTestLibrary
 import net.jidb.to.stars.neoforge.client.data.content.ToStarsDataLibrary
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsAdvancementDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsLanguageDataProvider
+import net.jidb.to.stars.neoforge.client.data.provider.ToStarsModelDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsParticleDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSoundDataProvider
 import net.jidb.to.stars.neoforge.data.content.ToStarsConfiguredFeatureDataLibrary
@@ -34,6 +35,7 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
     override val collections = ToStarsDataLibrary
 
     override val language = ::ToStarsLanguageDataProvider
+    override val models = listOf(::ToStarsModelDataProvider)
     override val copyTags = listOf(
         { output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>, blockTags: CompletableFuture<TagsProvider.TagLookup<Block>> -> AutoCopyTagDataProvider(ToStarsMod.blockTags.values.associateBy { it.location }, ToStarsMod.itemTags?.values?.associateBy { it.location } ?: emptyMap(), output, lookup, blockTags, modid) },
         ::ToStarsItemCopyTagDataProvider

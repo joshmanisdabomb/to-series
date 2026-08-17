@@ -18,7 +18,10 @@
       "translate": "advancements.to_stars.root.description"
     },
     "icon": {
-      "id": "to_stars:test_item"
+      "components": {
+        "minecraft:item_model": "to_stars:icon"
+      },
+      "id": "minecraft:barrier"
     },
     "show_toast": false,
     "title": {

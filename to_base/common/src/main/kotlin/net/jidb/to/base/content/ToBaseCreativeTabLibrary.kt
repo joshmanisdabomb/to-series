@@ -22,7 +22,7 @@ object ToBaseCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToBaseM
             output(ItemStack(ToBaseMod.content.items.test_item))
         }
             .title(Component.translatable("itemgroup.$modid.${entry.name}"))
-            .icon { ItemStack(ToBaseMod.content.items.test_item) }
+            .icon { ToBaseItemLibrary.icon.create() }
             .build()
     }
 

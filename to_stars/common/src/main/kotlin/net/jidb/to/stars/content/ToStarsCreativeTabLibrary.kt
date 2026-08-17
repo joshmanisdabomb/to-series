@@ -63,7 +63,7 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             output(ItemStack(ToStarsMod.items.test_item))
         }
             .title(Component.translatable("itemgroup.$modid.${entry.name}"))
-            .icon { ItemStack(ToStarsMod.items.test_item) }
+            .icon { ToStarsItemLibrary.icon.create() }
             .build()
     }
 

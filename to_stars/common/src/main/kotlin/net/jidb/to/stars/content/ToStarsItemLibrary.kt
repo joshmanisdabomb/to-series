@@ -7,9 +7,13 @@ import net.jidb.to.stars.info.MachineTier
 import net.jidb.to.stars.info.ToStarsTooltipEngine
 import net.jidb.to.stars.item.BatteryItem
 import net.jidb.to.stars.item.TestItem
+import net.minecraft.core.component.DataComponentPatch
 import net.minecraft.core.component.DataComponents
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.resources.Identifier
 import net.minecraft.world.item.Item
+import net.minecraft.world.item.ItemStackTemplate
+import net.minecraft.world.item.Items
 import net.minecraft.world.item.Rarity
 
 object ToStarsItemLibrary : SimpleRegistryLibrary<Item>(ToStarsMod.MOD_ID) {
@@ -50,5 +54,7 @@ object ToStarsItemLibrary : SimpleRegistryLibrary<Item>(ToStarsMod.MOD_ID) {
 
     val music_disc_gravitational_influence by this { entry -> Item(Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ToStarsMod.music.gravitational_influence)
         .setId(getEntryResourceKey(entry))) }
+
+    val icon get() = ItemStackTemplate(Items.BARRIER, DataComponentPatch.builder().set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "icon")).build())
 
 }
