@@ -1,0 +1,32 @@
+{
+  "parent": "to_stars:copper_machine",
+  "criteria": {
+    "has_centrifuge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:centrifuges"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.centrifuge.description"
+    },
+    "icon": {
+      "id": "to_stars:copper_centrifuge"
+    },
+    "title": {
+      "translate": "advancements.to_stars.centrifuge.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_centrifuge"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

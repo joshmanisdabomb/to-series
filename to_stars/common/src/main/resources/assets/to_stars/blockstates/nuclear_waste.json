@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "to_stars:block/nuclear_waste"
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 90
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 180
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 270
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "y": 90
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "y": 180
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "y": 270
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "to_stars:block/nuclear_waste",
+        "x": 270,
+        "y": 270
+      }
+    ]
+  }
+}

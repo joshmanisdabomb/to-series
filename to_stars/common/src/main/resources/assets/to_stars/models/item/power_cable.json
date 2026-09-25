@@ -1,0 +1,8 @@
+{
+  "parent": "to_base:item/template_cable4",
+  "textures": {
+    "inside": "to_stars:block/power_cable_inside",
+    "particle": "to_stars:block/power_cable",
+    "side": "to_stars:block/power_cable"
+  }
+}

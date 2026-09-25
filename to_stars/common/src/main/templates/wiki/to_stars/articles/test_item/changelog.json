@@ -1,0 +1,14 @@
+[
+  {
+    "version": "to_stars:0.0.2",
+    "content": {
+      "en_us": "Introduced as the first item of the mod."
+    }
+  },
+  {
+    "version": "to_stars:0.0.3",
+    "content": {
+      "en_us": "Added textures."
+    }
+  }
+]

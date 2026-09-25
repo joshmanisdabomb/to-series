@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "to_sky_and_stars:item/test_item"
-  }
-}

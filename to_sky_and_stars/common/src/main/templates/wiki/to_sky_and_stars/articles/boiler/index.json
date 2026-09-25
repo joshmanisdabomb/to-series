@@ -1,9 +1,0 @@
-{
-  "title": { "of": "minecraft:block / to_sky_and_stars:boiler" },
-  "about": ["minecraft:block / to_sky_and_stars:boiler"],
-  "redirect": ["minecraft:block_entity_type / to_sky_and_stars:boiler", "minecraft:particle_type / to_sky_and_stars:steam", "minecraft:particle_type / to_sky_and_stars:foam"],
-  "icon": ["minecraft:block / minecraft:cauldron"],
-  "tags": [
-    "to_sky_and_stars:heat"
-  ]
-}

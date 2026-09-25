@@ -35,7 +35,7 @@ class ToBaseLanguageDataProvider(tokens: Map<String, Map<String, Component>>, ou
         add("gui.$modid.research.lists.to_base:mod", "Mods")
         add("gui.$modid.research.lists.to_base:author", "Mod Authors")
         add("gui.$modid.research.lists.to_base:concept", "Concepts")
-        add("gui.$modid.research.lists.to_sky_and_stars", "To Sky and Stars")
+        add("gui.$modid.research.lists.to_stars", "To Sky and Stars")
         add("gui.$modid.research.list.none", "No results found.")
         add("gui.$modid.research.list.search", "Search results for \"%s\"")
         add("gui.$modid.research.list.list", "All %s")

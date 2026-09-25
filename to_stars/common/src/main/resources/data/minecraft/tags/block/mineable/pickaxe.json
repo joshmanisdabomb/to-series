@@ -1,0 +1,25 @@
+{
+  "values": [
+    "to_stars:atomic_bomb",
+    "to_stars:boiler",
+    "to_stars:copper_centrifuge",
+    "to_stars:copper_machine_enclosure",
+    "to_stars:copper_power_bank",
+    "to_stars:copper_solid_generator",
+    "to_stars:copper_turbine",
+    "to_stars:deepslate_uranium_ore",
+    "to_stars:enriched_uranium_block",
+    "to_stars:gold_centrifuge",
+    "to_stars:gold_machine_enclosure",
+    "to_stars:gold_power_bank",
+    "to_stars:gold_solid_generator",
+    "to_stars:gold_turbine",
+    "to_stars:heat_pipe",
+    "to_stars:heavy_uranium_block",
+    "to_stars:heavy_uranium_shielding",
+    "to_stars:power_cable",
+    "to_stars:rotor_blades",
+    "to_stars:uranium_block",
+    "to_stars:uranium_ore"
+  ]
+}

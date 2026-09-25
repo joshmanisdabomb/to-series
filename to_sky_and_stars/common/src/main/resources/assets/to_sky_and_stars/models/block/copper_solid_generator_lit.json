@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable_with_bottom",
-  "textures": {
-    "bottom": "to_sky_and_stars:block/machine_enclosure_1_bottom",
-    "front": "to_sky_and_stars:block/copper_solid_generator_lit",
-    "side": "to_sky_and_stars:block/copper_machine_enclosure_side",
-    "top": "to_sky_and_stars:block/copper_generator_lit"
-  }
-}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "to_stars:copper_machine_enclosure"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "to_stars:blocks/copper_machine_enclosure"
+}

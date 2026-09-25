@@ -1,0 +1,40 @@
+{
+  "parent": "to_stars:turbine",
+  "criteria": {
+    "has_power_bank": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:power_banks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.power_bank.description"
+    },
+    "icon": {
+      "components": {
+        "to_base:energy_data": {
+          "energy": 1,
+          "max": 2,
+          "maxInput": 0,
+          "maxOutput": 0
+        }
+      },
+      "id": "to_stars:copper_power_bank"
+    },
+    "title": {
+      "translate": "advancements.to_stars.power_bank.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_power_bank"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

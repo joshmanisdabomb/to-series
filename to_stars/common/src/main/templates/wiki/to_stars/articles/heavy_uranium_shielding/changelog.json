@@ -1,0 +1,14 @@
+[
+  {
+    "version": "lcc:0.4.3",
+    "content": {
+      "en_us": "Introduced."
+    }
+  },
+  {
+    "version": "to_stars:0.1.0",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  }
+]

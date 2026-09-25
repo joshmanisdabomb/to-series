@@ -1,0 +1,140 @@
+{
+  "title": {
+    "of": "minecraft:block / to_stars:copper_solid_generator"
+  },
+  "about": [
+    "minecraft:block / to_stars:copper_solid_generator"
+  ],
+  "redirect": [
+    "minecraft:item / to_stars:copper_solid_generator",
+    "minecraft:block_entity_type / to_stars:solid_generator",
+    "minecraft:menu / to_stars:solid_generator",
+    "minecraft:sound_event / to_stars:block.generator.crackle",
+    "minecraft:sound_event / to_stars:block.generator.empty"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:copper_solid_generator"
+  ],
+  "tags": [
+    "to_stars:heat",
+    "to_stars:machine",
+    "to_stars:machine/tier1",
+    "to_stars:machine/generator",
+    "to_stars:solid_generator"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.3.2",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_stars:copper_solid_generator": {
+      "renewable": true,
+      "hardness": 4.0,
+      "resistance": 5.0,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "states": [
+        {
+          "default": false,
+          "properties": {
+            "facing": "north",
+            "lit": "true"
+          },
+          "light": 13,
+          "map_color": 14188339
+        },
+        {
+          "default": true,
+          "properties": {
+            "facing": "north",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "south",
+            "lit": "true"
+          },
+          "light": 13,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "south",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "west",
+            "lit": "true"
+          },
+          "light": 13,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "west",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "east",
+            "lit": "true"
+          },
+          "light": 13,
+          "map_color": 14188339
+        },
+        {
+          "default": false,
+          "properties": {
+            "facing": "east",
+            "lit": "false"
+          },
+          "light": 0,
+          "map_color": 14188339
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"This ain\u0027t your grandma\u0027s modded Furnace Generator.\"\n---\n\n# Introduction\n\nThe {{\"template\":\"referral\",\"description\":\"a heat generating block\",\"plural\":false,\"of\":\"self\"}} is a heat generating block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.2\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\"}}. It burns solid fuel to produce {{\"of\":\"to_base:concept / to_stars:heat\"}}, which can be transferred to {{\"of\":\"minecraft:block / to_stars:boiler\",\"plural\":true}} directly, or with {{\"of\":\"minecraft:block / to_stars:heat_pipe\",\"plural\":true}}.\n\nSolid fuels include all fuels usable in a {{\"of\":\"minecraft:block / minecraft:furnace\"}}, excluding fluid buckets such as a {{\"of\":\"minecraft:item / minecraft:lava_bucket\"}}.\n\n# Fuel\n\nYou can insert any valid fuel into the fuel slot by right-clicking the block to open the GUI. Once inserted, the {{\"of\":\"self\"}} begins providing {{\"of\":\"to_base:concept / to_stars:heat\"}} at an initial 100°C.\n\nEach item of fuel consumed gradually increases the temperature, lasting as long as the fuel\u0027s burn duration. For a {{\"of\":\"self\"}}, any fuel adds +0.01°C per tick but lasts half as long as it would in a {{\"of\":\"minecraft:block / minecraft:furnace\"}}.\n\nFor more detail, you can view a tooltip for a valid fuel in the GUI by hovering over the item.\n\n{{\"of\":\"minecraft:item / minecraft:coal\"}}, {{\"of\":\"minecraft:item / minecraft:charcoal\"}} and {{\"of\":\"minecraft:block / minecraft:coal_block\",\"plural\":true}} receive a 2x multiplier to its temperature, adding +0.02°C per tick.\n\nOnce the temperature has climbed to 350°C, a bonus 50°C is added, resulting in a maximum temperature of 400°C.\n\n# Cooling\n\nWhen {{\"of\":\"to_base:concept / to_stars:heat\"}} is stored in a {{\"of\":\"self\"}} but no more fuel is remaining, the temperature cools down at a rate of 1% per tick, until it reaches 100°C. After this, the temperature is instantly reset to 0°C.\n\n# Upgrading\n\n{{\"of\":\"self\",\"plural\":true}} can be directly upgraded into a {{\"of\":\"minecraft:block / to_stars:steel_solid_generator\"}}, a {{\"of\":\"to_base:tag / to_stars:machine/tier2\",\"text\":\"tier 2 machine\"}} with an increased fuel rate, longer fuel duration and higher maximum temperature. The crafting recipe for this involves {{\"of\":\"minecraft:item / to_stars:steel_ingot\",\"plural\":true}}, requiring other machines of at least {{\"of\":\"to_base:tag / to_stars:machine/tier1\",\"text\":\"tier 1\"}}.\n\n{{\"of\":\"self\",\"plural\":true}} can also be upgraded into a {{\"of\":\"minecraft:block / to_stars:gold_solid_generator\"}}, a {{\"of\":\"to_base:tag / to_stars:machine/tier1.5\",\"text\":\"tier 1.5 machine\"}} with an increased fuel rate, longer fuel duration and higher maximum temperature. This is not required to upgrade to {{\"of\":\"to_base:tag / to_stars:machine/tier2\",\"text\":\"tier 2\"}}.\n"
+    }
+  }
+}

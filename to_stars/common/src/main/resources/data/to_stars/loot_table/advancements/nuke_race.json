@@ -1,0 +1,14 @@
+{
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "to_stars:music_disc_gravitational_influence"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "to_stars:advancements/nuke_race"
+}

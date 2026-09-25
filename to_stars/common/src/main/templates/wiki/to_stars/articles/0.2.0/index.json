@@ -1,0 +1,12 @@
+{
+  "title": "To Sky and Stars 0.2.0",
+  "short": "0.2.0",
+  "about": ["to_base:mod_version / to_stars:0.2.0"],
+  "icon": ["minecraft:block / to_stars:kiln"],
+  "parent": "to_base:mod / to_base:to_stars",
+  "previous": "to_base:mod_version / to_stars:0.1.0",
+  "tags": [
+    "to_stars:machine",
+    "to_base:major_release"
+  ]
+}

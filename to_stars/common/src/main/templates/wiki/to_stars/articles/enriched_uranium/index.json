@@ -1,0 +1,11 @@
+{
+  "title": { "of": "minecraft:item / to_stars:enriched_uranium" },
+  "about": ["minecraft:item / to_stars:enriched_uranium"],
+  "icon": ["minecraft:item / to_stars:enriched_uranium"],
+  "tags": [
+    "to_stars:uranium",
+    "to_stars:enriched_uranium",
+    "to_base:resource",
+    "to_stars:nuclear"
+  ]
+}

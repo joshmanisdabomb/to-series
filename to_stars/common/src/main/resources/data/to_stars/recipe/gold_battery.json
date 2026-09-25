@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": "to_stars:copper_battery",
+    "g": "minecraft:gold_ingot",
+    "i": "minecraft:iron_ingot",
+    "r": "minecraft:redstone_block"
+  },
+  "pattern": [
+    " i ",
+    "gbg",
+    "grg"
+  ],
+  "result": {
+    "id": "to_stars:gold_battery"
+  }
+}

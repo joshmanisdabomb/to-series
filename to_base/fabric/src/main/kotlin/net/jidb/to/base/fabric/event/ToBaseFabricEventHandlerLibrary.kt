@@ -9,7 +9,6 @@ import net.jidb.to.base.pub.event.ToBaseEventLibrary
 import net.jidb.to.base.pub.event.block.BlockInteractEventContext
 import net.jidb.to.base.pub.event.item.ModifyItemComponentEventContext
 import net.jidb.to.base.pub.event.level.ServerLevelEventContext
-import net.minecraft.world.InteractionResult
 
 /**
  * [FabricEventHandlerLibrary] implementation holding the callbacks that raise the base mod's own cross-loader events from Fabric's.
@@ -46,7 +45,11 @@ object ToBaseFabricEventHandlerLibrary : FabricEventHandlerLibrary(ToBaseMod.mod
      * @since 0.8.0
      */
     val use_item_on_block by this(BlockEvents.USE_ITEM_ON, BlockEvents.UseItemOnCallback { stack, state, level, pos, player, hand, result ->
-        ToBaseEventLibrary.use_item_on_block.call(BlockInteractEventContext(player, stack, level, state, pos, hand)).results.lastOrNull()?.result ?: InteractionResult.TRY_WITH_EMPTY_HAND
+        val results = ToBaseEventLibrary.use_item_on_block.call(BlockInteractEventContext(player, stack, level, state, pos, hand))
+        if (results.cancelled) {
+            return@UseItemOnCallback results.results.last().result
+        }
+        return@UseItemOnCallback null
     })
 
 }

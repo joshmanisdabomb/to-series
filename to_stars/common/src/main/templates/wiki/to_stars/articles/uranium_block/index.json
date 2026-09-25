@@ -1,0 +1,13 @@
+{
+  "title": { "of": "minecraft:block / to_stars:uranium_block" },
+  "about": ["minecraft:block / to_stars:uranium_block"],
+  "redirect": ["minecraft:item / to_stars:uranium_block"],
+  "icon": ["minecraft:block / to_stars:uranium_block"],
+  "tags": [
+    "to_stars:uranium",
+    "to_base:raw",
+    "to_base:storage_block",
+    "to_base:resource",
+    "to_stars:nuclear"
+  ]
+}

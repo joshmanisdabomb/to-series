@@ -1,9 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": [
-    "to_sky_and_stars:uranium_ore",
-    "to_sky_and_stars:deepslate_uranium_ore"
-  ],
-  "step": "local_modifications"
-}

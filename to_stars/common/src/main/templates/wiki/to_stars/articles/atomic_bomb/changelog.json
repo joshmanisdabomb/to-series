@@ -1,0 +1,26 @@
+[
+  {
+    "version": "yam:u1",
+    "content": {
+      "en_us": "Introduced as 'Nuke'."
+    }
+  },
+  {
+    "version": "lcc_forge:b1.0",
+    "content": {
+      "en_us": "Reintroduced as 'Atomic Bomb'."
+    }
+  },
+  {
+    "version": "lcc:0.4.0",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  },
+  {
+    "version": "to_stars:0.1.0",
+    "content": {
+      "en_us": "Reintroduced."
+    }
+  }
+]

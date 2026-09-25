@@ -1,0 +1,5 @@
+{
+  "minecraft:item / to_stars:copper_battery": {
+    "renewable": true
+  }
+}

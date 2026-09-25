@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "alternate=false,facing=east,powered=false": {
+      "model": "to_stars:block/rotor_blades",
+      "y": 90
+    },
+    "alternate=false,facing=east,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered",
+      "y": 90
+    },
+    "alternate=false,facing=north,powered=false": {
+      "model": "to_stars:block/rotor_blades"
+    },
+    "alternate=false,facing=north,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered"
+    },
+    "alternate=false,facing=south,powered=false": {
+      "model": "to_stars:block/rotor_blades",
+      "y": 180
+    },
+    "alternate=false,facing=south,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered",
+      "y": 180
+    },
+    "alternate=false,facing=west,powered=false": {
+      "model": "to_stars:block/rotor_blades",
+      "y": 270
+    },
+    "alternate=false,facing=west,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered",
+      "y": 270
+    },
+    "alternate=true,facing=east,powered=false": {
+      "model": "to_stars:block/rotor_blades_alt",
+      "y": 90
+    },
+    "alternate=true,facing=east,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered",
+      "y": 90
+    },
+    "alternate=true,facing=north,powered=false": {
+      "model": "to_stars:block/rotor_blades_alt"
+    },
+    "alternate=true,facing=north,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered"
+    },
+    "alternate=true,facing=south,powered=false": {
+      "model": "to_stars:block/rotor_blades_alt",
+      "y": 180
+    },
+    "alternate=true,facing=south,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered",
+      "y": 180
+    },
+    "alternate=true,facing=west,powered=false": {
+      "model": "to_stars:block/rotor_blades_alt",
+      "y": 270
+    },
+    "alternate=true,facing=west,powered=true": {
+      "model": "to_stars:block/rotor_blades_powered",
+      "y": 270
+    }
+  }
+}

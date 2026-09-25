@@ -1,8 +1,0 @@
-{
-  "parent": "to_base:block/template_cable4_connection",
-  "textures": {
-    "inside": "to_sky_and_stars:block/power_cable_inside",
-    "particle": "to_sky_and_stars:block/power_cable",
-    "side": "to_sky_and_stars:block/power_cable"
-  }
-}

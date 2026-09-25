@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "has_relevant": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:root_advancement_unlock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "to_stars:gui/advancements/background",
+    "description": {
+      "translate": "advancements.to_stars.root.description"
+    },
+    "icon": {
+      "id": "to_stars:test_item"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.to_stars.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_relevant"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

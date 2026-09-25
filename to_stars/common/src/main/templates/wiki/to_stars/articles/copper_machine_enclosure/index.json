@@ -1,0 +1,11 @@
+{
+  "title": { "of": "minecraft:block / to_stars:copper_machine_enclosure" },
+  "about": ["minecraft:block / to_stars:copper_machine_enclosure"],
+  "redirect": ["minecraft:item / to_stars:copper_machine_enclosure"],
+  "icon": ["minecraft:block / to_stars:copper_machine_enclosure"],
+  "tags": [
+    "to_stars:machine",
+    "to_stars:machine/tier1",
+    "to_stars:machine/enclosure"
+  ]
+}

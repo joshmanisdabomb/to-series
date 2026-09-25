@@ -1,0 +1,21 @@
+{
+  "title": "To Sky and Stars 0.2.0",
+  "short": "0.2.0",
+  "about": [
+    "to_base:mod_version / to_stars:0.2.0"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:kiln"
+  ],
+  "parent": "to_base:mod / to_base:to_stars",
+  "previous": "to_base:mod_version / to_stars:0.1.0",
+  "tags": [
+    "to_stars:machine",
+    "to_base:major_release"
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Reasons to have energy.\"\n---\n\n# Introduction\n{{\"template\":\"referral\",\"ordinal\":\"fifth\",\"extra\":\", and the second major 0.x release\",\"of\":\"self\"}} is the fifth release of {{\"template\":\"referral\",\"of\":\"to_base:mod / to_base:to_stars\"}}, and the second major 0.x release. The previous release was {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\",\"short\":true}}{{\"template\": \"version_release\"}}.\n\nThis release adds the {{\"of\":\"minecraft:block / to_stars:kiln\"}}.\n\n# In this Release\n\n## Additions\n- The {{\"of\":\"minecraft:block / to_stars:kiln\"}}, a faster {{\"of\":\"minecraft:block / minecraft:furnace\"}} variant that only smelts items that can\u0027t be smelted in a {{\"of\":\"minecraft:block / minecraft:smoker\"}} or {{\"of\":\"minecraft:block / minecraft:blast_furnace\"}}.\n"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "parent": "to_stars:enrichment",
+  "criteria": {
+    "detonate": {
+      "trigger": "to_stars:atomic_bomb"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.nuke.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "to_stars:atomic_bomb"
+    },
+    "title": {
+      "translate": "advancements.to_stars.nuke.title"
+    }
+  },
+  "requirements": [
+    [
+      "detonate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

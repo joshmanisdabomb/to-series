@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "group": "to_stars:uranium",
+  "ingredient": "to_stars:deepslate_uranium_ore",
+  "result": {
+    "id": "to_stars:uranium"
+  }
+}

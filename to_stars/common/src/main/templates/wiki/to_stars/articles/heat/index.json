@@ -1,0 +1,10 @@
+{
+  "title": "Heat",
+  "about": ["to_base:concept / to_stars:heat"],
+  "redirect": ["to_base:block_networks / to_stars:heat"],
+  "tags": [
+    "to_base:concept",
+    "to_base:energy",
+    "to_stars:heat"
+  ]
+}

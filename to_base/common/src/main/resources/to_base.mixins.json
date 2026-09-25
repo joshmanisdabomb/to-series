@@ -15,7 +15,8 @@
     "client.GhostSlotsAccessor",
     "client.GuiGraphicsAccessor",
     "client.ItemModelGeneratorsAccessor",
-    "client.RecipeBookComponentAccessor"
+    "client.RecipeBookComponentAccessor",
+    "client.ClientRecipeBookMixin"
   ],
   "injectors": {
     "defaultRequire": 1

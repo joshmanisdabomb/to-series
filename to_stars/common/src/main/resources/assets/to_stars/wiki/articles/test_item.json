@@ -1,0 +1,45 @@
+{
+  "title": {
+    "of": "minecraft:item / to_stars:test_item"
+  },
+  "about": [
+    "minecraft:item / to_stars:test_item"
+  ],
+  "icon": [
+    "minecraft:item / to_stars:test_item"
+  ],
+  "tags": [
+    "to_base:test",
+    "to_base:test/items",
+    "to_base:unobtainable"
+  ],
+  "changelog": [
+    {
+      "version": "to_stars:0.0.2",
+      "content": {
+        "en_us": "Introduced as the first item of the mod."
+      }
+    },
+    {
+      "version": "to_stars:0.0.3",
+      "content": {
+        "en_us": "Added textures."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:item / to_stars:test_item": {
+      "renewable": false,
+      "stack_size": 64,
+      "rarity": "common",
+      "tags": {
+        "minecraft:item": []
+      }
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"It\u0027s a starrrrrrrrrr...\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"description\":\"an unobtainable item\",\"plural\":false,\"of\":\"self\"}} is an unobtainable item introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.0.2\"}}. It was the first item implemented in {{\"of\":\"to_base:mod / to_base:to_stars\"}} for testing purposes.\n\nThis item may sometimes be given debug uses during development, such as detonating a nuclear explosion during development of {{\"of\":\"to_base:mod_version / to_stars:0.1.0\",\"short\":true}}."
+    }
+  }
+}

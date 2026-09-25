@@ -1,0 +1,33 @@
+{
+  "title": "Heat",
+  "about": [
+    "to_base:concept / to_stars:heat"
+  ],
+  "redirect": [
+    "to_base:block_networks / to_stars:heat"
+  ],
+  "tags": [
+    "to_base:concept",
+    "to_base:energy",
+    "to_stars:heat"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.3.2",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"Things are really heating up!\"\n---\n\n# Introduction\n\n{{\"template\":\"referral\",\"plural\":false,\"of\":\"self\"}} is a concept introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.3.2\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\"}}. It is produced by {{\"of\":\"to_base:tag / to_stars:machine/generator\",\"plural\":true}}, converted into steam by {{\"of\":\"minecraft:block / to_stars:boiler\",\"plural\":true}}, and finally converted into {{\"of\":\"to_base:concept / to_base:to_energy\"}} by {{\"of\":\"minecraft:block / to_stars:turbine\",\"plural\":true}}.\n\nHeat can be transferred from {{\"of\":\"to_base:tag / to_stars:machine/generator\",\"plural\":true}} to {{\"of\":\"minecraft:block / to_stars:boiler\",\"plural\":true}} directly upwards, or through {{\"of\":\"minecraft:block / to_stars:heat_pipe\",\"plural\":true}}.\n"
+    }
+  }
+}

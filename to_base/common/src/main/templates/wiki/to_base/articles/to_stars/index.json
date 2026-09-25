@@ -1,0 +1,10 @@
+{
+  "title": "To Sky and Stars",
+  "about": ["to_base:mod / to_base:to_stars"],
+  "redirect": ["minecraft:creative_mode_tab / to_stars:tab"],
+  "icon": ["minecraft:item / to_stars:test_item"],
+  "tags": [
+    "to_base:to_series",
+    "to_base:content"
+  ]
+}

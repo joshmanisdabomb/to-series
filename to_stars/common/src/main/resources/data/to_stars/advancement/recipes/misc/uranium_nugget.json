@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_stars:uranium_nugget"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_uranium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:uranium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_uranium"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_stars:uranium_nugget"
+    ]
+  }
+}

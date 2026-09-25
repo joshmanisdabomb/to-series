@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "to_stars:uranium",
+  "ingredients": [
+    "to_stars:uranium_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "to_stars:uranium"
+  }
+}

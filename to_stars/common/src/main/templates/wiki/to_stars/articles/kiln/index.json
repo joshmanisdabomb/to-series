@@ -1,0 +1,13 @@
+{
+  "title": { "of": "minecraft:block / to_stars:kiln" },
+  "about": ["minecraft:block / to_stars:kiln"],
+  "redirect": [
+    "minecraft:item / to_stars:kiln",
+    "minecraft:block_entity_type / to_stars:kiln",
+    "minecraft:menu / to_stars:kiln"
+  ],
+  "icon": ["minecraft:block / to_stars:kiln"],
+  "tags": [
+    "to_stars:furnace"
+  ]
+}

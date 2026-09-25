@@ -1,0 +1,32 @@
+{
+  "parent": "to_stars:generator",
+  "criteria": {
+    "has_turbine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:turbines"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.turbine.description"
+    },
+    "icon": {
+      "id": "to_stars:copper_turbine"
+    },
+    "title": {
+      "translate": "advancements.to_stars.turbine.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_turbine"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": "#minecraft:buttons",
+    "c": "minecraft:iron_block",
+    "d": "minecraft:dispenser"
+  },
+  "pattern": [
+    "ccc",
+    "bdc",
+    "ccc"
+  ],
+  "result": {
+    "id": "to_stars:atomic_bomb"
+  }
+}

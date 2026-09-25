@@ -1,0 +1,9 @@
+{
+  "title": { "of": "minecraft:block / to_stars:rotor_blades" },
+  "about": ["minecraft:block / to_stars:rotor_blades"],
+  "redirect": ["minecraft:item / to_stars:rotor_blades", "minecraft:block_entity_type / to_stars:rotor_blades"],
+  "icon": ["minecraft:block / to_stars:rotor_blades"],
+  "tags": [
+    "to_stars:heat"
+  ]
+}

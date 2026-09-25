@@ -70,6 +70,7 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
         itemTags?.build()
 
         recipeCategories?.build()
+        recipeCustomCategories?.build()
         recipeDisplays?.build()
         recipeTypes?.build()
         recipeSerializers?.build()

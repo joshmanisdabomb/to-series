@@ -1,0 +1,5 @@
+{
+  "minecraft:block / to_stars:nuclear_waste": {
+    "renewable": false
+  }
+}

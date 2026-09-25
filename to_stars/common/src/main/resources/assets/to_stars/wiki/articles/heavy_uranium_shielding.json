@@ -1,0 +1,68 @@
+{
+  "title": {
+    "of": "minecraft:block / to_stars:heavy_uranium_shielding"
+  },
+  "about": [
+    "minecraft:block / to_stars:heavy_uranium_shielding"
+  ],
+  "redirect": [
+    "minecraft:item / to_stars:heavy_uranium_shielding"
+  ],
+  "icon": [
+    "minecraft:block / to_stars:heavy_uranium_shielding"
+  ],
+  "tags": [
+    "to_stars:uranium",
+    "to_stars:heavy_uranium",
+    "to_stars:nuclear"
+  ],
+  "changelog": [
+    {
+      "version": "lcc:0.4.3",
+      "content": {
+        "en_us": "Introduced."
+      }
+    },
+    {
+      "version": "to_stars:0.1.0",
+      "content": {
+        "en_us": "Reintroduced."
+      }
+    }
+  ],
+  "factsheet": {
+    "minecraft:block / to_stars:heavy_uranium_shielding": {
+      "renewable": false,
+      "hardness": 7.5,
+      "resistance": 14.0,
+      "friction": 0.6,
+      "ignite": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "burn": {
+        "minecraft:fire": 0,
+        "to_stars:nuclear_fire": 0
+      },
+      "states": [
+        {
+          "default": true,
+          "properties": {},
+          "light": 0,
+          "map_color": 6717235
+        }
+      ],
+      "tags": {
+        "minecraft:block": [],
+        "minecraft:item": []
+      },
+      "stack_size": 64,
+      "rarity": "common"
+    }
+  },
+  "content": {
+    "en_us": {
+      "index": "---\nflavor: \"You don\u0027t need it until you need it.\"\n---\n\n# Introduction\nThe {{\"template\":\"referral\",\"description\":\"a craftable block\",\"plural\":false,\"of\":\"self\"}} is a craftable block introduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / lcc:0.4.3\"}} and reintroduced in {{\"template\":\"referral\",\"of\":\"to_base:mod_version / to_stars:0.1.0\"}}. It has a high blast resistance against {{\"of\":\"to_base:concept / to_stars:nuclear_explosion\",\"plural\":true}}, but a lower blast resistance against other types of explosions.\n\n# Nuke Damage Prevention\n{{\"of\":\"to_base:concept / to_stars:nuclear_explosion\",\"plural\":true}} will be stopped from breaking any more blocks behind each block of {{\"of\":\"self\"}}.\n\nWhen stopping a nuclear blast, this block has a low chance of breaking - meaning subsequent explosions could damage blocks past the shielding.\n\n## Entity Damage\nSince entity damage is calculated after block damage in a {{\"of\":\"to_base:concept / to_stars:nuclear_explosion\"}}, being behind a single layer of {{\"of\":\"self\"}} has a chance to kill entities behind it even though blocks will not be damaged.\n\n# Tips\nIt\u0027s recommended to place multiple layers of shielding if you want to protect against a {{\"of\":\"to_base:concept / to_stars:nuclear_explosion\"}}. You can roughly place layers equal to 1 + the amount of nuclear blasts you intend to defend against."
+    }
+  }
+}

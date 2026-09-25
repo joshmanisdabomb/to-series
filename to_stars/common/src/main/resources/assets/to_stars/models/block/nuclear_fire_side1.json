@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fire_side",
+  "textures": {
+    "fire": "to_stars:block/nuclear_fire_1"
+  }
+}

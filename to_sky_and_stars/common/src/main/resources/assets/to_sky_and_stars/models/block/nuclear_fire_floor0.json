@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_fire_floor",
-  "textures": {
-    "fire": "to_sky_and_stars:block/nuclear_fire_0"
-  }
-}

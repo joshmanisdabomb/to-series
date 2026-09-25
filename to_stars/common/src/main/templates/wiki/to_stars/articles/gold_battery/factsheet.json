@@ -1,0 +1,5 @@
+{
+  "minecraft:item / to_stars:gold_battery": {
+    "renewable": true
+  }
+}

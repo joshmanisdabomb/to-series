@@ -1,0 +1,8 @@
+{
+  "parent": "to_base:block/template_cable10_connection",
+  "textures": {
+    "inside": "to_stars:block/heat_pipe_inside",
+    "particle": "to_stars:block/heat_pipe",
+    "side": "to_stars:block/heat_pipe"
+  }
+}

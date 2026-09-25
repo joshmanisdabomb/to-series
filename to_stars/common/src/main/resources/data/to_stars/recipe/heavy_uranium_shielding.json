@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": "#c:concrete_powders",
+    "i": "minecraft:iron_block",
+    "u": "to_stars:heavy_uranium"
+  },
+  "pattern": [
+    "ccc",
+    "uiu",
+    "ccc"
+  ],
+  "result": {
+    "count": 24,
+    "id": "to_stars:heavy_uranium_shielding"
+  }
+}

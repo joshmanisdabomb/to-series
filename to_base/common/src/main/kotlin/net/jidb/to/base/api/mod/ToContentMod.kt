@@ -12,6 +12,7 @@ import net.jidb.to.base.api.transfer.TransferContextProvider
 import net.jidb.to.base.pub.library.BiomeModLibrary
 import net.jidb.to.base.pub.library.BlockItemLibrary
 import net.jidb.to.base.pub.library.BlockLibrary
+import net.jidb.to.base.pub.library.CustomRecipeBookCategoryLibrary
 import net.jidb.to.base.pub.library.DamageTypeLibrary
 import net.jidb.to.base.pub.library.EventHandlerLibrary
 import net.jidb.to.base.pub.library.GameTestLibrary
@@ -183,6 +184,15 @@ interface ToContentMod {
      * @since 0.8.0
      */
     val recipeCategories: SimpleRegistryLibrary<RecipeBookCategory>? get() = null
+
+    /**
+     * A [Library] of [net.jidb.to.base.api.recipe.CustomRecipeBookCategory] objects, used to define a category where all known recipes are predicated to determine the final list of recipes.
+     *
+     * Content here in a [net.jidb.to.base.pub.mod.ToMod] object is automatically registered to [net.jidb.to.base.hooks.recipe.category.CustomRecipeBookCategoryRegistry], which injects the custom categories into [net.minecraft.client.ClientRecipeBook.rebuildCollections].
+     *
+     * @since 1.1.0
+     */
+    val recipeCustomCategories: CustomRecipeBookCategoryLibrary? get() = null
 
     /**
      * A [Library] for the mod's [RecipeDisplay.Type] objects.

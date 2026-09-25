@@ -1,0 +1,9 @@
+{
+  "title": { "of": "minecraft:block / to_stars:nuclear_waste" },
+  "about": ["minecraft:block / to_stars:nuclear_waste"],
+  "redirect": ["minecraft:item / to_stars:nuclear_waste"],
+  "icon": ["minecraft:block / to_stars:nuclear_waste"],
+  "tags": [
+    "to_stars:nuclear"
+  ]
+}

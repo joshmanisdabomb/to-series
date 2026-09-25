@@ -1,0 +1,5 @@
+{
+  "minecraft:block / to_stars:atomic_bomb": {
+    "renewable": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "to_stars:atomic_bomb",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "segment": "middle"
+              }
+            }
+          ],
+          "name": "to_stars:atomic_bomb"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "to_stars:blocks/atomic_bomb"
+}

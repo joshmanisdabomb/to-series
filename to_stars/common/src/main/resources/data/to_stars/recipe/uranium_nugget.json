@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "to_stars:uranium"
+  ],
+  "result": {
+    "count": 9,
+    "id": "to_stars:uranium_nugget"
+  }
+}

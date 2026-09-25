@@ -1,0 +1,5 @@
+{
+  "minecraft:block / to_stars:gold_turbine": {
+    "renewable": true
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "title": "Music Disc - Gravitational Influence",
-  "about": ["minecraft:item / to_sky_and_stars:music_disc_gravitational_influence"],
-  "redirect": ["minecraft:sound_event / to_sky_and_stars:music_disc.gravitational_influence"],
-  "icon": ["minecraft:item / to_sky_and_stars:music_disc_gravitational_influence"],
-  "tags": [
-    "to_sky_and_stars:music"
-  ]
-}
