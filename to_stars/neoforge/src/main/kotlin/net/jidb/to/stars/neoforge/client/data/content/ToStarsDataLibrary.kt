@@ -6,7 +6,6 @@ import net.jidb.to.base.client.data.pub.collection.module.lang.SimpleLanguageCli
 import net.jidb.to.base.client.data.pub.collection.module.lang.StorageIdentifierLanguageClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FireBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.block.FullRotatingBlockModelClientDataCollectionModule
-import net.jidb.to.base.client.data.pub.collection.module.model.block.SimpleBlockModelClientDataCollectionModule
 import net.jidb.to.base.client.data.pub.collection.module.model.item.TintedItemModelClientDataCollectionModule
 import net.jidb.to.base.data.api.library.DataCollectionLibrary
 import net.jidb.to.base.data.pub.collection.module.loot.CustomBlockLootDataCollectionModule
@@ -30,17 +29,18 @@ import net.jidb.to.stars.block.AtomicBombBlock
 import net.jidb.to.stars.client.item.tint.BatteryItemTint
 import net.jidb.to.stars.info.ProcessorType
 import net.jidb.to.stars.neoforge.client.data.ToStarsDataHelper
-import net.jidb.to.stars.neoforge.client.data.ToStarsModels
 import net.jidb.to.stars.neoforge.client.data.module.AtomicBombBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.BoilingCauldronBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.CentrifugeModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.HeatCableBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.HeatGeneratorModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.LitMachineBlockModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.MachineEnclosureModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.PowerBankModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.RotorModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.TurbineModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.data.module.EnergySilkBlockLootDataCollectionModule
 import net.jidb.to.stars.neoforge.data.module.ProcessorRecipeDataCollectionModule
-import net.minecraft.client.data.models.model.ModelTemplates
-import net.minecraft.client.data.models.model.TextureMapping
 import net.minecraft.client.data.models.model.TextureSlot
 import net.minecraft.client.data.models.model.TexturedModel
 import net.minecraft.client.resources.model.sprite.Material
@@ -198,10 +198,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val machine_enclosure_tier_1 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "machine_enclosure", 1) }
-        addModule { SimpleBlockModelClientDataCollectionModule(TexturedModel.CUBE_TOP_BOTTOM.updateTexture {
-            val material = it.get(TextureSlot.BOTTOM)
-            it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom"), material.forceTranslucent))
-        }) }
+        addModule { MachineEnclosureModelClientDataCollectionModule(1) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.machine_enclosures) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_machine_enclosures) }
     }
@@ -245,10 +242,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val machine_enclosure_tier_2 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "machine_enclosure", 2) }
-        addModule { SimpleBlockModelClientDataCollectionModule(TexturedModel.CUBE_TOP_BOTTOM.updateTexture {
-            val material = it.get(TextureSlot.BOTTOM)
-            it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_2_bottom"), material.forceTranslucent))
-        }) }
+        addModule { MachineEnclosureModelClientDataCollectionModule(2) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.machine_enclosures) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_machine_enclosures) }
     }
@@ -550,24 +544,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val generator_tier_1 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "generator", 1) }
-        addModule {
-            val unlit = TexturedModel.ORIENTABLE.updateTexture {
-                val bottom = it.get(TextureSlot.BOTTOM)
-                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom"), bottom.forceTranslucent))
-                val side = it.get(TextureSlot.SIDE)
-                it.put(TextureSlot.SIDE, Material(side.sprite.withPath { it.replace("_solid_generator", "_machine_enclosure") }, side.forceTranslucent))
-                val top = it.get(TextureSlot.TOP)
-                it.put(TextureSlot.TOP, Material(top.sprite.withPath { it.replace("solid_", "").replace("fluid_", "").replace("_top", "") }, top.forceTranslucent))
-                val front = it.get(TextureSlot.FRONT)
-                it.put(TextureSlot.FRONT, Material(front.sprite.withPath { it.replace("_front", "") }, front.forceTranslucent))
-            }
-            LitMachineBlockModelClientDataCollectionModule(unlit, unlit.updateTexture {
-                val top = it.get(TextureSlot.TOP)
-                it.put(TextureSlot.TOP, Material(top.sprite.withSuffix("_lit"), top.forceTranslucent))
-                val front = it.get(TextureSlot.FRONT)
-                it.put(TextureSlot.FRONT, Material(front.sprite.withSuffix("_lit"), front.forceTranslucent))
-            })
-        }
+        addModule { HeatGeneratorModelClientDataCollectionModule(1) }
     }
 
     /**
@@ -609,24 +586,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val generator_tier_2 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "generator", 2) }
-        addModule {
-            val unlit = TexturedModel.ORIENTABLE.updateTexture {
-                val bottom = it.get(TextureSlot.BOTTOM)
-                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_2_bottom"), bottom.forceTranslucent))
-                val side = it.get(TextureSlot.SIDE)
-                it.put(TextureSlot.SIDE, Material(side.sprite.withPath { it.replace("_solid_generator", "_machine_enclosure") }, side.forceTranslucent))
-                val top = it.get(TextureSlot.TOP)
-                it.put(TextureSlot.TOP, Material(top.sprite.withPath { it.replace("solid_", "").replace("fluid_", "").replace("_top", "") }, top.forceTranslucent))
-                val front = it.get(TextureSlot.FRONT)
-                it.put(TextureSlot.FRONT, Material(front.sprite.withPath { it.replace("_front", "") }, front.forceTranslucent))
-            }
-            LitMachineBlockModelClientDataCollectionModule(unlit, unlit.updateTexture {
-                val top = it.get(TextureSlot.TOP)
-                it.put(TextureSlot.TOP, Material(top.sprite.withSuffix("_lit"), top.forceTranslucent))
-                val front = it.get(TextureSlot.FRONT)
-                it.put(TextureSlot.FRONT, Material(front.sprite.withSuffix("_lit"), front.forceTranslucent))
-            })
-        }
+        addModule { HeatGeneratorModelClientDataCollectionModule(2) }
     }
 
     /**
@@ -705,25 +665,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val turbine_tier_1 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "turbine", 1) }
-        addModule {
-            val unlit = TexturedModel.createDefault({
-                val texture = it.identifier.withPrefix("block/")
-                TextureMapping()
-                    .put(TextureSlot.DOWN, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
-                    .put(TextureSlot.EAST, Material(texture.withSuffix("_alt")))
-                    .put(TextureSlot.WEST, Material(texture.withSuffix("_side")))
-                    .put(TextureSlot.NORTH, Material(texture.withSuffix("_front")))
-                    .put(TextureSlot.SOUTH, Material(texture.withPath { it.replace("_turbine", "_power_bank_front") }))
-                    .put(TextureSlot.UP, Material(texture.withPath { it.replace("_turbine", "_machine_enclosure_top") }))
-                    .put(TextureSlot.PARTICLE, Material(texture.withPath { it.replace("_turbine", "_machine_enclosure_side") }))
-            }, ModelTemplates.CUBE)
-            LitMachineBlockModelClientDataCollectionModule(unlit, unlit.updateTexture {
-                val east = it.get(TextureSlot.EAST)
-                it.put(TextureSlot.EAST, Material(east.sprite.withSuffix("_lit"), east.forceTranslucent))
-                val west = it.get(TextureSlot.WEST)
-                it.put(TextureSlot.WEST, Material(west.sprite.withSuffix("_lit"), west.forceTranslucent))
-            })
-        }
+        addModule { TurbineModelClientDataCollectionModule(1) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_turbines) }
     }
 
@@ -762,25 +704,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val turbine_tier_2 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "turbine", 2) }
-        addModule {
-            val unlit = TexturedModel.createDefault({
-                val texture = it.identifier.withPrefix("block/")
-                TextureMapping()
-                    .put(TextureSlot.DOWN, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_2_bottom")))
-                    .put(TextureSlot.EAST, Material(texture.withSuffix("_alt")))
-                    .put(TextureSlot.WEST, Material(texture.withSuffix("_side")))
-                    .put(TextureSlot.NORTH, Material(texture.withSuffix("_front")))
-                    .put(TextureSlot.SOUTH, Material(texture.withPath { it.replace("_turbine", "_power_bank_front") }))
-                    .put(TextureSlot.UP, Material(texture.withPath { it.replace("_turbine", "_machine_enclosure_top") }))
-                    .put(TextureSlot.PARTICLE, Material(texture.withPath { it.replace("_turbine", "_machine_enclosure_side") }))
-            }, ModelTemplates.CUBE)
-            LitMachineBlockModelClientDataCollectionModule(unlit, unlit.updateTexture {
-                val east = it.get(TextureSlot.EAST)
-                it.put(TextureSlot.EAST, Material(east.sprite.withSuffix("_lit"), east.forceTranslucent))
-                val west = it.get(TextureSlot.WEST)
-                it.put(TextureSlot.WEST, Material(west.sprite.withSuffix("_lit"), west.forceTranslucent))
-            })
-        }
+        addModule { TurbineModelClientDataCollectionModule(2) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_turbines) }
     }
 
@@ -842,14 +766,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val centrifuge_tier_1 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "centrifuge", 1) }
-        addModule {
-            val unlit = ToStarsModels.centrifuge.updateTexture {
-                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
-            }
-            LitMachineBlockModelClientDataCollectionModule(unlit, ToStarsModels.centrifugeLit.updateTexture {
-                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_1_bottom")))
-            })
-        }
+        addModule { CentrifugeModelClientDataCollectionModule(1) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_centrifuges) }
     }
 
@@ -888,14 +805,7 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
      */
     val centrifuge_tier_2 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "centrifuge", 2) }
-        addModule {
-            val unlit = ToStarsModels.centrifuge.updateTexture {
-                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_2_bottom")))
-            }
-            LitMachineBlockModelClientDataCollectionModule(unlit, ToStarsModels.centrifugeLit.updateTexture {
-                it.put(TextureSlot.BOTTOM, Material(Identifier.fromNamespaceAndPath(modid, "block/machine_enclosure_2_bottom")))
-            })
-        }
+        addModule { CentrifugeModelClientDataCollectionModule(2) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_centrifuges) }
     }
 
