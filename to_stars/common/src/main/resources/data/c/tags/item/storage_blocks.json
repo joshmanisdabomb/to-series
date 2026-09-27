@@ -2,6 +2,7 @@
   "values": [
     "to_stars:enriched_uranium_block",
     "to_stars:heavy_uranium_block",
+    "to_stars:steel_block",
     "to_stars:uranium_block"
   ]
 }

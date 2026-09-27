@@ -62,24 +62,50 @@ object ToStarsItemLibrary : SimpleRegistryLibrary<Item>(ToStarsMod.MOD_ID) {
         .setId(getEntryResourceKey(entry))) }
 
     /**
-     * The tier one battery, which stores To Energy and can be carried about.
+     * Magnetised iron ingot, used as a crafting recipe for turbines and magnets.
+     */
+    val magnetic_iron by this { entry -> Item(Item.Properties()
+        .setId(getEntryResourceKey(entry))) }
+
+    /**
+     * Steel ingot, a crafting material for tier 2 machines.
+     */
+    val steel_ingot by this { entry -> Item(Item.Properties()
+        .setId(getEntryResourceKey(entry))) }
+
+    /**
+     * Steel nugget, a crafting material from smelting down steel tools. 9 can be combined to make an ingot.
+     */
+    val steel_nugget by this { entry -> Item(Item.Properties()
+        .setId(getEntryResourceKey(entry))) }
+
+    /**
+     * The tier one battery, a portable form of energy storage.
      */
     val copper_battery by this { entry -> BatteryItem(MachineTier.ONE, Item.Properties()
         .setId(getEntryResourceKey(entry))
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE)))) }
 
     /**
-     * The tier one and a half battery, which stores more To Energy than the copper one.
+     * The tier one and a half battery, a portable form of energy storage.
      */
     val gold_battery by this { entry -> BatteryItem(MachineTier.ONE_5, Item.Properties()
         .setId(getEntryResourceKey(entry))
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5)))) }
 
     /**
-     * Magnetised iron, used to work on machines.
+     * The tier two battery, a portable form of energy storage.
      */
-    val magnetic_iron by this { entry -> Item(Item.Properties()
-        .setId(getEntryResourceKey(entry))) }
+    val steel_battery by this { entry -> BatteryItem(MachineTier.TWO, Item.Properties()
+        .setId(getEntryResourceKey(entry))
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO)))) }
+
+    /**
+     * The tier two and a half battery, a portable form of energy storage.
+     */
+    val netherite_battery by this { entry -> BatteryItem(MachineTier.TWO_5, Item.Properties()
+        .setId(getEntryResourceKey(entry))
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO_5)))) }
 
     /**
      * The music disc that plays Gravitational Influence.

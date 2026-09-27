@@ -1,6 +1,8 @@
 {
   "values": [
     "to_stars:copper_centrifuge",
-    "to_stars:gold_centrifuge"
+    "to_stars:gold_centrifuge",
+    "to_stars:netherite_centrifuge",
+    "to_stars:steel_centrifuge"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "to_stars:steel_ingot"
+  ],
+  "result": {
+    "count": 9,
+    "id": "to_stars:steel_nugget"
+  }
+}

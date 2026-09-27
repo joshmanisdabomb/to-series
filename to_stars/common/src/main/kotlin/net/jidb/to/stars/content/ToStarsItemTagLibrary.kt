@@ -72,4 +72,91 @@ object ToStarsItemTagLibrary : TagLibrary<Item>(ToStarsMod.modid) {
      */
     val gold_machines by this()
 
+    /**
+     * Every tier two machine.
+     */
+    val steel_machines by this()
+
+    /**
+     * Every tier two and a half machine.
+     */
+    val netherite_machines by this()
+
+    /**
+     * Every machine enclosure, of any tier.
+     */
+    val machine_enclosures by this()
+
+    /**
+     * Every tier 1 machine enclosure, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_machine_enclosures by this()
+
+    /**
+     * Every tier 2 machine enclosure, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_2_machine_enclosures by this()
+
+    /**
+     * Every tier 1 power bank, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_power_banks by this()
+
+    /**
+     * Every tier 2 power bank, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_2_power_banks by this()
+
+    /**
+     * Every tier 1 battery, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_batteries by this()
+
+    /**
+     * Every tier 2 battery, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_2_batteries by this()
+
+    /**
+     * Every tier 1 solid heat generator, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_solid_generators by this()
+
+    /**
+     * Every tier 2 solid heat generator, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_2_solid_generators by this()
+
+    /**
+     * Every tier 1 turbine, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_turbines by this()
+
+    /**
+     * Every tier 2 turbine, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_2_turbines by this()
+
+    /**
+     * Every tier 1 centrifuge, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_centrifuges by this()
+
+    /**
+     * Every tier 2 centrifuge, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_2_centrifuges by this()
+
 }

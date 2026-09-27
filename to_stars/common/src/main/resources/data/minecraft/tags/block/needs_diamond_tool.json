@@ -4,6 +4,11 @@
     "to_stars:enriched_uranium_block",
     "to_stars:heavy_uranium_block",
     "to_stars:heavy_uranium_shielding",
+    "to_stars:netherite_centrifuge",
+    "to_stars:netherite_machine_enclosure",
+    "to_stars:netherite_power_bank",
+    "to_stars:netherite_solid_generator",
+    "to_stars:netherite_turbine",
     "to_stars:nuclear_waste",
     "to_stars:uranium_block",
     "to_stars:uranium_ore"

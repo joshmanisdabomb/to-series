@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "to_stars:steel_ingot",
+  "ingredients": [
+    "to_stars:steel_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "to_stars:steel_ingot"
+  }
+}

@@ -1,6 +1,8 @@
 {
   "values": [
     "to_stars:copper_solid_generator",
-    "to_stars:gold_solid_generator"
+    "to_stars:gold_solid_generator",
+    "to_stars:netherite_solid_generator",
+    "to_stars:steel_solid_generator"
   ]
 }

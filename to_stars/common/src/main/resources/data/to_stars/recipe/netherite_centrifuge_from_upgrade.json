@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "to_stars:steel_centrifuge",
+  "result": {
+    "id": "to_stars:netherite_centrifuge"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

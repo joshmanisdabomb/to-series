@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:netherite_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_steel_battery": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:steel_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_stars:netherite_battery"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite_battery",
+      "has_steel_battery"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_stars:netherite_battery"
+    ]
+  }
+}

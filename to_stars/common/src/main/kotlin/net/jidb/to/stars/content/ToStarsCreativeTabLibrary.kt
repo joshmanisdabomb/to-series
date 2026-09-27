@@ -36,15 +36,24 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             output(ItemStack(ToStarsMod.items.heavy_uranium))
             output(ItemStack(ToStarsMod.blocks.heavy_uranium_block))
             output(ItemStack(ToStarsMod.blocks.heavy_uranium_shielding))
+            output(ItemStack(ToStarsMod.items.steel_nugget))
+            output(ItemStack(ToStarsMod.items.steel_ingot))
+            output(ItemStack(ToStarsMod.blocks.steel_block))
             output(ItemStack(ToStarsMod.items.magnetic_iron))
             output(ItemStack(ToStarsMod.blocks.kiln))
             output(ItemStack(ToStarsMod.blocks.copper_machine_enclosure))
             output(ItemStack(ToStarsMod.blocks.gold_machine_enclosure))
+            output(ItemStack(ToStarsMod.blocks.steel_machine_enclosure))
+            output(ItemStack(ToStarsMod.blocks.netherite_machine_enclosure))
             output(ItemStack(ToStarsMod.blocks.copper_solid_generator))
             output(ItemStack(ToStarsMod.blocks.gold_solid_generator))
+            output(ItemStack(ToStarsMod.blocks.steel_solid_generator))
+            output(ItemStack(ToStarsMod.blocks.netherite_solid_generator))
             output(ItemStack(ToStarsMod.blocks.rotor_blades))
             output(ItemStack(ToStarsMod.blocks.copper_turbine))
             output(ItemStack(ToStarsMod.blocks.gold_turbine))
+            output(ItemStack(ToStarsMod.blocks.steel_turbine))
+            output(ItemStack(ToStarsMod.blocks.netherite_turbine))
             output(ItemStack(ToStarsMod.blocks.copper_power_bank))
             output(ItemStack(ToStarsMod.blocks.copper_power_bank).also {
                 it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.bankStorage, ToStarsMod.blocks.copper_power_bank.machine.maxInput, ToStarsMod.blocks.copper_power_bank.machine.maxOutput))
@@ -52,6 +61,14 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             output(ItemStack(ToStarsMod.blocks.gold_power_bank))
             output(ItemStack(ToStarsMod.blocks.gold_power_bank).also {
                 it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.bankStorage, ToStarsMod.blocks.gold_power_bank.machine.maxInput, ToStarsMod.blocks.gold_power_bank.machine.maxOutput))
+            })
+            output(ItemStack(ToStarsMod.blocks.steel_power_bank))
+            output(ItemStack(ToStarsMod.blocks.steel_power_bank).also {
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.steel_power_bank.machine.bankStorage, ToStarsMod.blocks.steel_power_bank.machine.bankStorage, ToStarsMod.blocks.steel_power_bank.machine.maxInput, ToStarsMod.blocks.steel_power_bank.machine.maxOutput))
+            })
+            output(ItemStack(ToStarsMod.blocks.netherite_power_bank))
+            output(ItemStack(ToStarsMod.blocks.netherite_power_bank).also {
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.blocks.netherite_power_bank.machine.bankStorage, ToStarsMod.blocks.netherite_power_bank.machine.bankStorage, ToStarsMod.blocks.netherite_power_bank.machine.maxInput, ToStarsMod.blocks.netherite_power_bank.machine.maxOutput))
             })
             output(ItemStack(ToStarsMod.items.copper_battery))
             output(ItemStack(ToStarsMod.items.copper_battery).also {
@@ -61,8 +78,18 @@ object ToStarsCreativeTabLibrary : SimpleRegistryLibrary<CreativeModeTab>(ToStar
             output(ItemStack(ToStarsMod.items.gold_battery).also {
                 it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.batteryStorage, ToStarsMod.items.gold_battery.machine.maxInput, ToStarsMod.items.gold_battery.machine.maxOutput))
             })
+            output(ItemStack(ToStarsMod.items.steel_battery))
+            output(ItemStack(ToStarsMod.items.steel_battery).also {
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.items.steel_battery.machine.bankStorage, ToStarsMod.items.steel_battery.machine.bankStorage, ToStarsMod.items.steel_battery.machine.maxInput, ToStarsMod.items.steel_battery.machine.maxOutput))
+            })
+            output(ItemStack(ToStarsMod.items.netherite_battery))
+            output(ItemStack(ToStarsMod.items.netherite_battery).also {
+                it.set(ToBaseMod.itemComponents.energy_data, ToEnergyItemComponentData(ToStarsMod.items.netherite_battery.machine.bankStorage, ToStarsMod.items.netherite_battery.machine.bankStorage, ToStarsMod.items.netherite_battery.machine.maxInput, ToStarsMod.items.netherite_battery.machine.maxOutput))
+            })
             output(ItemStack(ToStarsMod.blocks.copper_centrifuge))
             output(ItemStack(ToStarsMod.blocks.gold_centrifuge))
+            output(ItemStack(ToStarsMod.blocks.steel_centrifuge))
+            output(ItemStack(ToStarsMod.blocks.netherite_centrifuge))
             output(ItemStack(ToStarsMod.blocks.power_cable))
             output(ItemStack(ToStarsMod.blocks.heat_pipe))
             output(ItemStack(ToStarsMod.blocks.creative_power_source))

@@ -14,17 +14,17 @@ import net.minecraft.util.StringRepresentable
 enum class MachineTier(val number: Float) : StringRepresentable {
 
     /**
-     * The copper tier, which is the first a player can build.
+     * Tier 1 machines are made of copper.
      */
     ONE(1.0f) {
 
-        override val maxInput = 256000L
-        override val maxOutput = 256000L
+        override val maxInput = 256_000L
+        override val maxOutput = 256_000L
 
-        override val batteryStorage = 4000000L
-        override val bankStorage = 40000000L
+        override val batteryStorage = 4000_000L
+        override val bankStorage = 40000_000L
 
-        override val machineBuffer = 4000000L
+        override val machineBuffer = 4000_000L
         override val machineSpeed = 0.5f
         override val machineUsage = 1.25f
         override val machineBonus = 1.015625f
@@ -43,17 +43,18 @@ enum class MachineTier(val number: Float) : StringRepresentable {
     },
 
     /**
-     * The gold tier, a modest step up from copper in every direction.
+     * Tier 1.5 machines are made of gold.
+     * They are sidegrades to tier 1 (copper) and are not required to upgrade to tier 2 (steel).
      */
     ONE_5(1.5f) {
 
         override val maxInput = 512000L
         override val maxOutput = 512000L
 
-        override val batteryStorage = 12000000L
-        override val bankStorage = 100000000L
+        override val batteryStorage = 12000_000L
+        override val bankStorage = 100000_000L
 
-        override val machineBuffer = 10000000L
+        override val machineBuffer = 10000_000L
         override val machineSpeed = 0.75f
         override val machineUsage = 1.15f
         override val machineBonus = 1.015625f
@@ -68,6 +69,65 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val turbineRate = 2.5f
 
         override val chatColor = TextColor.YELLOW.value
+
+    },
+
+    /**
+     * Tier 2 machines are made of steel.
+     */
+    TWO(2.0f) {
+
+        override val maxInput = 1024_000L
+        override val maxOutput = 1024_000L
+
+        override val batteryStorage = 75000_000L
+        override val bankStorage = 500000_000L
+
+        override val machineBuffer = 50000_000L
+        override val machineSpeed = 1.0f
+        override val machineUsage = 1.0f
+        override val machineBonus = 1.02f
+        override val machineBonusMax = 80
+
+        override val generatorHeat = 0.02f
+        override val generatorInitial = 100f
+        override val generatorRange = 400f
+        override val generatorBonus = 100f
+        override val generatorCooling = 0.996f
+
+        override val turbineRate = 3f
+
+        override val chatColor = 0xFFCACEE0.toInt()
+
+    },
+
+    /**
+     * Tier 2.5 machines are made of netherite.
+     * They are sidegrades to tier 2 (steel) and are not required to upgrade to tier 3 (TBD).
+     */
+    TWO_5(2.5f) {
+
+        override val maxInput = 2048_000L
+        override val maxOutput = 2048_000L
+
+        override val batteryStorage = 150000_000L
+        override val bankStorage = 1000000_000L
+
+        override val machineBuffer = 100000_000L
+        override val machineSpeed = 1.25f
+        override val machineUsage = 0.9f
+        override val machineBonus = 1.03125f
+        override val machineBonusMax = 96
+
+        override val generatorHeat = 0.025f
+        override val generatorInitial = 150f
+        override val generatorRange = 500f
+        override val generatorBonus = 150f
+        override val generatorCooling = 0.9975f
+
+        override val turbineRate = 3.5f
+
+        override val chatColor = 0xFF75526B.toInt()
 
     };
 

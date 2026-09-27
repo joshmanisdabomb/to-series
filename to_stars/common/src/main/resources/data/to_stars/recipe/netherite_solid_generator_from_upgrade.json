@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "to_stars:steel_solid_generator",
+  "result": {
+    "id": "to_stars:netherite_solid_generator"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

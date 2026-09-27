@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "e": "minecraft:iron_bars",
+    "f": "minecraft:furnace",
+    "m": "to_stars:netherite_machine_enclosure"
+  },
+  "pattern": [
+    "e",
+    "m",
+    "f"
+  ],
+  "result": {
+    "id": "to_stars:netherite_solid_generator"
+  }
+}

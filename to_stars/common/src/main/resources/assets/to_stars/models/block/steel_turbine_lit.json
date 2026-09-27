@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "to_stars:block/machine_enclosure_2_bottom",
+    "east": "to_stars:block/steel_turbine_alt_lit",
+    "north": "to_stars:block/steel_turbine_front",
+    "particle": "to_stars:block/steel_machine_enclosure_side",
+    "south": "to_stars:block/steel_power_bank_front",
+    "up": "to_stars:block/steel_machine_enclosure_top",
+    "west": "to_stars:block/steel_turbine_side_lit"
+  }
+}

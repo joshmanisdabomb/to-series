@@ -3,6 +3,9 @@ package net.jidb.to.stars.content
 import net.jidb.to.base.api.library.SimpleRegistryLibrary
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
+import net.jidb.to.stars.block.CentrifugeBlock
+import net.jidb.to.stars.block.EnergyStorageBlock
+import net.jidb.to.stars.block.SolidGeneratorBlock
 import net.jidb.to.stars.block.entity.AtomicBombBlockEntity
 import net.jidb.to.stars.block.entity.BoilingCauldronBlockEntity
 import net.jidb.to.stars.block.entity.CentrifugeBlockEntity
@@ -28,12 +31,12 @@ object ToStarsBlockEntityLibrary : SimpleRegistryLibrary<BlockEntityType<*>>(ToS
     /**
      * The block entity of a power bank, shared by every tier of one.
      */
-    val power_bank by this { Services.platform.blocks.createBlockEntityType(::EnergyStorageBlockEntity, ToStarsMod.blocks.copper_power_bank, ToStarsMod.blocks.gold_power_bank) }
+    val power_bank by this { Services.platform.blocks.createBlockEntityType(::EnergyStorageBlockEntity, *ToStarsMod.blocks.values.filterIsInstance<EnergyStorageBlock>().toTypedArray()) }
 
     /**
      * The block entity of a solid generator, shared by every tier of one.
      */
-    val solid_generator by this { Services.platform.blocks.createBlockEntityType(::SolidGeneratorBlockEntity, ToStarsMod.blocks.copper_solid_generator, ToStarsMod.blocks.gold_solid_generator) }
+    val solid_generator by this { Services.platform.blocks.createBlockEntityType(::SolidGeneratorBlockEntity, *ToStarsMod.blocks.values.filterIsInstance<SolidGeneratorBlock>().toTypedArray()) }
 
     /**
      * The block entity of the boiler, which holds the water it heats.
@@ -48,7 +51,7 @@ object ToStarsBlockEntityLibrary : SimpleRegistryLibrary<BlockEntityType<*>>(ToS
     /**
      * The block entity of a centrifuge, shared by every tier of one.
      */
-    val centrifuge by this { Services.platform.blocks.createBlockEntityType(::CentrifugeBlockEntity, ToStarsMod.blocks.copper_centrifuge, ToStarsMod.blocks.gold_centrifuge) }
+    val centrifuge by this { Services.platform.blocks.createBlockEntityType(::CentrifugeBlockEntity, *ToStarsMod.blocks.values.filterIsInstance<CentrifugeBlock>().toTypedArray()) }
 
     /**
      * The block entity for the kiln, that handles the smelting routine.
