@@ -35,9 +35,6 @@ class CentrifugeBlockEntity(pos: BlockPos, state: BlockState) : ProcessorBlockEn
         val preview = recipe.value.preview
         val slots = outputSlots.map(::getSlot)
         val items = preview.transpose().map { it.mapNotNull { it.getOrNull()?.item?.value() }.distinct() }
-        println(preview)
-        println(preview.transpose())
-        println(items)
 
         val stacks = slots.mapNotNull { it?.get()?.copy() }.toMutableList()
         for (stack in results) {

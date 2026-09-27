@@ -43,12 +43,10 @@ class ProcessorRecipeBookComponent(menu: ProcessorMenu, val filterName: Componen
     override fun fillGhostRecipe(ghosts: GhostSlots, recipe: RecipeDisplay, context: ContextMap) {
         if (recipe is ProcessorRecipeDisplay) {
             for ((i, display) in recipe.input.withIndex()) {
-                println(display)
                 val slot = menu.inputSlots.getOrNull(i) ?: continue
                 (ghosts as GhostSlotsAccessor).`to_base$setInput`(menu.getSlot(slot), context, display)
             }
             for ((i, display) in recipe.output.withIndex()) {
-                println(display)
                 val slot = menu.outputSlots.getOrNull(i) ?: continue
                 (ghosts as GhostSlotsAccessor).`to_base$setInput`(menu.getSlot(slot), context, display)
             }
