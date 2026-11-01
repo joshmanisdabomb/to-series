@@ -10,13 +10,17 @@ import net.jidb.to.stars.content.ToStarsBiomeModLibrary
 import net.jidb.to.stars.content.ToStarsGameTestLibrary
 import net.jidb.to.stars.neoforge.client.data.content.ToStarsDataLibrary
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsAdvancementDataProvider
+import net.jidb.to.stars.neoforge.client.data.provider.ToStarsEquipmentDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsLanguageDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsParticleDataProvider
 import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSoundDataProvider
+import net.jidb.to.stars.neoforge.client.data.provider.ToStarsSpriteDataProvider
 import net.jidb.to.stars.neoforge.data.content.ToStarsConfiguredFeatureDataLibrary
 import net.jidb.to.stars.neoforge.data.content.ToStarsDamageTypeDataLibrary
 import net.jidb.to.stars.neoforge.data.content.ToStarsMusicDataLibrary
 import net.jidb.to.stars.neoforge.data.content.ToStarsPlacedFeatureDataLibrary
+import net.jidb.to.stars.neoforge.data.content.ToStarsTrimMaterialDataLibrary
+import net.jidb.to.stars.neoforge.data.provider.ToStarsBlockTagDataProvider
 import net.jidb.to.stars.neoforge.data.provider.ToStarsDamageTypeTagDataProvider
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemCopyTagDataProvider
 import net.jidb.to.stars.neoforge.data.provider.ToStarsItemTagDataProvider
@@ -42,17 +46,21 @@ class ToStarsForgeDataMod(event: GatherDataEvent.Client) : ToForgeDataMod(event)
 
     override val language = ::ToStarsLanguageDataProvider
     override val copyTags = listOf(
-        { output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>, blockTags: CompletableFuture<TagsProvider.TagLookup<Block>> -> AutoCopyTagDataProvider(ToStarsMod.blockTags.values.associateBy { it.location }, ToStarsMod.itemTags?.values?.associateBy { it.location } ?: emptyMap(), output, lookup, blockTags, modid) },
+        { output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>, blockTags: CompletableFuture<TagsProvider.TagLookup<Block>> -> AutoCopyTagDataProvider(ToStarsMod.blockTags.values.associateBy { it.location }, ToStarsMod.itemTags.values.associateBy { it.location }, output, lookup, blockTags, modid) },
         ::ToStarsItemCopyTagDataProvider
     )
     override val advancements = listOf(ToStarsAdvancementDataProvider())
     override val gameTests = ToStarsGameTestLibrary
     override val particles = listOf(::ToStarsParticleDataProvider)
+    override val equipments = listOf(::ToStarsEquipmentDataProvider)
     override val sounds = listOf(::ToStarsSoundDataProvider)
-    override val tags = listOf(::ToStarsItemTagDataProvider, ::ToStarsDamageTypeTagDataProvider)
+    override val tags = listOf(::ToStarsItemTagDataProvider, ::ToStarsBlockTagDataProvider, ::ToStarsDamageTypeTagDataProvider)
+
+    override val sprites = listOf(::ToStarsSpriteDataProvider)
 
     override val damageTypes = ToStarsDamageTypeDataLibrary
     override val music = ToStarsMusicDataLibrary
+    override val trimMaterials = ToStarsTrimMaterialDataLibrary
 
     override val configuredFeatures = ToStarsConfiguredFeatureDataLibrary
     override val placedFeatures = ToStarsPlacedFeatureDataLibrary

@@ -4,6 +4,12 @@
     "to_stars:gold_machine_enclosure",
     "to_stars:gold_power_bank",
     "to_stars:gold_solid_generator",
-    "to_stars:gold_turbine"
+    "to_stars:gold_turbine",
+    "to_stars:steel_block",
+    "to_stars:steel_centrifuge",
+    "to_stars:steel_machine_enclosure",
+    "to_stars:steel_power_bank",
+    "to_stars:steel_solid_generator",
+    "to_stars:steel_turbine"
   ]
 }

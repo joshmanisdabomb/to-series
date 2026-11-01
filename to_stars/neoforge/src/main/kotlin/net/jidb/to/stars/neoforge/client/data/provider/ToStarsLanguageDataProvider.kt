@@ -159,6 +159,8 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("recipe.$modid.enriched_uranium_nugget_from_centrifuge", "Uranium Enrichment")
 
         add("jukebox_song.$modid.gravitational_influence", "K3YLET - Gravitational Influence")
+
+        add("trim_material.$modid.steel", "Steel Material")
     }
 
 }

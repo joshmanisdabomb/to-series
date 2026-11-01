@@ -2,14 +2,17 @@ package net.jidb.to.base.neoforge.client.data.mod
 
 import net.jidb.to.base.client.data.api.mod.ToContentDataMod
 import net.jidb.to.base.data.api.library.DatapackLibrary
+import net.minecraft.client.data.models.EquipmentAssetProvider
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.PackOutput
 import net.minecraft.data.recipes.RecipeProvider
 import net.minecraft.data.tags.TagsProvider
 import net.minecraft.world.damagesource.DamageType
 import net.minecraft.world.item.JukeboxSong
+import net.minecraft.world.item.equipment.trim.TrimMaterial
 import net.minecraft.world.level.block.Block
 import net.neoforged.neoforge.client.data.ParticleDescriptionProvider
+import net.neoforged.neoforge.client.data.SpriteSourceProvider
 import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider
 import net.neoforged.neoforge.common.data.LanguageProvider
 import net.neoforged.neoforge.common.data.SoundDefinitionsProvider
@@ -54,11 +57,25 @@ interface ToContentForgeDataMod : ToContentDataMod {
     val particles: List<(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) -> ParticleDescriptionProvider> get() = emptyList()
 
     /**
+     * Builds the providers writing out the equipment assets of this mod, i.e. how armor renders on entities. Defaults to none.
+     *
+     * @since 1.1.0
+     */
+    val equipments: List<(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) -> EquipmentAssetProvider> get() = emptyList()
+
+    /**
      * Builds the providers writing out the sound definitions of this mod. Defaults to none.
      *
      * @since 0.3.0
      */
     val sounds: List<(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) -> SoundDefinitionsProvider> get() = emptyList()
+
+    /**
+     * Builds the providers writing out the sprite entries/atlases of this mod. Defaults to none.
+     *
+     * @since 1.1.0
+     */
+    val sprites: List<(output: PackOutput, lookup: CompletableFuture<HolderLookup.Provider>) -> SpriteSourceProvider> get() = emptyList()
 
     /**
      * The library holding the biome modifiers of this mod, or `null` where it has none. Defaults to `null`.
@@ -82,5 +99,12 @@ interface ToContentForgeDataMod : ToContentDataMod {
      * @since 0.3.0
      */
     val music: DatapackLibrary<JukeboxSong>? get() = null
+
+    /**
+     * The library holding the trim materials of this mod, or `null` where it has none. Defaults to `null`.
+     *
+     * @since 1.1.0
+     */
+    val trimMaterials: DatapackLibrary<TrimMaterial>? get() = null
 
 }

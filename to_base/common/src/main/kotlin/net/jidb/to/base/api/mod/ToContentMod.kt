@@ -32,10 +32,13 @@ import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.JukeboxSong
+import net.minecraft.world.item.ToolMaterial
 import net.minecraft.world.item.crafting.RecipeBookCategory
 import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.item.crafting.RecipeType
 import net.minecraft.world.item.crafting.display.RecipeDisplay
+import net.minecraft.world.item.equipment.ArmorMaterial
+import net.minecraft.world.item.equipment.trim.TrimMaterial
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature
@@ -175,6 +178,20 @@ interface ToContentMod {
      * @since 0.6.0
      */
     val itemComponents: SimpleRegistryLibrary<DataComponentType<*>>? get() = null
+
+    /**
+     * A [Library] for the mod's item tool materials.
+     *
+     * @since 1.1.0
+     */
+    val toolMaterials: SimpleLibrary<ToolMaterial>? get() = null
+
+    /**
+     * A [Library] for the mod's item armor materials.
+     *
+     * @since 1.1.0
+     */
+    val armorMaterials: SimpleLibrary<ArmorMaterial>? get() = null
 
     /**
      * A [Library] for the mod's [RecipeBookCategory] objects.
@@ -350,5 +367,12 @@ interface ToContentMod {
      * @since 0.8.0
      */
     val music: Library<*, ResourceKey<JukeboxSong>>? get() = null
+
+    /**
+     * A [Library] of [ResourceKey] objects pointing to the mod's [TrimMaterial] objects in the datapack.
+     *
+     * @since 1.1.0
+     */
+    val trimMaterials: Library<*, ResourceKey<TrimMaterial>>? get() = null
 
 }

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "to_stars:steel_ingot",
+  "base": "minecraft:iron_hoe",
+  "result": {
+    "id": "to_stars:steel_hoe"
+  },
+  "template": "to_stars:steel_upgrade_smithing_template"
+}

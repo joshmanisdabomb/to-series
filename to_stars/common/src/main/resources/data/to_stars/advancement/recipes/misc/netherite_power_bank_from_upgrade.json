@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_power_bank": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:netherite_power_bank"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_steel_power_bank": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:steel_power_bank"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_stars:netherite_power_bank_from_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite_power_bank",
+      "has_steel_power_bank"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_stars:netherite_power_bank_from_upgrade"
+    ]
+  }
+}

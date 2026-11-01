@@ -40,16 +40,29 @@ open class IdentifierLanguageClientDataCollectionModule(val modifyId: (id: Strin
     protected open fun getEntryName(key: ResourceKey<*>): String = key.identifier().path
 
     /**
-     * Turns a registered name into a display name, by replacing underscores with spaces and capitalising each word of it.
-     * Words are capitalised across hyphens as well as spaces, so that `uranium-235` reads as `Uranium-235`.
+     * Turns a registered name into a display name, calls the [defaultInflector] by default but can be overridden.
      *
      * @param name The name to turn into a display name.
      * @return The display name.
      * @since 0.3.0
      */
-    protected open fun inflector(name: String) = name
-        .replace('_', ' ')
-        .split(' ').joinToString(" ") { it.replaceFirstChar(Char::uppercase) }
-        .split('-').joinToString("-") { it.replaceFirstChar(Char::uppercase) }
+    protected open fun inflector(name: String) = defaultInflector(name)
+
+    companion object {
+
+        /**
+         * The default inflector that turns an Identifier path into a display name, by replacing underscores with spaces and capitalising each word of it.
+         * Words are capitalised across hyphens as well as spaces.
+         *
+         * @param name The name to turn into a display name.
+         * @return The display name.
+         * @since 1.1.0
+         */
+        fun defaultInflector(name: String) = name
+            .replace('_', ' ')
+            .split(' ').joinToString(" ") { it.replaceFirstChar(Char::uppercase) }
+            .split('-').joinToString("-") { it.replaceFirstChar(Char::uppercase) }
+
+    }
 
 }

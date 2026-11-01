@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "to_stars:steel_ingot",
+  "base": "minecraft:iron_shovel",
+  "result": {
+    "id": "to_stars:steel_shovel"
+  },
+  "template": "to_stars:steel_upgrade_smithing_template"
+}

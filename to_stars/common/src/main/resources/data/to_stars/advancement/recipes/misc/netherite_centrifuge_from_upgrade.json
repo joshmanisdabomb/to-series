@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_centrifuge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:netherite_centrifuge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_steel_centrifuge": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:steel_centrifuge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_stars:netherite_centrifuge_from_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite_centrifuge",
+      "has_steel_centrifuge"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_stars:netherite_centrifuge_from_upgrade"
+    ]
+  }
+}

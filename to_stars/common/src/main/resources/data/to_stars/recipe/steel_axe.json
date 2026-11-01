@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "to_stars:steel_ingot",
+  "base": "minecraft:iron_axe",
+  "result": {
+    "id": "to_stars:steel_axe"
+  },
+  "template": "to_stars:steel_upgrade_smithing_template"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "to_stars:steel_ingot",
+  "base": "minecraft:iron_nautilus_armor",
+  "result": {
+    "id": "to_stars:steel_nautilus_armor"
+  },
+  "template": "to_stars:steel_upgrade_smithing_template"
+}

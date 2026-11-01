@@ -1,0 +1,10 @@
+{
+  "asset_name": "steel",
+  "description": {
+    "color": "#CACEE0",
+    "translate": "trim_material.to_stars.steel"
+  },
+  "override_armor_assets": {
+    "to_stars:steel": "steel_darker"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "to_stars:steel_ingot",
+  "base": "minecraft:iron_boots",
+  "result": {
+    "id": "to_stars:steel_boots"
+  },
+  "template": "to_stars:steel_upgrade_smithing_template"
+}

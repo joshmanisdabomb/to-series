@@ -54,7 +54,7 @@ open class AutoCopyTagDataProvider(protected val blockTags: Map<Identifier, TagK
                 copy(block, item)
             }
 
-            copy(block, TagKey<Item>.create(Registries.ITEM, block.location()))
+            copy(block, TagKey.create(Registries.ITEM, block.location()))
         }
         blockTags.forEach { (key, block) ->
             if (lookup.apply(block).isEmpty) return@forEach

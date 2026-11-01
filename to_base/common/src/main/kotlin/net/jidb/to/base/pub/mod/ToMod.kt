@@ -48,8 +48,14 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
         damageTypes?.build()
         lootTables?.build()
         music?.build()
+        trimMaterials?.build()
+
+        blockTags?.build()
+        itemTags?.build()
 
         blockNetworks?.build()
+        toolMaterials?.build()
+        armorMaterials?.build()
         itemComponents?.build()
 
         blocks?.build()
@@ -65,9 +71,6 @@ abstract class ToMod : IToMod, ToContentMod, ToModListener<ToMod> {
         payloads?.build()
         payloadHandlers?.build()
         payloads?.register(payloadHandlers)
-
-        blockTags?.build()
-        itemTags?.build()
 
         recipeCategories?.build()
         recipeCustomCategories?.build()

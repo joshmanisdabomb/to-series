@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_copper_turbine": {
+    "has_copper_power_bank": {
       "conditions": {
         "items": [
           {
-            "items": "to_stars:copper_turbine"
+            "items": "to_stars:copper_power_bank"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_copper_turbine"
+      "has_copper_power_bank"
     ]
   ],
   "rewards": {

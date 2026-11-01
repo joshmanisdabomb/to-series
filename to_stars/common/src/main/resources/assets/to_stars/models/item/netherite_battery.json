@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "to_stars:item/netherite_battery",
+    "layer1": "to_stars:item/netherite_battery_overlay"
+  }
+}

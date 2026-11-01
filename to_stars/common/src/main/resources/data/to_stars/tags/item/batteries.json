@@ -1,6 +1,8 @@
 {
   "values": [
     "to_stars:copper_battery",
-    "to_stars:gold_battery"
+    "to_stars:gold_battery",
+    "to_stars:netherite_battery",
+    "to_stars:steel_battery"
   ]
 }

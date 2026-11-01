@@ -1,5 +1,8 @@
 package net.jidb.to.base.api.level.biome
 
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
 import net.minecraft.tags.BiomeTags
 import net.minecraft.tags.TagKey
@@ -13,7 +16,9 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature
  *
  * @since 0.3.0
  */
-class BiomeMod {
+class BiomeMod internal constructor(features: List<Feature>) {
+
+    constructor() : this(emptyList())
 
     /**
      * Internally tracked list of feature entries to be added to any biome.
@@ -21,7 +26,7 @@ class BiomeMod {
      * @see Feature
      * @since 0.3.0
      */
-    val features: List<Feature> field = mutableListOf<Feature>()
+    val features: List<Feature> field = features.toMutableList()
 
     /**
      * Adds features to the specified biomes for a given generation step.
@@ -91,6 +96,34 @@ class BiomeMod {
      * @param step The decoration generation step during which the features will be applied.
      * @since 0.3.0
      */
-    class Feature internal constructor(val biomes: Set<ResourceKey<Biome>>, val tags: Set<TagKey<Biome>>, val features: Set<ResourceKey<PlacedFeature>>, val step: GenerationStep.Decoration)
+    data class Feature(val biomes: Set<ResourceKey<Biome>>, val tags: Set<TagKey<Biome>>, val features: Set<ResourceKey<PlacedFeature>>, val step: GenerationStep.Decoration) {
+
+        companion object {
+
+            val codec = RecordCodecBuilder.mapCodec {
+                it.group(
+                    Codec.list(ResourceKey.codec(Registries.BIOME))
+                        .xmap(MutableList<ResourceKey<Biome>>::toSet, Set<ResourceKey<Biome>>::toList)
+                        .fieldOf("biomes").forGetter(Feature::biomes),
+                    Codec.list(TagKey.hashedCodec(Registries.BIOME))
+                        .xmap(MutableList<TagKey<Biome>>::toSet, Set<TagKey<Biome>>::toList)
+                        .fieldOf("tags").forGetter(Feature::tags),
+                    Codec.list(ResourceKey.codec(Registries.PLACED_FEATURE))
+                        .xmap(MutableList<ResourceKey<PlacedFeature>>::toSet, Set<ResourceKey<PlacedFeature>>::toList)
+                        .fieldOf("features").forGetter(Feature::features),
+                    GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(Feature::step)
+                )
+                    .apply(it, ::Feature)
+            }
+
+        }
+
+    }
+
+    companion object {
+
+        val codec = Codec.list(Feature.codec.codec()).xmap({ BiomeMod(it) }, { it.features })
+
+    }
 
 }

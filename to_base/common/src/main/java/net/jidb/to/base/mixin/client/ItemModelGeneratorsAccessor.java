@@ -61,4 +61,15 @@ public interface ItemModelGeneratorsAccessor {
     @Invoker("generateItemWithTintedOverlay")
     void to_base$generateItemWithTintedOverlay(Item item, String overlaySuffix, ItemTintSource overlayTint);
 
+    /**
+     * Generates a GUI model, and the corresponding in-hand, for a spear item.
+     *
+     * @param item the item to generate a model for.
+     * @see net.minecraft.client.data.models.ItemModelGenerators#generateSpear
+     *
+     * @since 1.1.0
+     */
+    @Invoker("generateSpear")
+    void to_base$generateSpear(Item item);
+
 }

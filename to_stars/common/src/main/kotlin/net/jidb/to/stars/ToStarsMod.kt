@@ -2,6 +2,7 @@ package net.jidb.to.stars
 
 import net.jidb.to.base.pub.mod.ToMod
 import net.jidb.to.stars.content.ToStarsAdvancementTriggerLibrary
+import net.jidb.to.stars.content.ToStarsArmorMaterialLibrary
 import net.jidb.to.stars.content.ToStarsBiomeModLibrary
 import net.jidb.to.stars.content.ToStarsBlockEntityLibrary
 import net.jidb.to.stars.content.ToStarsBlockItemLibrary
@@ -15,9 +16,7 @@ import net.jidb.to.stars.content.ToStarsGameTestLibrary
 import net.jidb.to.stars.content.ToStarsItemComponentLibrary
 import net.jidb.to.stars.content.ToStarsItemLibrary
 import net.jidb.to.stars.content.ToStarsItemTagLibrary
-import net.jidb.to.stars.content.ToStarsLootTableLibrary
 import net.jidb.to.stars.content.ToStarsMenuLibrary
-import net.jidb.to.stars.content.ToStarsMusicLibrary
 import net.jidb.to.stars.content.ToStarsParticleLibrary
 import net.jidb.to.stars.content.ToStarsPayloadHandlerLibrary
 import net.jidb.to.stars.content.ToStarsPayloadLibrary
@@ -29,9 +28,13 @@ import net.jidb.to.stars.content.ToStarsRecipeSerializerLibrary
 import net.jidb.to.stars.content.ToStarsSavedDataLibrary
 import net.jidb.to.stars.content.ToStarsSoundLibrary
 import net.jidb.to.stars.content.ToStarsTicketLibrary
+import net.jidb.to.stars.content.ToStarsToolMaterialLibrary
 import net.jidb.to.stars.content.key.ToStarsConfiguredFeatureLibrary
 import net.jidb.to.stars.content.key.ToStarsDamageTypeLibrary
+import net.jidb.to.stars.content.key.ToStarsLootTableLibrary
+import net.jidb.to.stars.content.key.ToStarsMusicLibrary
 import net.jidb.to.stars.content.key.ToStarsPlacedFeatureLibrary
+import net.jidb.to.stars.content.key.ToStarsTrimMaterialLibrary
 
 /**
  * [ToMod] implementation for To Sky and Stars, which names every library its content is registered through.
@@ -50,7 +53,10 @@ object ToStarsMod : ToMod() {
     override val items = ToStarsItemLibrary
     override val blockItems = ToStarsBlockItemLibrary
     override val tabs = ToStarsCreativeTabLibrary
+
     override val itemComponents = ToStarsItemComponentLibrary
+    override val armorMaterials = ToStarsArmorMaterialLibrary
+    override val toolMaterials = ToStarsToolMaterialLibrary
 
     override val blockEntities = ToStarsBlockEntityLibrary
     override val menus = ToStarsMenuLibrary
@@ -85,5 +91,6 @@ object ToStarsMod : ToMod() {
     override val damageTypes = ToStarsDamageTypeLibrary
     override val lootTables = ToStarsLootTableLibrary
     override val music = ToStarsMusicLibrary
+    override val trimMaterials = ToStarsTrimMaterialLibrary
 
 }

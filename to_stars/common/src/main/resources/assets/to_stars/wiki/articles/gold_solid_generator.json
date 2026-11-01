@@ -29,8 +29,8 @@
   "factsheet": {
     "minecraft:block / to_stars:gold_solid_generator": {
       "renewable": true,
-      "hardness": 5.0,
-      "resistance": 9.0,
+      "hardness": 4.5,
+      "resistance": 6.0,
       "friction": 0.6,
       "ignite": {
         "minecraft:fire": 0,

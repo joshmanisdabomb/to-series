@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "to_stars:steel_power_bank",
+  "result": {
+    "id": "to_stars:netherite_power_bank"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

@@ -15,6 +15,6 @@ import java.util.Optional
  */
 class AggregateTagLookup<T : Any>(val lookups: List<TagsProvider.TagLookup<T>>) : TagsProvider.TagLookup<T> {
 
-    override fun apply(tag: TagKey<T>): Optional<TagBuilder> = Optional.ofNullable(lookups.map { it.apply(tag).orElse(null) }.firstOrNull())
+    override fun apply(tag: TagKey<T>): Optional<TagBuilder> = Optional.ofNullable(lookups.firstNotNullOfOrNull { it.apply(tag).orElse(null) })
 
 }

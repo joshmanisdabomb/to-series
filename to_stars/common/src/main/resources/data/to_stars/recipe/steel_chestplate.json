@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "to_stars:steel_ingot",
+  "base": "minecraft:iron_chestplate",
+  "result": {
+    "id": "to_stars:steel_chestplate"
+  },
+  "template": "to_stars:steel_upgrade_smithing_template"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "to_stars:item/steel_pickaxe"
+  }
+}

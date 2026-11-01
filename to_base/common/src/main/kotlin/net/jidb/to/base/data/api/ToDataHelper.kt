@@ -30,13 +30,13 @@ object ToDataHelper {
      *
      * @since 0.3.0
      */
-    val replaceableAssets = listOf("blockstates", "items", "models", "particles", "lang", "wiki", "sounds.json")
+    val replaceableAssets = listOf("atlases", "blockstates", "equipment", "items", "lang", "models", "particles", "wiki", "sounds.json")
 
     /**
      * The directories under a namespace's data that a generator owns.
      *
      * @since 0.3.0
      */
-    val replaceableData = listOf("advancement", "loot_table", "recipe", "tags")
+    val replaceableData = listOf("advancement", "damage_type", "jukebox_song", "loot_table", "neoforge", "recipe", "tags")
 
 }

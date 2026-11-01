@@ -1,4 +1,4 @@
-package net.jidb.to.stars.content
+package net.jidb.to.stars.content.key
 
 import net.jidb.to.base.api.library.ResourceKeyLibrary
 import net.jidb.to.stars.ToStarsMod

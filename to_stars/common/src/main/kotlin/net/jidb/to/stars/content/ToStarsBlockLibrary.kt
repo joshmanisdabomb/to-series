@@ -134,6 +134,17 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .sound(SoundType.FUNGUS)) }
 
     /**
+     * Steel compacted into a basic storage block, comprising 9 steel ingots.
+     */
+    val steel_block by this { entry -> Block(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .requiresCorrectToolForDrops()
+        .strength(7.0F, 9.0F)
+        .sound(SoundType.IRON)) }
+
+    /**
      * The atomic bomb, which is armed through its own interface and then counts down to a nuclear explosion.
      */
     val atomic_bomb by this { entry -> AtomicBombBlock(BlockBehaviour.Properties.of()
@@ -161,12 +172,33 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
-        .strength(5.0F, 9.0F)
+        .strength(4.5F, 6.0F)
         .instrument(NoteBlockInstrument.BELL)
         .sound(SoundType.NETHERITE_BLOCK)) }
 
     /**
-     * The tier one power bank, which stores To Energy.
+     * The tier two machine enclosure, an intermediate step in crafting the machines of that tier.
+     */
+    val steel_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .strength(6.0F, 9.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+
+    /**
+     * The tier two and a half machine enclosure, an intermediate step in crafting the machines of that tier.
+     */
+    val netherite_machine_enclosure by this { entry -> Block(BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_BLACK)
+        .requiresCorrectToolForDrops()
+        .strength(13.0F, 1200.0F)
+        .sound(SoundType.NETHERITE_BLOCK)) }
+
+    /**
+     * The tier one power bank, which stores energy.
      */
     val copper_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
@@ -177,18 +209,39 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .sound(SoundType.COPPER_GOLEM_STATUE)) }
 
     /**
-     * The tier one and a half power bank, which stores more To Energy than the copper one.
+     * The tier one and a half power bank, which stores energy.
      */
     val gold_power_bank by this { entry -> EnergyStorageBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
-        .strength(3.0F, 8.0F)
+        .strength(4.5F, 6.0F)
         .instrument(NoteBlockInstrument.BELL)
         .sound(SoundType.COPPER_BULB)) }
 
     /**
-     * The tier one solid generator, which burns fuel to make To Energy and lights up while it does.
+     * The tier two power bank, which stores energy.
+     */
+    val steel_power_bank by this { entry -> EnergyStorageBlock(MachineTier.TWO, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .strength(6.0F, 9.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+
+    /**
+     * The tier two and a half power bank, which stores energy.
+     */
+    val netherite_power_bank by this { entry -> EnergyStorageBlock(MachineTier.TWO_5, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_BLACK)
+        .requiresCorrectToolForDrops()
+        .strength(13.0F, 1200.0F)
+        .sound(SoundType.NETHERITE_BLOCK)) }
+
+    /**
+     * The tier one solid generator, which burns fuel to create heat.
      */
     val copper_solid_generator by this { entry -> SolidGeneratorBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
@@ -201,26 +254,51 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .sound(SoundType.COPPER_GOLEM_STATUE)) }
 
     /**
-     * The tier one and a half solid generator, which burns fuel faster than the copper one.
+     * The tier one and a half solid generator, which burns fuel to create heat.
      */
     val gold_solid_generator by this { entry -> SolidGeneratorBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
         .lightLevel { it.getValue(BlockStateProperties.LIT).either(13, 0) }
-        .strength(5.0F, 9.0F)
+        .strength(4.5F, 6.0F)
         .isValidSpawn { state, blockGetter, blockPos, entityType -> entityType.fireImmune() }
         .instrument(NoteBlockInstrument.BELL)
         .sound(SoundType.NETHERITE_BLOCK)) }
 
     /**
-     * The boiler, which heats the water it holds and scalds anything standing in it.
+     * The tier two solid generator, which burns fuel to create heat.
+     */
+    val steel_solid_generator by this { entry -> SolidGeneratorBlock(MachineTier.TWO, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(13, 0) }
+        .strength(6.0F, 9.0F)
+        .isValidSpawn { state, blockGetter, blockPos, entityType -> entityType.fireImmune() }
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+
+    /**
+     * The tier two and a half solid generator, which burns fuel to create heat.
+     */
+    val netherite_solid_generator by this { entry -> SolidGeneratorBlock(MachineTier.TWO_5, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_BLACK)
+        .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(13, 0) }
+        .strength(13.0F, 1200.0F)
+        .isValidSpawn { state, blockGetter, blockPos, entityType -> entityType.fireImmune() }
+        .sound(SoundType.NETHERITE_BLOCK)) }
+
+    /**
+     * The boiler, which can be heated with a generator to create steam with held water. It also scalds entities standing in it.
      */
     val boiler by this { entry -> BoilingCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
         .setId(getEntryResourceKey(entry))) }
 
     /**
-     * The tier one turbine, which makes To Energy from the rotor blades turning above it.
+     * The tier one turbine, which makes energy from rotor blades powered by the steam from a boiler.
      */
     val copper_turbine by this { entry -> TurbineBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
@@ -232,15 +310,38 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .sound(SoundType.COPPER_GOLEM_STATUE)) }
 
     /**
-     * The tier one and a half turbine, which makes more To Energy than the copper one.
+     * The tier one and a half turbine, which makes energy from rotor blades powered by the steam from a boiler.
      */
     val gold_turbine by this { entry -> TurbineBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
         .lightLevel { it.getValue(BlockStateProperties.LIT).either(5, 0) }
-        .strength(5.0F, 9.0F)
+        .strength(4.5F, 6.0F)
         .instrument(NoteBlockInstrument.BELL)
+        .sound(SoundType.NETHERITE_BLOCK)) }
+
+    /**
+     * The tier two turbine, which makes energy from rotor blades powered by the steam from a boiler.
+     */
+    val steel_turbine by this { entry -> TurbineBlock(MachineTier.TWO, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(5, 0) }
+        .strength(6.0F, 9.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+
+    /**
+     * The tier two and a half turbine, which makes energy from rotor blades powered by the steam from a boiler.
+     */
+    val netherite_turbine by this { entry -> TurbineBlock(MachineTier.TWO_5, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_BLACK)
+        .requiresCorrectToolForDrops()
+        .lightLevel { it.getValue(BlockStateProperties.LIT).either(5, 0) }
+        .strength(13.0F, 1200.0F)
         .sound(SoundType.NETHERITE_BLOCK)) }
 
     /**
@@ -255,7 +356,7 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .sound(SoundType.METAL)) }
 
     /**
-     * The tier one centrifuge, which processes uranium into its enriched and heavy forms.
+     * The tier one centrifuge, which processes special recipes like uranium refining.
      */
     val copper_centrifuge by this { entry -> CentrifugeBlock(MachineTier.ONE, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
@@ -266,14 +367,35 @@ object ToStarsBlockLibrary : BlockLibrary(ToStarsMod.MOD_ID) {
         .sound(SoundType.COPPER_GOLEM_STATUE)) }
 
     /**
-     * The tier one and a half centrifuge, which processes faster than the copper one.
+     * The tier one and a half centrifuge, which processes special recipes like uranium refining.
      */
     val gold_centrifuge by this { entry -> CentrifugeBlock(MachineTier.ONE_5, BlockBehaviour.Properties.of()
         .setId(getEntryResourceKey(entry))
         .mapColor(MapColor.GOLD)
         .requiresCorrectToolForDrops()
-        .strength(5.0F, 9.0F)
+        .strength(4.5F, 6.0F)
         .instrument(NoteBlockInstrument.BELL)
+        .sound(SoundType.NETHERITE_BLOCK)) }
+
+    /**
+     * The tier two centrifuge, which processes special recipes like uranium refining.
+     */
+    val steel_centrifuge by this { entry -> CentrifugeBlock(MachineTier.TWO, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.DEEPSLATE)
+        .requiresCorrectToolForDrops()
+        .strength(6.0F, 9.0F)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.COPPER_GOLEM_STATUE)) }
+
+    /**
+     * The tier two and a half centrifuge, which processes special recipes like uranium refining.
+     */
+    val netherite_centrifuge by this { entry -> CentrifugeBlock(MachineTier.TWO_5, BlockBehaviour.Properties.of()
+        .setId(getEntryResourceKey(entry))
+        .mapColor(MapColor.COLOR_BLACK)
+        .requiresCorrectToolForDrops()
+        .strength(13.0F, 1200.0F)
         .sound(SoundType.NETHERITE_BLOCK)) }
 
     /**

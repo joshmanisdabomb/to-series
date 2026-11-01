@@ -27,4 +27,9 @@ object ToStarsBlockTagLibrary : TagLibrary<Block>(ToStarsMod.modid) {
      */
     val nuke_immune by this()
 
+    /**
+     * Blocks that a steel mining tool cannot break.
+     */
+    val incorrect_for_steel_tool by this()
+
 }

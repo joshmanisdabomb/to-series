@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties
  * @property unlit The model the machine is drawn from while it is idle.
  * @property lit The model it is drawn from while it is working, or `null` to reuse the unlit one with a lit front face. Defaults to `null`.
  */
-class LitMachineBlockModelClientDataCollectionModule(val unlit: TexturedModel.Provider, val lit: TexturedModel.Provider? = null) : ClientDataCollectionModule() {
+open class LitMachineBlockModelClientDataCollectionModule(val unlit: TexturedModel.Provider, val lit: TexturedModel.Provider? = null) : ClientDataCollectionModule() {
 
     override fun generateBlockModels(collection: DataCollection<Block>, event: ModelClientDataCollectionEvent): Boolean {
         val off = unlit.create(collection.`object`, event.block.modelOutput)

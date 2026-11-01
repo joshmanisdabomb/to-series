@@ -17,7 +17,7 @@ import net.jidb.to.base.neoforge.data.collection.provider.CollectionBlockTagData
 import net.jidb.to.base.neoforge.data.collection.provider.CollectionGeneralLootDataProvider
 import net.jidb.to.base.neoforge.data.collection.provider.CollectionItemTagDataProvider
 import net.jidb.to.base.neoforge.data.collection.provider.CollectionRecipeDataProvider
-import net.minecraft.core.HolderSet
+import net.jidb.to.base.neoforge.level.biome.BiomeModModifier
 import net.minecraft.core.RegistrySetBuilder
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.PackOutput
@@ -26,10 +26,10 @@ import net.minecraft.data.loot.LootTableProvider
 import net.minecraft.data.loot.LootTableProvider.SubProviderEntry
 import net.minecraft.data.tags.TagsProvider
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.neoforged.neoforge.common.data.BlockTagsProvider
-import net.neoforged.neoforge.common.world.BiomeModifiers
 import net.neoforged.neoforge.data.event.GatherDataEvent
 import net.neoforged.neoforge.registries.NeoForgeRegistries
 import java.nio.file.Path
@@ -126,7 +126,9 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
             event.createProvider { output, lookup -> AdvancementProvider(output, lookup, advancements) }
         }
         particles.forEach { event.createProvider(it) }
+        equipments.forEach { event.createProvider(it) }
         sounds.forEach { event.createProvider(it) }
+        sprites.forEach { event.createProvider(it) }
 
         gameTests?.also { library -> event.createProvider { GameTestStructureDataProvider(it, library) } }
 
@@ -148,21 +150,16 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
                 library.build()
             }
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS) {
-                val library = biomeModifiers ?: return@add
-                library.context = it
-                library.build()
+                val library = biomeModifiers
+                if (library != null) {
+                    library.context = it
+                    library.build()
+                }
 
                 for (library2 in biomeMods) {
-                    library2.values.forEach { m ->
-                        m.features.forEach { mf ->
-                            val biomes = it.lookup(Registries.BIOME)
-                            val pfeatures = it.lookup(Registries.PLACED_FEATURE)
-                            BiomeModifiers.AddFeaturesBiomeModifier(
-                                HolderSet.direct(mf.biomes.map(biomes::getOrThrow) + mf.tags.flatMap(biomes::getOrThrow)),
-                                HolderSet.direct(mf.features.map(pfeatures::getOrThrow)),
-                                mf.step
-                            )
-                        }
+                    library2.entries.values.forEach { m ->
+                        val key = ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, m.id)
+                        it.register(key, BiomeModModifier(m.value))
                     }
                 }
             }
@@ -173,6 +170,11 @@ abstract class ToForgeDataMod(override val event: GatherDataEvent.Client) : IToF
             }
             .add(Registries.JUKEBOX_SONG) {
                 val library = music ?: return@add
+                library.context = it
+                library.build()
+            }
+            .add(Registries.TRIM_MATERIAL) {
+                val library = trimMaterials ?: return@add
                 library.context = it
                 library.build()
             }

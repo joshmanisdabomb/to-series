@@ -1,11 +1,15 @@
 package net.jidb.to.base.neoforge.mod
 
+import com.mojang.serialization.MapCodec
+import net.jidb.to.base.api.library.Library
+import net.jidb.to.base.api.library.RegistryLibrary
 import net.jidb.to.base.api.mod.ToPlatformMod
 import net.jidb.to.base.neoforge.platform.NetworkingForgePlatformModule
 import net.jidb.to.base.neoforge.platform.ReloadListenerForgePlatformModule
 import net.jidb.to.base.neoforge.service.ForgeRegisterService
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent
 import net.neoforged.fml.event.lifecycle.FMLConstructModEvent
+import net.neoforged.neoforge.common.world.BiomeModifier
 import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 
@@ -32,9 +36,20 @@ abstract class ToForgeMod : ToPlatformMod {
      */
     open val modEvents: Any? = null
 
+    /**
+     * A [Library] for the mod's [net.neoforged.neoforge.common.world.BiomeModifier] [com.mojang.serialization.MapCodec] objects.
+     *
+     * Content here is automatically registered to Neoforge's biome modifier system.
+     *
+     * @since 1.1.0
+     */
+    open val biomeModifierSerializers: RegistryLibrary<*, MapCodec<out BiomeModifier>>? = null
+
     init {
         common.init()
         init()
+
+        biomeModifierSerializers?.build()
 
         ForgeRegisterService.addListener(common.modid, MOD_BUS)
 

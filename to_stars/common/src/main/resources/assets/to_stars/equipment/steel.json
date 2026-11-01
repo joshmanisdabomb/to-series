@@ -1,0 +1,29 @@
+{
+  "layers": {
+    "horse_body": [
+      {
+        "texture": "to_stars:steel"
+      }
+    ],
+    "humanoid": [
+      {
+        "texture": "to_stars:steel"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "to_stars:steel"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "to_stars:steel"
+      }
+    ],
+    "nautilus_body": [
+      {
+        "texture": "to_stars:steel"
+      }
+    ]
+  }
+}
