@@ -3,6 +3,7 @@ package net.jidb.to.stars.content
 import net.jidb.to.base.pub.library.TagLibrary
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.core.registries.Registries
+import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 
 /**
@@ -168,5 +169,94 @@ object ToStarsItemTagLibrary : TagLibrary<Item>(ToStarsMod.modid) {
      * @since 0.2.0
      */
     val tier_2_centrifuges by this()
+
+    /**
+     * Every electric smelting station (furnace, smoker, blast furnace, kiln), of any tier.
+     * @since 0.2.0
+     */
+    val powered_smelters by this()
+
+    /**
+     * Every electric smelting station excluding furnace (smoker, blast furnace, kiln), of any tier.
+     * @since 0.2.0
+     */
+    val powered_specialised_smelters by this()
+
+    /**
+     * Every electric furnace, of any tier.
+     * @since 0.2.0
+     */
+    val powered_furnaces by this()
+
+    /**
+     * Every tier 1 electric furnace, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_powered_furnaces by this()
+
+    /**
+     * Every tier 2 electric furnace, including tier 2.5.
+     * @since 0.2.0
+     */
+    val tier_2_powered_furnaces by this()
+
+    /**
+     * Every electric smoker, of any tier.
+     * @since 0.2.0
+     */
+    val powered_smokers by this()
+
+    /**
+     * Every tier 1 electric smoker, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_powered_smokers by this()
+
+    /**
+     * Every tier 2 electric smoker, including tier 2.5.
+     * @since 0.2.0
+     */
+    val tier_2_powered_smokers by this()
+
+    /**
+     * Every electric blast furnace, of any tier.
+     * @since 0.2.0
+     */
+    val powered_blast_furnaces by this()
+
+    /**
+     * Every tier 1 electric blast furnace, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_powered_blast_furnaces by this()
+
+    /**
+     * Every tier 2 electric blast furnace, including tier 2.5.
+     * @since 0.2.0
+     */
+    val tier_2_powered_blast_furnaces by this()
+
+    /**
+     * Every electric kiln, of any tier.
+     * @since 0.2.0
+     */
+    val powered_kilns by this()
+
+    /**
+     * Every tier 1 electric kiln, including tier 1.5.
+     * @since 0.2.0
+     */
+    val tier_1_powered_kilns by this()
+
+    /**
+     * Every tier 2 electric kiln, including tier 2.5.
+     * @since 0.2.0
+     */
+    val tier_2_powered_kilns by this()
+
+    /**
+     * Every machine that makes heat using solid fuel.
+     */
+    val solid_generators by this()
 
 }

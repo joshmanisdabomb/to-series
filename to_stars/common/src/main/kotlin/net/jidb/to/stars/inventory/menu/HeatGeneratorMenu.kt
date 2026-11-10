@@ -1,6 +1,7 @@
 package net.jidb.to.stars.inventory.menu
 
 import net.jidb.to.base.api.inventory.data.ContainerDataSchema
+import net.jidb.to.base.pub.inventory.ToBaseQuickStackHelper
 import net.minecraft.world.Container
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
@@ -45,36 +46,8 @@ abstract class HeatGeneratorMenu(type: MenuType<*>, id: Int, protected val playe
      */
     abstract fun canPlaceItem(stack: ItemStack, level: Level): Boolean
 
-    override fun quickMoveStack(player: Player, index: Int): ItemStack {
-        var result = ItemStack.EMPTY
-        val slot = this.slots[index]
-
-        if (slot.hasItem()) {
-            val stackInSlot = slot.item
-            result = stackInSlot.copy()
-
-            if (index < allSlots.size) {
-                if (!this.moveItemStackTo(stackInSlot, allSlots.size, slots.size, true)) {
-                    return ItemStack.EMPTY
-                }
-            } else if (!this.moveItemStackTo(stackInSlot, 0, allSlots.size, false)) {
-                return ItemStack.EMPTY
-            }
-
-            if (stackInSlot.isEmpty) {
-                slot.setByPlayer(ItemStack.EMPTY)
-            } else {
-                slot.setChanged()
-            }
-
-            if (stackInSlot.count == result.count) {
-                return ItemStack.EMPTY
-            }
-
-            slot.onTake(player, stackInSlot)
-        }
-
-        return result
+    override fun quickMoveStack(player: Player, index: Int) = ToBaseQuickStackHelper.start(this, player, index) { stack, index, slot, player ->
+        ToBaseQuickStackHelper.standard(::moveItemStackTo, stack, index, slots.size)
     }
 
     override fun stillValid(player: Player) = container.stillValid(player)

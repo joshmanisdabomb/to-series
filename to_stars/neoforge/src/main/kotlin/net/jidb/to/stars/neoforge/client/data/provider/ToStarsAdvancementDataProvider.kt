@@ -6,6 +6,7 @@ import net.jidb.to.base.pub.item.component.ToEnergyItemComponentData
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.advancements.AtomicBombAdvancementTrigger
 import net.jidb.to.stars.advancements.RaceAdvancementTrigger
+import net.jidb.to.stars.block.EnergyFurnaceBlock
 import net.jidb.to.stars.block.EnergyStorageBlock
 import net.jidb.to.stars.block.HeatGeneratorBlock
 import net.jidb.to.stars.block.ProcessorBlock
@@ -152,10 +153,40 @@ class ToStarsAdvancementDataProvider : AdvancementSubProvider {
                 true,
                 false
             )
-            .apply { ToStarsMod.blocks.values.filter { (it is HeatGeneratorBlock && it.machine == MachineTier.ONE_5) || (it is TurbineBlock && it.machine == MachineTier.ONE_5) || (it is EnergyStorageBlock && it.machine == MachineTier.ONE_5) || (it is ProcessorBlock && it.machine == MachineTier.ONE_5) }.forEach {
+            .apply { ToStarsMod.blocks.values.filter { (it is HeatGeneratorBlock && it.machine == MachineTier.ONE_5) || (it is TurbineBlock && it.machine == MachineTier.ONE_5) || (it is EnergyStorageBlock && it.machine == MachineTier.ONE_5) || (it is ProcessorBlock && it.machine == MachineTier.ONE_5) || (it is EnergyFurnaceBlock && it.machine == MachineTier.ONE_5) }.forEach {
                 addCriterion("has_gold_${it.identifier.path}", InventoryChangeTrigger.TriggerInstance.hasItems(it))
             } }
             .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "gold_machine_all"))
+
+        val poweredFurnace = Advancement.Builder.advancement()
+            .parent(copperMachine)
+            .display(
+                ItemStackTemplate(ToStarsMod.blocks.copper_powered_furnace.asItem()),
+                Component.translatable("advancements.${ToStarsMod.modid}.powered_furnace.title"),
+                Component.translatable("advancements.${ToStarsMod.modid}.powered_furnace.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+            )
+            .addCriterion("has_powered_furnace", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(getter, ToStarsMod.itemTags.powered_furnaces)))
+            .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "powered_furnace"))
+
+        val poweredSpecialisedFurnace = Advancement.Builder.advancement()
+            .parent(poweredFurnace)
+            .display(
+                ItemStackTemplate(ToStarsMod.blocks.gold_powered_blast_furnace.asItem()),
+                Component.translatable("advancements.${ToStarsMod.modid}.powered_specialised_furnace.title"),
+                Component.translatable("advancements.${ToStarsMod.modid}.powered_specialised_furnace.description"),
+                null,
+                AdvancementType.TASK,
+                true,
+                true,
+                false
+            )
+            .addCriterion("has_powered_specialised_furnace", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(getter, ToStarsMod.itemTags.powered_specialised_smelters)))
+            .save(output, Identifier.fromNamespaceAndPath(ToStarsMod.modid, "powered_specialised_furnace"))
 
         return copperMachine
     }

@@ -1,0 +1,32 @@
+{
+  "parent": "to_stars:powered_furnace",
+  "criteria": {
+    "has_powered_specialised_furnace": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:powered_specialised_smelters"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.powered_specialised_furnace.description"
+    },
+    "icon": {
+      "id": "to_stars:gold_powered_blast_furnace"
+    },
+    "title": {
+      "translate": "advancements.to_stars.powered_specialised_furnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_powered_specialised_furnace"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

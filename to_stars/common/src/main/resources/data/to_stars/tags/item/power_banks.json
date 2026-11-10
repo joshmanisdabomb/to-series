@@ -1,8 +1,6 @@
 {
   "values": [
-    "to_stars:copper_power_bank",
-    "to_stars:gold_power_bank",
-    "to_stars:netherite_power_bank",
-    "to_stars:steel_power_bank"
+    "#to_stars:tier_1_power_banks",
+    "#to_stars:tier_2_power_banks"
   ]
 }

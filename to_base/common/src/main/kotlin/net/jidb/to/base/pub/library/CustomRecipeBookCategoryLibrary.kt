@@ -16,7 +16,7 @@ import net.jidb.to.base.hooks.recipe.category.CustomRecipeBookCategoryRegistry
 open class CustomRecipeBookCategoryLibrary(modid: String) : SimpleLibrary<CustomRecipeBookCategory>(modid) {
 
     override fun afterBuild(entry: Library<CustomRecipeBookCategory, CustomRecipeBookCategory>.LibraryEntry<out CustomRecipeBookCategory, out CustomRecipeBookCategory>) {
-        CustomRecipeBookCategoryRegistry.addRecipeBookCategory(entry.value)
+        CustomRecipeBookCategoryRegistry.add(entry.value)
     }
 
 }

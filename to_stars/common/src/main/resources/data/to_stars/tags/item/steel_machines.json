@@ -2,6 +2,10 @@
   "values": [
     "to_stars:steel_centrifuge",
     "to_stars:steel_power_bank",
+    "to_stars:steel_powered_blast_furnace",
+    "to_stars:steel_powered_furnace",
+    "to_stars:steel_powered_kiln",
+    "to_stars:steel_powered_smoker",
     "to_stars:steel_solid_generator",
     "to_stars:steel_turbine"
   ]

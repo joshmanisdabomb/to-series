@@ -13,7 +13,7 @@ import net.jidb.to.base.api.recipe.CustomRecipeBookCategory
 object CustomRecipeBookCategoryRegistry {
 
     /**
-     * A list of [CustomRecipeBookCategory] objects registered via [addRecipeBookCategory].
+     * A list of [CustomRecipeBookCategory] objects registered via [add].
      *
      * @since 1.1.0
      */
@@ -25,7 +25,7 @@ object CustomRecipeBookCategoryRegistry {
      * @param category The custom recipe book category to be added.
      * @since 1.1.0
      */
-    fun addRecipeBookCategory(category: CustomRecipeBookCategory) {
+    fun add(category: CustomRecipeBookCategory) {
         all.add(category)
     }
 

@@ -2,6 +2,10 @@
   "values": [
     "to_stars:gold_centrifuge",
     "to_stars:gold_power_bank",
+    "to_stars:gold_powered_blast_furnace",
+    "to_stars:gold_powered_furnace",
+    "to_stars:gold_powered_kiln",
+    "to_stars:gold_powered_smoker",
     "to_stars:gold_solid_generator",
     "to_stars:gold_turbine"
   ]

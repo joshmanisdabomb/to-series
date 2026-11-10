@@ -1,14 +1,20 @@
 package net.jidb.to.stars.content
 
+import net.jidb.to.base.api.helper.IdentifierHelper.identifier
 import net.jidb.to.base.api.library.SimpleRegistryLibrary
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.CentrifugeBlock
+import net.jidb.to.stars.block.EnergyFurnaceBlock
 import net.jidb.to.stars.block.EnergyStorageBlock
 import net.jidb.to.stars.block.SolidGeneratorBlock
 import net.jidb.to.stars.block.entity.AtomicBombBlockEntity
 import net.jidb.to.stars.block.entity.BoilingCauldronBlockEntity
 import net.jidb.to.stars.block.entity.CentrifugeBlockEntity
+import net.jidb.to.stars.block.entity.EnergyBlastFurnaceBlockEntity
+import net.jidb.to.stars.block.entity.EnergyFurnaceBlockEntity
+import net.jidb.to.stars.block.entity.EnergyKilnBlockEntity
+import net.jidb.to.stars.block.entity.EnergySmokerBlockEntity
 import net.jidb.to.stars.block.entity.EnergyStorageBlockEntity
 import net.jidb.to.stars.block.entity.KilnBlockEntity
 import net.jidb.to.stars.block.entity.RotorBlockEntity
@@ -60,5 +66,25 @@ object ToStarsBlockEntityLibrary : SimpleRegistryLibrary<BlockEntityType<*>>(ToS
      * @see net.jidb.to.stars.client.content.ToStarsScreenLibrary.kiln
      */
     val kiln by this { Services.platform.blocks.createBlockEntityType(::KilnBlockEntity, ToStarsMod.blocks.kiln) }
+
+    /**
+     * The block entity of a To Energy furnace, shared by every tier of one.
+     */
+    val energy_furnace by this { Services.platform.blocks.createBlockEntityType(::EnergyFurnaceBlockEntity, *ToStarsMod.blocks.values.filterIsInstance<EnergyFurnaceBlock>().filter { it.identifier.path.endsWith("_powered_furnace") }.toTypedArray()) }
+
+    /**
+     * The block entity of a To Energy smoker, shared by every tier of one.
+     */
+    val energy_smoker by this { Services.platform.blocks.createBlockEntityType(::EnergySmokerBlockEntity, *ToStarsMod.blocks.values.filterIsInstance<EnergyFurnaceBlock>().filter { it.identifier.path.endsWith("_powered_smoker") }.toTypedArray()) }
+
+    /**
+     * The block entity of a To Energy blast furnace, shared by every tier of one.
+     */
+    val energy_blast_furnace by this { Services.platform.blocks.createBlockEntityType(::EnergyBlastFurnaceBlockEntity, *ToStarsMod.blocks.values.filterIsInstance<EnergyFurnaceBlock>().filter { it.identifier.path.endsWith("_powered_blast_furnace") }.toTypedArray()) }
+
+    /**
+     * The block entity of a To Energy kiln, shared by every tier of one.
+     */
+    val energy_kiln by this { Services.platform.blocks.createBlockEntityType(::EnergyKilnBlockEntity, *ToStarsMod.blocks.values.filterIsInstance<EnergyFurnaceBlock>().filter { it.identifier.path.endsWith("_powered_kiln") }.toTypedArray()) }
 
 }

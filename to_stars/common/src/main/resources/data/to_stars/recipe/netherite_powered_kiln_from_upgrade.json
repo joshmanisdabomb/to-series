@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "to_stars:steel_powered_kiln",
+  "result": {
+    "id": "to_stars:netherite_powered_kiln"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

@@ -4,7 +4,9 @@ import net.jidb.to.base.data.api.collection.DataCollection
 import net.jidb.to.base.data.api.collection.event.RecipeDataCollectionEvent
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.data.recipes.ShapedRecipeBuilder
+import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.resources.Identifier
+import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
@@ -24,6 +26,8 @@ object ToStarsDataHelper {
             else -> false
         }
     }
+
+    fun isPoweredFurnace(id: Identifier, tier: Int? = null) = listOf("powered_furnace", "powered_smoker", "powered_blast_furnace", "powered_kiln").any { isMachine(id, it, tier) }
 
     fun createGoldMachineRecipe(upgradee: ItemLike): ShapedRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapedRecipeBuilder = { collection, event ->
         pattern("ggg")
@@ -113,6 +117,65 @@ object ToStarsDataHelper {
         define('b', Items.GLASS_BOTTLE)
         define('r', ToStarsMod.blocks.rotor_blades)
         define('m', upgradee)
+        event.helper.createHas(this, upgradee)
+        this
+    }
+
+    fun createFurnaceRecipe(upgradee: ItemLike): ShapelessRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapelessRecipeBuilder = { collection, event ->
+        requires(upgradee)
+        requires(Blocks.FURNACE)
+        event.helper.createHas(this, upgradee)
+        this
+    }
+
+    fun createSmokerRecipe(upgradee: ItemLike): ShapelessRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapelessRecipeBuilder = { collection, event ->
+        requires(upgradee)
+        requires(Blocks.SMOKER)
+        event.helper.createHas(this, upgradee)
+        this
+    }
+
+    fun createSmokerUpgradeRecipe(upgradee: ItemLike): ShapedRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapedRecipeBuilder = { collection, event ->
+        pattern(" l ")
+        pattern("lfl")
+        pattern(" l ")
+        define('f', upgradee)
+        define('l', ItemTags.LOGS)
+        event.helper.createHas(this, upgradee)
+        this
+    }
+
+    fun createBlastFurnaceRecipe(upgradee: ItemLike): ShapelessRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapelessRecipeBuilder = { collection, event ->
+        requires(upgradee)
+        requires(Blocks.BLAST_FURNACE)
+        event.helper.createHas(this, upgradee)
+        this
+    }
+
+    fun createBlastFurnaceUpgradeRecipe(upgradee: ItemLike): ShapedRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapedRecipeBuilder = { collection, event ->
+        pattern("iii")
+        pattern("ifi")
+        pattern("bbb")
+        define('f', upgradee)
+        define('i', Items.IRON_INGOT)
+        define('b', Blocks.SMOOTH_STONE)
+        event.helper.createHas(this, upgradee)
+        this
+    }
+
+    fun createKilnRecipe(upgradee: ItemLike): ShapelessRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapelessRecipeBuilder = { collection, event ->
+        requires(upgradee)
+        requires(ToStarsMod.blocks.kiln)
+        event.helper.createHas(this, upgradee)
+        this
+    }
+
+    fun createKilnUpgradeRecipe(upgradee: ItemLike): ShapedRecipeBuilder.(collection: DataCollection<out ItemLike>, event: RecipeDataCollectionEvent) -> ShapedRecipeBuilder = { collection, event ->
+        pattern(" b ")
+        pattern("bfb")
+        pattern("bbb")
+        define('f', upgradee)
+        define('b', Blocks.BRICKS)
         event.helper.createHas(this, upgradee)
         this
     }

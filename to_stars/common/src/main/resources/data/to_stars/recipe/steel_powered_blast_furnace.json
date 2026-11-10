@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "to_stars:steel_machine_enclosure",
+    "minecraft:blast_furnace"
+  ],
+  "result": {
+    "id": "to_stars:steel_powered_blast_furnace"
+  }
+}

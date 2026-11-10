@@ -2,8 +2,9 @@ package net.jidb.to.stars.client.gui.screens
 
 import net.jidb.to.base.client.pub.gui.components.AbstractBarWidget
 import net.jidb.to.stars.ToStarsMod
+import net.jidb.to.stars.client.gui.components.AbstractProcessorComponents
+import net.jidb.to.stars.inventory.menu.AbstractProcessorMenu
 import net.jidb.to.stars.inventory.menu.CentrifugeMenu
-import net.jidb.to.stars.inventory.menu.ProcessorMenu
 import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent
 import net.minecraft.network.chat.Component
@@ -20,6 +21,8 @@ import net.minecraft.world.item.Items
  * @param title The title of the interface.
  */
 class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, title: Component) : ProcessorScreen<M>(menu, Component.translatable("gui.${ToStarsMod.modid}.centrifuge.recipebook.filter"), listOf(RecipeBookComponent.TabInfo(Items.COMPASS, ToStarsMod.recipeCategories.processor_misc), RecipeBookComponent.TabInfo(Items.IRON_INGOT, ToStarsMod.recipeCategories.processor_misc)), playerInventory, title, 209) {
+
+    private var progress: AbstractBarWidget? = null
 
     /**
      * The arrow running out to the left output, or `null` before the screen has been laid out.
@@ -42,7 +45,7 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
                 override val animation = AnimationDirection.TOP_BOTTOM
 
                 override fun getFill(): Float {
-                    val value = (ProcessorMenu.dataSchema.getShortValue(menu.data, ProcessorMenu.ProcessorDataKey.PROGRESS) ?: 0) / (ProcessorMenu.dataSchema.getShortValue(menu.data, ProcessorMenu.ProcessorDataKey.MAX_PROGRESS) ?: 0).toFloat()
+                    val value = (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.PROGRESS) ?: 0) / (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.MAX_PROGRESS) ?: 0).toFloat()
                     return value.times(1.85f).coerceAtMost(1f)
                 }
                 override fun getFrontTexture() = Companion.progress
@@ -56,7 +59,7 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
                 override val animation = AnimationDirection.RIGHT_LEFT
 
                 override fun getFill(): Float {
-                    val value = (ProcessorMenu.dataSchema.getShortValue(menu.data, ProcessorMenu.ProcessorDataKey.PROGRESS) ?: 0) / (ProcessorMenu.dataSchema.getShortValue(menu.data, ProcessorMenu.ProcessorDataKey.MAX_PROGRESS) ?: 0).toFloat()
+                    val value = (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.PROGRESS) ?: 0) / (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.MAX_PROGRESS) ?: 0).toFloat()
                     return value.times(1.85f).minus(0.85f).coerceAtLeast(0f)
                 }
                 override fun getFrontTexture() = Companion.progressl
@@ -70,7 +73,7 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
                 override val animation = AnimationDirection.LEFT_RIGHT
 
                 override fun getFill(): Float {
-                    val value = (ProcessorMenu.dataSchema.getShortValue(menu.data, ProcessorMenu.ProcessorDataKey.PROGRESS) ?: 0) / (ProcessorMenu.dataSchema.getShortValue(menu.data, ProcessorMenu.ProcessorDataKey.MAX_PROGRESS) ?: 0).toFloat()
+                    val value = (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.PROGRESS) ?: 0) / (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.MAX_PROGRESS) ?: 0).toFloat()
                     return value.times(1.85f).minus(0.85f).coerceAtLeast(0f)
                 }
                 override fun getFrontTexture() = Companion.progressr
@@ -82,11 +85,17 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
 
     override fun onRecipeBookButtonClick() {
         super.onRecipeBookButtonClick()
+        progress?.x = leftPos + 85
         progressl?.x = leftPos + 70
         progressr?.x = leftPos + 89
     }
 
-    override fun extractProgressTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, areaX: IntRange?, areaY: IntRange?): Boolean {
+    override fun extractTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int) {
+        super.extractTooltip(graphics, mouseX, mouseY)
+        extractProgressTooltip(graphics, mouseX, mouseY)
+    }
+
+    protected fun extractProgressTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int): Boolean {
         val progress = progress ?: return false
         val progressl = progressl ?: return false
         val progressr = progressr ?: return false
@@ -94,7 +103,8 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
         val areaX = progressl.x..progressr.right
         val areaY = progress.y..progressr.bottom
         if (mouseX in areaX && mouseY in areaY) {
-            return super.extractProgressTooltip(graphics, mouseX, mouseY, areaX, areaY)
+            AbstractProcessorComponents.extractProgressTooltip(this, menu, graphics, mouseX, mouseY)
+            return true
         }
         return false
     }

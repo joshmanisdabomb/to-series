@@ -66,6 +66,10 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("advancements.$modid.gold_machine_all.description", "Create All Tier 1.5 Machines")
         add("advancements.$modid.centrifuge.title", "You Spin Me Right Round")
         add("advancements.$modid.centrifuge.description", "Craft a Centrifuge")
+        add("advancements.$modid.powered_furnace.title", "Fuelless (Requires Fuel)")
+        add("advancements.$modid.powered_furnace.description", "Craft a Powered Furnace")
+        add("advancements.$modid.powered_specialised_furnace.title", "Specialist Smeltery")
+        add("advancements.$modid.powered_specialised_furnace.description", "Craft a Powered Smoker, Blast Furnace or Kiln")
 
         add("tooltip.$modid.atomic_bomb.strength", "Explosion Strength: %s")
         add("tooltip.$modid.atomic_bomb.strength.value", "%s")

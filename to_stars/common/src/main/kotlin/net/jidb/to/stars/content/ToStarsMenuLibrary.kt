@@ -3,11 +3,12 @@ package net.jidb.to.stars.content
 import net.jidb.to.base.api.library.SimpleRegistryLibrary
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
+import net.jidb.to.stars.inventory.menu.AbstractProcessorMenu
 import net.jidb.to.stars.inventory.menu.AtomicBombMenu
 import net.jidb.to.stars.inventory.menu.CentrifugeMenu
+import net.jidb.to.stars.inventory.menu.EnergyFurnaceMenu
 import net.jidb.to.stars.inventory.menu.EnergyStorageMenu
 import net.jidb.to.stars.inventory.menu.KilnMenu
-import net.jidb.to.stars.inventory.menu.ProcessorMenu
 import net.jidb.to.stars.inventory.menu.SolidGeneratorMenu
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.inventory.MenuType
@@ -37,7 +38,7 @@ object ToStarsMenuLibrary : SimpleRegistryLibrary<MenuType<*>>(ToStarsMod.modid)
     /**
      * The interface a centrifuge is opened into, which is told which recipes it can run as it opens.
      */
-    val centrifuge by this { Services.platform.inventory.createExtendedMenu(::CentrifugeMenu, ProcessorMenu.ProcessorMenuData.codec) }
+    val centrifuge by this { Services.platform.inventory.createExtendedMenu(::CentrifugeMenu, AbstractProcessorMenu.AbstractProcessorMenuData.codec) }
 
     /**
      * The networked inventory interface for the kiln.
@@ -46,5 +47,10 @@ object ToStarsMenuLibrary : SimpleRegistryLibrary<MenuType<*>>(ToStarsMod.modid)
      * @see net.jidb.to.stars.client.content.ToStarsScreenLibrary.kiln
      */
     val kiln by this { Services.platform.inventory.createBasicMenu(::KilnMenu) }
+
+    /**
+     * The interface an energy furnace is opened into, which is told which recipes it can run as it opens.
+     */
+    val energy_furnace by this { Services.platform.inventory.createExtendedMenu(::EnergyFurnaceMenu, EnergyFurnaceMenu.EnergyFurnaceMenuData.codec) }
 
 }

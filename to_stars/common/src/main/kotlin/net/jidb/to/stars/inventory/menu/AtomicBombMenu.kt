@@ -1,5 +1,6 @@
 package net.jidb.to.stars.inventory.menu
 
+import net.jidb.to.base.pub.inventory.ToBaseQuickStackHelper
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.resources.Identifier
 import net.minecraft.world.Container
@@ -57,36 +58,8 @@ class AtomicBombMenu(id: Int, playerInventory: Inventory, internal val container
         return set.toIntArray()
     }
 
-    override fun quickMoveStack(player: Player, index: Int): ItemStack {
-        var result = ItemStack.EMPTY
-        val slot = this.slots[index]
-
-        if (slot.hasItem()) {
-            val stackInSlot = slot.item
-            result = stackInSlot.copy()
-
-            if (index < allSlots.size) {
-                if (!this.moveItemStackTo(stackInSlot, allSlots.size, slots.size, true)) {
-                    return ItemStack.EMPTY
-                }
-            } else if (!this.moveItemStackTo(stackInSlot, 0, allSlots.size, false)) {
-                return ItemStack.EMPTY
-            }
-
-            if (stackInSlot.isEmpty) {
-                slot.setByPlayer(ItemStack.EMPTY)
-            } else {
-                slot.setChanged()
-            }
-
-            if (stackInSlot.count == result.count) {
-                return ItemStack.EMPTY
-            }
-
-            slot.onTake(player, stackInSlot)
-        }
-
-        return result
+    override fun quickMoveStack(player: Player, index: Int) = ToBaseQuickStackHelper.start(this, player, index) { stack, index, slot, player ->
+        ToBaseQuickStackHelper.standard(::moveItemStackTo, stack, index, slots.size)
     }
 
     override fun stillValid(player: Player) = container.stillValid(player)

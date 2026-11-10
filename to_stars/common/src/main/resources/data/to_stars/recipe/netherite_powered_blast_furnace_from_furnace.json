@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": "minecraft:smooth_stone",
+    "f": "to_stars:netherite_powered_furnace",
+    "i": "minecraft:iron_ingot"
+  },
+  "pattern": [
+    "iii",
+    "ifi",
+    "bbb"
+  ],
+  "result": {
+    "id": "to_stars:netherite_powered_blast_furnace"
+  }
+}

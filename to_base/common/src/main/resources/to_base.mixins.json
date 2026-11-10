@@ -7,16 +7,17 @@
     "FireBlockAccessor",
     "ItemMixin",
     "ItemPropertiesMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "RecipeManagerMixin"
   ],
   "client": [
     "client.BlockEntityRenderDispatcherAccessor",
     "client.BlockModelGeneratorsAccessor",
+    "client.ClientRecipeBookMixin",
     "client.GhostSlotsAccessor",
     "client.GuiGraphicsAccessor",
     "client.ItemModelGeneratorsAccessor",
-    "client.RecipeBookComponentAccessor",
-    "client.ClientRecipeBookMixin"
+    "client.RecipeBookComponentAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

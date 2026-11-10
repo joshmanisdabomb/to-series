@@ -2,6 +2,10 @@
   "values": [
     "to_stars:netherite_centrifuge",
     "to_stars:netherite_power_bank",
+    "to_stars:netherite_powered_blast_furnace",
+    "to_stars:netherite_powered_furnace",
+    "to_stars:netherite_powered_kiln",
+    "to_stars:netherite_powered_smoker",
     "to_stars:netherite_solid_generator",
     "to_stars:netherite_turbine"
   ]

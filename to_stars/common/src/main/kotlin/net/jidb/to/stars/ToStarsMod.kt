@@ -24,6 +24,7 @@ import net.jidb.to.stars.content.ToStarsRecipeCategoryLibrary
 import net.jidb.to.stars.content.ToStarsRecipeCustomCategoryLibrary
 import net.jidb.to.stars.content.ToStarsRecipeDisplayLibrary
 import net.jidb.to.stars.content.ToStarsRecipeLibrary
+import net.jidb.to.stars.content.ToStarsRecipePropertySetLibrary
 import net.jidb.to.stars.content.ToStarsRecipeSerializerLibrary
 import net.jidb.to.stars.content.ToStarsSavedDataLibrary
 import net.jidb.to.stars.content.ToStarsSoundLibrary
@@ -76,6 +77,7 @@ object ToStarsMod : ToMod() {
     override val recipeSerializers = ToStarsRecipeSerializerLibrary
     override val recipeCategories = ToStarsRecipeCategoryLibrary
     override val recipeCustomCategories = ToStarsRecipeCustomCategoryLibrary
+    override val recipePropertySets = ToStarsRecipePropertySetLibrary
     override val recipeDisplays = ToStarsRecipeDisplayLibrary
 
     override val eventHandlers = ToStarsEventHandlerLibrary

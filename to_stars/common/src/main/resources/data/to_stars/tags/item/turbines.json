@@ -1,8 +1,6 @@
 {
   "values": [
-    "to_stars:copper_turbine",
-    "to_stars:gold_turbine",
-    "to_stars:netherite_turbine",
-    "to_stars:steel_turbine"
+    "#to_stars:tier_1_turbines",
+    "#to_stars:tier_2_turbines"
   ]
 }

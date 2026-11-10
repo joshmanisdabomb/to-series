@@ -2,6 +2,7 @@ package net.jidb.to.stars.inventory.menu
 
 import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.pub.block.entity.ToEnergyBlockEntityHandler
+import net.jidb.to.base.pub.inventory.ToBaseQuickStackHelper
 import net.jidb.to.base.pub.inventory.slot.ToEnergyItemSlot
 import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
@@ -12,7 +13,6 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.inventory.SimpleContainerData
-import net.minecraft.world.item.ItemStack
 
 /**
  * The interface a power bank is opened into, which has one slot for charging something and one for draining it.
@@ -47,46 +47,26 @@ class EnergyStorageMenu(id: Int, playerInventory: Inventory, internal val contai
         addDataSlots(data)
     }
 
-    override fun quickMoveStack(player: Player, index: Int): ItemStack {
-        var result = ItemStack.EMPTY
-        val slot = this.slots[index]
+    override fun quickMoveStack(player: Player, index: Int) = ToBaseQuickStackHelper.start(this, player, index) { stack, index, slot, player ->
+        val from = ToBaseQuickStackHelper.fromContainer(::moveItemStackTo, stack, index, slots.size)
+        if (from != null) return@start from
 
-        if (slot.hasItem()) {
-            val stackInSlot = slot.item
-            val itemTransfer = Services.platform.transfer.itemProvider.fromContainer(slot.container, null)
-            val energy = if (itemTransfer != null) ToBaseMod.transferProviders.to_energy.fromItemStack(stackInSlot, itemTransfer, index) else null
-            result = stackInSlot.copy()
-
-            if (index in allSlots) {
-                if (!this.moveItemStackTo(stackInSlot, allSlots.size, slots.size, true)) {
-                    return ItemStack.EMPTY
+        val itemTransfer = Services.platform.transfer.itemProvider.fromContainer(slot.container, null)
+        val energy = if (itemTransfer != null) ToBaseMod.transferProviders.to_energy.fromItemStack(stack, itemTransfer, index) else null
+        if (energy != null) {
+            if (energy.getTotalAmount(Unit) <= 0L) {
+                if (ToBaseQuickStackHelper.toContainer(::moveItemStackTo, stack, index, slots.size, transferToSlots.toList().toIntArray()) == true) {
+                    return@start true
                 }
-            } else if (energy != null && energy.getTotalAmount(Unit) <= 0L) {
-                if (!this.moveItemStackTo(stackInSlot, transferToSlots.min(), transferToSlots.max() + 1, false)) {
-                    return ItemStack.EMPTY
+            } else if (energy.getTotalAmount(Unit) >= energy.getTotalCapacity(Unit)) {
+                if (ToBaseQuickStackHelper.toContainer(::moveItemStackTo, stack, index, slots.size, transferFromSlots.toList().toIntArray()) == true) {
+                    return@start true
                 }
-            } else if (energy != null && energy.getTotalAmount(Unit) >= energy.getTotalCapacity(Unit)) {
-                if (!this.moveItemStackTo(stackInSlot, transferFromSlots.min(), transferFromSlots.max() + 1, false)) {
-                    return ItemStack.EMPTY
-                }
-            } else if (!this.moveItemStackTo(stackInSlot, allSlots.min(), allSlots.max() + 1, false)) {
-                return ItemStack.EMPTY
             }
-
-            if (stackInSlot.isEmpty) {
-                slot.setByPlayer(ItemStack.EMPTY)
-            } else {
-                slot.setChanged()
-            }
-
-            if (stackInSlot.count == result.count) {
-                return ItemStack.EMPTY
-            }
-
-            slot.onTake(player, stackInSlot)
+        } else if (ToBaseQuickStackHelper.toContainer(::moveItemStackTo, stack, index, slots.size, allSlots.toList().toIntArray()) == true) {
+            return@start true
         }
-
-        return result
+        ToBaseQuickStackHelper.betweenInventoryHotbar(::moveItemStackTo, stack, index, slots.size) == true
     }
 
     override fun stillValid(player: Player) = container.stillValid(player)

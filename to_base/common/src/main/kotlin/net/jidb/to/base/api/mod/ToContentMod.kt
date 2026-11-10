@@ -18,6 +18,7 @@ import net.jidb.to.base.pub.library.EventHandlerLibrary
 import net.jidb.to.base.pub.library.GameTestLibrary
 import net.jidb.to.base.pub.library.PayloadHandlerLibrary
 import net.jidb.to.base.pub.library.PayloadLibrary
+import net.jidb.to.base.pub.library.RecipePropertySetLibrary
 import net.jidb.to.base.pub.library.ReloadListenerLibrary
 import net.jidb.to.base.pub.library.SoundEventLibrary
 import net.jidb.to.base.pub.library.TagLibrary
@@ -210,6 +211,15 @@ interface ToContentMod {
      * @since 1.1.0
      */
     val recipeCustomCategories: CustomRecipeBookCategoryLibrary? get() = null
+
+    /**
+     * A [Library] of [net.minecraft.world.item.crafting.RecipePropertySet] registry keys, defined with a ingredient extractor to synchronise sets of recipe ingredients from server to client.
+     *
+     * Content here in a [net.jidb.to.base.pub.mod.ToMod] object is automatically registered to [net.jidb.to.base.hooks.recipe.RecipePropertySetRegistry], which injects the ingredient extractors into [net.minecraft.world.item.crafting.RecipeManager.finalizeRecipeLoading].
+     *
+     * @since 1.1.0
+     */
+    val recipePropertySets: RecipePropertySetLibrary? get() = null
 
     /**
      * A [Library] for the mod's [RecipeDisplay.Type] objects.

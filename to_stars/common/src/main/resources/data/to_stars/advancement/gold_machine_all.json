@@ -21,6 +21,46 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_gold_gold_powered_blast_furnace": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_powered_blast_furnace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gold_gold_powered_furnace": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_powered_furnace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gold_gold_powered_kiln": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_powered_kiln"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_gold_gold_powered_smoker": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:gold_powered_smoker"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_gold_gold_solid_generator": {
       "conditions": {
         "items": [
@@ -74,6 +114,18 @@
     ],
     [
       "has_gold_gold_centrifuge"
+    ],
+    [
+      "has_gold_gold_powered_furnace"
+    ],
+    [
+      "has_gold_gold_powered_smoker"
+    ],
+    [
+      "has_gold_gold_powered_blast_furnace"
+    ],
+    [
+      "has_gold_gold_powered_kiln"
     ]
   ],
   "sends_telemetry_event": true

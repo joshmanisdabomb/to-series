@@ -2,8 +2,6 @@ package net.jidb.to.stars.inventory.menu
 
 import net.jidb.to.stars.ToStarsMod
 import net.jidb.to.stars.block.entity.KilnBlockEntity
-import net.jidb.to.stars.inventory.menu.CentrifugeMenu.Companion.allSlots
-import net.jidb.to.stars.inventory.menu.ProcessorMenu.Companion.dataSchema
 import net.minecraft.world.Container
 import net.minecraft.world.SimpleContainer
 import net.minecraft.world.entity.player.Inventory
@@ -13,6 +11,7 @@ import net.minecraft.world.inventory.RecipeBookType
 import net.minecraft.world.inventory.SimpleContainerData
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.RecipePropertySet
+import net.minecraft.world.level.Level
 
 /**
  * Represents the inventory menu system for the Kiln block and block entity.
@@ -34,20 +33,12 @@ import net.minecraft.world.item.crafting.RecipePropertySet
 class KilnMenu(id: Int, playerInventory: Inventory, container: Container, data: ContainerData) : AbstractFurnaceMenu(ToStarsMod.menus.kiln, RecipePropertySet.FURNACE_INPUT, RecipeBookType.FURNACE, id, playerInventory, container, data) {
 
     /**
-     * Represents the set of valid input items for furnace recipes.
-     * This set is used in [canSmelt] to test that an item has a smelting recipe, paired with [otherSets] this would determine whether an item can be smelted in a kiln.
+     * Represents the test of valid kiln items based on the level's recipeAccess.
+     * This set is used in [canSmelt] to test that an item has a kiln recipe.
      *
      * @since 0.2.0
      */
-    private val furnaceSet = level.recipeAccess().propertySet(RecipePropertySet.FURNACE_INPUT)
-
-    /**
-     * Represents the set of valid input items for other scoped furnace recipes (i.e. smoker, blast furnace, and campfire).
-     * This set is used in [canSmelt] to test that an item has a smoking or blasting recipe, excluding results that match [furnaceSet] would determine whether an item can be smelted in a kiln.
-     *
-     * @since 0.2.0
-     */
-    private val otherSets = listOf(RecipePropertySet.SMOKER_INPUT, RecipePropertySet.BLAST_FURNACE_INPUT, RecipePropertySet.CAMPFIRE_INPUT).map(level.recipeAccess()::propertySet)
+    private val tester by lazy { createPropertySetTester(level) }
 
     /**
      * Client-side constructor for a [KilnMenu].
@@ -56,8 +47,18 @@ class KilnMenu(id: Int, playerInventory: Inventory, container: Container, data: 
      * @param id A unique identifier for the menu instance.
      * @param playerInventory The player's inventory interacting with the menu.
      */
-    constructor(id: Int, playerInventory: Inventory) : this(id, playerInventory, SimpleContainer(allSlots.size), SimpleContainerData(dataSchema.getDataSize()))
+    constructor(id: Int, playerInventory: Inventory) : this(id, playerInventory, SimpleContainer(SLOT_COUNT), SimpleContainerData(DATA_COUNT))
 
-    override fun canSmelt(stack: ItemStack) = furnaceSet.test(stack) && otherSets.none { it.test(stack) }
+    override fun canSmelt(stack: ItemStack) = tester(stack)
+
+    companion object {
+
+        fun createPropertySetTester(level: Level): (stack: ItemStack) -> Boolean {
+            val furnaceSet = level.recipeAccess().propertySet(RecipePropertySet.FURNACE_INPUT)
+            val otherSets = listOf(RecipePropertySet.SMOKER_INPUT, RecipePropertySet.BLAST_FURNACE_INPUT, RecipePropertySet.CAMPFIRE_INPUT).map(level.recipeAccess()::propertySet)
+            return { stack -> furnaceSet.test(stack) && otherSets.none { it.test(stack) } }
+        }
+
+    }
 
 }

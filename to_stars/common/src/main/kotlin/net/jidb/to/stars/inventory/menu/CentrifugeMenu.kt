@@ -1,18 +1,15 @@
 package net.jidb.to.stars.inventory.menu
 
-import net.jidb.to.base.ToBaseMod
 import net.jidb.to.base.pub.inventory.slot.CraftingOutputSlot
 import net.jidb.to.base.pub.inventory.slot.ToEnergyItemSlot
-import net.jidb.to.base.service.Services
 import net.jidb.to.stars.ToStarsMod
 import net.minecraft.world.Container
 import net.minecraft.world.SimpleContainer
 import net.minecraft.world.entity.player.Inventory
-import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.inventory.SimpleContainerData
-import net.minecraft.world.inventory.Slot
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.level.Level
 
 /**
  * The interface a centrifuge is opened into, which has one input, two outputs and a slot for a battery to run it from.
@@ -28,8 +25,6 @@ class CentrifugeMenu(id: Int, playerInventory: Inventory, container: Container, 
     override val outputSlots = Companion.outputSlots
     override val batterySlots = Companion.batterySlots
 
-    override var clientData: ProcessorMenuData? = null
-
     /**
      * Creates the menu on the client, where the centrifuge itself is not available and what it needs to draw is sent with the opening packet instead.
      *
@@ -37,8 +32,8 @@ class CentrifugeMenu(id: Int, playerInventory: Inventory, container: Container, 
      * @param playerInventory The inventory of the player who opened it.
      * @param data What the client needs to know about the centrifuge.
      */
-    constructor(id: Int, playerInventory: Inventory, data: ProcessorMenuData) : this(id, playerInventory, SimpleContainer(allSlots.size), SimpleContainerData(dataSchema.getDataSize())) {
-        clientData = data
+    constructor(id: Int, playerInventory: Inventory, data: AbstractProcessorMenuData) : this(id, playerInventory, SimpleContainer(allSlots.size), SimpleContainerData(dataSchema.getDataSize())) {
+        _clientData = data
     }
 
     init {
@@ -46,7 +41,7 @@ class CentrifugeMenu(id: Int, playerInventory: Inventory, container: Container, 
 
         container.startOpen(playerInventory.player)
 
-        addSlot(Slot(container, 0, 80, 46))
+        addSlot(AbstractProcessorInputSlot(container, 0, 80, 46))
         addSlot(CraftingOutputSlot(container, playerInventory.player, inputSlots, 1, 41, 77))
         addSlot(CraftingOutputSlot(container, playerInventory.player, inputSlots, 2, 119, 77))
         addSlot(ToEnergyItemSlot(container, 3, 8, 18, ::slotsChanged))
@@ -58,45 +53,7 @@ class CentrifugeMenu(id: Int, playerInventory: Inventory, container: Container, 
         addDataSlots(data)
     }
 
-    override fun stillValid(player: Player) = container.stillValid(player)
-
-    override fun quickMoveStack(player: Player, index: Int): ItemStack {
-        var result = ItemStack.EMPTY
-        val slot = this.slots[index]
-
-        if (slot.hasItem()) {
-            val stackInSlot = slot.item
-            val itemTransfer = Services.platform.transfer.itemProvider.fromContainer(slot.container, null)
-            val energy = if (itemTransfer != null) ToBaseMod.transferProviders.to_energy.fromItemStack(stackInSlot, itemTransfer, index) else null
-            result = stackInSlot.copy()
-
-            if (index in allSlots) {
-                if (!this.moveItemStackTo(stackInSlot, allSlots.size, slots.size, true)) {
-                    return ItemStack.EMPTY
-                }
-            } else if (energy != null) {
-                if (!this.moveItemStackTo(stackInSlot, batterySlots.min(), batterySlots.max() + 1, false)) {
-                    return ItemStack.EMPTY
-                }
-            } else if (!this.moveItemStackTo(stackInSlot, inputSlots.min(), inputSlots.max() + 1, false)) {
-                return ItemStack.EMPTY
-            }
-
-            if (stackInSlot.isEmpty) {
-                slot.setByPlayer(ItemStack.EMPTY)
-            } else {
-                slot.setChanged()
-            }
-
-            if (stackInSlot.count == result.count) {
-                return ItemStack.EMPTY
-            }
-
-            slot.onTake(player, stackInSlot)
-        }
-
-        return result
-    }
+    override fun canPlaceInput(stack: ItemStack, index: Int, level: Level) = level.recipeAccess().propertySet(ToStarsMod.recipePropertySets.centrifuge).test(stack)
 
     companion object {
 

@@ -19,6 +19,7 @@ import net.jidb.to.base.data.pub.collection.module.loot.SimpleBlockLootDataColle
 import net.jidb.to.base.data.pub.collection.module.recipe.CompactRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.OreRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.ShapedRecipeDataCollectionModule
+import net.jidb.to.base.data.pub.collection.module.recipe.ShapelessRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.SmithingRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.recipe.TemplateSmithingRecipeDataCollectionModule
 import net.jidb.to.base.data.pub.collection.module.tag.DictTagDataCollectionModule
@@ -36,6 +37,7 @@ import net.jidb.to.stars.neoforge.client.data.ToStarsDataHelper
 import net.jidb.to.stars.neoforge.client.data.module.AtomicBombBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.BoilingCauldronBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.CentrifugeModelClientDataCollectionModule
+import net.jidb.to.stars.neoforge.client.data.module.EnergyFurnaceModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.HeatCableBlockModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.HeatGeneratorModelClientDataCollectionModule
 import net.jidb.to.stars.neoforge.client.data.module.LitMachineBlockModelClientDataCollectionModule
@@ -214,7 +216,6 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val machine_enclosure_tier_1 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "machine_enclosure", 1) }
         addModule { MachineEnclosureModelClientDataCollectionModule(1) }
-        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.machine_enclosures) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_machine_enclosures) }
     }
 
@@ -258,7 +259,6 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val machine_enclosure_tier_2 by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "machine_enclosure", 2) }
         addModule { MachineEnclosureModelClientDataCollectionModule(2) }
-        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.machine_enclosures) }
         addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_machine_enclosures) }
     }
 
@@ -336,7 +336,6 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val power_banks by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "power_bank") }
         addModule(::EnergySilkBlockLootDataCollectionModule)
-        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.power_banks) }
     }
 
     /**
@@ -448,7 +447,6 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val batteries by this {
         addAffects(clear = true) { it.identifier().path.endsWith("_battery") }
         addModule { TintedItemModelClientDataCollectionModule(BatteryItemTint()) }
-        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.batteries) }
     }
 
     /**
@@ -549,7 +547,6 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val generators by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "generator") }
         addModule { IdentifierLanguageClientDataCollectionModule { it.replace("solid", "solid-fired").replace("fluid", "liquid-fired") } }
-        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.heat_generators) }
     }
 
     /**
@@ -664,16 +661,6 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     }
 
     /**
-     * The data description shared by all turbines.
-     * @see net.jidb.to.stars.block.TurbineBlock
-     * @since 0.1.0
-     */
-    val turbines by this {
-        addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "turbine") }
-        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.turbines) }
-    }
-
-    /**
      * The data description shared by tier one turbines.
      * @see net.jidb.to.stars.block.TurbineBlock
      * @since 0.1.0
@@ -771,7 +758,6 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
     val centrifuges by this {
         addAffects(clear = true) { ToStarsDataHelper.isMachine(it.identifier(), "centrifuge") }
         addModule(::EnergySilkBlockLootDataCollectionModule)
-        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.centrifuges) }
     }
 
     /**
@@ -944,6 +930,356 @@ object ToStarsDataLibrary : DataCollectionLibrary(ToStarsMod.modid) {
             event.helper.createHas(this, ToStarsMod.items.steel_ingot)
             this
         } }
+    }
+
+    /**
+     * The data description shared by all electric smelters.
+     * @see net.jidb.to.stars.block.EnergyFurnaceBlock
+     * @since 0.2.0
+     */
+    val powered_smelters by this {
+        addAffects(clear = true) { ToStarsDataHelper.isPoweredFurnace(it.identifier()) }
+        addModule(::EnergySilkBlockLootDataCollectionModule)
+    }
+
+    /**
+     * The data description shared by all tier 1 electric smelters.
+     * @see net.jidb.to.stars.block.EnergyFurnaceBlock
+     * @since 0.2.0
+     */
+    val powered_smelter_tier_1 by this {
+        addAffects(clear = true) { ToStarsDataHelper.isPoweredFurnace(it.identifier()) }
+        addModule { EnergyFurnaceModelClientDataCollectionModule(1) }
+    }
+
+    /**
+     * The data description shared by all copper electric smelters.
+     * @since 0.2.0
+     */
+    val copper_powered_smelters by this {
+        addAffects(clear = true) { ToStarsDataHelper.isPoweredFurnace(it.identifier()) && it.identifier().path.startsWith("copper_") }
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 1) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.copper_machines) }
+    }
+
+    /**
+     * The data description of the copper electric furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.copper_powered_furnace
+     * @since 0.2.0
+     */
+    val copper_powered_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createFurnaceRecipe(ToStarsMod.blocks.copper_machine_enclosure)) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_furnaces) }
+    }
+
+    /**
+     * The data description of the copper electric smoker.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.copper_powered_smoker
+     * @since 0.2.0
+     */
+    val copper_powered_smoker by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createSmokerRecipe(ToStarsMod.blocks.copper_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createSmokerUpgradeRecipe(ToStarsMod.blocks.copper_powered_furnace)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_smokers) }
+    }
+
+    /**
+     * The data description of the copper electric blast furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.copper_powered_blast_furnace
+     * @since 0.2.0
+     */
+    val copper_powered_blast_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createBlastFurnaceRecipe(ToStarsMod.blocks.copper_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createBlastFurnaceUpgradeRecipe(ToStarsMod.blocks.copper_powered_furnace)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_blast_furnaces) }
+    }
+
+    /**
+     * The data description of the copper electric kiln.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.copper_powered_kiln
+     * @since 0.2.0
+     */
+    val copper_powered_kiln by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createKilnRecipe(ToStarsMod.blocks.copper_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createKilnUpgradeRecipe(ToStarsMod.blocks.copper_powered_furnace)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_kilns) }
+    }
+
+    /**
+     * The data description shared by all gold electric smelters.
+     * @since 0.2.0
+     */
+    val gold_powered_smelters by this {
+        addAffects(clear = true) { ToStarsDataHelper.isPoweredFurnace(it.identifier()) && it.identifier().path.startsWith("gold_") }
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.gold_machines) }
+    }
+
+    /**
+     * The data description of the gold electric furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.gold_powered_furnace
+     * @since 0.2.0
+     */
+    val gold_powered_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createFurnaceRecipe(ToStarsMod.blocks.gold_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createGoldMachineRecipe(ToStarsMod.blocks.copper_powered_furnace)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_furnaces) }
+    }
+
+    /**
+     * The data description of the gold electric smoker.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.gold_powered_smoker
+     * @since 0.2.0
+     */
+    val gold_powered_smoker by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createSmokerRecipe(ToStarsMod.blocks.gold_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createSmokerUpgradeRecipe(ToStarsMod.blocks.gold_powered_furnace)
+        ) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createGoldMachineRecipe(ToStarsMod.blocks.copper_powered_smoker)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_smokers) }
+    }
+
+    /**
+     * The data description of the gold electric blast furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.gold_powered_blast_furnace
+     * @since 0.2.0
+     */
+    val gold_powered_blast_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createBlastFurnaceRecipe(ToStarsMod.blocks.gold_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createBlastFurnaceUpgradeRecipe(ToStarsMod.blocks.gold_powered_furnace)
+        ) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createGoldMachineRecipe(ToStarsMod.blocks.copper_powered_blast_furnace)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_blast_furnaces) }
+    }
+
+    /**
+     * The data description of the gold electric kiln.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.gold_powered_kiln
+     * @since 0.2.0
+     */
+    val gold_powered_kiln by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createKilnRecipe(ToStarsMod.blocks.gold_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createKilnUpgradeRecipe(ToStarsMod.blocks.gold_powered_furnace)
+        ) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createGoldMachineRecipe(ToStarsMod.blocks.copper_powered_kiln)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_1_powered_kilns) }
+    }
+
+    /**
+     * The data description shared by all tier 2 electric smelters.
+     * @see net.jidb.to.stars.block.EnergyFurnaceBlock
+     * @since 0.2.0
+     */
+    val powered_smelter_tier_2 by this {
+        addAffects(clear = true) { ToStarsDataHelper.isPoweredFurnace(it.identifier()) }
+        addModule { EnergyFurnaceModelClientDataCollectionModule(2) }
+    }
+
+    /**
+     * The data description shared by all steel electric smelters.
+     * @since 0.2.0
+     */
+    val steel_powered_smelters by this {
+        addAffects(clear = true) { ToStarsDataHelper.isPoweredFurnace(it.identifier()) && it.identifier().path.startsWith("steel_") }
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 2) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.steel_machines) }
+    }
+
+    /**
+     * The data description of the steel electric furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.steel_powered_furnace
+     * @since 0.2.0
+     */
+    val steel_powered_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createFurnaceRecipe(ToStarsMod.blocks.steel_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createSteelMachineRecipe(ToStarsMod.itemTags.tier_1_powered_furnaces)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_furnaces) }
+    }
+
+    /**
+     * The data description of the steel electric smoker.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.steel_powered_smoker
+     * @since 0.2.0
+     */
+    val steel_powered_smoker by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createSmokerRecipe(ToStarsMod.blocks.steel_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createSmokerUpgradeRecipe(ToStarsMod.blocks.steel_powered_furnace)
+        ) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createSteelMachineRecipe(ToStarsMod.itemTags.tier_1_powered_smokers)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_smokers) }
+    }
+
+    /**
+     * The data description of the steel electric blast furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.steel_powered_blast_furnace
+     * @since 0.2.0
+     */
+    val steel_powered_blast_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createBlastFurnaceRecipe(ToStarsMod.blocks.steel_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createBlastFurnaceUpgradeRecipe(ToStarsMod.blocks.steel_powered_furnace)
+        ) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createSteelMachineRecipe(ToStarsMod.itemTags.tier_1_powered_blast_furnaces)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_blast_furnaces) }
+    }
+
+    /**
+     * The data description of the steel electric kiln.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.steel_powered_kiln
+     * @since 0.2.0
+     */
+    val steel_powered_kiln by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createKilnRecipe(ToStarsMod.blocks.steel_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createKilnUpgradeRecipe(ToStarsMod.blocks.steel_powered_furnace)
+        ) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_upgrade",
+            modify = ToStarsDataHelper.createSteelMachineRecipe(ToStarsMod.itemTags.tier_1_powered_kilns)
+        ) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_kilns) }
+    }
+
+    /**
+     * The data description shared by all netherite electric smelters.
+     * @since 0.2.0
+     */
+    val netherite_powered_smelters by this {
+        addAffects(clear = true) { ToStarsDataHelper.isPoweredFurnace(it.identifier()) && it.identifier().path.startsWith("netherite_") }
+        addModule { MiningBlockTagDataCollectionModule(ToolType.PICKAXE, 3) }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.netherite_machines) }
+    }
+
+    /**
+     * The data description of the netherite electric furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.netherite_powered_furnace
+     * @since 0.2.0
+     */
+    val netherite_powered_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createFurnaceRecipe(ToStarsMod.blocks.netherite_machine_enclosure)) }
+        addModule { SmithingRecipeDataCollectionModule(
+            Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+            Ingredient.of(ToStarsMod.blocks.steel_powered_furnace),
+            Ingredient.of(Items.NETHERITE_INGOT),
+            null,
+            id = it.entry.identifier().toString() + "_from_upgrade",
+        ) { collection, event ->
+            event.helper.createHas(this, ToStarsMod.blocks.steel_powered_furnace)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_furnaces) }
+    }
+
+    /**
+     * The data description of the netherite electric smoker.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.netherite_powered_smoker
+     * @since 0.2.0
+     */
+    val netherite_powered_smoker by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createSmokerRecipe(ToStarsMod.blocks.netherite_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createSmokerUpgradeRecipe(ToStarsMod.blocks.netherite_powered_furnace)
+        ) }
+        addModule { SmithingRecipeDataCollectionModule(
+            Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+            Ingredient.of(ToStarsMod.blocks.steel_powered_smoker),
+            Ingredient.of(Items.NETHERITE_INGOT),
+            null,
+            id = it.entry.identifier().toString() + "_from_upgrade",
+        ) { collection, event ->
+            event.helper.createHas(this, ToStarsMod.blocks.steel_powered_smoker)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_smokers) }
+    }
+
+    /**
+     * The data description of the netherite electric blast furnace.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.netherite_powered_blast_furnace
+     * @since 0.2.0
+     */
+    val netherite_powered_blast_furnace by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createBlastFurnaceRecipe(ToStarsMod.blocks.netherite_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createBlastFurnaceUpgradeRecipe(ToStarsMod.blocks.netherite_powered_furnace)
+        ) }
+        addModule { SmithingRecipeDataCollectionModule(
+            Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+            Ingredient.of(ToStarsMod.blocks.steel_powered_blast_furnace),
+            Ingredient.of(Items.NETHERITE_INGOT),
+            null,
+            id = it.entry.identifier().toString() + "_from_upgrade",
+        ) { collection, event ->
+            event.helper.createHas(this, ToStarsMod.blocks.steel_powered_blast_furnace)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_blast_furnaces) }
+    }
+
+    /**
+     * The data description of the netherite electric kiln.
+     * @see net.jidb.to.stars.content.ToStarsBlockLibrary.netherite_powered_kiln
+     * @since 0.2.0
+     */
+    val netherite_powered_kiln by this {
+        addModule { ShapelessRecipeDataCollectionModule(modify = ToStarsDataHelper.createKilnRecipe(ToStarsMod.blocks.netherite_machine_enclosure)) }
+        addModule { ShapedRecipeDataCollectionModule(
+            id = it.entry.identifier().toString() + "_from_furnace",
+            modify = ToStarsDataHelper.createKilnUpgradeRecipe(ToStarsMod.blocks.netherite_powered_furnace)
+        ) }
+        addModule { SmithingRecipeDataCollectionModule(
+            Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+            Ingredient.of(ToStarsMod.blocks.steel_powered_kiln),
+            Ingredient.of(Items.NETHERITE_INGOT),
+            null,
+            id = it.entry.identifier().toString() + "_from_upgrade",
+        ) { collection, event ->
+            event.helper.createHas(this, ToStarsMod.blocks.steel_powered_kiln)
+            this
+        } }
+        addModule { SimpleItemTagDataCollectionModule(ToStarsMod.itemTags.tier_2_powered_kilns) }
     }
 
 }

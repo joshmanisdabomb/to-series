@@ -2,13 +2,13 @@ package net.jidb.to.base.content.inventory.menu
 
 import net.jidb.to.base.content.ToBaseBlockLibrary
 import net.jidb.to.base.content.ToBaseMenuLibrary
+import net.jidb.to.base.pub.inventory.ToBaseQuickStackHelper
 import net.minecraft.world.Container
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerLevelAccess
 import net.minecraft.world.inventory.Slot
-import net.minecraft.world.item.ItemStack
 
 /**
  * The menu opened by a research desk, through which the in-game wiki is read.
@@ -50,43 +50,8 @@ class ResearchMenu(id: Int, playerInventory: Inventory, val access: ContainerLev
 
     override fun addSlot(slot: Slot) = super.addSlot(ResearchSlot(slot.container, slot.containerSlot, slot.x, slot.y))
 
-    override fun quickMoveStack(player: Player, index: Int): ItemStack {
-        var result = ItemStack.EMPTY
-        val slot = this.slots[index]
-
-        if (slot.hasItem()) {
-            val stackInSlot = slot.item
-            result = stackInSlot.copy()
-
-            if (index in 0..<27) {
-                //Main inventory -> hotbar
-                if (!this.moveItemStackTo(stackInSlot, 27, 36, false)) {
-                    return ItemStack.EMPTY
-                }
-            } else if (index in 27..<36) {
-                //Hotbar -> main inventory
-                if (!this.moveItemStackTo(stackInSlot, 0, 27, false)) {
-                    return ItemStack.EMPTY
-                }
-            } else {
-                //Ignore non-player slots
-                return ItemStack.EMPTY
-            }
-
-            if (stackInSlot.isEmpty) {
-                slot.setByPlayer(ItemStack.EMPTY)
-            } else {
-                slot.setChanged()
-            }
-
-            if (stackInSlot.count == result.count) {
-                return ItemStack.EMPTY
-            }
-
-            slot.onTake(player, stackInSlot)
-        }
-
-        return result
+    override fun quickMoveStack(player: Player, index: Int) = ToBaseQuickStackHelper.start(this, player, index) { stack, index, slot, player ->
+        ToBaseQuickStackHelper.betweenInventoryHotbar(::moveItemStackTo, stack, index, slots.size) == true
     }
 
     override fun stillValid(player: Player) = stillValid(this.access, player, ToBaseBlockLibrary.research_desk)

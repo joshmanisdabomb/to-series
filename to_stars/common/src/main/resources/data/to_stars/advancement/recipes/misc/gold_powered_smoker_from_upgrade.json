@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_powered_smoker": {
+      "conditions": {
+        "items": [
+          {
+            "items": "to_stars:copper_powered_smoker"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "to_stars:gold_powered_smoker_from_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_copper_powered_smoker"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "to_stars:gold_powered_smoker_from_upgrade"
+    ]
+  }
+}

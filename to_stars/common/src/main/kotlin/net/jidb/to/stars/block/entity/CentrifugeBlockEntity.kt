@@ -31,7 +31,7 @@ class CentrifugeBlockEntity(pos: BlockPos, state: BlockState) : ProcessorBlockEn
 
     override fun createMenu(id: Int, player: Inventory) = CentrifugeMenu(id, player, this, dataAccess)
 
-    override fun outputResults(recipe: RecipeHolder<out ProcessorRecipe>, results: List<ItemStack>): Boolean {
+    override fun distributeOutputs(recipe: RecipeHolder<out ProcessorRecipe>, results: List<ItemStack>): Boolean {
         val preview = recipe.value.preview
         val slots = outputSlots.map(::getSlot)
         val items = preview.transpose().map { it.mapNotNull { it.getOrNull()?.item?.value() }.distinct() }
@@ -79,7 +79,7 @@ class CentrifugeBlockEntity(pos: BlockPos, state: BlockState) : ProcessorBlockEn
          * @param entity The block entity being ticked.
          */
         fun tick(level: Level, pos: BlockPos, state: BlockState, entity: CentrifugeBlockEntity) {
-            ProcessorBlockEntity.tick(level, pos, state, entity)
+            AbstractProcessorBlockEntity.tick(level, pos, state, entity)
 
             if (level.isClientSide) {
                 if (state.getValue(LIT)) {

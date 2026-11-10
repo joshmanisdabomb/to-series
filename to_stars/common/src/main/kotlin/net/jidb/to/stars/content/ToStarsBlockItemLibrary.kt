@@ -253,6 +253,198 @@ object ToStarsBlockItemLibrary : BlockItemLibrary(ToStarsMod.MOD_ID, ToStarsMod.
         .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO_5)))) }
 
     /**
+     * The item of the tier 1 electric furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.copper_powered_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val copper_powered_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE)))) }
+
+    /**
+     * The item of the tier 1.5 electric furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.gold_powered_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val gold_powered_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE_5)))) }
+
+    /**
+     * The item of the tier 2 electric furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.steel_powered_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val steel_powered_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO)))) }
+
+    /**
+     * The item of the tier 2.5 electric furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.netherite_powered_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val netherite_powered_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO_5)))) }
+
+    /**
+     * The item of the tier 1 electric smoker. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.copper_powered_smoker
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val copper_powered_smoker by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE)))) }
+
+    /**
+     * The item of the tier 1.5 electric smoker. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.gold_powered_smoker
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val gold_powered_smoker by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE_5)))) }
+
+    /**
+     * The item of the tier 2 electric smoker. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.steel_powered_smoker
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val steel_powered_smoker by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO)))) }
+
+    /**
+     * The item of the tier 2.5 electric smoker. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.netherite_powered_smoker
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val netherite_powered_smoker by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO_5)))) }
+
+    /**
+     * The item of the tier 1 electric blast furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.copper_powered_blast_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val copper_powered_blast_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE)))) }
+
+    /**
+     * The item of the tier 1.5 electric blast furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.gold_powered_blast_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val gold_powered_blast_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE_5)))) }
+
+    /**
+     * The item of the tier 2 electric blast furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.steel_powered_blast_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val steel_powered_blast_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO)))) }
+
+    /**
+     * The item of the tier 2.5 electric blast furnace. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.netherite_powered_blast_furnace
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val netherite_powered_blast_furnace by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO_5)))) }
+
+    /**
+     * The item of the tier 1 electric kiln. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.copper_powered_kiln
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val copper_powered_kiln by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE)))) }
+
+    /**
+     * The item of the tier 1.5 electric kiln. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.gold_powered_kiln
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val gold_powered_kiln by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.ONE_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.ONE_5)))) }
+
+    /**
+     * The item of the tier 2 electric kiln. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.steel_powered_kiln
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val steel_powered_kiln by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO)))) }
+
+    /**
+     * The item of the tier 2.5 electric kiln. Displays information about energy contents in the durability bar render.
+     * Contains machine tier and info tooltip text.
+     * @see ToStarsBlockLibrary.netherite_powered_kiln
+     * @see BatteryBlockItem
+     * @since 0.3.0
+     */
+    val netherite_powered_kiln by this { block, initial -> BatteryBlockItem(block!!(), Item.Properties()
+        .setId(ResourceKey.create(Registries.ITEM, block().identifier))
+        .useBlockDescriptionPrefix()
+        .component(DataComponents.LORE, TooltipEngine.asItemLore(ToStarsTooltipEngine.getMachineInfo(MachineTier.TWO_5) + ToStarsTooltipEngine.getProcessorInfo(MachineTier.TWO_5)))) }
+
+    /**
      * The item of the power cable, whose tooltip names how much energy is lost across it.
      */
     val power_cable by this { block, initial -> BlockItem(block!!(), Item.Properties()

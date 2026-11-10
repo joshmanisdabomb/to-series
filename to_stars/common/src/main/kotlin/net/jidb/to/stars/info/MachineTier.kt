@@ -4,6 +4,10 @@ import net.minecraft.network.chat.TextColor
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.StringRepresentable
+import net.minecraft.world.level.block.SoundType
+import net.minecraft.world.level.block.state.BlockBehaviour
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
+import net.minecraft.world.level.material.MapColor
 
 /**
  * Enum that defines the tiers a machine can be built at, which is what every figure a machine works from is read off.
@@ -36,9 +40,18 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val generatorBonus = 50f
         override val generatorCooling = 0.99f
 
-        override val turbineRate = 2f
+        override val turbineRate = 1.5f
 
         override val chatColor = 0xFFE38407.toInt()
+
+        override fun setProperties(properties: BlockBehaviour.Properties) {
+            properties
+                .mapColor(MapColor.COLOR_ORANGE)
+                .requiresCorrectToolForDrops()
+                .strength(4.0F, 5.0F)
+                .instrument(NoteBlockInstrument.TRUMPET)
+                .sound(SoundType.COPPER_GOLEM_STATUE)
+        }
 
     },
 
@@ -60,15 +73,24 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val machineBonus = 1.015625f
         override val machineBonusMax = 64
 
-        override val generatorHeat = 0.015f
+        override val generatorHeat = 0.0125f
         override val generatorInitial = 100f
         override val generatorRange = 300f
         override val generatorBonus = 100f
         override val generatorCooling = 0.994f
 
-        override val turbineRate = 2.5f
+        override val turbineRate = 1.75f
 
         override val chatColor = TextColor.YELLOW.value
+
+        override fun setProperties(properties: BlockBehaviour.Properties) {
+            properties
+                .mapColor(MapColor.GOLD)
+                .requiresCorrectToolForDrops()
+                .strength(4.5F, 6.0F)
+                .instrument(NoteBlockInstrument.BELL)
+                .sound(SoundType.NETHERITE_BLOCK)
+        }
 
     },
 
@@ -89,15 +111,24 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val machineBonus = 1.02f
         override val machineBonusMax = 80
 
-        override val generatorHeat = 0.02f
+        override val generatorHeat = 0.015f
         override val generatorInitial = 100f
         override val generatorRange = 400f
         override val generatorBonus = 100f
         override val generatorCooling = 0.996f
 
-        override val turbineRate = 3f
+        override val turbineRate = 2f
 
         override val chatColor = 0xFFCACEE0.toInt()
+
+        override fun setProperties(properties: BlockBehaviour.Properties) {
+            properties
+                .mapColor(MapColor.DEEPSLATE)
+                .requiresCorrectToolForDrops()
+                .strength(6.0F, 9.0F)
+                .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                .sound(SoundType.COPPER_GOLEM_STATUE)
+        }
 
     },
 
@@ -119,15 +150,23 @@ enum class MachineTier(val number: Float) : StringRepresentable {
         override val machineBonus = 1.03125f
         override val machineBonusMax = 96
 
-        override val generatorHeat = 0.025f
-        override val generatorInitial = 150f
+        override val generatorHeat = 0.0175f
+        override val generatorInitial = 100f
         override val generatorRange = 500f
-        override val generatorBonus = 150f
+        override val generatorBonus = 100f
         override val generatorCooling = 0.9975f
 
-        override val turbineRate = 3.5f
+        override val turbineRate = 2.25f
 
         override val chatColor = 0xFF75526B.toInt()
+
+        override fun setProperties(properties: BlockBehaviour.Properties) {
+            properties
+                .mapColor(MapColor.COLOR_BLACK)
+                .requiresCorrectToolForDrops()
+                .strength(13.0F, 1200.0F)
+                .sound(SoundType.NETHERITE_BLOCK)
+        }
 
     };
 
@@ -210,6 +249,8 @@ enum class MachineTier(val number: Float) : StringRepresentable {
      * The colour this tier is written in.
      */
     abstract val chatColor: Int
+
+    abstract fun setProperties(properties: BlockBehaviour.Properties)
 
     override fun getSerializedName() = name.lowercase()
 

@@ -22,11 +22,7 @@ import java.util.Optional
  * @since 0.2.0
  * @see KilnMenu
  */
-class KilnScreen(menu: KilnMenu, inventory: Inventory, title: Component) : AbstractFurnaceScreen<KilnMenu>(menu, inventory, title, Component.translatable("gui.${ToStarsMod.modid}.kiln.recipebook.filter"), texture, litProgress, burnProgress, listOf(
-    RecipeBookComponent.TabInfo(ItemStack(Items.COMPASS), Optional.empty(), ToStarsMod.recipeCustomCategories.kiln_all),
-    RecipeBookComponent.TabInfo(ItemStack(Items.STONE), Optional.empty(), ToStarsMod.recipeCustomCategories.kiln_blocks),
-    RecipeBookComponent.TabInfo(ItemStack(Items.LAVA_BUCKET), Optional.of(ItemStack(Items.EMERALD)), ToStarsMod.recipeCustomCategories.kiln_misc)
-)) {
+class KilnScreen(menu: KilnMenu, inventory: Inventory, title: Component) : AbstractFurnaceScreen<KilnMenu>(menu, inventory, title, Component.translatable("gui.${ToStarsMod.modid}.kiln.recipebook.filter"), texture, litProgress, burnProgress, createTabInfos()) {
 
     companion object {
 
@@ -47,6 +43,12 @@ class KilnScreen(menu: KilnMenu, inventory: Inventory, title: Component) : Abstr
          * Just points to the same texture used in a vanilla furnace.
          */
         val litProgress = Identifier.withDefaultNamespace("container/furnace/lit_progress")
+
+        fun createTabInfos() = listOf(
+            RecipeBookComponent.TabInfo(ItemStack(Items.COMPASS), Optional.empty(), ToStarsMod.recipeCustomCategories.kiln_all),
+            RecipeBookComponent.TabInfo(ItemStack(Items.STONE), Optional.empty(), ToStarsMod.recipeCustomCategories.kiln_blocks),
+            RecipeBookComponent.TabInfo(ItemStack(Items.LAVA_BUCKET), Optional.of(ItemStack(Items.EMERALD)), ToStarsMod.recipeCustomCategories.kiln_misc)
+        )
 
     }
 

@@ -1,0 +1,32 @@
+{
+  "parent": "to_stars:copper_machine",
+  "criteria": {
+    "has_powered_furnace": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#to_stars:powered_furnaces"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.to_stars.powered_furnace.description"
+    },
+    "icon": {
+      "id": "to_stars:copper_powered_furnace"
+    },
+    "title": {
+      "translate": "advancements.to_stars.powered_furnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_powered_furnace"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

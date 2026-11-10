@@ -2,6 +2,10 @@
   "values": [
     "to_stars:copper_centrifuge",
     "to_stars:copper_power_bank",
+    "to_stars:copper_powered_blast_furnace",
+    "to_stars:copper_powered_furnace",
+    "to_stars:copper_powered_kiln",
+    "to_stars:copper_powered_smoker",
     "to_stars:copper_solid_generator",
     "to_stars:copper_turbine"
   ]

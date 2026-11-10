@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "f": "to_stars:copper_powered_furnace",
+    "l": "#minecraft:logs"
+  },
+  "pattern": [
+    " l ",
+    "lfl",
+    " l "
+  ],
+  "result": {
+    "id": "to_stars:copper_powered_smoker"
+  }
+}
