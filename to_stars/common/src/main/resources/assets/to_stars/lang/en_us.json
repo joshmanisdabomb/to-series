@@ -138,6 +138,7 @@
   "itemgroup.to_stars.tab": "To Sky and Stars",
   "jukebox_song.to_stars.gravitational_influence": "K3YLET - Gravitational Influence",
   "recipe.to_stars.enriched_uranium_nugget_from_centrifuge": "Uranium Enrichment",
+  "recipe_type.to_stars.minecraft.smelting": "%s",
   "subtitles.to_stars.block.generator.crackle": "Heat Generator crackles",
   "subtitles.to_stars.block.generator.empty": "Heat Generator cooling",
   "subtitles.to_stars.entity.atomic_bomb.activate": "Atomic Bomb activated",

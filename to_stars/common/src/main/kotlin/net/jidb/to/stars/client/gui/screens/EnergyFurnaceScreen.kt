@@ -9,6 +9,9 @@ import net.jidb.to.stars.info.EnergyFurnaceType
 import net.jidb.to.stars.inventory.menu.AbstractProcessorMenu
 import net.jidb.to.stars.inventory.menu.EnergyFurnaceMenu
 import net.minecraft.client.gui.GuiGraphicsExtractor
+import net.minecraft.client.gui.components.Renderable
+import net.minecraft.client.gui.components.events.GuiEventListener
+import net.minecraft.client.gui.narration.NarratableEntry
 import net.minecraft.client.gui.navigation.ScreenPosition
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent
@@ -16,9 +19,12 @@ import net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory
 import net.minecraft.client.renderer.RenderPipelines
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.entity.player.Inventory
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
+import net.minecraft.world.item.crafting.Recipe
 import net.minecraft.world.item.crafting.RecipeBookCategories
 
 /**
@@ -34,15 +40,17 @@ import net.minecraft.world.item.crafting.RecipeBookCategories
  * @param playerInventory The inventory of the player who opened it.
  * @param title The title of the interface.
  */
-class EnergyFurnaceScreen(menu: EnergyFurnaceMenu, playerInventory: Inventory, title: Component) : AbstractRecipeBookScreen<EnergyFurnaceMenu>(menu, EnergyFurnaceRecipeBookComponent(menu, getRecipeFilterName(menu), getRecipeTabInfos(menu)), playerInventory, title) {
+class EnergyFurnaceScreen(menu: EnergyFurnaceMenu, playerInventory: Inventory, title: Component) : AbstractRecipeBookScreen<EnergyFurnaceMenu>(menu, EnergyFurnaceRecipeBookComponent(menu, getRecipeFilterName(menu), getRecipeTabInfos(menu)), playerInventory, title), IProcessorScreen {
 
-    /**
-     * Watches the battery slots so that a battery's own charge can be shown in its tooltip.
-     */
-    protected val energyItemListener = ToEnergyItemContainerListener(menu.batterySlots, minecraft::level)
+    override val processorScreen get() = this
+    override val processorMenu get() = menu
+    override val energyListener = ToEnergyItemContainerListener(menu.batterySlots, minecraft::level)
+    override val processorLeftPos get() = leftPos
+    override val processorTopPos get() = topPos
+    override val processorImageHeight get() = customHeight
 
-    protected var components = AbstractProcessorComponents(this, menu, energyItemListener)
-        .setDefaults(::addRenderableWidget, { leftPos }, { topPos }, { customHeight })
+    protected var components = AbstractProcessorComponents(this)
+        .setDefaults()
         .setProgressBar { addRenderableWidget(ProcessBarWidget({
             (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.PROGRESS) ?: 0) / (AbstractProcessorMenu.dataSchema.getShortValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.MAX_PROGRESS) ?: 0).toFloat()
         }, leftPos + 80, topPos + 49)) }
@@ -57,6 +65,8 @@ class EnergyFurnaceScreen(menu: EnergyFurnaceMenu, playerInventory: Inventory, t
 
         components.init()
     }
+
+    override fun <T> processorAddWidget(widget: T): T where T : GuiEventListener, T : Renderable, T : NarratableEntry = addRenderableWidget(widget)
 
     override fun getRecipeBookButtonPosition() = ScreenPosition(leftPos + imageWidth - 26, (height - customHeight).div(2) + 17)
 
@@ -93,9 +103,17 @@ class EnergyFurnaceScreen(menu: EnergyFurnaceMenu, playerInventory: Inventory, t
         components.extractTooltip(graphics, mouseX, mouseY)
     }
 
+    override fun getRecipeTranslation(recipe: ResourceKey<Recipe<*>>, icon: ResourceKey<Item>?): Component {
+        var args = emptyArray<Component>()
+        if (icon != null) {
+            args += Component.translatable("${icon.registryKey().identifier().path}.${icon.identifier().toLanguageKey()}")
+        }
+        return Component.translatable("recipe_type.${ToStarsMod.modid}.minecraft.smelting", *args)
+    }
+
     override fun getTooltipFromContainerItem(stack: ItemStack): List<Component> {
         run {
-            val tooltip = energyItemListener.getTooltipFromContainerItem(stack, minecraft.level ?: return@run, minecraft.player ?: return@run, hoveredSlot?.index ?: return@run, minecraft.hasShiftDown(), minecraft.options.advancedItemTooltips)
+            val tooltip = energyListener.getTooltipFromContainerItem(stack, minecraft.level ?: return@run, minecraft.player ?: return@run, hoveredSlot?.index ?: return@run, minecraft.hasShiftDown(), minecraft.options.advancedItemTooltips)
             if (tooltip != null) {
                 return tooltip
             }

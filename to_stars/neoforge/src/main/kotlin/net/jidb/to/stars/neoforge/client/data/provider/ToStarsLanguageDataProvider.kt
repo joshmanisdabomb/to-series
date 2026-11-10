@@ -160,6 +160,8 @@ class ToStarsLanguageDataProvider(tokens: Map<String, Map<String, Component>>, o
         add("tooltip.$modid.efficiency.recipe.value", "%s")
         add("tooltip.$modid.efficiency.incorrect", "Processing different recipe - efficiency bonus will reset!")
 
+        add("recipe_type.$modid.minecraft.smelting", "%s")
+
         add("recipe.$modid.enriched_uranium_nugget_from_centrifuge", "Uranium Enrichment")
 
         add("jukebox_song.$modid.gravitational_influence", "K3YLET - Gravitational Influence")

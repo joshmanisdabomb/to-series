@@ -39,7 +39,7 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
     override fun init() {
         super.init()
 
-        progress = this.addRenderableWidget(
+        progress = this.processorAddWidget(
             object : AbstractBarWidget(leftPos + 85, topPos + 71, 5, 13) {
 
                 override val animation = AnimationDirection.TOP_BOTTOM
@@ -53,7 +53,7 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
 
             }
         )
-        progressl = this.addRenderableWidget(
+        progressl = this.processorAddWidget(
             object : AbstractBarWidget(leftPos + 70, topPos + 76, 16, 15) {
 
                 override val animation = AnimationDirection.RIGHT_LEFT
@@ -67,7 +67,7 @@ class CentrifugeScreen<M : CentrifugeMenu>(menu: M, playerInventory: Inventory, 
 
             }
         )
-        progressr = this.addRenderableWidget(
+        progressr = this.processorAddWidget(
             object : AbstractBarWidget(leftPos + 89, topPos + 76, 16, 15) {
 
                 override val animation = AnimationDirection.LEFT_RIGHT

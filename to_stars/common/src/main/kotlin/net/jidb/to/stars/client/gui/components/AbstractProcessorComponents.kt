@@ -7,24 +7,26 @@ import net.jidb.to.base.client.pub.gui.components.AbstractBarWidget
 import net.jidb.to.base.client.pub.gui.components.energy.AbstractEnergyBarWidget
 import net.jidb.to.base.client.pub.gui.components.energy.MiniEnergyBarWidget
 import net.jidb.to.base.pub.info.ToBaseTooltipEngine
-import net.jidb.to.base.pub.inventory.ToEnergyItemContainerListener
 import net.jidb.to.stars.ToStarsMod
+import net.jidb.to.stars.client.gui.screens.IProcessorScreen
 import net.jidb.to.stars.info.ToStarsTooltipEngine
 import net.jidb.to.stars.inventory.menu.AbstractProcessorMenu
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphicsExtractor
-import net.minecraft.client.gui.components.AbstractWidget
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent
 import net.minecraft.client.renderer.RenderPipelines
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
+import net.minecraft.resources.ResourceKey
 import net.minecraft.util.Mth
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.crafting.Recipe
 import kotlin.jvm.optionals.getOrNull
 
-open class AbstractProcessorComponents(protected val screen: AbstractContainerScreen<out AbstractProcessorMenu>, protected val menu: AbstractProcessorMenu, protected val energyListener: ToEnergyItemContainerListener?) {
+open class AbstractProcessorComponents(protected val screen: IProcessorScreen) {
 
     /**
      * The recipe book widget for the interface, or `null` before the screen has been laid out.
@@ -57,15 +59,16 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
     protected var progressProvider: AbstractProcessorComponents.() -> AbstractBarWidget? = { null }
 
     open fun init() {
-        recipeBook = screen.children().firstNotNullOf { it as? RecipeBookComponent<*> }
+        recipeBook = screen.processorScreen.children().firstNotNullOf { it as? RecipeBookComponent<*> }
 
         energy = energyProvider()
         efficiency = efficiencyProvider()
         progress = progressProvider()
 
-        if (energyListener != null) {
-            menu.removeSlotListener(energyListener)
-            menu.addSlotListener(energyListener)
+        val listener = screen.energyListener
+        if (listener != null) {
+            screen.processorMenu.removeSlotListener(listener)
+            screen.processorMenu.addSlotListener(listener)
         }
     }
 
@@ -91,12 +94,12 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
         return this
     }
 
-    fun setDefaults(addWidget: (widget: AbstractWidget) -> Unit, leftPos: () -> Int, topPos: () -> Int, imageHeight: () -> Int) = this
-        .setEnergyBar { defaultEnergyBar(menu, leftPos(), topPos()).also { addWidget(it) } }
-        .setEfficiencyBar { defaultEfficiencyBar(menu, leftPos(), topPos(), imageHeight()).also { addWidget(it) } }
+    fun setDefaults(leftPos: Int? = null, topPos: Int? = null, imageHeight: Int? = null) = this
+        .setEnergyBar { defaultEnergyBar(screen.processorMenu, leftPos ?: screen.processorLeftPos, topPos ?: screen.processorTopPos).also { screen.processorAddWidget(it) } }
+        .setEfficiencyBar { defaultEfficiencyBar(screen.processorMenu, leftPos ?: screen.processorLeftPos, topPos ?: screen.processorTopPos, imageHeight ?: screen.processorImageHeight).also { screen.processorAddWidget(it) } }
 
     fun containerTick() {
-        energyListener?.tick(menu)
+        screen.energyListener?.tick(screen.processorMenu)
     }
 
     /**
@@ -119,10 +122,10 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
      */
     open fun extractEnergyIcon(graphics: GuiGraphicsExtractor, x: Int? = null, y: Int? = null) {
         val energy = energy?.energy()
-        val recipeEnergy = AbstractProcessorMenu.dataSchema.getIntValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_ENERGY) ?: 0
-        val recipeTime = AbstractProcessorMenu.dataSchema.getIntValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_TIME) ?: 0
-        val speed = menu.getClientData()?.machineUsage ?: 0f
-        val usage = menu.getClientData()?.machineSpeed ?: 0f
+        val recipeEnergy = AbstractProcessorMenu.dataSchema.getIntValue(screen.processorMenu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_ENERGY) ?: 0
+        val recipeTime = AbstractProcessorMenu.dataSchema.getIntValue(screen.processorMenu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_TIME) ?: 0
+        val speed = screen.processorMenu.getClientData()?.machineUsage ?: 0f
+        val usage = screen.processorMenu.getClientData()?.machineSpeed ?: 0f
         val total = Mth.ceil(recipeEnergy * usage)
         val cost = Mth.ceil(total * speed / recipeTime)
         if ((energy ?: 0L) > cost) {
@@ -138,8 +141,8 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
      * @param y The y position of the icon, or `null` to place it beside the bar. Defaults to `null`.
      */
     open fun extractEfficiencyIcon(graphics: GuiGraphicsExtractor, x: Int? = null, y: Int? = null) {
-        val completions = AbstractProcessorMenu.dataSchema.getIntValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.COMPLETIONS) ?: 0
-        val sameRecipe = AbstractProcessorMenu.dataSchema.getBoolValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_SAME) ?: false
+        val completions = AbstractProcessorMenu.dataSchema.getIntValue(screen.processorMenu.data, AbstractProcessorMenu.AbstractProcessorDataKey.COMPLETIONS) ?: 0
+        val sameRecipe = AbstractProcessorMenu.dataSchema.getBoolValue(screen.processorMenu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_SAME) ?: false
         if (completions > 0 && sameRecipe) {
             graphics.blitSprite(RenderPipelines.GUI_TEXTURED, efficiencyIndicator, x ?: this.efficiency?.x?.minus(14) ?: 0, y ?: this.efficiency?.y?.minus(3) ?: 0, 11, 10)
         }
@@ -153,7 +156,7 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
      * @param y The y position of the icon, or `null` to place it beside the efficiency bar. Defaults to `null`.
      */
     open fun extractLastRecipeIcon(graphics: GuiGraphicsExtractor, x: Int? = null, y: Int? = null) {
-        menu.getClientData()?.lastRecipeIcon?.ifPresent {
+        screen.processorMenu.getClientData()?.lastRecipeIcon?.ifPresent {
             val item = Minecraft.getInstance().level?.holderLookup(Registries.ITEM)?.get(it)?.getOrNull() ?: return@ifPresent
             val stack = ItemStack(item)
             graphics.fakeItem(stack, x ?: this.efficiency?.x?.minus(32) ?: 0, y ?: this.efficiency?.y?.minus(6) ?: 0)
@@ -179,7 +182,7 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
     open fun extractEnergyTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, areaX: IntRange? = null, areaY: IntRange? = null): Boolean {
         val energy = energy ?: return false
         if (mouseX in (areaX ?: energy.x.minus(12)..energy.right) && mouseY in (areaY ?: (energy.y.minus(3) until energy.y.plus(7)))) {
-            Companion.extractEnergyTooltip(screen, menu, graphics, mouseX, mouseY)
+            Companion.extractEnergyTooltip(screen.processorScreen, screen.processorMenu, graphics, mouseX, mouseY)
             return true
         }
         return false
@@ -198,7 +201,7 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
     open fun extractEfficiencyTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, areaX: IntRange? = null, areaY: IntRange? = null): Boolean {
         val efficiency = efficiency ?: return false
         if (mouseX in (areaX ?: efficiency.x.minus(32)..efficiency.right) && mouseY in (areaY ?: (efficiency.y.minus(7) until efficiency.y.plus(9)))) {
-            Companion.extractEfficiencyTooltip(screen, menu, graphics, mouseX, mouseY)
+            Companion.extractEfficiencyTooltip(screen.processorScreen, screen.processorMenu, graphics, mouseX, mouseY, screen::getRecipeTranslation)
             return true
         }
         return false
@@ -217,7 +220,7 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
     open fun extractProgressTooltip(graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, areaX: IntRange? = null, areaY: IntRange? = null): Boolean {
         val progress = progress ?: return false
         if (mouseX in (areaX ?: progress.x..progress.right) && mouseY in (areaY ?: progress.y..progress.bottom)) {
-            Companion.extractProgressTooltip(screen, menu, graphics, mouseX, mouseY)
+            Companion.extractProgressTooltip(screen.processorScreen, screen.processorMenu, graphics, mouseX, mouseY)
             return true
         }
         return false
@@ -263,9 +266,9 @@ open class AbstractProcessorComponents(protected val screen: AbstractContainerSc
             graphics.setTooltipForNextFrame(screen.font, screen.font.split(tooltip, 200), mouseX, mouseY)
         }
 
-        fun extractEfficiencyTooltip(screen: AbstractContainerScreen<out AbstractProcessorMenu>, menu: AbstractProcessorMenu, graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int) {
+        fun extractEfficiencyTooltip(screen: AbstractContainerScreen<out AbstractProcessorMenu>, menu: AbstractProcessorMenu, graphics: GuiGraphicsExtractor, mouseX: Int, mouseY: Int, recipeName: (recipe: ResourceKey<Recipe<*>>, icon: ResourceKey<Item>?) -> Component) {
             val tooltip = mutableListOf<Component>()
-            val recipe = menu.getClientData()?.lastRecipe?.getOrNull()?.let { Component.translatable("recipe.${it.identifier().toLanguageKey()}") }
+            val recipe = menu.getClientData()?.lastRecipe?.getOrNull()?.let { recipeName(it, menu.getClientData()?.lastRecipeIcon?.getOrNull()) }
             tooltip.addAll(ToStarsTooltipEngine.getEfficiencyInfo(
                 recipe,
                 recipe != null && !(AbstractProcessorMenu.dataSchema.getBoolValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_SAME) ?: false) && (AbstractProcessorMenu.dataSchema.getIntValue(menu.data, AbstractProcessorMenu.AbstractProcessorDataKey.RECIPE_TIME) ?: 0) > 0,

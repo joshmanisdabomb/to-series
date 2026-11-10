@@ -5,6 +5,9 @@ import net.jidb.to.stars.client.gui.components.AbstractProcessorComponents
 import net.jidb.to.stars.client.gui.components.ProcessorRecipeBookComponent
 import net.jidb.to.stars.inventory.menu.ProcessorMenu
 import net.minecraft.client.gui.GuiGraphicsExtractor
+import net.minecraft.client.gui.components.Renderable
+import net.minecraft.client.gui.components.events.GuiEventListener
+import net.minecraft.client.gui.narration.NarratableEntry
 import net.minecraft.client.gui.navigation.ScreenPosition
 import net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent
@@ -27,20 +30,22 @@ import net.minecraft.world.item.ItemStack
  * @param title The title of the interface.
  * @property customHeight How tall the background is, which is larger than the height vanilla assumes.
  */
-abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component, tabInfos: List<RecipeBookComponent.TabInfo>, playerInventory: Inventory, title: Component, val customHeight: Int) : AbstractRecipeBookScreen<M>(menu, ProcessorRecipeBookComponent(menu, filterName, tabInfos), playerInventory, title) {
+abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component, tabInfos: List<RecipeBookComponent.TabInfo>, playerInventory: Inventory, title: Component, val customHeight: Int) : AbstractRecipeBookScreen<M>(menu, ProcessorRecipeBookComponent(menu, filterName, tabInfos), playerInventory, title), IProcessorScreen {
 
     /**
      * The background of the screen.
      */
     protected abstract val texture: Identifier
 
-    /**
-     * Watches the battery slots so that a battery's own charge can be shown in its tooltip.
-     */
-    protected val energyItemListener = ToEnergyItemContainerListener(menu.batterySlots, minecraft::level)
+    override val processorScreen get() = this
+    override val processorMenu get() = menu
+    override val energyListener = ToEnergyItemContainerListener(menu.batterySlots, minecraft::level)
+    override val processorLeftPos get() = leftPos
+    override val processorTopPos get() = topPos
+    override val processorImageHeight get() = customHeight
 
-    protected var components = AbstractProcessorComponents(this, menu, energyItemListener)
-        .setDefaults(::addRenderableWidget, { leftPos }, { topPos }, { customHeight })
+    protected var components = AbstractProcessorComponents(this)
+        .setDefaults()
 
     init {
         inventoryLabelY = customHeight - 94
@@ -52,6 +57,8 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
 
         components.init()
     }
+
+    override fun <T> processorAddWidget(widget: T): T where T : GuiEventListener, T : Renderable, T : NarratableEntry = addRenderableWidget(widget)
 
     override fun getRecipeBookButtonPosition() = ScreenPosition(leftPos + imageWidth - 26, (height - customHeight).div(2) + 17)
 
@@ -85,7 +92,7 @@ abstract class ProcessorScreen<M : ProcessorMenu>(menu: M, filterName: Component
 
     override fun getTooltipFromContainerItem(stack: ItemStack): List<Component> {
         run {
-            val tooltip = energyItemListener.getTooltipFromContainerItem(stack, minecraft.level ?: return@run, minecraft.player ?: return@run, hoveredSlot?.index ?: return@run, minecraft.hasShiftDown(), minecraft.options.advancedItemTooltips)
+            val tooltip = energyListener.getTooltipFromContainerItem(stack, minecraft.level ?: return@run, minecraft.player ?: return@run, hoveredSlot?.index ?: return@run, minecraft.hasShiftDown(), minecraft.options.advancedItemTooltips)
             if (tooltip != null) {
                 return tooltip
             }
